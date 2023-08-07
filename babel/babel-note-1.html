@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="抽象语法树 抽象语法树（Abstract Syntax Tree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。  babel 的处理过程每一步都涉及抽象语法树。AST Explorer是一个在线转化 ast 的网站，可以查看源码及转化后的 AST 代码。 以 type 划分每一层级，">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="babel基础知识">
+<meta property="og:url" content="https://sunjinkang.github.io/babel/babel-note-1.html">
+<meta property="og:site_name" content="Sun with no word">
+<meta property="og:description" content="抽象语法树 抽象语法树（Abstract Syntax Tree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。  babel 的处理过程每一步都涉及抽象语法树。AST Explorer是一个在线转化 ast 的网站，可以查看源码及转化后的 AST 代码。 以 type 划分每一层级，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sunjinkang.github.io/babel/babel-note-1/babel-ast.png">
+<meta property="article:published_time" content="2023-04-09T02:13:45.000Z">
+<meta property="article:modified_time" content="2023-07-24T09:24:46.475Z">
+<meta property="article:author" content="Sun Jinkang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sunjinkang.github.io/babel/babel-note-1/babel-ast.png">
+
+
+<link rel="canonical" href="https://sunjinkang.github.io/babel/babel-note-1">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/babel/babel-note-1.html","path":"babel/babel-note-1.html","title":"babel基础知识"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>babel基础知识 | Sun with no word
+</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sun with no word</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">something about what I have learned and some interesting things</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">抽象语法树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#babel-%E7%9A%84%E5%A4%84%E7%90%86%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">babel 的处理步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90"><span class="nav-number">2.0.1.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.0.2.</span> <span class="nav-text">转换</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%94%9F%E6%88%90"><span class="nav-number">2.0.3.</span> <span class="nav-text">生成</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#State-%E7%8A%B6%E6%80%81"><span class="nav-number">2.0.4.</span> <span class="nav-text">State(状态)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Scopes-%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.0.5.</span> <span class="nav-text">Scopes(作用域)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Bindings%EF%BC%88%E7%BB%91%E5%AE%9A%EF%BC%89"><span class="nav-number">2.0.6.</span> <span class="nav-text">Bindings（绑定）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#API"><span class="nav-number">3.</span> <span class="nav-text">API</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Babylon"><span class="nav-number">3.0.1.</span> <span class="nav-text">Babylon</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#babel-traverse"><span class="nav-number">3.0.2.</span> <span class="nav-text">babel-traverse</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#babel-types"><span class="nav-number">3.0.3.</span> <span class="nav-text">babel-types</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#babel-generator"><span class="nav-number">3.0.4.</span> <span class="nav-text">babel-generator</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#babel-template"><span class="nav-number">3.0.5.</span> <span class="nav-text">babel-template</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">3.0.6.</span> <span class="nav-text">最佳实践</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="nav-number">3.0.7.</span> <span class="nav-text">单元测试</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sun Jinkang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sun Jinkang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sunjinkang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sunjinkang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2060037942@qq.com" title="E-Mail → mailto:2060037942@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <img src="/images/backToTop.png" />
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/sunjinkang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header post-top-background" id="id-post-top">
+
+<h1 class="post-title" itemprop="name headline">babel基础知识
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h4 id="抽象语法树"><a href="#抽象语法树" class="headerlink" title="抽象语法树"></a>抽象语法树</h4><blockquote>
+<p>抽象语法树（Abstract Syntax Tree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。</p>
+</blockquote>
+<p>babel 的处理过程每一步都涉及抽象语法树。<br><a target="_blank" rel="noopener" href="https://astexplorer.net/">AST Explorer</a>是一个在线转化 ast 的网站，可以查看源码及转化后的 AST 代码。</p>
+<p><img src="/babel/babel-note-1/babel-ast.png" alt="babel-ast"><br>以 type 划分每一层级，这样的每一层结构也被叫做 节点（Node）。 一个 AST 可以由单一的节点或是成百上千个节点构成。 它们组合在一起可以描述用于静态分析的程序语法。</p>
+<p>每一个节点都有 start、end、loc 这三个属性用以确定节点在源代码中的位置</p>
+<h4 id="babel-的处理步骤"><a href="#babel-的处理步骤" class="headerlink" title="babel 的处理步骤"></a>babel 的处理步骤</h4><p>babel 的主要处理分为三个步骤：解析（parse），转换（transform），生成（generate）</p>
+<h6 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h6><p>babel 的解析是将源码转化输出为 ast 的过程，解析分为两步：词法分析和语法分析</p>
+<ul>
+<li>词法分析：词法分析阶段把字符串形式的代码转换为 令牌（tokens） 流。</li>
+<li>语法分析：语法分析阶段会把一个令牌流转换成 AST 的形式。 这个阶段会使用令牌中的信息把它们转换成一个 AST 的结构，这样更易于后续的操作。</li>
+</ul>
+<h6 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h6><p>转换步骤接收 AST 并对其进行遍历，在此过程中对节点进行添加、更新及移除等操作。 这是 Babel 或是其他编译器中最复杂的过程 同时也是插件将要介入工作的部分，后续将做详细介绍。</p>
+<h6 id="生成"><a href="#生成" class="headerlink" title="生成"></a>生成</h6><p>代码生成步骤把最终（经过一系列转换之后）的 AST 转换成字符串形式的代码，同时还会创建源码映射（source maps）。.<br>代码生成其实很简单：深度优先遍历整个 AST，然后构建可以表示转换后代码的字符串。</p>
+<h6 id="State-状态"><a href="#State-状态" class="headerlink" title="State(状态)"></a>State(状态)</h6><p>通过将一个访问者放入另一个访问者中以达到从访问者中消除全局状态的目的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> updateParamNameVisitor = &#123;</span><br><span class="line">  <span class="title class_">Identifier</span>(path) &#123;</span><br><span class="line">    <span class="keyword">if</span> (path.<span class="property">node</span>.<span class="property">name</span> === <span class="variable language_">this</span>.<span class="property">paramName</span>) &#123;</span><br><span class="line">      path.<span class="property">node</span>.<span class="property">name</span> = <span class="string">&#x27;x&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">MyVisitor</span> = &#123;</span><br><span class="line">  <span class="title class_">FunctionDeclaration</span>(path) &#123;</span><br><span class="line">    <span class="keyword">const</span> param = path.<span class="property">node</span>.<span class="property">params</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> paramName = param.<span class="property">name</span>;</span><br><span class="line">    param.<span class="property">name</span> = <span class="string">&#x27;x&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    path.<span class="title function_">traverse</span>(updateParamNameVisitor, &#123; paramName &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">path.<span class="title function_">traverse</span>(<span class="title class_">MyVisitor</span>);</span><br></pre></td></tr></table></figure>
+
+<h6 id="Scopes-作用域"><a href="#Scopes-作用域" class="headerlink" title="Scopes(作用域)"></a>Scopes(作用域)</h6><p>当编写一个转换时，必须小心作用域。得确保在改变代码的各个部分时不会破坏已经存在的代码。<br>在添加一个新的引用时需要确保新增加的引用名字和已有的所有引用不冲突。 或者我们仅仅想找出使用一个变量的所有引用， 我们只想在给定的作用域（Scope）中找出这些引用。</p>
+<p>当你创建一个新的作用域时，需要给出它的路径和父作用域，之后在遍历过程中它会在该作用域内收集所有的引用(“绑定”)。<br>一旦引用收集完毕，你就可以在作用域（Scopes）上使用各种方法</p>
+<h6 id="Bindings（绑定）"><a href="#Bindings（绑定）" class="headerlink" title="Bindings（绑定）"></a>Bindings（绑定）</h6><p>所有引用属于特定的作用域，引用和作用域的这种关系被称作：绑定（binding）。<br>通过绑定的信息可以查找一个绑定的所有引用，并且知道这是什么类型的绑定(参数，定义等等)，查找它所属的作用域，或者拷贝它的标识符。 你甚至可以知道它是不是常量，如果不是，那么是哪个路径修改了它。<br>在很多情况下，知道一个绑定是否是常量非常有用，最有用的一种情形就是代码压缩时。</p>
+<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><h6 id="Babylon"><a href="#Babylon" class="headerlink" title="Babylon"></a><a target="_blank" rel="noopener" href="https://github.com/babel/babylon">Babylon</a></h6><p><em>Babylon has been moved into the main Babel mono-repo as <a target="_blank" rel="noopener" href="https://github.com/babel/babel/tree/main/packages/babel-parser">@babel/parser</a>.</em></p>
+<p>Babylon 是 Babel 的解析器。最初是 从 Acorn 项目 fork 出来的。Acorn 非常快，易于使用，并且针对非标准特性(以及那些未来的标准特性) 设计了一个基于插件的架构。</p>
+<p>具体内容可查看后续章节。</p>
+<h6 id="babel-traverse"><a href="#babel-traverse" class="headerlink" title="babel-traverse"></a>babel-traverse</h6><p>Babel Traverse（遍历）模块维护了整棵树的状态，并且负责替换、移除和添加节点。</p>
+<p>traverse 可以和 parser 一起使用，用于遍历和更新节点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> babylon <span class="keyword">from</span> <span class="string">&#x27;babylon&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> traverse <span class="keyword">from</span> <span class="string">&#x27;babel-traverse&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> code = <span class="string">`function square(n) &#123;</span></span><br><span class="line"><span class="string">  return n * n;</span></span><br><span class="line"><span class="string">&#125;`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ast = babylon.<span class="title function_">parse</span>(code);</span><br><span class="line"></span><br><span class="line"><span class="title function_">traverse</span>(ast, &#123;</span><br><span class="line">  <span class="title function_">enter</span>(<span class="params">path</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (path.<span class="property">node</span>.<span class="property">type</span> === <span class="string">&#x27;Identifier&#x27;</span> &amp;&amp; path.<span class="property">node</span>.<span class="property">name</span> === <span class="string">&#x27;n&#x27;</span>) &#123;</span><br><span class="line">      path.<span class="property">node</span>.<span class="property">name</span> = <span class="string">&#x27;x&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>具体内容可查看后续章节。</p>
+<h6 id="babel-types"><a href="#babel-types" class="headerlink" title="babel-types"></a>babel-types</h6><p>Babel Types 模块是一个用于 AST 节点的 Lodash 式工具库， 它包含了构造、验证以及变换 AST 节点的方法。 该工具库包含考虑周到的工具方法，对编写处理 AST 逻辑非常有用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> traverse <span class="keyword">from</span> <span class="string">&#x27;babel-traverse&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> t <span class="keyword">from</span> <span class="string">&#x27;babel-types&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">traverse</span>(ast, &#123;</span><br><span class="line">  <span class="title function_">enter</span>(<span class="params">path</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (t.<span class="title function_">isIdentifier</span>(path.<span class="property">node</span>, &#123; <span class="attr">name</span>: <span class="string">&#x27;n&#x27;</span> &#125;)) &#123;</span><br><span class="line">      path.<span class="property">node</span>.<span class="property">name</span> = <span class="string">&#x27;x&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><em>Definitions（定义）</em><br>Babel Types 模块拥有每一个单一类型节点的定义，包括节点包含哪些属性，什么是合法值，如何构建节点、遍历节点，以及节点的别名等信息。<br>单一节点类型的定义形式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">defineType</span>(<span class="string">&#x27;BinaryExpression&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">builder</span>: [<span class="string">&#x27;operator&#x27;</span>, <span class="string">&#x27;left&#x27;</span>, <span class="string">&#x27;right&#x27;</span>],</span><br><span class="line">  <span class="attr">fields</span>: &#123;</span><br><span class="line">    <span class="attr">operator</span>: &#123;</span><br><span class="line">      <span class="attr">validate</span>: <span class="title function_">assertValueType</span>(<span class="string">&#x27;string&#x27;</span>),</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">left</span>: &#123;</span><br><span class="line">      <span class="attr">validate</span>: <span class="title function_">assertNodeType</span>(<span class="string">&#x27;Expression&#x27;</span>),</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">right</span>: &#123;</span><br><span class="line">      <span class="attr">validate</span>: <span class="title function_">assertNodeType</span>(<span class="string">&#x27;Expression&#x27;</span>),</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">visitor</span>: [<span class="string">&#x27;left&#x27;</span>, <span class="string">&#x27;right&#x27;</span>],</span><br><span class="line">  <span class="attr">aliases</span>: [<span class="string">&#x27;Binary&#x27;</span>, <span class="string">&#x27;Expression&#x27;</span>],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><em>Builders（构建器）</em><br>你会注意到上面的 BinaryExpression 定义有一个 builder 字段。<br>builder: [“operator”, “left”, “right”]<br>这是由于每一个节点类型都有构造器方法 builder，按类似下面的方式使用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t.<span class="title function_">binaryExpression</span>(<span class="string">&#x27;*&#x27;</span>, t.<span class="title function_">identifier</span>(<span class="string">&#x27;a&#x27;</span>), t.<span class="title function_">identifier</span>(<span class="string">&#x27;b&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p><em>Validators（验证器）</em><br>BinaryExpression 的定义还包含了节点的字段 fields 信息，以及如何验证这些字段。<br>可以创建两种验证方法。第一种是 isX。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">t.<span class="title function_">isBinaryExpression</span>(maybeBinaryExpressionNode);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个测试用来确保节点是一个二进制表达式，另外你也可以传入第二个参数来确保节点包含特定的属性和值。</span></span><br><span class="line">t.<span class="title function_">isBinaryExpression</span>(maybeBinaryExpressionNode, &#123; <span class="attr">operator</span>: <span class="string">&#x27;*&#x27;</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这些方法还有一种断言式的版本，会抛出异常而不是返回 true 或 false。.</span></span><br><span class="line">t.<span class="title function_">assertBinaryExpression</span>(maybeBinaryExpressionNode);</span><br><span class="line">t.<span class="title function_">assertBinaryExpression</span>(maybeBinaryExpressionNode, &#123; <span class="attr">operator</span>: <span class="string">&#x27;*&#x27;</span> &#125;);</span><br><span class="line"><span class="comment">// Error: Expected type &quot;BinaryExpression&quot; with option &#123; &quot;operator&quot;: &quot;*&quot; &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><em>Converters（变换器）</em></p>
+<h6 id="babel-generator"><a href="#babel-generator" class="headerlink" title="babel-generator"></a>babel-generator</h6><p>Babel Generator 模块是 Babel 的代码生成器，它读取 AST 并将其转换为代码和源码映射（sourcemaps）。</p>
+<h6 id="babel-template"><a href="#babel-template" class="headerlink" title="babel-template"></a>babel-template</h6><p>babel-template 是另一个虽然很小但却非常有用的模块。 它能让你编写字符串形式且带有占位符的代码来代替手动编码， 尤其是生成的大规模 AST 的时候。 在计算机科学中，这种能力被称为准引用（quasiquotes）。</p>
+<p><em>找到特定的父路径</em><br>有时你需要从一个路径向上遍历语法树，直到满足相应的条件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对于每一个父路径调用callback并将其NodePath当作参数，当callback返回真值时，则将其NodePath返回。.</span></span><br><span class="line">path.<span class="title function_">findParent</span>(<span class="function">(<span class="params">path</span>) =&gt;</span> path.<span class="title function_">isObjectExpression</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果也需要遍历当前节点：</span></span><br><span class="line">path.<span class="title function_">find</span>(<span class="function">(<span class="params">path</span>) =&gt;</span> path.<span class="title function_">isObjectExpression</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查找最接近的父函数或程序：</span></span><br><span class="line">path.<span class="title function_">getFunctionParent</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 向上遍历语法树，直到找到在列表中的父节点路径</span></span><br><span class="line">path.<span class="title function_">getStatementParent</span>();</span><br></pre></td></tr></table></figure>
+
+<p><em>获取同级路径</em><br>如果一个路径是在一个 Function／Program 中的列表里面，它就有同级节点。</p>
+<ul>
+<li>使用 path.inList 来判断路径是否有同级节点，</li>
+<li>使用 path.getSibling(index)来获得同级路径,</li>
+<li>使用 path.key 获取路径所在容器的索引,</li>
+<li>使用 path.container 获取路径的容器（包含所有同级节点的数组）</li>
+<li>使用 path.listKey 获取容器的 key</li>
+</ul>
+<p><em>停止遍历</em><br>如果你的插件需要在某种情况下不运行，最简单的做法是尽早写回。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">BinaryExpression</span>(path) &#123;</span><br><span class="line">  <span class="keyword">if</span> (path.<span class="property">node</span>.<span class="property">operator</span> !== <span class="string">&#x27;**&#x27;</span>) <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果您在顶级路径中进行子遍历，则可以使用 2 个提供的 API 方法：</p>
+<ul>
+<li>path.skip() 跳过遍历当前路径的子路径。</li>
+<li>path.stop() 完全停止遍历。</li>
+</ul>
+<p><em>处理</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 替换一个节点</span></span><br><span class="line"><span class="title class_">BinaryExpression</span>(path) &#123;</span><br><span class="line">  path.<span class="title function_">replaceWith</span>(</span><br><span class="line">    t.<span class="title function_">binaryExpression</span>(<span class="string">&quot;**&quot;</span>, path.<span class="property">node</span>.<span class="property">left</span>, t.<span class="title function_">numberLiteral</span>(<span class="number">2</span>))</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用多节点替换单节点</span></span><br><span class="line"><span class="title class_">ReturnStatement</span>(path) &#123;</span><br><span class="line">  path.<span class="title function_">replaceWithMultiple</span>([</span><br><span class="line">    t.<span class="title function_">expressionStatement</span>(t.<span class="title function_">stringLiteral</span>(<span class="string">&quot;Is this the real life?&quot;</span>)),</span><br><span class="line">    t.<span class="title function_">expressionStatement</span>(t.<span class="title function_">stringLiteral</span>(<span class="string">&quot;Is this just fantasy?&quot;</span>)),</span><br><span class="line">    t.<span class="title function_">expressionStatement</span>(t.<span class="title function_">stringLiteral</span>(<span class="string">&quot;(Enjoy singing the rest of the song in your head)&quot;</span>)),</span><br><span class="line">  ]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// *当用多个节点替换一个表达式时，它们必须是   声明。 这是因为Babel在更换节点时广泛使用启发式算法，这意味着您可以做一些非常疯狂的转换，否则将会非常冗长*</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用字符串源码替换节点</span></span><br><span class="line"><span class="title class_">FunctionDeclaration</span>(path) &#123;</span><br><span class="line">  path.<span class="title function_">replaceWithSourceString</span>(<span class="string">&#x27;function add(a, b) &#123; return a + b; &#125;&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 不建议使用这个API，除非您正在处理动态的源码字符串，否则在访问者外部解析代码更有效率。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入兄弟节点</span></span><br><span class="line"><span class="title class_">FunctionDeclaration</span>(path) &#123;</span><br><span class="line">  path.<span class="title function_">insertBefore</span>(t.<span class="title function_">expressionStatement</span>(t.<span class="title function_">stringLiteral</span>(<span class="string">&quot;Because I&#x27;m easy come, easy go.&quot;</span>)));</span><br><span class="line">  path.<span class="title function_">insertAfter</span>(t.<span class="title function_">expressionStatement</span>(t.<span class="title function_">stringLiteral</span>(<span class="string">&quot;A little high, little low.&quot;</span>)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这里同样应该使用声明或者一个声明数组。 这个使用了在用多个节点替换一个节点中提到的相同的启发式算法。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入到容器（container）中</span></span><br><span class="line"><span class="comment">// 如果您想要在AST节点属性中插入一个像body.0那样的数组。 它与insertBefore/insertAfter 类似, 但您必须指定 listKey (通常是 正文).</span></span><br><span class="line"><span class="title class_">ClassMethod</span>(path) &#123;</span><br><span class="line">  path.<span class="title function_">get</span>(<span class="string">&#x27;body&#x27;</span>).<span class="title function_">unshiftContainer</span>(<span class="string">&#x27;body&#x27;</span>, t.<span class="title function_">expressionStatement</span>(t.<span class="title function_">stringLiteral</span>(<span class="string">&#x27;before&#x27;</span>)));</span><br><span class="line">  path.<span class="title function_">get</span>(<span class="string">&#x27;body&#x27;</span>).<span class="title function_">pushContainer</span>(<span class="string">&#x27;body&#x27;</span>, t.<span class="title function_">expressionStatement</span>(t.<span class="title function_">stringLiteral</span>(<span class="string">&#x27;after&#x27;</span>)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除一个节点</span></span><br><span class="line"><span class="title class_">FunctionDeclaration</span>(path) &#123;</span><br><span class="line">  path.<span class="title function_">remove</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 替换父节点</span></span><br><span class="line"><span class="comment">// 只需使用parentPath,调用 replaceWith即可</span></span><br><span class="line"><span class="title class_">BinaryExpression</span>(path) &#123;</span><br><span class="line">  path.<span class="property">parentPath</span>.<span class="title function_">replaceWith</span>(</span><br><span class="line">    t.<span class="title function_">expressionStatement</span>(t.<span class="title function_">stringLiteral</span>(<span class="string">&quot;Anyway the wind blows, doesn&#x27;t really matter to me, to me.&quot;</span>))</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除父节点</span></span><br><span class="line"><span class="title class_">BinaryExpression</span>(path) &#123;</span><br><span class="line">  path.<span class="property">parentPath</span>.<span class="title function_">remove</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Scope（作用域）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检查本地变量是否被绑定</span></span><br><span class="line"><span class="title class_">FunctionDeclaration</span>(path) &#123;</span><br><span class="line">  <span class="keyword">if</span> (path.<span class="property">scope</span>.<span class="title function_">hasBinding</span>(<span class="string">&quot;n&quot;</span>)) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这将遍历范围树并检查特定的绑定。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 您也可以检查一个作用域是否有自己的绑定：</span></span><br><span class="line"><span class="title class_">FunctionDeclaration</span>(path) &#123;</span><br><span class="line">  <span class="keyword">if</span> (path.<span class="property">scope</span>.<span class="title function_">hasOwnBinding</span>(<span class="string">&quot;n&quot;</span>)) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个 UID，这将生成一个标识符，不会与任何本地定义的变量相冲突。</span></span><br><span class="line"><span class="title class_">FunctionDeclaration</span>(path) &#123;</span><br><span class="line">  path.<span class="property">scope</span>.<span class="title function_">generateUidIdentifier</span>(<span class="string">&quot;uid&quot;</span>);</span><br><span class="line">  <span class="comment">// Node &#123; type: &quot;Identifier&quot;, name: &quot;_uid&quot; &#125;</span></span><br><span class="line">  path.<span class="property">scope</span>.<span class="title function_">generateUidIdentifier</span>(<span class="string">&quot;uid&quot;</span>);</span><br><span class="line">  <span class="comment">// Node &#123; type: &quot;Identifier&quot;, name: &quot;_uid2&quot; &#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提升变量声明至父级作用域，有时你可能想要推送一个VariableDeclaration，这样你就可以分配给它。</span></span><br><span class="line"><span class="title class_">FunctionDeclaration</span>(path) &#123;</span><br><span class="line">  <span class="keyword">const</span> id = path.<span class="property">scope</span>.<span class="title function_">generateUidIdentifierBasedOnNode</span>(path.<span class="property">node</span>.<span class="property">id</span>);</span><br><span class="line">  path.<span class="title function_">remove</span>();</span><br><span class="line">  path.<span class="property">scope</span>.<span class="property">parent</span>.<span class="title function_">push</span>(&#123; id, <span class="attr">init</span>: path.<span class="property">node</span> &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// - function square(n) &#123;</span></span><br><span class="line"><span class="comment">// + var _square = function square(n) &#123;</span></span><br><span class="line"><span class="comment">//     return n * n;</span></span><br><span class="line"><span class="comment">// - &#125;</span></span><br><span class="line"><span class="comment">// + &#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 重命名绑定及其引用</span></span><br><span class="line"><span class="title class_">FunctionDeclaration</span>(path) &#123;</span><br><span class="line">  path.<span class="property">scope</span>.<span class="title function_">rename</span>(<span class="string">&quot;n&quot;</span>, <span class="string">&quot;x&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>插件选项</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果您想让您的用户自定义您的Babel插件的行为您可以接受用户可以指定的插件特定选项，如下所示：</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    [<span class="string">&quot;my-plugin&quot;</span>, &#123;</span><br><span class="line">      <span class="string">&quot;option1&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">&quot;option2&quot;</span>: <span class="literal">false</span></span><br><span class="line">    &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这些选项会通过`状态对象传递给插件访问者</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span>(<span class="params">&#123; types: t &#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">visitor</span>: &#123;</span><br><span class="line">      <span class="title class_">FunctionDeclaration</span>(path, state) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(state.<span class="property">opts</span>);</span><br><span class="line">        <span class="comment">// &#123; option1: true, option2: false &#125;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>插件的准备和收尾工作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插件可以具有在插件之前或之后运行的函数。它们可以用于设置或清理/分析目的。</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span>(<span class="params">&#123; types: t &#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="title function_">pre</span>(<span class="params">state</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">cache</span> = <span class="keyword">new</span> <span class="title class_">Map</span>();</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">visitor</span>: &#123;</span><br><span class="line">      <span class="title class_">StringLiteral</span>(path) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">cache</span>.<span class="title function_">set</span>(path.<span class="property">node</span>.<span class="property">value</span>, <span class="number">1</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">post</span>(<span class="params">state</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">cache</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在插件中启用其他语法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插件可以启用babel plugins，以便用户不需要安装/启用它们。 这可以防止解析错误，而不会继承语法插件。</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span>(<span class="params">&#123; types: t &#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">inherits</span>: <span class="built_in">require</span>(<span class="string">&quot;babel-plugin-syntax-jsx&quot;</span>)</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>抛出一个语法错误</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果您想用babel-code-frame和一个消息抛出一个错误：</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span>(<span class="params">&#123; types: t &#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">visitor</span>: &#123;</span><br><span class="line">      <span class="title class_">StringLiteral</span>(path) &#123;</span><br><span class="line">        <span class="keyword">throw</span> path.<span class="title function_">buildCodeFrameError</span>(<span class="string">&quot;Error message here&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>构建节点<br>编写转换时，通常需要构建一些要插入的节点进入AST。 如前所述，您可以使用babel-types包中的builder方法。<br>构建器的方法名称就是您想要的节点类型的名称，除了第一个字母小写。 例如，如果您想建立一个 MemberExpression 您可以使用 t.memberExpression（…）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 请注意，有时在节点上可以定制的属性比``构建器&lt;/&gt;数组包含的属性更多。 这是为了防止生成器有太多的参数。 在这些情况下，您需要手动设置属性。 </span></span><br><span class="line"><span class="comment">// Example</span></span><br><span class="line"><span class="comment">// because the builder doesn&#x27;t contain `async` as a property</span></span><br><span class="line"><span class="keyword">var</span> node = t.<span class="title function_">classMethod</span>(</span><br><span class="line">  <span class="string">&quot;constructor&quot;</span>,</span><br><span class="line">  t.<span class="title function_">identifier</span>(<span class="string">&quot;constructor&quot;</span>),</span><br><span class="line">  params,</span><br><span class="line">  body</span><br><span class="line">)</span><br><span class="line"><span class="comment">// set it manually after creation</span></span><br><span class="line">node.<span class="property">async</span> = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<h6 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h6><p><em>将一些公共或者特定的检查提取出来</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">isAssignment</span>(<span class="params">node</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> node &amp;&amp; node.<span class="property">operator</span> === opts.<span class="property">operator</span> + <span class="string">&quot;=&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">buildAssignment</span>(<span class="params">left, right</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> t.<span class="title function_">assignmentExpression</span>(<span class="string">&quot;=&quot;</span>, left, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>尽量避免遍历抽象语法树（AST）</em></p>
+<ul>
+<li>及时合并访问者对象<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可以将以下访问器合并</span></span><br><span class="line">path.<span class="title function_">traverse</span>(&#123;</span><br><span class="line">  <span class="title class_">Identifier</span>(path) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">path.<span class="title function_">traverse</span>(&#123;</span><br><span class="line">  <span class="title class_">BinaryExpression</span>(path) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li>可以手动查找就不要遍历<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用path.traverse查找特定类型的节点</span></span><br><span class="line"><span class="keyword">const</span> nestedVisitor = &#123;</span><br><span class="line">  <span class="title class_">Identifier</span>(path) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">MyVisitor</span> = &#123;</span><br><span class="line">  <span class="title class_">FunctionDeclaration</span>(path) &#123;</span><br><span class="line">    path.<span class="title function_">get</span>(<span class="string">&#x27;params&#x27;</span>).<span class="title function_">traverse</span>(nestedVisitor);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查找特定节点时，可以尝试使用手动处理的方式，无需执行代价高昂的traverse遍历</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">MyVisitor</span> = &#123;</span><br><span class="line">  <span class="title class_">FunctionDeclaration</span>(path) &#123;</span><br><span class="line">    path.<span class="property">node</span>.<span class="property">params</span>.<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>优化嵌套的访问者对象<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">MyVisitor</span> = &#123;</span><br><span class="line">  <span class="title class_">FunctionDeclaration</span>(path) &#123;</span><br><span class="line">    path.<span class="title function_">traverse</span>(&#123;</span><br><span class="line">      <span class="title class_">Identifier</span>(path) &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 将上面的例子改成下面这样，原因：</span></span><br><span class="line"><span class="comment">// 每当调用FunctionDeclaration()时都会创建一个新的访问者对象。代价可能有点大，因为每次一个新的访问者对象传入babel，babel都会做一些处理。</span></span><br><span class="line"><span class="comment">// babel会将已经处理过的标志保存在访问者对象上，因此最好还是将访问者保存在一个变量里，每次传递相同的对象。</span></span><br><span class="line"><span class="keyword">const</span> nestedVisitor = &#123;</span><br><span class="line">  <span class="title class_">Identifier</span>(path) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">MyVisitor</span> = &#123;</span><br><span class="line">  <span class="title class_">FunctionDeclaration</span>(path) &#123;</span><br><span class="line">    path.<span class="title function_">traverse</span>(nestedVisitor);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在嵌套的访问者中需要一些状态</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">MyVisitor</span> = &#123;</span><br><span class="line">  <span class="title class_">FunctionDeclaration</span>(path) &#123;</span><br><span class="line">    <span class="keyword">var</span> exampleState = path.<span class="property">node</span>.<span class="property">params</span>[<span class="number">0</span>].<span class="property">name</span>;</span><br><span class="line">    path.<span class="title function_">traverse</span>(&#123;</span><br><span class="line">      <span class="title class_">Identifier</span>(path) &#123;</span><br><span class="line">        <span class="keyword">if</span> (path.<span class="property">node</span>.<span class="property">name</span> === exampleState) &#123;</span><br><span class="line">          <span class="comment">// ...</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 可以将它作为状态传递给traverse()方法，并有权在访问者中通过this拿到状态</span></span><br><span class="line"><span class="keyword">const</span> nestedVisitor = &#123;</span><br><span class="line">  <span class="title class_">Identifier</span>(path) &#123;</span><br><span class="line">    <span class="keyword">if</span> (path.<span class="property">node</span>.<span class="property">name</span> === <span class="variable language_">this</span>.<span class="property">exampleState</span>) &#123;</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">MyVisitor</span> = &#123;</span><br><span class="line">  <span class="title class_">FunctionDeclaration</span>(path) &#123;</span><br><span class="line">    <span class="keyword">var</span> exampleState = path.<span class="property">node</span>.<span class="property">params</span>[<span class="number">0</span>].<span class="property">name</span>;</span><br><span class="line">    path.<span class="title function_">traverse</span>(nestedVisitor, &#123; exampleState &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><em>留意嵌套结构</em></p>
+<h6 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h6><p>有几种主要的方法来测试babel插件：快照测试，AST测试和执行测试<br>可以使用插件：<a target="_blank" rel="noopener" href="https://github.com/babel-utils/babel-plugin-tester">babel-plugin-tester</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pluginTester <span class="keyword">from</span> <span class="string">&#x27;babel-plugin-tester&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> identifierReversePlugin <span class="keyword">from</span> <span class="string">&#x27;../identifier-reverse-plugin&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">pluginTester</span>(&#123;</span><br><span class="line">  <span class="attr">plugin</span>: identifierReversePlugin,</span><br><span class="line">  <span class="attr">fixtures</span>: path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;__fixtures__&#x27;</span>),</span><br><span class="line">  <span class="attr">tests</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;does not change code with no identifiers&#x27;</span>: <span class="string">&#x27;&quot;hello&quot;;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;changes this code&#x27;</span>: &#123;</span><br><span class="line">      <span class="attr">code</span>: <span class="string">&#x27;var hello = &quot;hi&quot;;&#x27;</span>,</span><br><span class="line">      <span class="attr">output</span>: <span class="string">&#x27;var olleh = &quot;hi&quot;;&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;using fixtures files&#x27;</span>: &#123;</span><br><span class="line">      <span class="attr">fixture</span>: <span class="string">&#x27;changed.js&#x27;</span>,</span><br><span class="line">      <span class="attr">outputFixture</span>: <span class="string">&#x27;changed-output.js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;using jest snapshots&#x27;</span>: &#123;</span><br><span class="line">      <span class="attr">code</span>: <span class="string">`</span></span><br><span class="line"><span class="string">        function sayHi(person) &#123;</span></span><br><span class="line"><span class="string">          return &#x27;Hello &#x27; + person + &#x27;!&#x27;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">      `</span>,</span><br><span class="line">      <span class="attr">snapshot</span>: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>疑问点：<br>1、使用@babel/traverse 报错：TypeError: traverse is not a function<br><a target="_blank" rel="noopener" href="https://github.com/babel/babel/issues/13855">https://github.com/babel/babel/issues/13855</a><br>2、什么情况下需要同时使用 stopPropagation 和 preventDefault？<br>3、typescript 的 tsconfig 中 esModuleInterop 的到底做了什么？（<a target="_blank" rel="noopener" href="https://blog.csdn.net/zdhsoft/article/details/123785137%EF%BC%89">https://blog.csdn.net/zdhsoft/article/details/123785137）</a><br>4、默认导出与具名导出<br>5、ESM 与 CJS 的 Interop 的来世今生（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/446113714%EF%BC%89">https://zhuanlan.zhihu.com/p/446113714）</a><br>6、启发式算法</p>
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">60k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:37</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bg-beautifier.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+  
+    <script type="text/javascript"
+        count="150"
+        opacity: 1
+        src="/js/canvas-nest.min.js">
+    </script>
+  
+
+</body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+</html>

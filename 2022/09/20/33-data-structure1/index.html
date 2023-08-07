@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="ECMAScript 和 javascript 的关系ECMAScript 是一个语言标准，JavaScript 是该标准(最流行)的一个实现。 ES5、ES6、ES2015、ES7、ES2016、ES8、ES2017 和 ES.Next 的区别 (1)2009 年 12 月发布的 ECMAScript5(即 ES5，其中的 ES 是 ECMAScript 的简称) (2)ECMAScript20">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="数据结构与算法阅读笔记(1)">
+<meta property="og:url" content="https://sunjinkang.github.io/2022/09/20/33-data-structure1/index.html">
+<meta property="og:site_name" content="Sun with no word">
+<meta property="og:description" content="ECMAScript 和 javascript 的关系ECMAScript 是一个语言标准，JavaScript 是该标准(最流行)的一个实现。 ES5、ES6、ES2015、ES7、ES2016、ES8、ES2017 和 ES.Next 的区别 (1)2009 年 12 月发布的 ECMAScript5(即 ES5，其中的 ES 是 ECMAScript 的简称) (2)ECMAScript20">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-20T09:41:00.000Z">
+<meta property="article:modified_time" content="2023-08-03T03:03:06.411Z">
+<meta property="article:author" content="Sun Jinkang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sunjinkang.github.io/2022/09/20/33-data-structure1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/2022/09/20/33-data-structure1/","path":"2022/09/20/33-data-structure1/","title":"数据结构与算法阅读笔记(1)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据结构与算法阅读笔记(1) | Sun with no word</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sun with no word</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">something about what I have learned and some interesting things</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#TypeScript"><span class="nav-number">1.</span> <span class="nav-text">TypeScript</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%95%B0%E7%BB%84"><span class="nav-number">3.</span> <span class="nav-text">类型数组</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%A0%88"><span class="nav-number">4.</span> <span class="nav-text">栈</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sun Jinkang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sun Jinkang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sunjinkang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sunjinkang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2060037942@qq.com" title="E-Mail → mailto:2060037942@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <img src="/images/backToTop.png" />
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/sunjinkang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/20/33-data-structure1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据结构与算法阅读笔记(1) | Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header post-top-background" id="id-post-top">
+        <h1 class="post-title" itemprop="name headline">
+          数据结构与算法阅读笔记(1)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-20 17:41:00" itemprop="dateCreated datePublished" datetime="2022-09-20T17:41:00+08:00">2022-09-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-03 11:03:06" itemprop="dateModified" datetime="2023-08-03T11:03:06+08:00">2023-08-03</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>ECMAScript 和 javascript 的关系<br>ECMAScript 是一个语言标准，JavaScript 是该标准(最流行)的一个实现。</p>
+<p>ES5、ES6、ES2015、ES7、ES2016、ES8、ES2017 和 ES.Next 的区别</p>
+<p>(1)2009 年 12 月发布的 ECMAScript5(即 ES5，其中的 ES 是 ECMAScript 的简称)</p>
+<p>(2)ECMAScript2015(ES2015)在 2015 年 6 月标准化。负责起草 ECMAScript 规范的委员会决定把定义新标准的模式改为每年更新一次，新的特性<br>一旦通过就加入标准。因此，ECMAScript 第六版更名为 ECMAScript2015(ES6)</p>
+<span id="more"></span>
+<p>(3)2016 年 6 月，ECMAScript 第七版被标准化，称为 ECMAScript2016 或 ES2016(ES7)</p>
+<p>(4)2017 年 6 月，ECMAScript 第八版被标准化。我们称它为 ECMAScript2017 或 ES2017(ES8)</p>
+<p>(5)ES.Next 用来指代下一个版本的 ECMAScript</p>
+<p>ES6 兼容性：<a target="_blank" rel="noopener" href="http://kangax.github.io/compat-table/es6/">http://kangax.github.io/compat-table/es6/</a><br>ES7 兼容性：<a target="_blank" rel="noopener" href="http://kangax.github.io/compat-table/es2016plus/">http://kangax.github.io/compat-table/es2016plus/</a></p>
+<p>ES5 中 class 类，使用属性存取器<br>(1)声明 get 和 set 函数，只需要在我们要暴露和使用的函数名前面加上 get 或 set 关键字<br>(2)可以用相同的名字声明类属性，或者在属性名前面加下划线，让这个属性看起来像是私有的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_name</span> = name; <span class="comment">// &#123;1&#125;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">get</span> <span class="title function_">name</span>() &#123;</span><br><span class="line">    <span class="comment">// &#123;2&#125;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">_name</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">set</span> <span class="title function_">name</span>(<span class="params">value</span>) &#123;</span><br><span class="line">    <span class="comment">// &#123;3&#125;</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_name</span> = value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> lotrChar = <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&#x27;Frodo&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(lotrChar.<span class="property">name</span>); <span class="comment">// &#123;4&#125; // Frodo</span></span><br><span class="line">lotrChar.<span class="property">name</span> = <span class="string">&#x27;Gandalf&#x27;</span>; <span class="comment">// &#123;5&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(lotrChar.<span class="property">name</span>); <span class="comment">// Gandalf</span></span><br><span class="line">lotrChar.<span class="property">_name</span> = <span class="string">&#x27;Sam&#x27;</span>; <span class="comment">// &#123;6&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(lotrChar.<span class="property">name</span>); <span class="comment">// Sam</span></span><br></pre></td></tr></table></figure>
+
+<p>乘方运算符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> area = <span class="number">3.14</span> * r * r;</span><br><span class="line"><span class="keyword">const</span> area = <span class="number">3.14</span> * <span class="title class_">Math</span>.<span class="title function_">pow</span>(r, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// ES2016 中引入了**运算符，用来进行指数运算</span></span><br><span class="line"><span class="keyword">const</span> area = <span class="number">3.14</span> * r ** <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript">JavaScript 和 ECMAScript 的完整功能列表</a></p>
+<h6 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h6><p>TypeScript 有一个名为鸭子类型的概念：如果它看起来像鸭子，像鸭子一样游泳，像鸭子一样叫，那么它一定是一只鸭子.<br>(1)接口</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种定义接口的方式</span></span><br><span class="line">interface <span class="title class_">Person</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: string;</span><br><span class="line">  <span class="attr">age</span>: number;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">printName</span>(<span class="params">person: Person</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(person.<span class="property">name</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/** 第二种定义接口的方式：Comparable 接口告诉 MyObject 类，它需要实现一个叫作 compareTo 的方法，</span></span><br><span class="line"><span class="comment">并且该方法接收一个参数。在该方法内部，我们可以实现需要的逻辑。**/</span></span><br><span class="line">interface <span class="title class_">Comparable</span> &#123;</span><br><span class="line">  <span class="title function_">compareTo</span>(b): number;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyObject</span> implements <span class="title class_">Comparable</span> &#123;</span><br><span class="line">  <span class="attr">age</span>: number;</span><br><span class="line">  <span class="title function_">compareTo</span>(b): number &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">age</span> === b.<span class="property">age</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">age</span> &gt; b.<span class="property">age</span> ? <span class="number">1</span> : -<span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>JavaScript 中使用一些类型和错误检测功能方式：在计算机上全局安装 TypeScript，使用时，只需要在 JavaScript 文件的第一行添加一句 // @ts-check</strong></p>
+<h6 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h6><p>数组是最简单的内存数据结构。JavaScript 里也有数组类型，但它的第一个版本并没有支持数组</p>
+<p>(1)使用@@iterator 对象<br>ES2015 为 Array 类增加了一个@@iterator 属性，需要通过 Symbol.iterator 来访问</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>];</span><br><span class="line"><span class="keyword">let</span> iterator = numbers[<span class="title class_">Symbol</span>.<span class="property">iterator</span>]();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(iterator.<span class="title function_">next</span>().<span class="property">value</span>); <span class="comment">// 1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(iterator.<span class="title function_">next</span>().<span class="property">value</span>); <span class="comment">// 2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(iterator.<span class="title function_">next</span>().<span class="property">value</span>); <span class="comment">// 3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(iterator.<span class="title function_">next</span>().<span class="property">value</span>); <span class="comment">// 4</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(iterator.<span class="title function_">next</span>().<span class="property">value</span>); <span class="comment">// 5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>];</span><br><span class="line">iterator = numbers[<span class="title class_">Symbol</span>.<span class="property">iterator</span>]();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> n <span class="keyword">of</span> iterator) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 复制已有数组</span></span><br><span class="line"><span class="keyword">let</span> numbers2 = <span class="title class_">Array</span>.<span class="title function_">from</span>(numbers);</span><br><span class="line"><span class="keyword">let</span> numbers3 = <span class="title class_">Array</span>.<span class="title function_">of</span>(...numbers);</span><br></pre></td></tr></table></figure>
+
+<p>(2)copyWithin<br>copyWithin 方法复制数组中的一系列元素到同一数组指定的起始位置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">copyArray = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line">copyArray.<span class="title function_">copyWithin</span>(<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>);</span><br><span class="line"><span class="comment">// copyWithin(起始位置，开始位置，结束位置)</span></span><br><span class="line"><span class="comment">// [1, 4, 5, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+
+<p>(3)排序</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自定义排序</span></span><br><span class="line"><span class="keyword">const</span> friends = [</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>, <span class="attr">age</span>: <span class="number">30</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">&#x27;Ana&#x27;</span>, <span class="attr">age</span>: <span class="number">20</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">&#x27;Chris&#x27;</span>, <span class="attr">age</span>: <span class="number">25</span> &#125;, <span class="comment">// ES2017 允许存在尾逗号</span></span><br><span class="line">];</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">comparePerson</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (a.<span class="property">age</span> &lt; b.<span class="property">age</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (a.<span class="property">age</span> &gt; b.<span class="property">age</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(friends.<span class="title function_">sort</span>(comparePerson));</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">[ </span></span><br><span class="line"><span class="comment"> &#123; name: &#x27;Ana&#x27;, age: 20 &#125;, </span></span><br><span class="line"><span class="comment"> &#123; name: &#x27;Chris&#x27;, age: 25 &#125;,</span></span><br><span class="line"><span class="comment"> &#123; name: &#x27;John&#x27;, age: 30 &#125;, </span></span><br><span class="line"><span class="comment">]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 忽略大小写的比较</span></span><br><span class="line"><span class="keyword">const</span> names = [<span class="string">&#x27;Ana&#x27;</span>, <span class="string">&#x27;ana&#x27;</span>, <span class="string">&#x27;john&#x27;</span>, <span class="string">&#x27;John&#x27;</span>]; <span class="comment">// 重置数组的初始状态</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(</span><br><span class="line">  names.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (a.<span class="title function_">toLowerCase</span>() &lt; b.<span class="title function_">toLowerCase</span>()) &#123;</span><br><span class="line">      <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (a.<span class="title function_">toLowerCase</span>() &gt; b.<span class="title function_">toLowerCase</span>()) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;)</span><br><span class="line">);</span><br><span class="line"><span class="comment">// 希望小写字母排在前面或者对带有重音符号的字符做排序的话，那么需要使用 localeCompare 方法</span></span><br><span class="line"><span class="keyword">const</span> names = [<span class="string">&#x27;Ana&#x27;</span>, <span class="string">&#x27;ana&#x27;</span>, <span class="string">&#x27;john&#x27;</span>, <span class="string">&#x27;John&#x27;</span>];</span><br><span class="line">names.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a.<span class="title function_">localeCompare</span>(b));</span><br><span class="line"><span class="comment">// [&#x27;ana&#x27;, &#x27;Ana&#x27;, &#x27;john&#x27;, &#x27;John&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> names2 = [<span class="string">&#x27;Maève&#x27;</span>, <span class="string">&#x27;Maeve&#x27;</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(names2.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a.<span class="title function_">localeCompare</span>(b)));</span><br><span class="line"><span class="comment">// [&quot;Maeve&quot;, &quot;Maève&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="类型数组"><a href="#类型数组" class="headerlink" title="类型数组"></a>类型数组</h6><table>
+<thead>
+<tr>
+<th>类型数组</th>
+<th>数据类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Int8Array</td>
+<td>8 位二进制补码整数</td>
+</tr>
+<tr>
+<td>Uint8Array</td>
+<td>8 位无符号整数</td>
+</tr>
+<tr>
+<td>Uint8ClampedArray</td>
+<td>8 位无符号整数</td>
+</tr>
+<tr>
+<td>Int16Array</td>
+<td>16 位二进制补码整数</td>
+</tr>
+<tr>
+<td>Uint16Array</td>
+<td>16 位无符号整数</td>
+</tr>
+<tr>
+<td>Int32Array</td>
+<td>32 位二进制补码整数</td>
+</tr>
+<tr>
+<td>Uint32Array</td>
+<td>32 位无符号整数</td>
+</tr>
+<tr>
+<td>Float32Array</td>
+<td>32 位 IEEE 浮点数</td>
+</tr>
+<tr>
+<td>Float64Array</td>
+<td>64 位 IEEE 浮点数</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> length = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> int16 = <span class="keyword">new</span> <span class="title class_">Int16Array</span>(length);</span><br><span class="line"><span class="keyword">let</span> array16 = [];</span><br><span class="line">array16.<span class="property">length</span> = length;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">  int16[i] = i + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(int16);</span><br></pre></td></tr></table></figure>
+
+<p>类型数组作用：WebGL API、位操作、处理文件和图像</p>
+<p><a target="_blank" rel="noopener" href="https://web.dev/webgl-typed-arrays/">类型数组文档</a></p>
+<h6 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h6><p>栈是一种遵从后进先出（LIFO）原则的有序集合。新添加或待删除的元素都保存在栈的同一端，称作栈顶，另一端就叫栈底。在栈里，新元素都靠近栈顶，旧元素都接近栈底</p>
+<p>栈被用在编程语言的编译器和内存中保存变量、方法调用等，也被用于浏览器历史记录（浏览器的返回按钮）</p>
+<p>(1)创建一个基于数组的栈</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Stack</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">items</span> = [];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 添加一个（或几个）新元素到栈顶</span></span><br><span class="line">  <span class="title function_">push</span>(<span class="params">element</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">items</span>.<span class="title function_">push</span>(element);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 移除栈顶的元素，同时返回被移除的元素</span></span><br><span class="line">  <span class="title function_">pop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">items</span>.<span class="title function_">pop</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 返回栈顶的元素，不对栈做任何修改（该方法不会移除栈顶的元素，仅仅返回它）</span></span><br><span class="line">  <span class="title function_">peek</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">items</span>[<span class="variable language_">this</span>.<span class="property">items</span>.<span class="property">length</span> - <span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 如果栈里没有任何元素就返回 true，否则返回 false</span></span><br><span class="line">  <span class="title function_">isEmpty</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">items</span>.<span class="property">length</span> === <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 返回栈里的元素个数。该方法和数组的 length 属性很类似</span></span><br><span class="line">  <span class="title function_">size</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">items</span>.<span class="property">length</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 移除栈里的所有元素</span></span><br><span class="line">  <span class="title function_">clear</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">items</span> = [];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>在使用数组时，大部分方法的时间复杂度是 O(n)。O(n)的意思是，我们需要迭代整个数组直到找到要找的那个元素，在最坏的情况下需要迭代数组的所有位置，其中的 n 代表数组的长度。如果数组有更多元素的话，所需的时间会更长。另外，数组是元素的一个有序集合，为了保证元素排列有序，它会占用更多的内存空间。</strong><br>(2)创建一个基于 JavaScript 对象的 Stack 类</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Stack</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">count</span> = <span class="number">0</span>; <span class="comment">// count 属性记录栈的大小,也能帮助我们从数据结构中添加和删除元素</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">items</span> = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 向栈中插入元素,只允许一次插入一个元素</span></span><br><span class="line">  <span class="title function_">push</span>(<span class="params">element</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">items</span>[<span class="variable language_">this</span>.<span class="property">count</span>] = element;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">count</span>++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 验证一个栈的大小</span></span><br><span class="line">  <span class="title function_">size</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">count</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 获取栈是否为空</span></span><br><span class="line">  <span class="title function_">isEmpty</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">count</span> === <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 从栈中弹出元素</span></span><br><span class="line">  <span class="title function_">pop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="title function_">isEmpty</span>()) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">count</span>--;</span><br><span class="line">    <span class="keyword">const</span> result = <span class="variable language_">this</span>.<span class="property">items</span>[<span class="variable language_">this</span>.<span class="property">count</span>];</span><br><span class="line">    <span class="keyword">delete</span> <span class="variable language_">this</span>.<span class="property">items</span>[<span class="variable language_">this</span>.<span class="property">count</span>];</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 查看栈顶的值</span></span><br><span class="line">  <span class="title function_">peek</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="title function_">isEmpty</span>()) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">items</span>[<span class="variable language_">this</span>.<span class="property">count</span> - <span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 清空栈</span></span><br><span class="line">  <span class="title function_">clear</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">items</span> = &#123;&#125;;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">count</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//  while (!this.isEmpty()) &#123;</span></span><br><span class="line">    <span class="comment">//  this.pop();</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">toString</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="title function_">isEmpty</span>()) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> objString = <span class="string">`<span class="subst">$&#123;<span class="variable language_">this</span>.items[<span class="number">0</span>]&#125;</span>`</span>; <span class="comment">// &#123;1&#125;</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="variable language_">this</span>.<span class="property">count</span>; i++) &#123;</span><br><span class="line">      <span class="comment">// &#123;2&#125;</span></span><br><span class="line">      objString = <span class="string">`<span class="subst">$&#123;objString&#125;</span>,<span class="subst">$&#123;<span class="variable language_">this</span>.items[i]&#125;</span>`</span>; <span class="comment">// &#123;3&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> objString;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>javascript 实现私有属性的方法</strong><br>下划线命名约定</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 中使用下划线命名约定来标记一个属性为私有属性</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Stack</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_count</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_items</span> = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>下划线命名约定就是在属性名称之前加上一个下划线（_）。不过这种方式只是一种约定，并不能保护数据，而且只能依赖于使用我们代码的开发者所具备的常识</em></p>
+<p><strong>用 ES2015 的限定作用域 Symbol 实现类</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> _items = <span class="title class_">Symbol</span>(<span class="string">&#x27;stackItems&#x27;</span>);</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Stack</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>[_items] = [];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 栈的方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> stack = <span class="keyword">new</span> <span class="title class_">Stack</span>();</span><br><span class="line">stack.<span class="title function_">push</span>(<span class="number">5</span>);</span><br><span class="line">stack.<span class="title function_">push</span>(<span class="number">8</span>);</span><br><span class="line"><span class="keyword">let</span> objectSymbols = <span class="title class_">Object</span>.<span class="title function_">getOwnPropertySymbols</span>(stack);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objectSymbols.<span class="property">length</span>); <span class="comment">// 输出 1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objectSymbols); <span class="comment">// [Symbol()]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objectSymbols[<span class="number">0</span>]); <span class="comment">// Symbol()</span></span><br><span class="line">stack[objectSymbols[<span class="number">0</span>]].<span class="title function_">push</span>(<span class="number">1</span>);</span><br><span class="line">stack.<span class="title function_">print</span>(); <span class="comment">// 输出 5, 8, 1</span></span><br></pre></td></tr></table></figure>
+
+<p><em>访问 stack[objectSymbols[0]]得到_items,并且，_items 属性是一个数组，可以进行任意的数组操作，不符合栈的要求</em></p>
+<p><strong>用 ES2015 的 WeakMap 实现类</strong><br>WeakMap 可以存储键值对，其中键是对象，值可以是任意数据类型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> items = <span class="keyword">new</span> <span class="title class_">WeakMap</span>(); <span class="comment">// &#123;1&#125;</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Stack</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    items.<span class="title function_">set</span>(<span class="variable language_">this</span>, []); <span class="comment">// &#123;2&#125;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">push</span>(<span class="params">element</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> s = items.<span class="title function_">get</span>(<span class="variable language_">this</span>); <span class="comment">// &#123;3&#125;</span></span><br><span class="line">    s.<span class="title function_">push</span>(element);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">pop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> s = items.<span class="title function_">get</span>(<span class="variable language_">this</span>);</span><br><span class="line">    <span class="keyword">const</span> r = s.<span class="title function_">pop</span>();</span><br><span class="line">    <span class="keyword">return</span> r;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 其他方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>代码的可读性不强，而且在扩展该类时无法继承私有属性</em></p>
+<p><strong>ECMAScript 类属性提案</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Stack</span> &#123;</span><br><span class="line">  #count = <span class="number">0</span>;</span><br><span class="line">  #items = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// 栈的方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>从十进制转二进制</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">decimalToBinary</span>(<span class="params">decNumber</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> remStack = <span class="keyword">new</span> <span class="title class_">Stack</span>();</span><br><span class="line">  <span class="keyword">let</span> number = decNumber;</span><br><span class="line">  <span class="keyword">let</span> rem;</span><br><span class="line">  <span class="keyword">let</span> binaryString = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="keyword">while</span> (number &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    rem = <span class="title class_">Math</span>.<span class="title function_">floor</span>(number % <span class="number">2</span>);</span><br><span class="line">    remStack.<span class="title function_">push</span>(rem);</span><br><span class="line">    number = <span class="title class_">Math</span>.<span class="title function_">floor</span>(number / <span class="number">2</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (!remStack.<span class="title function_">isEmpty</span>()) &#123;</span><br><span class="line">    binaryString += remStack.<span class="title function_">pop</span>().<span class="title function_">toString</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> binaryString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>进制转换算法</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">baseConverter</span>(<span class="params">decNumber, base</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> remStack = <span class="keyword">new</span> <span class="title class_">Stack</span>();</span><br><span class="line">  <span class="keyword">const</span> digits = <span class="string">&#x27;0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;</span>; <span class="comment">// &#123;6&#125;</span></span><br><span class="line">  <span class="keyword">let</span> number = decNumber;</span><br><span class="line">  <span class="keyword">let</span> rem;</span><br><span class="line">  <span class="keyword">let</span> baseString = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="keyword">if</span> (!(base &gt;= <span class="number">2</span> &amp;&amp; base &lt;= <span class="number">36</span>)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (number &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    rem = <span class="title class_">Math</span>.<span class="title function_">floor</span>(number % base);</span><br><span class="line">    remStack.<span class="title function_">push</span>(rem);</span><br><span class="line">    number = <span class="title class_">Math</span>.<span class="title function_">floor</span>(number / base);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (!remStack.<span class="title function_">isEmpty</span>()) &#123;</span><br><span class="line">    baseString += digits[remStack.<span class="title function_">pop</span>()]; <span class="comment">// &#123;7&#125;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> baseString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------已经到底啦！<i class="fa fa-paw"></i>-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/09/20/28-about-design-model5/" rel="prev" title="JavaScript设计模式读书笔记(6)">
+                  <i class="fa fa-chevron-left"></i> JavaScript设计模式读书笔记(6)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/09/21/32-apply-array-to-params/" rel="next" title="js中apply怎么把数组转化为参数？">
+                  js中apply怎么把数组转化为参数？ <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">60k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:37</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bg-beautifier.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+  
+    <script type="text/javascript"
+        count="150"
+        opacity: 1
+        src="/js/canvas-nest.min.js">
+    </script>
+  
+
+</body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+</html>

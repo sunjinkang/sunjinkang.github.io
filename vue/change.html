@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="生命周期变更   选项式 API Hook inside setup    beforeCreate Not needed*   created Not needed*   beforeMount onBeforeMount   mounted onMounted   beforeUpdate onBeforeUpdate   updated onUpdated   beforeUnmount o">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="2.x迁移到3.x变更点">
+<meta property="og:url" content="https://sunjinkang.github.io/vue/change.html">
+<meta property="og:site_name" content="Sun with no word">
+<meta property="og:description" content="生命周期变更   选项式 API Hook inside setup    beforeCreate Not needed*   created Not needed*   beforeMount onBeforeMount   mounted onMounted   beforeUpdate onBeforeUpdate   updated onUpdated   beforeUnmount o">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-25T06:17:57.000Z">
+<meta property="article:modified_time" content="2023-07-24T09:24:46.207Z">
+<meta property="article:author" content="Sun Jinkang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sunjinkang.github.io/vue/change">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/vue/change.html","path":"vue/change.html","title":"2.x迁移到3.x变更点"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2.x迁移到3.x变更点 | Sun with no word
+</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sun with no word</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">something about what I have learned and some interesting things</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8F%98%E6%9B%B4"><span class="nav-number">1.</span> <span class="nav-text">生命周期变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue3%E5%85%81%E8%AE%B8%E7%BB%84%E4%BB%B6%E6%9C%89%E5%A4%9A%E4%B8%AA%E6%A0%B9%E8%8A%82%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">vue3允许组件有多个根节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">移除过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#template%E5%BA%94%E7%94%A8%E6%8C%82%E8%BD%BD%E5%8F%98%E6%9B%B4"><span class="nav-number">4.</span> <span class="nav-text">template应用挂载变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%B8%A1%E7%9A%84-class-%E5%90%8D%E6%9B%B4%E6%94%B9"><span class="nav-number">5.</span> <span class="nav-text">过渡的 class 名更改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E7%9B%B8%E5%85%B3-prop-%E5%90%8D%E7%A7%B0%E5%8F%98%E5%8C%96"><span class="nav-number">6.</span> <span class="nav-text"> 组件的相关 prop 名称变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transition-Group-%E6%A0%B9%E5%85%83%E7%B4%A0"><span class="nav-number">7.</span> <span class="nav-text">Transition Group 根元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4v-on-native%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">8.</span> <span class="nav-text">移除v-on.native修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-if-%E4%B8%8E-v-for-%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7%E5%8F%98%E6%9B%B4"><span class="nav-number">9.</span> <span class="nav-text">v-if 与 v-for 的优先级变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-bind-%E5%90%88%E5%B9%B6%E8%A1%8C%E4%B8%BA"><span class="nav-number">10.</span> <span class="nav-text">v-bind 合并行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VNode-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%BA%8B%E4%BB%B6"><span class="nav-number">11.</span> <span class="nav-text">VNode 生命周期事件</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sun Jinkang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sun Jinkang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sunjinkang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sunjinkang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2060037942@qq.com" title="E-Mail → mailto:2060037942@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <img src="/images/backToTop.png" />
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/sunjinkang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header post-top-background" id="id-post-top">
+
+<h1 class="post-title" itemprop="name headline">2.x迁移到3.x变更点
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h3 id="生命周期变更"><a href="#生命周期变更" class="headerlink" title="生命周期变更"></a>生命周期变更</h3><table>
+<thead>
+<tr>
+<th align="center">选项式 API</th>
+<th align="center">Hook inside setup</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">beforeCreate</td>
+<td align="center">Not needed*</td>
+</tr>
+<tr>
+<td align="center">created</td>
+<td align="center">Not needed*</td>
+</tr>
+<tr>
+<td align="center">beforeMount</td>
+<td align="center">onBeforeMount</td>
+</tr>
+<tr>
+<td align="center">mounted</td>
+<td align="center">onMounted</td>
+</tr>
+<tr>
+<td align="center">beforeUpdate</td>
+<td align="center">onBeforeUpdate</td>
+</tr>
+<tr>
+<td align="center">updated</td>
+<td align="center">onUpdated</td>
+</tr>
+<tr>
+<td align="center">beforeUnmount</td>
+<td align="center">onBeforeUnmount</td>
+</tr>
+<tr>
+<td align="center">unmounted</td>
+<td align="center">onUnmounted</td>
+</tr>
+<tr>
+<td align="center">errorCaptured</td>
+<td align="center">onErrorCaptured</td>
+</tr>
+<tr>
+<td align="center">renderTracked</td>
+<td align="center">onRenderTracked</td>
+</tr>
+<tr>
+<td align="center">renderTriggered</td>
+<td align="center">onRenderTriggered</td>
+</tr>
+<tr>
+<td align="center">activated</td>
+<td align="center">onActivated</td>
+</tr>
+<tr>
+<td align="center">deactivated</td>
+<td align="center">onDeactivated</td>
+</tr>
+</tbody></table>
+<h3 id="vue3允许组件有多个根节点"><a href="#vue3允许组件有多个根节点" class="headerlink" title="vue3允许组件有多个根节点"></a>vue3允许组件有多个根节点</h3><h3 id="移除过滤器"><a href="#移除过滤器" class="headerlink" title="移除过滤器"></a>移除过滤器</h3><p>过滤器已移除，且不再支持，建议用计算属性或方法代替过滤器，而不是使用过滤器</p>
+<h3 id="template应用挂载变更"><a href="#template应用挂载变更" class="headerlink" title="template应用挂载变更"></a>template应用挂载变更</h3><p>在 Vue 2.x 中，当挂载一个具有 template 的应用时，被渲染的内容会替换我们要挂载的目标元素。<br>在 Vue 3.x 中，被渲染的应用会作为子元素插入，从而替换目标元素的 innerHTML</p>
+<h3 id="过渡的-class-名更改"><a href="#过渡的-class-名更改" class="headerlink" title="过渡的 class 名更改"></a>过渡的 class 名更改</h3><p>过渡类名 v-enter 修改为 v-enter-from、过渡类名 v-leave 修改为 v-leave-from</p>
+<h3 id="组件的相关-prop-名称变化"><a href="#组件的相关-prop-名称变化" class="headerlink" title=" 组件的相关 prop 名称变化"></a><transition> 组件的相关 prop 名称变化</transition></h3><p>leave-class 已经被重命名为 leave-from-class (在渲染函数或 JSX 中可以写为：leaveFromClass)<br>enter-class 已经被重命名为 enter-from-class (在渲染函数或 JSX 中可以写为：enterFromClass)</p>
+<h3 id="Transition-Group-根元素"><a href="#Transition-Group-根元素" class="headerlink" title="Transition Group 根元素"></a>Transition Group 根元素</h3><p><transition-group> 不再默认渲染根元素，但仍然可以用 tag attribute 创建根元素，希望保留原效果的，设置 tag=’span’ 即可</transition-group></p>
+<h3 id="移除v-on-native修饰符"><a href="#移除v-on-native修饰符" class="headerlink" title="移除v-on.native修饰符"></a>移除v-on.native修饰符</h3><p>v-on 的 .native 修饰符已被移除。同时，新增的 emits 选项允许子组件定义真正会被触发的事件。因此，对于子组件中未被定义为组件触发的所有事件监听器，Vue 现在将把它们作为原生事件监听器添加到子组件的根元素中 (除非在子组件的选项中设置了 inheritAttrs: false)。</p>
+<h3 id="v-if-与-v-for-的优先级变更"><a href="#v-if-与-v-for-的优先级变更" class="headerlink" title="v-if 与 v-for 的优先级变更"></a>v-if 与 v-for 的优先级变更</h3><table>
+<thead>
+<tr>
+<th align="left">vue2</th>
+<th align="left">vue3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">在一个元素上同时使用 v-if 和 v-for 时，v-for 会优先作用</td>
+<td align="left">v-if 总是优先于 v-for 生效</td>
+</tr>
+</tbody></table>
+<h3 id="v-bind-合并行为"><a href="#v-bind-合并行为" class="headerlink" title="v-bind 合并行为"></a>v-bind 合并行为</h3><table>
+<thead>
+<tr>
+<th align="left">vue2</th>
+<th align="left">vue3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">如果一个元素同时定义了 v-bind=”object” 和一个相同的独立 attribute，那么这个独立 attribute 总是会覆盖 object 中的绑定（即不分先后）</td>
+<td align="left">如果一个元素同时定义了 v-bind=”object” 和一个相同的独立 attribute，那么绑定的声明顺序将决定它们如何被合并（即后覆盖前）</td>
+</tr>
+</tbody></table>
+<h3 id="VNode-生命周期事件"><a href="#VNode-生命周期事件" class="headerlink" title="VNode 生命周期事件"></a>VNode 生命周期事件</h3><table>
+<thead>
+<tr>
+<th align="left">vue2</th>
+<th align="left">vue3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">事件来监听组件生命周期,以 hook: 前缀开头，并跟随相应的生命周期钩子的名字</td>
+<td align="left">以 vnode- 前缀开头，事件也可用于 HTML 元素</td>
+</tr>
+</tbody></table>
+<p>举例：vnode- 前缀：@vnode-updated=”onUpdated”；或者在驼峰命名法的情况下附带前缀 vnode：@vnodeUpdated=”onUpdated”；<br>生命周期钩子 beforeDestroy 和 destroyed 已经分别被重命名为 beforeUnmount 和 unmounted，所以相应的事件名也需要更新。</p>
+<p><a target="_blank" rel="noopener" href="https://v3.cn.vuejs.org/guide/migration/introduction.html">从vue2迁移官方文档(注意vue3改为默认安装版本后官方文档地址可能发生迁移，该跳转地址可能存在问题)</a></p>
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">60k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:37</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bg-beautifier.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+  
+    <script type="text/javascript"
+        count="150"
+        opacity: 1
+        src="/js/canvas-nest.min.js">
+    </script>
+  
+
+</body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+</html>

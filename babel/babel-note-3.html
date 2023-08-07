@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="配置文件Babel 有两种并行的配置文件格式，可以一起使用，也可以单独使用。  项目范围的配置 文件相关配置 .babelrc（和 .babelrc.js）文件 带有 “babel” 键的 package.json 文件  项目范围的配置Babel 7.x 中的新功能，Babel 具有 “root” 目录的概念，默认为 到当前的工作目录。对于项目范围的配置，Babel 将自动搜索 相对对于此根目录">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="babel基础知识- 配置文件">
+<meta property="og:url" content="https://sunjinkang.github.io/babel/babel-note-3.html">
+<meta property="og:site_name" content="Sun with no word">
+<meta property="og:description" content="配置文件Babel 有两种并行的配置文件格式，可以一起使用，也可以单独使用。  项目范围的配置 文件相关配置 .babelrc（和 .babelrc.js）文件 带有 “babel” 键的 package.json 文件  项目范围的配置Babel 7.x 中的新功能，Babel 具有 “root” 目录的概念，默认为 到当前的工作目录。对于项目范围的配置，Babel 将自动搜索 相对对于此根目录">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-10T10:05:35.000Z">
+<meta property="article:modified_time" content="2023-07-24T09:24:46.477Z">
+<meta property="article:author" content="Sun Jinkang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sunjinkang.github.io/babel/babel-note-3">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/babel/babel-note-3.html","path":"babel/babel-note-3.html","title":"babel基础知识- 配置文件"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>babel基础知识- 配置文件 | Sun with no word
+</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sun with no word</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">something about what I have learned and some interesting things</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">配置文件</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sun Jinkang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sun Jinkang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sunjinkang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sunjinkang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2060037942@qq.com" title="E-Mail → mailto:2060037942@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <img src="/images/backToTop.png" />
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/sunjinkang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header post-top-background" id="id-post-top">
+
+<h1 class="post-title" itemprop="name headline">babel基础知识- 配置文件
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><p>Babel 有两种并行的配置文件格式，可以一起使用，也可以单独使用。</p>
+<ul>
+<li>项目范围的配置</li>
+<li>文件相关配置</li>
+<li>.babelrc（和 .babelrc.js）文件</li>
+<li>带有 “babel” 键的 package.json 文件</li>
+</ul>
+<p><em>项目范围的配置</em><br>Babel 7.x 中的新功能，Babel 具有 “root” 目录的概念，默认为 到当前的工作目录。对于项目范围的配置，Babel 将自动搜索 相对对于此根目录下的 “babel.config.js” 。或者，用户可以使用显式 “configFile” 值覆盖默认的配置文件搜索行为。<br>也可以通过将 “configFile” 设置为 false 来禁用项目范围的配置。</p>
+<p><em>配置函数API</em><br>JS 配置文件可以导出一个将传递配置函数 API 的函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span>(<span class="params">api</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>api 对象暴露的API：</p>
+<p>api.version<br>正在加载配置文件的 Babel 版本的版本字符串。</p>
+<p>api.cache<br>进行缓存设置</p>
+<p>api.cache.forever() - Permacache 计算的配置，永远不再调用该函数。<br>api.cache.never() - 不要缓存此配置，并且每次都重新执行该功能。<br>api.cache.using(() =&gt; process.env.NODE_ENV) - 根据 NODE_ENV 的值缓存。 如果using 回调返回的值不是预期的值，将再次调用config函数，并将新条目添加到缓存中。<br>api.cache.invalidate(() =&gt; process.env.NODE_ENV) - 根据 NODE_ENV 的值缓存。 如果using 回调返回的值不是预期的值，将再次调用 config 函数，缓存中的所有条目将替换为结果。<br>api.cache(true) - 与 api.cache.forever() 相同<br>api.cache(false) - 与 api.cache.never() 相同</p>
+<p>由于实际的回调结果用于检查缓存条目是否有效，因此建议使用：</p>
+<ul>
+<li>回调应该小而且没有副作用。</li>
+<li>回调应该返回可能的最小范围的值。例如 .using(() =&gt; process.env.NODE_ENV) 上面的用法并不理想，因为它会造成一个未知的 高速缓存条目的数量取决于检测到多少个 NODE_ENV 值。 .using(() =&gt; process.env.NODE_ENV === “development”) 更安全，因为缓存条目 只能是 true 或 false。</li>
+</ul>
+<p>api.env(…)<br>由于 NODE_ENV 是一种相当常见的切换行为方式，因此 Babel 还包含一个 API 函数 专门为此而设。<br>它有几种不同的形式：</p>
+<ul>
+<li>api.env(“production”) 返回 true 如果 envName === “production”.</li>
+<li>api.env([“development”, “test”]) 返回 true 如果 [“development”, “test”].includes(envName).</li>
+<li>api.env() 返回当前的 envName 字符串。</li>
+<li>api.env(envName =&gt; envName.startsWith(“test-“)) 如果 env 以 “test-“ 开头，则返回 true。<br>注意:这个函数在内部使用api.cache，以确保Babel知道此构建依赖于特定的envName。你不应该将它与api.cache.forever()或api.cache.never()一起使用。</li>
+</ul>
+<p>api.caller(cb)<br>该API用于访问传递给Babel的调用者数据。由于Babel的许多实例可能在具有不同调用者值的相同进程中运行，因此该API被设计为自动配置API.cache，与api.env()相同。<br>caller 值可用作回调函数的第一个参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">isBabelRegister</span>(<span class="params">caller</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> !!(caller &amp;&amp; caller.<span class="property">name</span> === <span class="string">&quot;@babel/register&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 根据特定环境切换配置行为。</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span>(<span class="params">api</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> isRegister = api.<span class="title function_">caller</span>(isBabelRegister);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>api.assertVersion(range)<br>虽然 api.version 在一般情况下很有用，但有时候声明你的版本会很好。 此 API 公开了一种简单的方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span>(<span class="params">api</span>) &#123;</span><br><span class="line">  api.<span class="title function_">assertVersion</span>(<span class="string">&quot;^7.2&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><em>@babel/plugin-transform-runtime</em><br>作用一：自动移除语法转换后内联的辅助函数（inline Babel helpers），使用@babel/runtime/helpers里的辅助函数来替代<br>相关文章：<a target="_blank" rel="noopener" href="https://www.jiangruitao.com/babel/transform-runtime/">https://www.jiangruitao.com/babel/transform-runtime/</a></p>
+<p><em>@babel/register</em><br>@babel/register只有一个功能，就是重写node的require方法。@babel/register在底层改写了node的require方法，在代码里引入@babel/register模块后，所有通过require引入并且以.es6, .es, .jsx 和 .js为后缀名的模块都会经过babel的转译。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">&quot;@babel/register&quot;</span>)(&#123;</span><br><span class="line">  <span class="comment">// Array of ignore conditions, either a regex or a function. (Optional)</span></span><br><span class="line">  <span class="comment">// File paths that match any condition are not compiled.</span></span><br><span class="line">  <span class="attr">ignore</span>: [</span><br><span class="line">    <span class="comment">// When a file path matches this regex then it is **not** compiled</span></span><br><span class="line">    <span class="regexp">/regex/</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The file&#x27;s path is also passed to any ignore functions. It will</span></span><br><span class="line">    <span class="comment">// **not** be compiled if `true` is returned.</span></span><br><span class="line">    <span class="keyword">function</span>(<span class="params">filepath</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> filepath !== <span class="string">&quot;/path/to/es6-file.js&quot;</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Array of accept conditions, either a regex or a function. (Optional)</span></span><br><span class="line">  <span class="comment">// File paths that match all conditions are compiled.</span></span><br><span class="line">  <span class="attr">only</span>: [</span><br><span class="line">    <span class="comment">// File paths that **don&#x27;t** match this regex are not compiled</span></span><br><span class="line">    <span class="regexp">/my_es6_folder/</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// File paths that **do not** return true are not compiled</span></span><br><span class="line">    <span class="keyword">function</span>(<span class="params">filepath</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> filepath === <span class="string">&quot;/path/to/es6-file.js&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Setting this will remove the currently hooked extensions of `.es6`, `.es`, `.jsx`, `.mjs`</span></span><br><span class="line">  <span class="comment">// and .js so you&#x27;ll have to add them back if you want them to be used again.</span></span><br><span class="line">  <span class="attr">extensions</span>: [<span class="string">&quot;.es6&quot;</span>, <span class="string">&quot;.es&quot;</span>, <span class="string">&quot;.jsx&quot;</span>, <span class="string">&quot;.js&quot;</span>, <span class="string">&quot;.mjs&quot;</span>],</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Setting this to false will disable the cache.</span></span><br><span class="line">  <span class="attr">cache</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>注意:@babel/register不支持动态编译本地Node.js ES模块，因为目前还没有稳定的API来拦截ES模块加载。</p>
+<p><em>@babel/preset-env</em><br>@babel/preset-env是一个智能预设，允许您使用最新的JavaScript，而无需微观管理目标环境需要哪些语法转换(以及可选的浏览器填充)。这既使您的生活更轻松，又使JavaScript包更小!</p>
+<p>Browserslist Integration<br>对于browser- or Electron-based的项目，我们建议使用.browserslistrc文件来指定目标。你可能已经有了这个配置文件，因为它被生态系统中的许多工具所使用，比如autoprefixer、stylelint、eslint-plugin-compat和许多其他工具。</p>
+<p>默认情况下，@babel/preset-env将使用browserslist配置源，除非设置了targets或ignoreBrowserslistConfig选项。</p>
+<p>例如，只包含浏览器市场份额&gt;0.25%的用户所需的填充和代码转换(忽略没有安全更新的浏览器，如IE 10和BlackBerry):</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;presets&quot;</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">&quot;@babel/preset-env&quot;</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">&quot;useBuiltIns&quot;</span>: <span class="string">&quot;entry&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// browserslist</span></span><br><span class="line">&gt; <span class="number">0.25</span>%</span><br><span class="line">not dead</span><br><span class="line"></span><br><span class="line"><span class="comment">// package.json</span></span><br><span class="line"><span class="string">&quot;browserslist&quot;</span>: <span class="string">&quot;&gt; 0.25%, not dead&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><em>@babel/preset-flow</em><br>包含插件</p>
+<ul>
+<li>@babel/plugin-transform-flow-strip-types</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// In</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params">one: any, two: number, three?</span>): string &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Out</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params">one, two, three</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>配置项：<br>all（默认值为 false）</p>
+<p>如果文件顶部有@flow pragma，或者在.flowconfig中设置了all选项，那么Flow只会解析特定于Flow的特性。<br>如果您在Flow配置中使用all选项，请确保将此选项设置为true以获得匹配的行为。<br>例如，如果没有上述集合中的任何一个，下面的调用表达式带有类型参数:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// In</span></span><br><span class="line">f&lt;T&gt;(e)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Out</span></span><br><span class="line">f &lt; T &gt; e;</span><br></pre></td></tr></table></figure>
+
+<p><em>@babel/preset-react</em><br>包含插件：</p>
+<ul>
+<li>@babel/plugin-syntax-jsx</li>
+<li>@babel/plugin-transform-react-jsx</li>
+<li>@babel/plugin-transform-react-display-name<br>使用development选项时:</li>
+<li>@babel/plugin-transform-react-jsx-self</li>
+<li>@babel/plugin-transform-react-jsx-source<br>在v7中不再启用流语法支持。为此，您需要添加Flow预设。</li>
+</ul>
+<p>选项：<br>pragma(默认值：React.createElement)</p>
+<p>pragmaFrag(默认值：React.Fragment)</p>
+<p>useBuiltIns(默认值：false)<br>Will use the native built-in instead of trying to polyfill behavior for any plugins that require one.</p>
+<p>development(默认值：false)<br>用于切换开发的插件，比如： @babel/plugin-transform-react-jsx-self 和 @babel/plugin-transform-react-jsx-source.<br>这在与env选项配置或js配置文件结合使用时非常有用。</p>
+<p>throwIfNamespace(默认值：true)<br>切换是否在使用XML名称空间标记名时抛出错误。比如：&lt;f:image /&gt;<br>虽然JSX规范允许这样做，但由于React的JSX目前不支持，因此默认情况下是禁用的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .babelrc.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">presets</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">&quot;@babel/preset-react&quot;</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">development</span>: process.<span class="property">env</span>.<span class="property">BABEL_ENV</span> === <span class="string">&quot;development&quot;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><em>@babel/preset-typescript</em><br>包含插件：</p>
+<ul>
+<li>@babel/plugin-transform-typescript<br>需要为 @babel/cli 和 @babel/node 处理 .ts 文件指定 –extensions “.ts”</li>
+</ul>
+<p>选项：<br>isTSX（默认值：false）<br>强制启用jsx解析。否则，尖括号将被视为typescript的遗留类型断言var foo = <string>bar;<br>同时，isTSX: true 要求 allExtensions: true.</string></p>
+<p>jsxPragma（默认值：React）<br>替换编译JSX表达式时使用的函数。这样我们就知道导入不是类型导入，不应该被删除。</p>
+<p>allExtensions(默认值：false)<br>指示每个文件应解析为TS或TSX(取决于isTSX选项)。</p>
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">60k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:37</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bg-beautifier.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+  
+    <script type="text/javascript"
+        count="150"
+        opacity: 1
+        src="/js/canvas-nest.min.js">
+    </script>
+  
+
+</body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+</html>

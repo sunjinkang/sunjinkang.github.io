@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Node.js在单个线程中运行单个实例。 用户(开发者)为了使用现在的多核系统，有时候,用户(开发者)会用一串Node.js进程去处理负载任务。 cluster 模块允许简单容易的创建共享服务器端口的子进程。 12345678910111213141516171819202122232425const cluster &#x3D; require(&amp;#x27;cluster&amp;#x27;);const htt">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="nodejs基础知识(4)">
+<meta property="og:url" content="https://sunjinkang.github.io/nodejs/nodejs-note-11.html">
+<meta property="og:site_name" content="Sun with no word">
+<meta property="og:description" content="Node.js在单个线程中运行单个实例。 用户(开发者)为了使用现在的多核系统，有时候,用户(开发者)会用一串Node.js进程去处理负载任务。 cluster 模块允许简单容易的创建共享服务器端口的子进程。 12345678910111213141516171819202122232425const cluster &#x3D; require(&amp;#x27;cluster&amp;#x27;);const htt">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-30T08:27:30.000Z">
+<meta property="article:modified_time" content="2023-07-24T09:24:46.497Z">
+<meta property="article:author" content="Sun Jinkang">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="cluster - 集群">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sunjinkang.github.io/nodejs/nodejs-note-11">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/nodejs/nodejs-note-11.html","path":"nodejs/nodejs-note-11.html","title":"nodejs基础知识(4)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>nodejs基础知识(4) | Sun with no word
+</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sun with no word</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">something about what I have learned and some interesting things</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sun Jinkang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sun Jinkang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sunjinkang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sunjinkang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2060037942@qq.com" title="E-Mail → mailto:2060037942@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <img src="/images/backToTop.png" />
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/sunjinkang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header post-top-background" id="id-post-top">
+
+<h1 class="post-title" itemprop="name headline">nodejs基础知识(4)
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <p>Node.js在单个线程中运行单个实例。 用户(开发者)为了使用现在的多核系统，有时候,用户(开发者)会用一串Node.js进程去处理负载任务。</p>
+<p>cluster 模块允许简单容易的创建共享服务器端口的子进程。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cluster = <span class="built_in">require</span>(<span class="string">&#x27;cluster&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> numCPUs = <span class="built_in">require</span>(<span class="string">&#x27;os&#x27;</span>).<span class="title function_">cpus</span>().<span class="property">length</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (cluster.<span class="property">isMaster</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`主进程 <span class="subst">$&#123;process.pid&#125;</span> 正在运行`</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 衍生工作进程。</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; numCPUs; i++) &#123;</span><br><span class="line">    cluster.<span class="title function_">fork</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  cluster.<span class="title function_">on</span>(<span class="string">&#x27;exit&#x27;</span>, <span class="function">(<span class="params">worker, code, signal</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`工作进程 <span class="subst">$&#123;worker.process.pid&#125;</span> 已退出`</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// 工作进程可以共享任何 TCP 连接。</span></span><br><span class="line">  <span class="comment">// 在本例子中，共享的是一个 HTTP 服务器。</span></span><br><span class="line">  http.<span class="title function_">createServer</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.<span class="title function_">writeHead</span>(<span class="number">200</span>);</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;你好世界\n&#x27;</span>);</span><br><span class="line">  &#125;).<span class="title function_">listen</span>(<span class="number">8000</span>);</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`工作进程 <span class="subst">$&#123;process.pid&#125;</span> 已启动`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>cluster模块支持两种连接分发模式（将新连接安排给某一工作进程处理）。</p>
+<p>第一种方法（也是除Windows外所有平台的默认方法），是循环法。由主进程负责监听端口，接收新连接后再将连接循环分发给工作进程。在分发中使用了一些内置技巧防止工作进程任务过载。</p>
+<p>第二种方法是，主进程创建监听socket后发送给感兴趣的工作进程，由工作进程负责直接接收连接。</p>
+<p>理论上第二种方法应该是效率最佳的，但在实际情况下，由于操作系统调度机制的难以捉摸，会使分发变得不稳定。我们遇到过这种情况：8个进程中的2个，分担了70%的负载。</p>
+<p><strong>Class: Worker</strong><br>Worker对象包含了关于工作进程的所有public信息和方法。<br>在一个主进程里，可以使用cluster.workers来获取Worker对象。<br>在一个工作进程里，可以使用cluster.worker来获取Worker对象。</p>
+<p><strong>Event: ‘disconnect’</strong><br>虽然与 cluster.on(‘disconnect’)事件 是相似的,但是这个进程又有其他特征。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cluster.fork().<span class="literal">on</span>(<span class="string">&#x27;disconnect&#x27;</span>, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="regexp">//</span> Worker has disconnected</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Event: ‘error’</strong><br>此事件和 child_process.fork()提供的error事件相同。<br>在一个工作进程中，可以使用process.on(‘error’)</p>
+<p><strong>Event: ‘exit’</strong></p>
+<ul>
+<li>code <number> 若正常退出，表示退出代码.</number></li>
+<li>signal <string> 引发进程被kill的信号名称（如’SIGHUP’）.<br>和cluster.on(‘exit’)事件类似，但针对特定的工作进程。<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> worker = cluster.fork();</span><br><span class="line">worker.on(<span class="string">&#x27;exit&#x27;</span>, (code, <span class="keyword">signal</span><span class="string">) </span>=&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">signal</span><span class="string">) &#123;</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`worker was killed by signal: <span class="subst">$&#123;signal&#125;</span>`</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (code !== <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`worker exited with error code: <span class="subst">$&#123;code&#125;</span>`</span>);</span><br><span class="line">  &#125; <span class="title">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;worker success!&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></string></li>
+</ul>
+<p><strong>Event: ‘listening’</strong><br>address <Object><br>和cluster.on(‘listening’)事件类似，但针对特定的工作进程。<br>本事件不会在工作进程内触发。</Object></p>
+<p><strong>Event: ‘message’</strong><br>message <Object><br>handle <undefined> | <Object><br>和cluster.on(‘message’)事件类似，但针对特定的工作进程。<br>在工作进程内，可以使用process.on(‘message’)</Object></undefined></Object></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cluster = <span class="built_in">require</span>(<span class="string">&#x27;cluster&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (cluster.<span class="property">isMaster</span>) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 跟踪 http 请求</span></span><br><span class="line">  <span class="keyword">let</span> numReqs = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`numReqs = <span class="subst">$&#123;numReqs&#125;</span>`</span>);</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 计算请求数目</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">messageHandler</span>(<span class="params">msg</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (msg.<span class="property">cmd</span> &amp;&amp; msg.<span class="property">cmd</span> === <span class="string">&#x27;notifyRequest&#x27;</span>) &#123;</span><br><span class="line">      numReqs += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 启动 worker 并监听包含 notifyRequest 的消息</span></span><br><span class="line">  <span class="keyword">const</span> numCPUs = <span class="built_in">require</span>(<span class="string">&#x27;os&#x27;</span>).<span class="title function_">cpus</span>().<span class="property">length</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; numCPUs; i++) &#123;</span><br><span class="line">    cluster.<span class="title function_">fork</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> id <span class="keyword">in</span> cluster.<span class="property">workers</span>) &#123;</span><br><span class="line">    cluster.<span class="property">workers</span>[id].<span class="title function_">on</span>(<span class="string">&#x27;message&#x27;</span>, messageHandler);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Worker 进程有一个http服务器</span></span><br><span class="line">  http.<span class="title class_">Server</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.<span class="title function_">writeHead</span>(<span class="number">200</span>);</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;hello world\n&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通知 master 进程接收到了请求</span></span><br><span class="line">    process.<span class="title function_">send</span>(&#123; <span class="attr">cmd</span>: <span class="string">&#x27;notifyRequest&#x27;</span> &#125;);</span><br><span class="line">  &#125;).<span class="title function_">listen</span>(<span class="number">8000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Event: ‘online’</strong><br>和cluster.on(‘online’)事件类似，但针对特定的工作进程。<br>本事件不会在工作进程内部被触发。</p>
+<p><strong>worker.disconnect()</strong><br>Returns: <Worker> 一个 worker 的引用。<br>在一个工作进程内，调用此方法会关闭所有的server，并等待这些server的 ‘close’事件执行，然后关闭IPC管道。</Worker></p>
+<p>在主进程内，会给工作进程发送一个内部消息，导致工作进程自身调用.disconnect()。</p>
+<p>会设置.exitedAfterDisconnect 。</p>
+<p>需要注意的是，当一个server关闭后，它将不再接收新的连接，但新连接会被其他正在监听的工作进程接收。已建立的连接可以正常关闭。当所有连接都关闭后，通往该工作进程的IPC管道将会关闭，允许工作进程优雅地死掉</p>
+<p>需要注意的是，我们这里的方法是disconnect，同时还有一个不一样的方法process.disconnect，大家不要混淆了</p>
+<p><strong>worker.exitedAfterDisconnect</strong><br><boolean><br>当调用 .kill() 或者 .disconnect()方法时被设置，在这之前都是 undefined。<br>worker.exitedAfterDisconnect可以用于区分自发退出还是被动退出，主进程可以根据这个值决定是否重新衍生新的工作进程。<br><em>与worker.suicide等价</em></boolean></p>
+<p><strong>worker.id</strong><br><number><br>每一个新衍生的工作进程都会被赋予自己独一无二的编号，这个编号就是储存在id里面。<br>当工作进程还存活时，id可以作为在cluster.workers中的索引。</number></p>
+<p><strong>worker.isConnected()</strong><br>当工作进程通过IPC管道连接至主进程时，这个方法返回true，否则返回false。<br>一个工作进程在创建后会自动连接到它的主进程，当’disconnect’ 事件被触发时才会断开连接。</p>
+<p><strong>worker.isDead()</strong><br>当工作进程被终止时（包括自动退出或被发送信号），这个方法返回true ，否则返回false。</p>
+<p><strong>worker.kill([signal=’SIGTERM’])</strong><br>signal <string> 被发送kill信号的工作进程名称。<br>这个方法将会kill工作进程。在主进程中，通过断开与worker.process的连接来实现，一旦断开连接后，通过signal来杀死工作进程。在工作进程中，通过断开IPC管道来实现，然后以代码0退出进程。<br>将导致.exitedAfterDisconnect被设置。<br>为向后兼容，这个方法与worker.destroy()等义。<br>需要注意的是，在工作进程中有一个方法process.kill() ，这个方法本方法不同，本方法是kill。</string></p>
+<p><strong>worker.process</strong><br><ChildProcess><br>所有的工作进程都是通过child_process.fork()来创建的，这个方法返回的对象被存储为.process。在工作进程中， process属于全局对象。<br>需要注意：当process上发生 ‘disconnect’事件，并且.exitedAfterDisconnect的值不是true时，工作进程会调用 process.exit(0)。这样就可以防止连接意外断开。</ChildProcess></p>
+<p><strong>worker.send(message[, sendHandle][, callback])</strong><br>发送一个消息给工作进程或主进程，也可以附带发送一个handle。<br>主进程调用这个方法会发送消息给具体的工作进程。还有一个等价的方法是ChildProcess.send()。<br>工作进程调用这个方法会发送消息给主进程。还有一个等价方法是process.send()。</p>
+<p><strong>Event: ‘disconnect’</strong><br>worker &lt;cluster.Worker&gt;<br>在工作进程的IPC管道被断开后触发本事件。可能导致事件触发的原因包括：工作进程优雅地退出、被kill或手动断开连接（如调用worker.disconnect()）。<br>‘disconnect’ 和 ‘exit’事件之间可能存在延迟。这些事件可以用来检测进程是否在清理过程中被卡住，或是否存在长时间运行的连接。</p>
+<p><strong>Event: ‘exit’</strong><br>worker &lt;cluster.Worker&gt;<br>code <number> 正常退出情况下，是退出代码.<br>signal <string> 导致进程被kill的信号名称 (例如 ‘SIGHUP’)<br>当任何一个工作进程关闭的时候，cluster模块都将触发’exit’事件。<br>可以被用来重启工作进程（通过调用.fork()）</string></number></p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cluster.on(<span class="string">&#x27;exit&#x27;</span>, (worker, code, <span class="keyword">signal</span><span class="string">) </span>=&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;worker %d died (%s). restarting...&#x27;</span>,</span><br><span class="line">              worker.process.pid, <span class="keyword">signal</span><span class="string"> || code)</span>;</span><br><span class="line">  cluster.fork();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Event: ‘fork’</strong><br>worker &lt;cluster.Worker&gt;<br>当新的工作进程被fork时，cluster模块将触发’fork’事件。 可以被用来记录工作进程活动，产生一个自定义的timeout。</p>
+<p><strong>Event: ‘listening’</strong><br>worker &lt;cluster.Worker&gt;<br>address <Object><br>当一个工作进程调用listen()后，工作进程上的server会触发’listening’ 事件，同时主进程上的 cluster 也会被触发’listening’事件。<br>事件处理器使用两个参数来执行，其中worker包含了工作进程对象，address 包含了以下连接属性： address、port 和 addressType。当工作进程同时监听多个地址时，这些参数非常有用。<br>addressType 可选值包括:</Object></p>
+<ul>
+<li>4 (TCPv4)</li>
+<li>6 (TCPv6)</li>
+<li>-1 (unix domain socket)</li>
+<li>“udp4” or “udp6” (UDP v4 or v6)</li>
+</ul>
+<p><strong>Event: ‘message’</strong><br>worker &lt;cluster.Worker&gt;<br>message <Object><br>handle <undefined> | <Object><br>当cluster主进程接收任意工作进程发送的消息后被触发。</Object></undefined></Object></p>
+<p><strong>Event: ‘online’</strong><br>worker &lt;cluster.Worker&gt;<br>当新建一个工作进程后，工作进程应当响应一个online消息给主进程。当主进程收到online消息后触发这个事件。 ‘fork’ 事件和 ‘online’事件的不同之处在于，前者是在主进程新建工作进程后触发，而后者是在工作进程运行的时候触发。</p>
+<p><strong>Event: ‘setup’</strong><br>settings <Object><br>每当 .setupMaster() 被调用的时候触发。<br>settings 对象是 setupMaster() 被调用时的 cluster.settings 对象，并且只能查询，因为在一个 tick 内 .setupMaster() 可以被调用多次。<br>如果精确度十分重要，请使用 cluster.settings。</Object></p>
+<p><strong>cluster.disconnect([callback])</strong><br>callback <Function> 当所有工作进程都断开连接并且所有handle关闭的时候调用。<br>在cluster.workers的每个工作进程中调用 .disconnect()。<br>当所有工作进程断开连接后，所有内部handle将会关闭，这个时候如果没有等待事件的话，运行主进程优雅地关闭。<br>这个方法可以选择添加一个回调参数，当结束时会调用这个回调函数。<br>这个方法只能由主进程调用。</Function></p>
+<p><strong>cluster.fork([env])</strong><br>env <Object> 增加进程环境变量，以Key/value对的形式。<br>return &lt;cluster.Worker&gt;<br>衍生出一个新的工作进程。<br>只能通过主进程调用。</Object></p>
+<p><strong>cluster.isMaster</strong><br><boolean><br>当该进程是主进程时，返回 true。这是由process.env.NODE_UNIQUE_ID决定的，当process.env.NODE_UNIQUE_ID未定义时，isMaster为true。</boolean></p>
+<p><strong>cluster.isWorker</strong><br><boolean><br>当进程不是主进程时，返回 true。（和cluster.isMaster刚好相反）</boolean></p>
+<p><strong>cluster.schedulingPolicy</strong><br>调度策略，包括循环计数的 cluster.SCHED_RR，以及由操作系统决定的cluster.SCHED_NONE。 这是一个全局设置，当第一个工作进程被衍生或者调动cluster.setupMaster()时，都将第一时间生效。</p>
+<p><strong>cluster.settings</strong><br><Object><br>execArgv <Array> 传递给Node.js可执行文件的参数列表。 (Default=process.execArgv)<br>exec <string> worker文件路径。 (Default=process.argv[1])<br>args <Array> 传递给worker的参数。(Default=process.argv.slice(2))<br>silent <boolean> 是否需要发送输出值父进程的stdio。(Default=false)<br>stdio <Array> 配置fork进程的stdio。 由于cluster模块运行依赖于IPC，这个配置必须包含’ipc’。当提供了这个选项后，将撤销silent。<br>uid <number> 设置进程的user标识符。 (见 setuid(2).)<br>gid <number> 设置进程的group标识符。 (见 setgid(2).)<br>inspectPort <number> | <function> Sets inspector port of worker. This can be a number, or a function that takes no arguments and returns a number. By default each worker gets its own port, incremented from the master’s process.debugPort.<br>调用.setupMaster() (或 .fork())后，这个settings对象将会包含这些设置项，包括默认值。<br>这个对象不打算被修改或手动设置。</function></number></number></number></Array></boolean></Array></string></Array></Object></p>
+<p><strong>cluster.setupMaster([settings])</strong><br>settings <Object> 详见 cluster.settings。<br>用于修改默认’fork’ 行为。一旦调用，将会按照cluster.settings进行设置。<br><em>只能由主进程调用</em><br>注意:</Object></p>
+<ul>
+<li>所有的设置只对后来的 .fork()调用有效，对之前的工作进程无影响。</li>
+<li>唯一无法通过 .setupMaster()设置的属性是传递给.fork()的env属性。</li>
+<li>上述的默认值只在第一次调用时有效，当后续调用时，将采用cluster.setupMaster()调用时的当前值。<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">cluster</span> = <span class="keyword">require</span>(<span class="string">&#x27;cluster&#x27;</span>);</span><br><span class="line">cluster.<span class="title function_ invoke__">setupMaster</span>(&#123;</span><br><span class="line">  <span class="attr">exec</span>: <span class="string">&#x27;worker.js&#x27;</span>,</span><br><span class="line">  <span class="attr">args</span>: [<span class="string">&#x27;--use&#x27;</span>, <span class="string">&#x27;https&#x27;</span>],</span><br><span class="line">  <span class="attr">silent</span>: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br><span class="line">cluster.<span class="title function_ invoke__">fork</span>(); <span class="comment">// https worker</span></span><br><span class="line">cluster.<span class="title function_ invoke__">setupMaster</span>(&#123;</span><br><span class="line">  <span class="attr">exec</span>: <span class="string">&#x27;worker.js&#x27;</span>,</span><br><span class="line">  <span class="attr">args</span>: [<span class="string">&#x27;--use&#x27;</span>, <span class="string">&#x27;http&#x27;</span>]</span><br><span class="line">&#125;);</span><br><span class="line">cluster.<span class="title function_ invoke__">fork</span>(); <span class="comment">// http worker</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>cluster.worker</strong><br><Object><br>当前工作进程对象的引用，对于主进程则无效。</Object></p>
+<p><strong>cluster.workers</strong><br><Object><br>这是一个哈希表，储存了活跃的工作进程对象，id作为key。有了它，可以方便地遍历所有工作进程。只能在主进程中调用。</Object></p>
+<p>工作进程断开连接以及退出后，将会从cluster.workers里面移除。这两个事件的先后顺序并不能预先确定，但可以保证的是， cluster.workers的移除工作在’disconnect’ 和 ‘exit’两个事件中的最后一个触发之前完成。</p>
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">60k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:37</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bg-beautifier.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+  
+    <script type="text/javascript"
+        count="150"
+        opacity: 1
+        src="/js/canvas-nest.min.js">
+    </script>
+  
+
+</body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="我们都知道属性和方法是对象上的，但是基本数据类型可以访问属性和方法，比如：’hello world’.length。这是由于浏览器在内部做了装箱和拆箱操作。 什么是装箱拆箱？装箱：把基本数据类型转化为对应的引用类型的操作拆箱：把引用类型转化为基本数据类型的操作 基本数据类型：字符串(String)、数字(Number)、布尔(Boolean)、空(Null)、未定义(Undefined)、Symb">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="装箱拆箱操作">
+<meta property="og:url" content="https://sunjinkang.github.io/2022/08/09/21-devan-operation/index.html">
+<meta property="og:site_name" content="Sun with no word">
+<meta property="og:description" content="我们都知道属性和方法是对象上的，但是基本数据类型可以访问属性和方法，比如：’hello world’.length。这是由于浏览器在内部做了装箱和拆箱操作。 什么是装箱拆箱？装箱：把基本数据类型转化为对应的引用类型的操作拆箱：把引用类型转化为基本数据类型的操作 基本数据类型：字符串(String)、数字(Number)、布尔(Boolean)、空(Null)、未定义(Undefined)、Symb">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-09T05:43:57.000Z">
+<meta property="article:modified_time" content="2023-08-03T03:01:29.311Z">
+<meta property="article:author" content="Sun Jinkang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sunjinkang.github.io/2022/08/09/21-devan-operation/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/2022/08/09/21-devan-operation/","path":"2022/08/09/21-devan-operation/","title":"装箱拆箱操作"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>装箱拆箱操作 | Sun with no word</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sun with no word</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">something about what I have learned and some interesting things</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%A3%85%E7%AE%B1%E6%8B%86%E7%AE%B1%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是装箱拆箱？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A3%85%E7%AE%B1"><span class="nav-number">2.</span> <span class="nav-text">装箱</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%98%BE%E5%BC%8F%E8%A3%85%E7%AE%B1"><span class="nav-number">2.0.1.</span> <span class="nav-text">显式装箱</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%9A%90%E5%BC%8F%E8%A3%85%E7%AE%B1"><span class="nav-number">2.0.2.</span> <span class="nav-text">隐式装箱</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%86%E7%AE%B1"><span class="nav-number">3.</span> <span class="nav-text">拆箱</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Symbol"><span class="nav-number">3.0.1.</span> <span class="nav-text">Symbol</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E8%BD%AC%E6%8D%A2%E6%88%90%E5%8E%9F%E5%A7%8B%E5%80%BC%E7%9A%84%E6%96%B9%E6%B3%95%E5%8F%8A%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="nav-number">4.</span> <span class="nav-text">对象转换成原始值的方法及执行顺序</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sun Jinkang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sun Jinkang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sunjinkang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sunjinkang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2060037942@qq.com" title="E-Mail → mailto:2060037942@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <img src="/images/backToTop.png" />
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/sunjinkang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/09/21-devan-operation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="装箱拆箱操作 | Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header post-top-background" id="id-post-top">
+        <h1 class="post-title" itemprop="name headline">
+          装箱拆箱操作
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-09 13:43:57" itemprop="dateCreated datePublished" datetime="2022-08-09T13:43:57+08:00">2022-08-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-03 11:01:29" itemprop="dateModified" datetime="2023-08-03T11:01:29+08:00">2023-08-03</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>我们都知道属性和方法是对象上的，但是基本数据类型可以访问属性和方法，比如：’hello world’.length。这是由于浏览器在内部做了装箱和拆箱操作。</p>
+<h4 id="什么是装箱拆箱？"><a href="#什么是装箱拆箱？" class="headerlink" title="什么是装箱拆箱？"></a>什么是装箱拆箱？</h4><p>装箱：把基本数据类型转化为对应的引用类型的操作<br>拆箱：把引用类型转化为基本数据类型的操作</p>
+<p>基本数据类型：字符串(String)、数字(Number)、布尔(Boolean)、空(Null)、未定义(Undefined)、Symbol<br>引用数据类型：对象(Object)、数组(Array)、函数(Function)<br>四个基本的包装类型 String、Number、Boolean、Symbol</p>
+<p>什么是包装类型？<br>在 JavaScript 中的字符串、数值、布尔具有对象的使用特征，如具有属性和方法，之所以具有对象特征的原因是字符串、数值、布尔类型数据是JavaScript 底层使用 Object 构造函数“包装”来的，被称为包装类型</p>
+<span id="more"></span>
+
+<h4 id="装箱"><a href="#装箱" class="headerlink" title="装箱"></a>装箱</h4><p>装箱分为显式装箱和隐式装箱</p>
+<h6 id="显式装箱"><a href="#显式装箱" class="headerlink" title="显式装箱"></a>显式装箱</h6><p>通过基本包装类型对象对基本类型进行显式装箱，即通过new的方式声明数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> string = <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&#x27;test_string&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> number = <span class="keyword">new</span> <span class="title class_">Number</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>显式装箱可以对声明的对象进行属性和方法的添加，这是因为通过new创建的实例，在执行流离开当前作用域之前一直保留在内存中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> string = <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&#x27;test_string&#x27;</span>);</span><br><span class="line">string.<span class="property">name</span> = <span class="string">&#x27;for test&#x27;</span>;</span><br><span class="line">string.<span class="property">sayHi</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;this is test string&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(string.<span class="property">name</span>); <span class="comment">// for test</span></span><br><span class="line">string.<span class="title function_">sayHi</span>(); <span class="comment">// this is test string</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="隐式装箱"><a href="#隐式装箱" class="headerlink" title="隐式装箱"></a>隐式装箱</h6><p>隐式装箱是引擎自动执行的<br>基本类型不能添加属性和方法，添加会报错。但是常常在使用的时候，可以直接调用方法，比如：’test_string’.substring()、’test_string’.indexOf()等，这是由于浏览器在内部做了隐式装箱。</p>
+<p>下面以一个例子进行说明：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一步</span></span><br><span class="line"><span class="keyword">var</span> string = <span class="string">&#x27;test_string&#x27;</span>;</span><br><span class="line"><span class="comment">// 第二步</span></span><br><span class="line"><span class="keyword">var</span> result = string.<span class="title function_">substring</span>(<span class="number">4</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result); <span class="comment">// _string</span></span><br></pre></td></tr></table></figure>
+<p>在上面这段代码里面实际的执行步骤是：<br>1、先创建一个String类型的一个实例<br>2、在实例中调用方法<br>3、销毁这个实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> string = <span class="string">&#x27;test_string&#x27;</span>;</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="keyword">var</span> newString = <span class="keyword">new</span> <span class="title class_">String</span>(string);</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">var</span> result = newString.<span class="title function_">substring</span>(<span class="number">4</span>);</span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line">newString = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+<p>基于以上的隐式装箱操作，我们可以在基本类型上使用方法<br>隐式装箱当读取一个基本类型值时，后台会创建一个该基本类型所对应的基本包装类型对象。在这个基本类型的对象上调用方法，其实就是在这个基本类型对象上调用方法。这个基本包装类型的对象是临时的，它只存在于方法调用那一行代码执行的瞬间，执行方法后立即被销毁。这也是在基本类型上添加属性和方法会不识别或报错的原因了</p>
+<p>显式装箱可以添加属性和方法，隐式装箱不能添加属性和方法</p>
+<p>引用类型与基本包装类型的主要区别就是对象的生存期，使用new创建的引用类型实例当执行流离开当前作用域之前，都一直保存在内存中，而自动创建的基本包装类型的对象，则只存在于一行代码执行的瞬间，然后就被销毁。这就意味着我们不能给基本包装类型添加属性和方法。</p>
+<h4 id="拆箱"><a href="#拆箱" class="headerlink" title="拆箱"></a>拆箱</h4><p>拆箱是和装箱相反的操作，即把引用类型转换成基本的数据类型。通常通过引用类型的valueOf()和toString()方法来实现，toString()返回字符串，valueOf()返回对象本身。<br>需要注意的是，toString() 和 valueOf() 返回的值有一定差别</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numberObj = <span class="keyword">new</span> <span class="title class_">Number</span>(<span class="number">64</span>);</span><br><span class="line"><span class="keyword">var</span> stringObj = <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&#x27;64&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> numberObj); <span class="comment">// object</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> stringObj); <span class="comment">// object</span></span><br><span class="line"><span class="comment">// 拆箱</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(numberObj.<span class="title function_">valueOf</span>()); <span class="comment">// 64</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> numberObj.<span class="title function_">valueOf</span>()); <span class="comment">// number 基本的数字类型</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(numberObj.<span class="title function_">toString</span>()); <span class="comment">// &#x27;64&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> numberObj.<span class="title function_">toString</span>()); <span class="comment">// string 基本的字符类型</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(stringObj.<span class="title function_">valueOf</span>()); <span class="comment">// &#x27;64&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> stringObj.<span class="title function_">valueOf</span>()); <span class="comment">// string 基本的数据类型</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(stringObj.<span class="title function_">toString</span>()); <span class="comment">// &#x27;64&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> stringObj.<span class="title function_">toString</span>()); <span class="comment">// string 基本的数据类型</span></span><br></pre></td></tr></table></figure>
+<p>在进行拆箱操作的时候，toString()和valueOf()先执行哪个？在回答这个问题之前，我们先暂停一下，看一下包装类型中的symbol。</p>
+<p>这里简单介绍一下Symbol，感兴趣的可以自己去学习。</p>
+<h6 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h6><p>Symbol 是 ECMAScript 2015 中新添加的特性，生成一个唯一标识符，可用于属性名称、也可用于属性值。目的是消除属性名称冲突<br>创建Symbol</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sym1 = <span class="title class_">Symbol</span>();</span><br><span class="line"><span class="keyword">let</span> sym2 = <span class="title class_">Symbol</span>(<span class="string">&#x27;sym&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>注意：<br>1、每次调用Symbol都会创建新的symbol<br>2、不可以用new 创建Symbol（围绕原始数据类型创建一个显式包装器对象从 ECMAScript 6 开始不再被支持。 然而，现有的原始包装器对象，如 new Boolean、new String以及new Number，因为遗留原因仍可被创建。）<br>3、symbol的参数可以不传，这个参数是用于描述symbol，可以用于调试但不是用于访问symbol本身<br>4、创建Symbol包装器对象，可以使用Object()函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="title class_">Symbol</span>(<span class="string">&#x27;sym&#x27;</span>) === <span class="title class_">Symbol</span>(<span class="string">&#x27;sym&#x27;</span>); <span class="comment">// false</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">let</span> sym = <span class="keyword">new</span> <span class="title class_">Symbol</span>(); <span class="comment">// TypeError: Symbol is not a constructor</span></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="keyword">let</span> sym2 = <span class="title class_">Symbol</span>(<span class="string">&#x27;sym&#x27;</span>);</span><br><span class="line"><span class="keyword">typeof</span> sym2; <span class="comment">// &#x27;symbol&#x27;</span></span><br><span class="line"><span class="keyword">let</span> sym2Obj = <span class="title class_">Object</span>(sym2);</span><br><span class="line"><span class="keyword">typeof</span> sym2Obj; <span class="comment">// &#x27;object&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>在<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol">symbol的文档</a>中，有一个属性<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive">Symbol.toPrimitive</a>。文档中关于它的介绍是：</p>
+<p>Symbol.toPrimitive 是一个内置的 Symbol 值，它是作为对象的函数值属性存在的，当一个对象转换为对应的原始值时，会调用此函数。该函数被调用时，会被传递一个字符串参数 hint ，表示要转换到的原始值的预期类型。 hint 参数的取值是 “number”、”string” 和 “default” 中的任意一个。</p>
+<p>我们看一下这个属性是怎么干扰一个对象转换为原始值的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个没有提供 Symbol.toPrimitive 属性的对象，参与运算时的输出结果</span></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(+obj1);     <span class="comment">// NaN</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;obj1&#125;</span>`</span>); <span class="comment">// &quot;[object Object]&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1 + <span class="string">&quot;&quot;</span>); <span class="comment">// &quot;[object Object]&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 接下面声明一个对象，手动赋予了 Symbol.toPrimitive 属性，再来查看输出结果</span></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">  [<span class="title class_">Symbol</span>.<span class="property">toPrimitive</span>](hint) &#123;</span><br><span class="line">    <span class="keyword">if</span> (hint == <span class="string">&quot;number&quot;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (hint == <span class="string">&quot;string&quot;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(+obj2);     <span class="comment">// 10      -- hint 参数值是 &quot;number&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;obj2&#125;</span>`</span>); <span class="comment">// &quot;hello&quot; -- hint 参数值是 &quot;string&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2 + <span class="string">&quot;&quot;</span>); <span class="comment">// &quot;true&quot;  -- hint 参数值是 &quot;default&quot;</span></span><br></pre></td></tr></table></figure>
+<p>注意：<br>hint 取值为：<br>‘number’:该场合需要转成数值，<br>‘string’:该场合需要转成字符串，<br>‘default’:该场合可以转成数值，也可以转成字符串。</p>
+<h4 id="对象转换成原始值的方法及执行顺序"><a href="#对象转换成原始值的方法及执行顺序" class="headerlink" title="对象转换成原始值的方法及执行顺序"></a>对象转换成原始值的方法及执行顺序</h4><p>以下优先级从上到下依次降低<br>1、先判断对象中是否有/[Symbol.toPrimitive/]/(hint/)方法，如果有的话，优先执行该方法<br>2、如果预期被转化成字符串类型时，则优先执行toString()方法<br>3、如果预期被转化成默认类型或数字类型时，则优先执行valueOf()方法<br>注意：若没有valueOf()方法，但是定义了toString()方法，则会执行toString()方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  [<span class="title class_">Symbol</span>.<span class="property">toPrimitive</span>](hint) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(hint);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;symbol&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">toString</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;string&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">valueOf</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;valueOf&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">String</span>(obj)); <span class="comment">// string symbol</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Number</span>(obj)); <span class="comment">// number NaN</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="title function_">toString</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;string&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">valueOf</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;valueOf&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">String</span>(obj1)); <span class="comment">// string</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Number</span>(obj1)); <span class="comment">// NaN</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">  <span class="title function_">toString</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">String</span>(obj2)); <span class="comment">// &#x27;1&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Number</span>(obj2)); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj3 = &#123;</span><br><span class="line">  <span class="title function_">valueOf</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;2&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Number</span>(obj3)); <span class="comment">// 2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">String</span>(obj3)); <span class="comment">// [object Object]</span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------已经到底啦！<i class="fa fa-paw"></i>-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/08/05/20-create-vscode-plugin/" rel="prev" title="开发一个vscode插件的流程">
+                  <i class="fa fa-chevron-left"></i> 开发一个vscode插件的流程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/08/19/22-about-symbol/" rel="next" title="基本数据类型-Symbol">
+                  基本数据类型-Symbol <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">60k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:37</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bg-beautifier.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+  
+    <script type="text/javascript"
+        count="150"
+        opacity: 1
+        src="/js/canvas-nest.min.js">
+    </script>
+  
+
+</body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+</html>

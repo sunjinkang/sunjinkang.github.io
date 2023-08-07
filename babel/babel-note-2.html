@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="babel使用指南babel核心库Babel 的核心功能在 @babel&#x2F;core 模块。通过以下命令安装： 123456&#x2F;&#x2F; 安装npm install --save-dev @babel&#x2F;core&#x2F;&#x2F; 使用const babel &#x3D; require(&quot;@babel&#x2F;core&quot;);babel.transform(&quot;code&quot;, optionsObject)">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="babel基础知识">
+<meta property="og:url" content="https://sunjinkang.github.io/babel/babel-note-2.html">
+<meta property="og:site_name" content="Sun with no word">
+<meta property="og:description" content="babel使用指南babel核心库Babel 的核心功能在 @babel&#x2F;core 模块。通过以下命令安装： 123456&#x2F;&#x2F; 安装npm install --save-dev @babel&#x2F;core&#x2F;&#x2F; 使用const babel &#x3D; require(&quot;@babel&#x2F;core&quot;);babel.transform(&quot;code&quot;, optionsObject)">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-25T07:02:45.000Z">
+<meta property="article:modified_time" content="2023-07-24T09:24:46.477Z">
+<meta property="article:author" content="Sun Jinkang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sunjinkang.github.io/babel/babel-note-2">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/babel/babel-note-2.html","path":"babel/babel-note-2.html","title":"babel基础知识"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>babel基础知识 | Sun with no word
+</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sun with no word</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">something about what I have learned and some interesting things</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#babel%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97"><span class="nav-number">1.</span> <span class="nav-text">babel使用指南</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#babel%E6%A0%B8%E5%BF%83%E5%BA%93"><span class="nav-number">1.0.1.</span> <span class="nav-text">babel核心库</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Plugins-amp-Presets"><span class="nav-number">1.0.2.</span> <span class="nav-text">Plugins &amp; Presets</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Polyfill"><span class="nav-number">1.0.3.</span> <span class="nav-text">Polyfill</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEbabel"><span class="nav-number">2.</span> <span class="nav-text">配置babel</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6%E9%A1%BA%E5%BA%8F"><span class="nav-number">2.0.1.</span> <span class="nav-text">插件顺序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6%E9%80%89%E9%A1%B9"><span class="nav-number">2.0.2.</span> <span class="nav-text">插件选项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sun Jinkang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sun Jinkang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sunjinkang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sunjinkang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2060037942@qq.com" title="E-Mail → mailto:2060037942@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <img src="/images/backToTop.png" />
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/sunjinkang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header post-top-background" id="id-post-top">
+
+<h1 class="post-title" itemprop="name headline">babel基础知识
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h4 id="babel使用指南"><a href="#babel使用指南" class="headerlink" title="babel使用指南"></a>babel使用指南</h4><h6 id="babel核心库"><a href="#babel核心库" class="headerlink" title="babel核心库"></a>babel核心库</h6><p>Babel 的核心功能在 @babel/core 模块。通过以下命令安装：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 安装</span></span><br><span class="line">npm install --save-dev @babel/core</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">&quot;@babel/core&quot;</span>);</span><br><span class="line">babel.<span class="title function_">transform</span>(<span class="string">&quot;code&quot;</span>, optionsObject);</span><br></pre></td></tr></table></figure>
+
+<p>CLI 工具<br>@babel/cli 是一个允许你从终端使用 babel 的工具。下面是安装命令和基本用法的示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @babel/core @babel/cli</span><br><span class="line">./node_modules/.<span class="property">bin</span>/babel src --out-dir lib</span><br></pre></td></tr></table></figure>
+
+<h6 id="Plugins-amp-Presets"><a href="#Plugins-amp-Presets" class="headerlink" title="Plugins &amp; Presets"></a>Plugins &amp; Presets</h6><p>使用 “preset” 来代替预先设定的一组插件，而不是逐一添加想要的所有插件。<br>就像使用 plugins 一样，你也可以创建自己的 preset，分享你需要的任何插件组合。比如：preset-env。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @babel/preset-env</span><br><span class="line">./node_modules/.<span class="property">bin</span>/babel src --out-dir lib --presets=@babel/env</span><br></pre></td></tr></table></figure>
+
+<p>没有任何配置，这个 preset 包括支持现代 JavaScript（ES2015，ES2016 等）的所有插件。但是 presets 也可以选择。不从终端传入 cli 和 preset 选项，而是通过另一种传入选项的方式：配置文件（后续会详细说明）。</p>
+<h6 id="Polyfill"><a href="#Polyfill" class="headerlink" title="Polyfill"></a>Polyfill</h6><p>@babel/polyfill 模块包括 core-js 和自定义 regenerator runtime 来模拟完整的 ES2015+ 环境。<br>注意：如果你确切知道需要实现的功能，可以直接从 core-js 中获取它们。避免直接使用@babel/polyfill造成冗余。<br>由于我们正在构建一个应用程序，我们可以只安装 @babel/polyfill:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save @babel/polyfill</span><br></pre></td></tr></table></figure>
+<p><em>注意 –save 选项而不是 –save-dev，因为这是一个需要在源代码之前运行的 polyfill。</em></p>
+<p>如果使用的是 env preset，其中有一个 “useBuiltIns” 选项，当设置为 “usage” 时，实际上将应用上面提到的最后一个优化，只包括你需要的 polyfill。使用此新选项，配置更改如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> presets = [</span><br><span class="line">  [</span><br><span class="line">    <span class="string">&quot;@babel/env&quot;</span>,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">targets</span>: &#123;</span><br><span class="line">        <span class="attr">edge</span>: <span class="string">&quot;17&quot;</span>,</span><br><span class="line">        <span class="attr">firefox</span>: <span class="string">&quot;60&quot;</span>,</span><br><span class="line">        <span class="attr">chrome</span>: <span class="string">&quot;67&quot;</span>,</span><br><span class="line">        <span class="attr">safari</span>: <span class="string">&quot;11.1&quot;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">useBuiltIns</span>: <span class="string">&quot;usage&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123; presets &#125;;</span><br></pre></td></tr></table></figure>
+<p>Babel 将检查你的所有代码，以查找目标环境中缺少的功能，并仅包含所需的 polyfill</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加useBuiltIns前</span></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">finally</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加useBuiltIns后</span></span><br><span class="line"><span class="comment">// 会变成这个（因为 Edge 17 没有 Promise.prototype.finally）：</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">&quot;core-js/modules/es.promise.finally&quot;</span>);</span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">finally</span>();</span><br></pre></td></tr></table></figure>
+<p>如果我们没有将 env preset 的 “useBuiltIns” 选项的设置为 “usage” ，就必须在其他代码之前 require 一次完整的 polyfill。</p>
+<h4 id="配置babel"><a href="#配置babel" class="headerlink" title="配置babel"></a>配置babel</h4><ul>
+<li>babel.config.js<br>以编程式创建配置<br>编译 node_modules</li>
+</ul>
+<p>文件位置：在项目根目录（package.json同级）<br>举例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> (<span class="params">api</span>) &#123;</span><br><span class="line">  api.<span class="title function_">cache</span>(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> presets = [ ... ];</span><br><span class="line">  <span class="keyword">const</span> plugins = [ ... ];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    presets,</span><br><span class="line">    plugins</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>详细配置：</p>
+<ul>
+<li>.babelrc<br>有一个静态配置只适用于简单的一个包</li>
+</ul>
+<p>文件位置：在项目根目录（package.json同级）<br>举例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;presets&quot;</span>: [...],</span><br><span class="line">  <span class="string">&quot;plugins&quot;</span>: [...]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>package.json<br>或者可以在 package.json 中，使用 babel 属性来指定.babelrc配置，如下所示：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;my-package&quot;</span>,</span><br><span class="line">  <span class="string">&quot;version&quot;</span>: <span class="string">&quot;1.0.0&quot;</span>,</span><br><span class="line">  <span class="string">&quot;babel&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;presets&quot;</span>: [ ... ],</span><br><span class="line">    <span class="string">&quot;plugins&quot;</span>: [ ... ],</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>.babelrc.js<br>配置与 .babelrc 相同，可以使用 JavaScript 编写。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> presets = [ ... ];</span><br><span class="line"><span class="keyword">const</span> plugins = [ ... ];</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123; presets, plugins &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 你可以访问任何 Node.js 的 API，例如基于流程环境的动态配置：</span></span><br><span class="line"><span class="keyword">const</span> presets = [ ... ];</span><br><span class="line"><span class="keyword">const</span> plugins = [ ... ];</span><br><span class="line"><span class="keyword">if</span> (process.<span class="property">env</span>[<span class="string">&quot;ENV&quot;</span>] === <span class="string">&quot;prod&quot;</span>) &#123;</span><br><span class="line">  plugins.<span class="title function_">push</span>(...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123; presets, plugins &#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h6 id="插件顺序"><a href="#插件顺序" class="headerlink" title="插件顺序"></a>插件顺序</h6><p>指定插件每个访问者的事项，这意味着如果两个转换器都访问同一个“ Program ”节点，则转换器将以插件或 preset 顺序运行。</p>
+<ul>
+<li>插件plugins在 Presets 前运行。</li>
+<li>插件可以指定从头到尾的顺序。</li>
+<li>Preset 顺序是相反的 (从后到前).<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;plugins&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;transform-decorators-legacy&quot;</span>,</span><br><span class="line">    <span class="string">&quot;transform-class-properties&quot;</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 将会运行 transform-decorators-legacy 然后是 transform-class-properties。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 关于 presets 一定要记住，顺序是相反的。如下：</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;presets&quot;</span>: [<span class="string">&quot;@babel/preset-env&quot;</span>, <span class="string">&quot;@babel/preset-react&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 按以下顺序运行：@babel/preset-react 再运行 @babel/preset-env。</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h6 id="插件选项"><a href="#插件选项" class="headerlink" title="插件选项"></a>插件选项</h6><p>插件和 presets 都可以通过将名称和选项对象放在在配置中的数组中来指定选项。</p>
+<p>对于不指定选项，这些都是等效的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;plugins&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;pluginA&quot;</span>,</span><br><span class="line">    [<span class="string">&quot;pluginA&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;pluginA&quot;</span>, &#123;&#125;],</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 要指定选项，输入一个选项名作为 key 的对象</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;plugins&quot;</span>: [</span><br><span class="line">    [<span class="string">&quot;transform-async-to-module-method&quot;</span>, &#123;</span><br><span class="line">      <span class="string">&quot;module&quot;</span>: <span class="string">&quot;bluebird&quot;</span>,</span><br><span class="line">      <span class="string">&quot;method&quot;</span>: <span class="string">&quot;coroutine&quot;</span></span><br><span class="line">    &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// presets 的选项设置相同:</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;presets&quot;</span>: [</span><br><span class="line">    [<span class="string">&quot;env&quot;</span>, &#123;</span><br><span class="line">      <span class="string">&quot;loose&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">&quot;modules&quot;</span>: <span class="literal">false</span></span><br><span class="line">    &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>官方 Presets<br>常见环境的presets ：<br>@babel/preset-env<br>@babel/preset-flow<br>@babel/preset-react<br>@babel/preset-typescript</p>
+</li>
+<li><p>创建 Preset<br>只需要导出一个配置，就可以创建自己的 preset。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">      <span class="string">&quot;pluginA&quot;</span>,</span><br><span class="line">      <span class="string">&quot;pluginB&quot;</span>,</span><br><span class="line">      <span class="string">&quot;pluginC&quot;</span>,</span><br><span class="line">    ]</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Presets 可以包含其他的 presets 以及带有选项的插件。</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">  <span class="attr">presets</span>: [</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">&quot;@babel/preset-env&quot;</span>),</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    [<span class="built_in">require</span>(<span class="string">&quot;@babel/plugin-proposal-class-properties&quot;</span>), &#123; <span class="attr">loose</span>: <span class="literal">true</span> &#125;],</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">&quot;@babel/plugin-proposal-object-rest-spread&quot;</span>),</span><br><span class="line">  ],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>filename<br>需要编译的源码文件的文件名（可以没有）。 filename 参数是可选的，但是当文件名未知时，并不是所有的 Babel 功能都可用， 因为某些参数依赖 filename 参数 来实现其功能。</p>
+<ul>
+<li>文件名暴露给插件。一些插件可能需要文件名的存在。</li>
+<li>像”test”， “exclude”和”ignore”这样的选项需要文件名来匹配字符串/RegExp。</li>
+<li>.babelrc.json或.babelrc文件相对于被编译的文件被加载。如果省略此选项，Babel将表现得好像设置了babelrc: false。</li>
+</ul>
+<p>ast(默认值：false)<br>Babel的默认值是生成一个字符串和一个源映射，但在某些上下文中，获取AST本身也很有用。它的主要用例是多个转换传递链</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> filename = <span class="string">&quot;example.js&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> source = fs.<span class="title function_">readFileSync</span>(filename, <span class="string">&quot;utf8&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Load and compile file normally, but skip code generation.</span></span><br><span class="line"><span class="keyword">const</span> &#123; ast &#125; = babel.<span class="title function_">transformSync</span>(source, &#123;</span><br><span class="line">  filename,</span><br><span class="line">  <span class="attr">ast</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">code</span>: <span class="literal">false</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Minify the file in a second pass and generate the output code here.</span></span><br><span class="line"><span class="keyword">const</span> &#123; code, map &#125; = babel.<span class="title function_">transformFromAstSync</span>(ast, source, &#123;</span><br><span class="line">  filename,</span><br><span class="line">  <span class="attr">presets</span>: [<span class="string">&quot;minify&quot;</span>],</span><br><span class="line">  <span class="attr">babelrc</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">configFile</span>: <span class="literal">false</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>注意:默认情况下，这个选项不是打开的，因为大多数用户不需要它，因为我们希望最终在Babel中添加一个缓存层。必须缓存AST结构将占用更多的空间。</p>
+<p>cloneInputAst(默认值：true，7.11.0)<br>默认是babel.transformFromAst将克隆输入AST以避免突变。如果输入AST没有在其他地方使用，指定cloneInputAst: false可以提高解析性能。</p>
+<p><em>加载配置项</em></p>
+<p>rootMode(默认值：root，7.1.0)<br>这个选项，结合”root”值，定义了Babel如何选择它的项目根。不同的模式定义了Babel处理“root”值以获得最终项目根的不同方式。</p>
+<p>注意：babel.config.json从Babel 7.8.0开始支持，在旧的babel7的版本中，只支持babel.config.js。</p>
+<ul>
+<li>“root” - 传”root”，表示不变。</li>
+<li>“upward” - 从“根”目录向上走，寻找包含babel.config.json文件的目录，如果没有找到babel.config.json则抛出错误。</li>
+<li>“upward-optional” - 从“根”目录向上走，寻找包含babel.config.json文件的目录，如果没有找到babel.config.json，则返回到“root”目录。</li>
+</ul>
+<p>“root”是默认模式，因为它避免了Babel意外加载完全在当前项目文件夹之外的Babel.config.json的风险。如果您使用“向上可选”，请注意它将沿着目录结构一直走到文件系统根目录，并且总是有可能有人忘记在他们的主目录中加了babel.config.json，这可能会在构建中导致意外错误。</p>
+<p>使用单线程项目结构的用户在每个包的基础上运行构建/测试，他们可能很想使用“向上”，因为单线程项目通常在项目根目录中有一个babel.config.json。在monorepo子目录下运行Babel，不使用”upward”，将导致Babel跳过加载项目根目录下的Babel.config.json文件，这可能导致意外错误和编译失败。</p>
+<p>envName(默认值：process.env.BABEL_ENV || process.env.NODE_ENV || “development”)<br>配置加载期间使用的当前活动环境。该值在解析”env”配置时用作键，也可以通过api.env()函数在配置函数、插件和预置中使用</p>
+<p>configFile(默认值：如果存在文件，为path.resolve(opts.root, “babel.config.json”)，否则为 false)<br>默认查找babel.config.json, 但也可以传入js或者json配置文件。<br>注意:这个选项不影响.babelrc.json的加载。因此，虽然可以尝试执行configFile: “./foo/.babelrc.json”，不建议使用。如果给定.babelrc.json是通过标准的文件相对逻辑加载的，你最终会加载相同的配置文件两次，并将其与自身合并。如果要链接一个特定的配置文件，建议使用独立于“babelrc”名称的命名方案。</p>
+<p>babelrc(只有当filename选项存在时，为true)<br>允许在Babel的编程选项中，或者在加载的“configFile”中。编程选项将覆盖配置文件选项。<br>设置为true时，允许通过filename查找对应的配置文件<br>注意：只有当”filename”与任意一个” babelrcRoots “包匹配时，才会加载 .babelrc.json文件。</p>
+<p>babelrcRoots(默认值：opts.root)<br>允许在Babel的编程选项中，或者在加载的“configFile”中。编程选项将覆盖配置文件选项。</p>
+<p>默认情况下，Babel只会在 “root” 包中搜索.babelrc.json文件，因为Babel无法知道给定的.babelrc.json文件是否意味着要加载，或者它的“插件”和“预置”已经安装，因为正在编译的文件可能在node_modules中，或者已经符号链接到项目中。</p>
+<p>这个选项允许用户在考虑是否加载.babelrc.json 文件时提供一个应该被视为“根”包的其他包的列表。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">babelrcRoots</span>: [</span><br><span class="line">  <span class="comment">// Keep the root as a root</span></span><br><span class="line">  <span class="string">&quot;.&quot;</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Also consider monorepo packages &quot;root&quot; and load their .babelrc.json files.</span></span><br><span class="line">  <span class="string">&quot;./packages/*&quot;</span>,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>插件和预置项<br>plugins<br>注意:该选项也允许Babel本身的Plugin实例，但不建议直接使用。如果你需要创建一个插件或预设的持久表示，你应该使用babel.createConfigItem()。</li>
+</ul>
+<p>presets<br>注意:预设的格式与插件相同，除了名称规范化期望“preset-”而不是“plugin-”，并且预设不能是plugin的实例。</p>
+<ul>
+<li>Output targets</li>
+</ul>
+<p>targets(v7.13.0)<br>允许在Babel的编程选项中，或者在加载的“configFile”中。编程选项将覆盖配置文件选项。<br>描述项目支持的环境。<br>这可以是一个与浏览器列表兼容的查询(带有警告):</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// babel.config.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;targets&quot;</span>: <span class="string">&quot;&gt; 0.25%, not dead&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以是一个最小支持环境版本的对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// babel.config.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;targets&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;chrome&quot;</span>: <span class="string">&quot;58&quot;</span>,</span><br><span class="line">    <span class="string">&quot;ie&quot;</span>: <span class="string">&quot;11&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>支持的环境有：android, chrome, deno, edge, electron, firefox, ie, ios, node, opera, rhino, safari, samsung.<br>如果没有指定次要版本，babel将会按照MAJOR.0解析，比如：”node”:12 将会被解析为node.js 12.0</p>
+<p>No targets<br>未指定targets时，babel将假定target为尽可能老的浏览器版本。例如：@babel/preset-env 将会把所有的 ES2015-ES2020 代码编译为 ES5兼容版本。</p>
+<blockquote>
+<p>建议设置target以减小打包的代码大小。<br>babel的操作和browserslist不一致：在babel或者browserslist配置中，如果没有找到targets，不会使用defaults作为默认配置，如果想要使用default，需要将defaults设置为target</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// babel.config.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;targets&quot;</span>: <span class="string">&quot;defaults&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：这一点有可能在babel的v8中做出修改。</p>
+<p>targets.esmodules<br>你也可以标记支持ES模块的浏览器(<a target="_blank" rel="noopener" href="https://www.ecma-international.org/ecma-262/6.0/#sec-modules)%E3%80%82%E5%BD%93esmodules%E7%9A%84target%E8%A2%AB%E6%8C%87%E5%AE%9A%E6%97%B6%EF%BC%8C%E5%AE%83%E5%B0%86%E4%B8%8Ebrowser%E7%9A%84target%E5%92%8Cbrowserslist%E7%9A%84target%E7%9B%B8%E4%BA%A4%E3%80%82%E6%82%A8%E5%8F%AF%E4%BB%A5%E5%B0%86%E6%AD%A4%E6%96%B9%E6%B3%95%E4%B8%8E">https://www.ecma-international.org/ecma-262/6.0/#sec-modules)。当esmodules的target被指定时，它将与browser的target和browserslist的target相交。您可以将此方法与</a><script type="module"></script>结合使用，以便有条件地为用户提供较小的脚本(<a target="_blank" rel="noopener" href="https://jakearchibald.com/2017/es-modules-in-browsers/#nomodule-for-backwards-compatibility)%E3%80%82">https://jakearchibald.com/2017/es-modules-in-browsers/#nomodule-for-backwards-compatibility)。</a></p>
+<blockquote>
+<p>注意：当同时指定browsers和esmodules的target，他们将会相交。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// babel.config.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;targets&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;esmodules&quot;</span>: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>targets.node<br>如果想编译当前版本node，可以设置”node”: true 或者 “node”: “current”, 和 “node”: process.versions.node 的作用是一样的<br>也可以在browserslist里面指定node版本（不推荐）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// babel.config.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;targets&quot;</span>: <span class="string">&quot;node 12&quot;</span> <span class="comment">// not recommended</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这种情况下，browserslist将把它解析为node-releases库中可用的最新版本。由于Node.js可能在次要版本中支持新的语言特性，因此为Node.js 12.22生成的程序可能会在Node.js 12.0上抛出语法错误。我们建议你在使用browserslist节点查询时总是指定一个次要版本:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// babel.config.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;targets&quot;</span>: <span class="string">&quot;node 12.0&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>targets.safari<br>如果你想编译Safari的技术预览版本，你可以指定” Safari “: “tp”。</p>
+<p>targets.browsers<br>使用browserslist选择浏览器(例如: last 2 versions, &gt; 5%, safari tp)的查询。<br>注意，浏览器的结果会被来自targets的显式项覆盖。</p>
+<p>targets.deno<br>最小的deno支持版本为1.0</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// babel.config.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;targets&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;deno&quot;</span>: <span class="string">&quot;1.9&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>browserslistConfigFile(默认值：true，7.13.0)<br>允许在Babel的编程选项中，或者在加载的配置文件中。<br>切换是否使用browserslist配置源，包括搜索任何browserslist文件或引用package.json中的browserslist键。这对于使用browserslist配置文件的项目很有用，这些文件不会用Babel编译。</p>
+<p>如果指定了字符串，它必须表示browserslist配置文件的路径。相对路径是相对于指定该选项的配置文件解析的，或者当它作为编程选项的一部分传递时，相对路径是相对于cwd解析的。</p>
+<p>browserslistEnv(默认值：undefined，7.13.0)<br>允许在Babel的编程选项中，或者在加载的配置文件中。<br>使用的 Browserslist 环境。（<a target="_blank" rel="noopener" href="https://github.com/browserslist/browserslist#configuring-for-different-environments%EF%BC%89">https://github.com/browserslist/browserslist#configuring-for-different-environments）</a></p>
+<ul>
+<li>Config Merging options</li>
+</ul>
+<p>extends<br>不允许放在presets里面<br>配置文件可以“扩展”其他配置文件。当前配置中的配置字段将合并到扩展文件的配置之上。</p>
+<p>env<br>不能嵌套在另一个env块中。<br>允许整个嵌套配置选项，只有当envKey与envName选项匹配时才会启用。<br>注意:env[envKey]选项将合并在根对象中指定的选项之上。</p>
+<p>overrides<br>不能嵌套在另一个overrides对象中，或者在一个env块中。<br>允许用户提供一个选项数组，这些选项将一次一个地合并到当前配置中。该特性最好与“test”/“include”/“exclude”选项一起使用，以提供应该应用覆盖的条件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="attr">overrides</span>: [&#123;</span><br><span class="line">  <span class="attr">test</span>: <span class="string">&quot;./vendor/large.min.js&quot;</span>,</span><br><span class="line">  <span class="attr">compact</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;],</span><br></pre></td></tr></table></figure>
+<p>可以用来为一个已知是大文件和小文件的特定文件启用compact选项，并告诉Babel不要费心尝试打印该文件。</p>
+<p>test<br>当所有匹配失败时，当前配置对象被认为不起作用，并在处理中被忽略。该项在overrides配置项内最有用，但也允许使用在其他地方。<br>注意:这些切换不会影响之前区块中的编程和配置加载选项，因为它们在准备合并的配置之前就已经被添加进去了。</p>
+<p>include<br>该项是 test 的同义项。</p>
+<p>exclude<br>当任意匹配成功时，当前配置对象被认为不起作用，并在处理中被忽略。该项在overrides配置项内最有用，但也允许使用在其他地方。<br>注意:这些切换不会影响之前区块中的编程和配置加载选项，因为它们在准备合并的配置之前就已经被添加进去了。</p>
+<p>ignore<br>不允许放在presets里面。<br>当任意匹配成功时，babel将会立即停止当前build中的所有处理。比如：用户想要禁用lib文件夹中babel的编译可以设置如下配置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="attr">ignore</span>: [<span class="string">&quot;./lib&quot;</span>];</span><br></pre></td></tr></table></figure>
+<p>注意:此选项禁用文件的所有Babel处理。虽然这有其用途，但作为一种不那么激进的选择，“exclude”选项也值得考虑。</p>
+<p>only<br>不允许放在presets里面。<br>当任意匹配失败时，babel将会立即停止当前build中的所有处理。比如：用户想要禁用除src文件夹中以外其他地方的babel的编译可以设置如下配置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="attr">only</span>: [<span class="string">&quot;./src&quot;</span>];</span><br></pre></td></tr></table></figure>
+<p>注意:此选项禁用文件的所有Babel处理。虽然这有其用途，但作为一种不那么激进的选择，”test”/“include” 选项也值得考虑。</p>
+<ul>
+<li>Source Map options</li>
+</ul>
+<p>inputSourceMap(默认值：true)<br>如果文件存在 //# sourceMappingURL=… 注释且设置为true时，会尝试从文件本身加在输入sourcemap。如果找不到map或者map加载解析失败，它将被无声地丢弃<br>如果提供的是object，它将会被当做source map的object</p>
+<p>sourceMaps(默认值： false)</p>
+<ul>
+<li>设置为true时，会为代码生成sourcemap，并包含在结果对象中。</li>
+<li>设置为”inline”时，会为代码生成sourcemap，并将其作为一个data url追加到代码里面，但是不会包含在结果对象中。</li>
+<li>设置为”both”时，和‘inline’的表现一致，但是map会包含在结果对象中。<br>@babel/cli加载这些也会影响map写入磁盘：</li>
+<li>设置为true时，会在磁盘上写入一个.map文件</li>
+<li>设置为”inline”时，将会直接写入文件，但在map中会有一个 data:</li>
+<li>设置为”both”时，会写入包含data: url的文件和一个.map文件<br>注意:这些选项有点奇怪，因此根据您的用例，使用true并在您自己的代码中处理其余部分可能是最有意义的。</li>
+</ul>
+<p>sourceMap<br>sourceMaps的同义项，推荐使用sourceMaps</p>
+<p>sourceFileName(默认值：可用时为 path.basename(opts.filenameRelative), 或者为 “unknown”)<br>这是source map对象中的文件名。</p>
+<p>sourceRoot<br>要在生成的源映射中设置的sourceRoot字段(如果需要的话)。</p>
+<ul>
+<li>Misc options</li>
+</ul>
+<p>sourceType(默认值：module)</p>
+<ul>
+<li>“script” - 使用 ECMAScript Script 语法解析文件。不允许使用 import/export 语句, 同时文件不是‘strict’ 模式。</li>
+<li>“module” - 使用 ECMAScript Module 语法解析文件。文件自动设置‘strict’ 模式，并且允许使用 import/export 语句。</li>
+<li>“unambiguous” - 当文件中有 import/export 语句时，作为”module”解析，否则作为”script”解析。<br>unambiguous在type未知时十分有用，但是可能由于module没有使用import/export 语句导致匹配失败，因为它是完全匹配的<br>这个选项很重要，因为当前文件的类型既会影响输入文件的解析，也会影响可能希望向当前文件添加 import/require 用法的某些转换。</li>
+</ul>
+<p>例如：@babel/plugin-transform-runtime 依据当前文件的type判定插入import 语句还是require语句。@babel/preset-env 的”useBuiltIns”配置项也是一样的。自从Babel 默认将文件作为ES modules, 这些plugins/presets 也默认插入import语句。这是正确的sourceType非常重要，因为设置了错误的type会导致babel向原本是CommonJS的文件插入import语句。这在需要编译node_modules依赖项的项目中尤为重要，因为插入import语句可能会导致Webpack和其他工具将文件视为ES模块，从而破坏了本来可以正常工作的CommonJS文件。<br>注意:此选项不会影响.mjs文件的解析，因为它们目前是硬编码的，总是解析为“模块”文件。</p>
+<p>assumptions(默认值:{}, 7.13.0)<br>允许在编程选项、配置文件和预设中使用。<br>设定Babel可以做出的假设，以产生较小的输出:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// babel.config.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;assumptions&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;iterableIsArray&quot;</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;presets&quot;</span>: [<span class="string">&quot;@babel/preset-env&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>highlightCode(默认值：true)<br>突出显示Babel错误消息中的代码片段中的标记，使它们更容易阅读。</p>
+<p>wrapPluginVisitorMethod（Type: (key: string, nodeType: string, fn: Function) =&gt; Function）<br>允许用户在每个访问者上添加一个包装器，以便在Babel执行插件时检查访问者进程。<br>Key是一个简单的不透明字符串，表示正在执行的插件。<br>nodeType是正在访问的AST代码类型<br>fn是访问者函数<br>用户可以返回一个替换函数，该函数应该在执行他们希望执行的任何日志记录和分析之后调用原始函数。</p>
+<p>parserOpts<br>一个不透明的对象，其中包含要传递给正在使用的解析器的选项。<br>有关可用的解析器选项，请参见解析器选项。</p>
+<p>generatorOpts<br>一个不透明的对象，包含要传递给代码生成器的选项，可以查看Code Generator Options。</p>
+<ul>
+<li>Code Generator options</li>
+</ul>
+<p>retainLines（默认值：false）<br>babel尝试将源文件中同一行的代码经过生成器后仍在同一行。这个选项的存在是为了让不能使用源映射的用户可以得到模糊有用的错误行号，但这只是最好的选择，并不能保证在所有插件的所有情况下都适用。</p>
+<p>compact(默认值：”auto”)<br>“auto”通过计算代码长度大于500_000设置值。<br>在紧凑模式下生成代码时，所有可选的换行符和空格都将被省略。</p>
+<p>minified(Default: false)<br>包括compact: true，省略块尾分号，在可能的情况下从new Foo()中省略()，并可能输出更短版本的文字。</p>
+<p>auxiliaryCommentBefore<br>允许指定在原始文件中不存在的代码段之前插入前缀注释。<br>注意:原始文件中存在和不存在的定义可能有点难看，因此不建议使用此选项。如果你需要以某种方式注释代码，最好使用Babel插件。</p>
+<p>auxiliaryCommentAfter<br>作用与auxiliaryCommentBefore类似，不过是在代码段之后插入前缀注释</p>
+<p>comments(默认值：true)<br>如果没有给出函数，则为shouldPrintComment提供默认注释状态。有关更多信息，请参阅该选项的默认值。</p>
+<p>shouldPrintComment<br>Type: (value: string) =&gt; boolean<br>Default without minified: (val) =&gt; opts.comments || /@license|@preserve/.test(val)<br>Default with minified: () =&gt; opts.comments<br>决定给定的注释是否包含在babel输出的代码中。</p>
+<ul>
+<li>AMD / UMD / SystemJS module options</li>
+</ul>
+<p>moduleIds(默认值：!!opts.moduleId)<br>启用模块ID生成功能。</p>
+<p>moduleId<br>用于模块的硬编码ID。不能与getModuleId一起使用。</p>
+<p>getModuleId<br>Type: (name: string) =&gt; string<br>依据babel生成的模块name，返回要使用的name。返回false值将使用原始名称。</p>
+<p>moduleRoot<br>要包含在生成的模块名中的根路径。</p>
+<ul>
+<li>Options Concepts</li>
+</ul>
+<p>MatchPattern<br>Type: string | RegExp | (filename: string | void, context: { caller: { name: string } | void, envName: string, dirname: string ) =&gt; boolean<br>几个Babel选项对文件路径执行测试。通常，这些选项支持一种公共模式方法，其中单个模式可以是：</p>
+<ul>
+<li>string - 一个文件路径，简单地支持*和**作为完整的分段匹配。任何与模式匹配的文件或父文件夹都被视为匹配。路径遵循Node的正常路径逻辑，因此在POSIX上必须以/-分隔，但在Windows上/和\都被支持。</li>
+<li>RegExp - 与规范化文件名匹配的正则表达式。在POSIX上，路径RegExp将在 / 分隔的路径上运行，而在Windows上，它将在 \ 分隔的路径上运行。<br>重要的是，如果使用这两个选项中的任何一个，Babel要求文件名选项存在，否则将认为它是错误的。</li>
+<li>(filename: string | void, context: { caller: { name: string } | void, envName: string, dirname: string }) =&gt; boolean 是一个通用回调，它应该返回一个布尔值来指示是否匹配。该函数传递文件名，如果没有给Babel，则未定义。它还传递了当前的envName和调用者选项，这些选项是由对Babel的顶级调用指定的，而dirname是配置文件的目录或当前工作目录(如果以编程方式调用转换)。</li>
+</ul>
+<p>Plugin/Preset entries<br>PluginEntry / PresetEntry<br>单个插件/预置项可以有几个不同的结构:</p>
+<ul>
+<li>EntryTarget - 单个插件</li>
+<li>[EntryTarget, EntryOptions] - 单个插件 w/ 选项</li>
+<li>[EntryTarget, EntryOptions, string] - 带有选项和名称的单个插件(有关名称的更多信息，请参阅合并)</li>
+<li>ConfigItem - 一个由babel.createConfigItem()创建的插件配置项。<br>同一个EntryTarget可以被多次使用，除非每个都被赋予不同的名称，但是这样做会导致重复插件/预设错误。<br>同时这样做会造成阅读困难：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugins</span>: [</span><br><span class="line">  <span class="comment">// EntryTarget</span></span><br><span class="line">  <span class="string">&#x27;@babel/plugin-transform-classes&#x27;</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// [EntryTarget, EntryOptions]</span></span><br><span class="line">  [<span class="string">&#x27;@babel/plugin-transform-arrow-functions&#x27;</span>, &#123; <span class="attr">spec</span>: <span class="literal">true</span> &#125;],</span><br><span class="line"></span><br><span class="line">  <span class="comment">// [EntryTarget, EntryOptions, string]</span></span><br><span class="line">  [<span class="string">&#x27;@babel/plugin-transform-for-of&#x27;</span>, &#123; <span class="attr">loose</span>: <span class="literal">true</span> &#125;, <span class="string">&quot;some-name&quot;</span>],</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ConfigItem</span></span><br><span class="line">  babel.<span class="title function_">createConfigItem</span>(<span class="built_in">require</span>(<span class="string">&quot;@babel/plugin-transform-spread&quot;</span>)),</span><br><span class="line">],</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>EntryTarget<br>来自不同来源的插件或预置的target:<br>string - 需求样式的路径或插件/预置标识符。标识符将通过名称规范化传递。<br>{} | Function - 一个实际的插件/预设对象或函数在被require()后。<br>EntryOptions<br>每个插件或预置执行时的选项。undefined将被视作空对象。<br>False表示条目完全禁用。这在排序很重要的上下文中很有用，但是需要一个单独的条件来决定是否启用了某些内容。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugins</span>: [</span><br><span class="line">  <span class="string">&#x27;one&#x27;</span>,</span><br><span class="line">  [<span class="string">&#x27;two&#x27;</span>, <span class="literal">false</span>],</span><br><span class="line">  <span class="string">&#x27;three&#x27;</span>,</span><br><span class="line">],</span><br><span class="line"><span class="attr">overrides</span>: [&#123;</span><br><span class="line">  <span class="attr">test</span>: <span class="string">&quot;./src&quot;</span>,</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="string">&#x27;two&#x27;</span>,</span><br><span class="line">  ]</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+<p>上面的设置将为src中的文件启用插件two，但插件two仍然会在插件1和插件3之间执行。</p>
+<p><em>名称规范化</em><br>默认情况下，Babel希望插件的名称中有一个 babel-plugin- 或 babel-preset- 前缀。为了避免重复，Babel有一个名称规范化阶段，将在加载项时自动添加这些前缀。这可以归结为几个基本规则:</p>
+<ul>
+<li>传入的绝对路径不受影响</li>
+<li>以./开头的相对路径不受影响</li>
+<li>包内的文件引用不受影响</li>
+<li>任何以module:为前缀的标识符都将删除前缀，但除此之外不受影响</li>
+<li>plugin-/preset- will be injected at the start of any @babel-scoped package that doesn’t have it as a prefix.</li>
+<li>babel-plugin-/babel-preset- will be injected as a prefix any unscoped package that doesn’t have it as a prefix.</li>
+<li>babel-plugin-/babel-preset- will be injected as a prefix any @-scoped package that doesn’t have it anywhere in their name.</li>
+<li>babel-plugin/babel-preset will be injected as the package name if only the @-scope name is given.<br>举例如下：<br>| Input |    Normalized |<br>| “/dir/plugin.js” |    “/dir/plugin.js” |<br>| “./dir/plugin.js”    | “./dir/plugin.js” |<br>| “mod” |    “babel-plugin-mod” |<br>| “mod/plugin” |    “mod/plugin” |<br>| “babel-plugin-mod” |    “babel-plugin-mod” |<br>| “@babel/mod” |    “@babel/plugin-mod” |<br>| “@babel/plugin-mod”    | “@babel/plugin-mod” |<br>| “@babel/mod/plugin” |    “@babel/mod/plugin” |<br>| “@scope”    | “@scope/babel-plugin” |<br>| “@scope/babel-plugin”    | “@scope/babel-plugin” |<br>| “@scope/mod” |    “@scope/babel-plugin-mod” |<br>| “@scope/babel-plugin-mod” |    “@scope/babel-plugin-mod” |<br>| “@scope/prefix-babel-plugin-mod” |    “@scope/prefix-babel-plugin-mod” |<br>| “@scope/mod/plugin” |    “@scope/mod/plugin” |<br>| “module:foo” |    “foo” |</li>
+</ul>
+<p>不透明字符串(<a target="_blank" rel="noopener" href="https://www.w3.org/html/ig/zh/wiki/File#.E4.B8.8D.E9.80.8F.E6.98.8E.E5.AD.97.E7.AC.A6.E4.B8.B2">https://www.w3.org/html/ig/zh/wiki/File#.E4.B8.8D.E9.80.8F.E6.98.8E.E5.AD.97.E7.AC.A6.E4.B8.B2</a>)<br>不得包含任何未经百分号编码[RFC3986]规定的保留字符，这些字符必须通过百分号编码。不透明字符串必须是全球唯一的。此类字符串应当只使用在U+002A至U+002B、U+002D至U+002E、U+0030至U+0039、U+0041至U+005A, U+005E至U+007E[Unicode]这些范围内的字符，并且应当至少由36个字符组成。UUID是一个潜在的用作[Blob URI]的不透明字符串的可选项，同时强烈推荐使用UUID。UUID由[RFC4122]定义，UUID的ABNF可参见附录A。</p>
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">60k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:37</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bg-beautifier.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+  
+    <script type="text/javascript"
+        count="150"
+        opacity: 1
+        src="/js/canvas-nest.min.js">
+    </script>
+  
+
+</body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+</html>

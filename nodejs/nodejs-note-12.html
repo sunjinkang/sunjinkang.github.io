@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="node [options] [V8 options] [script.js | -e “script” | -] [–] [arguments] node debug [script.js | -e “script” | :] … node –v8-options 执行时不带参数，会启动 [REPL]。 选项-v, –version打印 node 的版本号。 -h, –help打印 node 的">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="nodejs基础知识(5)">
+<meta property="og:url" content="https://sunjinkang.github.io/nodejs/nodejs-note-12.html">
+<meta property="og:site_name" content="Sun with no word">
+<meta property="og:description" content="node [options] [V8 options] [script.js | -e “script” | -] [–] [arguments] node debug [script.js | -e “script” | :] … node –v8-options 执行时不带参数，会启动 [REPL]。 选项-v, –version打印 node 的版本号。 -h, –help打印 node 的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sunjinkang.github.io/nodejs/images/symlinks.png">
+<meta property="article:published_time" content="2023-01-03T10:04:15.000Z">
+<meta property="article:modified_time" content="2023-07-24T09:24:46.497Z">
+<meta property="article:author" content="Sun Jinkang">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="命令行选项">
+<meta property="article:tag" content="console (控制台)">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sunjinkang.github.io/nodejs/images/symlinks.png">
+
+
+<link rel="canonical" href="https://sunjinkang.github.io/nodejs/nodejs-note-12">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/nodejs/nodejs-note-12.html","path":"nodejs/nodejs-note-12.html","title":"nodejs基础知识(5)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>nodejs基础知识(5) | Sun with no word
+</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sun with no word</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">something about what I have learned and some interesting things</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%80%89%E9%A1%B9"><span class="nav-number">1.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.</span> <span class="nav-text">环境变量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#console-%E6%8E%A7%E5%88%B6%E5%8F%B0"><span class="nav-number"></span> <span class="nav-text">console (控制台)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Console-%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">Console 类</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sun Jinkang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sun Jinkang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sunjinkang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sunjinkang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2060037942@qq.com" title="E-Mail → mailto:2060037942@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <img src="/images/backToTop.png" />
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/sunjinkang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header post-top-background" id="id-post-top">
+
+<h1 class="post-title" itemprop="name headline">nodejs基础知识(5)
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <p>node [options] [V8 options] [script.js | -e “script” | -] [–] [arguments]</p>
+<p>node debug [script.js | -e “script” | <host>:<port>] …</port></host></p>
+<p>node –v8-options</p>
+<p>执行时不带参数，会启动 [REPL]。</p>
+<h6 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h6><p>-v, –version<br>打印 node 的版本号。</p>
+<p>-h, –help<br>打印 node 的命令行选项。 </p>
+<p>-e, –eval “script”<br>把跟随的参数作为 JavaScript 来执行。 在 REPL 中预定义的模块也可以在 script 中使用。<br><em>在windows的cmd中，使用单引号无法将参数作为javascript执行，仅双引号可正常执行，powershell和git bash中可以使用单引号和双引号</em></p>
+<p>-p, –print “script”<br>与 -e 相同，但会打印结果。</p>
+<p>-c, –check<br>在不执行的情况下，对脚本进行语法检查。</p>
+<p>-i, –interactive<br>打开 REPL，即使 stdin 看起来不像终端。</p>
+<p>-r, –require module<br>在启动时预加载指定的模块。<br>遵循 require() 的模块解析规则。 module 可以是一个文件的路径，或一个 node 模块名称。</p>
+<p>–inspect[=[host:]port]<br>在主机端口上激活检查器。默认为127.0.0.1:9229。<br>V8检查器集成允许Chrome DevTools和IDE等工具调试和配置Node.js实例。 这些工具通过tcp端口附加到Node.js实例，并使用[Chrome Debugging Protocol][]调试协议进行通信</p>
+<p>–inspect-brk[=[host:]port]<br>在主机上激活检查器：端口并在用户脚本开始时中断，默认为127.0.0.1:9229。</p>
+<p>–inspect-port=[host:]port<br>设置激活检查器时要使用的主机：端口。通过发送SIGUSR1信号激活检查器时有用。默认主机为：127.0.0.1。</p>
+<p>–no-deprecation<br>静默废弃的警告。</p>
+<p>–trace-deprecation<br>打印废弃的堆栈跟踪。</p>
+<p>–throw-deprecation<br>抛出废弃的错误。</p>
+<p>–pending-deprecation<br>发出挂起的弃用警告<br>Note: Pending deprecations are generally identical to a runtime deprecation with the notable exception that they are turned off by default and will not be emitted unless either the –pending-deprecation command line flag, or the NODE_PENDING_DEPRECATION=1 environment variable, is set. Pending deprecations are used to provide a kind of selective “early warning” mechanism that developers may leverage to detect deprecated API usage.<br>（注意：挂起的弃用通常与运行时弃用相同，但值得注意的是，它们在默认情况下被关闭，除非设置了–Pending弃用命令行标志或NODE_Pending_deprecation=1环境变量，否则不会发出。待定弃用用于提供一种选择性的“预警”机制，开发人员可以利用该机制来检测弃用的API使用情况。）</p>
+<p>–no-warnings<br>静默一切进程警告（包括废弃警告）。</p>
+<p>–expose-http2<br>Enable the experimental ‘http2’ module.（启用实验“http2”模块。）</p>
+<p>–abort-on-uncaught-exception<br>Aborting instead of exiting causes a core file to be generated for post-mortem analysis using a debugger (such as lldb, gdb, and mdb)<br>(中止而不是退出会导致使用调试器(如lldb、gdb和mdb)生成一个用于事后分析的核心文件。)</p>
+<p>–trace-warnings<br>打印进程警告的堆栈跟踪（包括废弃警告）。</p>
+<p>–redirect-warnings=file<br>Write process warnings to the given file instead of printing to stderr. The file will be created if it does not exist, and will be appended to if it does. If an error occurs while attempting to write the warning to the file, the warning will be written to stderr instead.<br>(将进程警告写入给定文件，而不是打印到stderr。如果它不存在，则创建该文件;如果存在，则追加该文件。如果在尝试将警告写入文件时发生错误，则警告将被写入stderr。)</p>
+<p>–trace-sync-io<br>每当事件循环的第一帧之后检测到同步 I/O 时，打印堆栈跟踪。</p>
+<p>–force-async-hooks-checks<br>Enables runtime checks for async_hooks. These can also be enabled dynamically by enabling one of the async_hooks hooks.<br>(启用async_hooks的运行时检查。也可以通过启用async_hooks钩子之一来动态启用这些钩子。)</p>
+<p>–trace-events-enabled<br>Enables the collection of trace event tracing information.<br>(启用跟踪事件跟踪信息的收集。)</p>
+<p>–trace-event-categories<br>A comma separated list of categories that should be traced when trace event tracing is enabled using –trace-events-enabled.<br>(当使用——trace-events-enabled启用跟踪事件跟踪时，应该跟踪的类别列表，以逗号分隔。)</p>
+<p>–zero-fill-buffers<br>自动用 0 填充所有新分配的 [Buffer] 和 [SlowBuffer] 实例。</p>
+<p>–preserve-symlinks<br>当解析和缓存模块时，命令模块加载器保持符号连接。<br>默认情况下，当 Node.js 从一个被符号连接到另一块磁盘位置的路径加载一个模块时，Node.js 会解引用该连接，并使用模块的真实磁盘的实际路径，作为定位其他依赖模块的标识符和根路径。 大多数情况下，默认行为是可接受的。 但是，当使用符号连接的同行依赖，如下例子所描述的，如果 moduleA 试图引入 moduleB 作为一个同行依赖，默认行为就会抛出异常：<br><img src="./images/symlinks.png" alt="symlinks"><br>–preserve-symlinks 命令行标志命令 Node.js 使用模块的符号路径而不是真实路径，是符号连接的同行依赖能被找到。<br>注意，使用 –preserve-symlinks 会有其他方面的影响。 比如，如果符号连接的原生模块在依赖树里来自超过一个位置，它们会加载失败。 （Node.js 会将它们视为两个独立的模块，且会试图多次加载模块，造成抛出异常。）</p>
+<p>–track-heap-objects<br>为堆快照追踪堆栈对象的分配。</p>
+<p>–prof-process<br>处理 V8 分析器的输出，通过使用 V8 选项 –prof 生成。</p>
+<p>–v8-options<br>打印 V8 命令行选项。<br>注意，V8 选项允许单词使用破折号（-）或下划线（_）分隔。<br>例如，–stack-trace-limit 等同于 –stack_trace_limit。</p>
+<p>–tls-cipher-list=list<br>指定备用的默认 TLS 加密列表。 （需要 Node.js 被构建为支持加密。（默认））</p>
+<p>–enable-fips<br>启动时启用符合 FIPS 标准的加密。 （需要 Node.js 使用 ./configure –openssl-fips 构建）</p>
+<p>–force-fips<br>启动时强制使用符合 FIPS 标准的加密。 （无法通过脚本代码禁用。） （需要 Node.js 使用 ./configure –openssl-fips 构建）</p>
+<p>–openssl-config=file<br>启动时加载 OpenSSL 配置文件。 在其他用途中，如果 Node.js 使用 ./configure –openssl-fips 构建，它可以用于启用符合 FIPS 标准的加密。</p>
+<p>–use-openssl-ca, –use-bundled-ca<br>Use OpenSSL’s default CA store or use bundled Mozilla CA store as supplied by current Node.js version. The default store is selectable at build-time.</p>
+<p>Using OpenSSL store allows for external modifications of the store. For most Linux and BSD distributions, this store is maintained by the distribution maintainers and system administrators. OpenSSL CA store location is dependent on configuration of the OpenSSL library but this can be altered at runtime using environment variables.</p>
+<p>The bundled CA store, as supplied by Node.js, is a snapshot of Mozilla CA store that is fixed at release time. It is identical on all supported platforms.</p>
+<p>See SSL_CERT_DIR and SSL_CERT_FILE.<br>(使用OpenSSL的默认CA存储或使用当前Node.js版本提供的捆绑Mozilla CA存储。默认存储在构建时是可选择的。<br>使用OpenSSL存储允许对存储进行外部修改。对于大多数Linux和BSD发行版，这个存储区由发行版维护人员和系统管理员维护。OpenSSL CA存储位置依赖于OpenSSL库的配置，但这可以在运行时使用环境变量更改。<br>由Node.js提供的捆绑CA存储是发布时固定的Mozilla CA存储的快照。它在所有支持的平台上都是相同的。<br>请参阅SSL_CERT_DIR和SSL_CERT_FILE。)</p>
+<p>–icu-data-dir=file<br>指定 ICU 数据的加载路径。 （覆盖 NODE_ICU_DATA）</p>
+<p>-<br>Alias for stdin, analogous to the use of - in other command line utilities, meaning that the script will be read from stdin, and the rest of the options are passed to that script.<br>(stdin的别名，类似于-在其他命令行实用程序中的使用，这意味着脚本将从stdin读取，其余选项将传递给该脚本。)</p>
+<p>–<br>Indicate the end of node options. Pass the rest of the arguments to the script. If no script filename or eval/print script is supplied prior to this, then the next argument will be used as a script filename.<br>(指示节点选项的结束。将其余参数传递给脚本。如果在此之前没有提供脚本文件名或eval/print脚本，则下一个参数将用作脚本文件名。)</p>
+<h6 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h6><p>NODE_DEBUG=module[,…]<br>以 ‘,’ 分隔的应该打印调试信息的核心模块列表。</p>
+<p>NODE_PATH=path[:…]<br>以 ‘:’ 分隔的有模块搜索路径作前缀的目录列表。<br>注意，在 Windows 中，列表是用 ‘;’ 分隔的。</p>
+<p>NODE_DISABLE_COLORS=1<br>当设为 1 时，不会在 REPL 中使用颜色。</p>
+<p>NODE_ICU_DATA=file<br>ICU（Intl 对象）数据的数据路径。 当使用 small-icu 编译时，扩展链接的数据。</p>
+<p>NODE_NO_WARNINGS=1<br>When set to 1, process warnings are silenced.<br>(当设置为1时，进程警告将被静音。)</p>
+<p>NODE_NO_HTTP2=1<br>When set to 1, the http2 module is suppressed.<br>(当设置为1时，http2模块将被抑制。)</p>
+<p>NODE_OPTIONS=options…<br>A space-separated list of command line options.  options…  are interpreted as if they had been specified on the command line before the actual command line (so they can be overridden).  Node will exit with an error if an option that is not allowed in the environment is used, such as -p or a script file.<br>(以空格分隔的命令行选项列表。选择……将它们解释为在实际命令行之前在命令行上指定的(因此可以覆盖它们)。如果使用了环境中不允许的选项，例如-p或脚本文件，则Node将退出并报错。)<br>node选项如下：</p>
+<ul>
+<li>–enable-fips</li>
+<li>–force-fips</li>
+<li>–icu-data-dir</li>
+<li>–inspect-brk</li>
+<li>–inspect-port</li>
+<li>–inspect</li>
+<li>–no-deprecation</li>
+<li>–no-warnings</li>
+<li>–openssl-config</li>
+<li>–redirect-warnings</li>
+<li>–require, -r</li>
+<li>–throw-deprecation</li>
+<li>–tls-cipher-list</li>
+<li>–trace-deprecation</li>
+<li>–trace-events-categories</li>
+<li>–trace-events-enabled</li>
+<li>–trace-sync-io</li>
+<li>–trace-warnings</li>
+<li>–track-heap-objects</li>
+<li>–use-bundled-ca</li>
+<li>–use-openssl-ca</li>
+<li>–v8-pool-size</li>
+<li>–zero-fill-buffers<br>V8选项如下:</li>
+<li>–abort-on-uncaught-exception</li>
+<li>–max-old-space-size</li>
+<li>–stack-trace-limit</li>
+</ul>
+<p>NODE_PENDING_DEPRECATION=1<br>When set to 1, emit pending deprecation warnings.</p>
+<p>Note: Pending deprecations are generally identical to a runtime deprecation with the notable exception that they are turned off by default and will not be emitted unless either the –pending-deprecation command line flag, or the NODE_PENDING_DEPRECATION=1 environment variable, is set. Pending deprecations are used to provide a kind of selective “early warning” mechanism that developers may leverage to detect deprecated API usage.<br>(当设置为1时，发出挂起的弃用警告。注意:挂起的弃用通常与运行时弃用相同，有一个显著的例外:它们在默认情况下是关闭的，除非设置了–pending -deprecation命令行标志或NODE_PENDING_DEPRECATION=1环境变量，否则不会被触发。未决弃用用于提供一种选择性的“早期预警”机制，开发人员可以利用这种机制来检测弃用API的使用情况。)</p>
+<p>NODE_PRESERVE_SYMLINKS=1<br>When set to 1, instructs the module loader to preserve symbolic links when resolving and caching modules.<br>(当设置为1时，指示模块加载器在解析和缓存模块时保留符号链接。)</p>
+<p>NODE_REPL_HISTORY=file<br>用于存储持久性的 REPL 历史记录的文件的路径。 默认路径是 ~/.node_repl_history，可被该变量覆盖。 将值设为空字符串（”” 或 “ “）会禁用持久性的 REPL 历史记录。</p>
+<p>NODE_EXTRA_CA_CERTS=file<br>当设置了此选项时，根 CA 证书（如 VeriSign）会被 file 指定的证书扩展。 文件应该包括一个或多个可信的 PEM 格式的证书。 如果文件丢失或有缺陷，则 process.emitWarning() 会触发一个消息。<br>注意，当一个 TLS 或 HTTPS 的客户端或服务器的 ca 选项的属性被显式地指定时，则指定的证书不会被使用。</p>
+<p>OPENSSL_CONF=file<br>Load an OpenSSL configuration file on startup. Among other uses, this can be used to enable FIPS-compliant crypto if Node.js is built with ./configure –openssl-fips.<br>If the [–openssl-config][] command line option is used, the environment variable is ignored.<br>(启动时加载OpenSSL配置文件。在其他用途中，如果Node.js使用./configure –openssl-fips构建，则可以使用它来启用符合fips的加密。如果使用[–openssl-config][]命令行选项，则忽略环境变量。)</p>
+<p>SSL_CERT_DIR=dir<br>If –use-openssl-ca is enabled, this overrides and sets OpenSSL’s directory containing trusted certificates.<br>Note: Be aware that unless the child environment is explicitly set, this environment variable will be inherited by any child processes, and if they use OpenSSL, it may cause them to trust the same CAs as node.<br>(如果启用了–use-openssl-ca，将覆盖并设置包含受信任证书的OpenSSL目录。注意:除非显式地设置了子环境，否则此环境变量将由任何子进程继承，并且如果它们使用OpenSSL，则可能导致它们信任与节点相同的CA。)</p>
+<p>SSL_CERT_FILE=file<br>If –use-openssl-ca is enabled, this overrides and sets OpenSSL’s file containing trusted certificates.<br>Note: Be aware that unless the child environment is explicitly set, this environment variable will be inherited by any child processes, and if they use OpenSSL, it may cause them to trust the same CAs as node.<br>(如果启用了–use-openssl-ca，将覆盖并设置包含受信任证书的OpenSSL文件。注意:除非显式地设置了子环境，否则此环境变量将由任何子进程继承，并且如果它们使用OpenSSL，则可能导致它们信任与节点相同的CA。)</p>
+<p>NODE_REDIRECT_WARNINGS=file<br>When set, process warnings will be emitted to the given file instead of printing to stderr. The file will be created if it does not exist, and will be appended to if it does. If an error occurs while attempting to write the warning to the file, the warning will be written to stderr instead. This is equivalent to using the –redirect-warnings=file command-line flag.<br>(设置后，进程警告将被发送到给定的文件，而不是打印到stderr。如果它不存在，则创建该文件;如果存在，则追加该文件。如果在尝试将警告写入文件时发生错误，则警告将被写入stderr。这相当于使用–redirect-warnings=file命令行标志。)</p>
+<p>UV_THREADPOOL_SIZE=size<br>Set the number of threads used in libuv’s threadpool to size threads.<br>Asynchronous system APIs are used by Node.js whenever possible, but where they do not exist, libuv’s threadpool is used to create asynchronous node APIs based on synchronous system APIs. Node.js APIs that use the threadpool are:</p>
+<ul>
+<li>all fs APIs, other than the file watcher APIs and those that are explicitly synchronous</li>
+<li>crypto.pbkdf2()</li>
+<li>crypto.randomBytes(), unless it is used without a callback</li>
+<li>crypto.randomFill()</li>
+<li>dns.lookup()</li>
+<li>all zlib APIs, other than those that are explicitly synchronous<br>Because libuv’s threadpool has a fixed size, it means that if for whatever reason any of these APIs takes a long time, other (seemingly unrelated) APIs that run in libuv’s threadpool will experience degraded performance. In order to mitigate this issue, one potential solution is to increase the size of libuv’s threadpool by setting the ‘UV_THREADPOOL_SIZE’ environment variable to a value greater than 4 (its current default value). For more information, see the [libuv threadpool documentation][]. [–openssl-config]: #cli_openssl_config_file [Buffer]: buffer.html#buffer_buffer [Chrome Debugging Protocol]: <a target="_blank" rel="noopener" href="https://chromedevtools.github.io/debugger-protocol-viewer">https://chromedevtools.github.io/debugger-protocol-viewer</a> [REPL]: repl.html [SlowBuffer]: buffer.html#buffer_class_slowbuffer [debugger]: debugger.html [emit_warning]: process.html#process_process_emitwarning_warning_type_code_ctor [libuv threadpool documentation]: <a target="_blank" rel="noopener" href="http://docs.libuv.org/en/latest/threadpool.html">http://docs.libuv.org/en/latest/threadpool.html</a></li>
+</ul>
+<p>将libuv线程池中使用的线程数设置为线程大小。<br>node .js尽可能使用异步系统api，但在不存在异步系统api的地方，libuv的线程池用于基于同步系统api创建异步节点api。使用线程池的Node.js api有:</p>
+<ul>
+<li>所有的fs api，除了文件监视器api和那些显式同步的api</li>
+<li>crypto.pbkdf2()</li>
+<li>crypt.randombytes()，除非它在没有回调的情况下使用</li>
+<li>crypto.randomFill()</li>
+<li>dns.lookup()</li>
+<li>所有的zlib api，除了那些显式同步的<br>因为libuv的线程池大小是固定的，这意味着无论出于什么原因，如果这些api中的任何一个需要很长时间，在libuv的线程池中运行的其他(看似无关的)api将会经历性能下降。为了缓解这个问题，一个潜在的解决方案是通过将“UV_THREADPOOL_SIZE”环境变量设置为大于4(当前的默认值)来增加libuv线程池的大小。有关更多信息，请参阅[libuv线程池文档][]。[——openssl-config]: #cli_openssl_config_file [Buffer]: Buffer .html#buffer_buffer [Chrome调试协议]:<a target="_blank" rel="noopener" href="https://chromedevtools.github.io/debugger-protocol-viewer">https://chromedevtools.github.io/debugger-protocol-viewer</a> [REPL]: REPL .html [SlowBuffer]: Buffer .html#buffer_class_slowbuffer[调试器]:debugger.html [emit_warning]: process.html#process_process_emitwarning_warning_type_code_ctor [libuv线程池文档]:<a target="_blank" rel="noopener" href="http://docs.libuv.org/en/latest/threadpool.html">http://docs.libuv.org/en/latest/threadpool.html</a></li>
+</ul>
+<h4 id="console-控制台"><a href="#console-控制台" class="headerlink" title="console (控制台)"></a>console (控制台)</h4><p>console 模块提供了一个简单的调试控制台，类似于 Web 浏览器提供的 JavaScript 控制台。<br>该模块导出了两个特定的组件：</p>
+<ul>
+<li>一个 Console 类，包含 console.log() 、 console.error() 和 console.warn() 等方法，可以被用于写入到任何 Node.js 流。</li>
+<li>一个全局的 console 实例，可被用于写入到 process.stdout 和 process.stderr。 全局的 console 使用时无需调用 require(‘console’)。<br>注意：全局的 console 对象的方法既不总是同步的（如浏览器中类似的 API），也不总是异步的（如其他 Node.js 流）。 详见 进程 I/O。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用全局的 console</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;你好世界&#x27;</span>);</span><br><span class="line"><span class="comment">// 打印: &#x27;你好世界&#x27;到 stdout。</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;你好%s&#x27;</span>, <span class="string">&#x27;世界&#x27;</span>);</span><br><span class="line"><span class="comment">// 打印: &#x27;你好世界&#x27;到 stdout。</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;错误信息&#x27;</span>));</span><br><span class="line"><span class="comment">// 打印: [Error: 错误信息]到 stderr。</span></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;描述&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">warn</span>(<span class="string">`警告<span class="subst">$&#123;name&#125;</span>`</span>);</span><br><span class="line"><span class="comment">// 打印: &#x27;警告描述&#x27;到 stderr。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 Console 类</span></span><br><span class="line"><span class="keyword">const</span> out = <span class="title function_">getStreamSomehow</span>();</span><br><span class="line"><span class="keyword">const</span> err = <span class="title function_">getStreamSomehow</span>();</span><br><span class="line"><span class="keyword">const</span> myConsole = <span class="keyword">new</span> <span class="variable language_">console</span>.<span class="title class_">Console</span>(out, err);</span><br><span class="line">myConsole.<span class="title function_">log</span>(<span class="string">&#x27;你好世界&#x27;</span>);</span><br><span class="line"><span class="comment">// 打印: &#x27;你好世界&#x27;到 out。</span></span><br><span class="line">myConsole.<span class="title function_">log</span>(<span class="string">&#x27;你好%s&#x27;</span>, <span class="string">&#x27;世界&#x27;</span>);</span><br><span class="line"><span class="comment">// 打印: &#x27;你好世界&#x27;到 out。</span></span><br><span class="line">myConsole.<span class="title function_">error</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;错误信息&#x27;</span>));</span><br><span class="line"><span class="comment">// 打印: [Error: 错误信息]到 err。</span></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;描述&#x27;</span>;</span><br><span class="line">myConsole.<span class="title function_">warn</span>(<span class="string">`警告<span class="subst">$&#123;name&#125;</span>`</span>);</span><br><span class="line"><span class="comment">// 打印: &#x27;警告描述&#x27;到 err。</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="Console-类"><a href="#Console-类" class="headerlink" title="Console 类"></a>Console 类</h6><p>Console 类可用于创建一个具有可配置的输出流的简单记录器，可以通过 require(‘console’).Console 或 console.Console 使用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">Console</span> &#125; = <span class="built_in">require</span>(<span class="string">&#x27;console&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">Console</span> &#125; = <span class="variable language_">console</span>;</span><br></pre></td></tr></table></figure>
+<p>全局的 console 是一个特殊的 Console 实例，它的输出会发送到 process.stdout 和 process.stderr。 相当于调用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Console</span>(process.<span class="property">stdout</span>, process.<span class="property">stderr</span>);</span><br></pre></td></tr></table></figure>
+
+<p>console.assert(value[, message][, …args])<br>一个简单的断言测试，验证 value 是否为真。 如果不为真，则抛出 AssertionError。 如果提供了 message，则使用 util.format() 格式化并作为错误信息使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">assert</span>(<span class="literal">true</span>, <span class="string">&#x27;does nothing&#x27;</span>);</span><br><span class="line"><span class="comment">// 通过</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">assert</span>(<span class="literal">false</span>, <span class="string">&#x27;Whoops %s&#x27;</span>, <span class="string">&#x27;didn\&#x27;t work&#x27;</span>);</span><br><span class="line"><span class="comment">// AssertionError: Whoops didn&#x27;t work</span></span><br></pre></td></tr></table></figure>
+<p>注意：Node.js 中的 console.assert() 方法与在浏览器中的 console.assert() 方法的实现是不一样的。<br>具体地说，在浏览器中，用非真的断言调用 console.assert() 会导致 message 被打印到控制台但不会中断后续代码的执行。 在 Node.js v10.0.0 之前，一个值为假的断言也将会导致一个AssertionError被抛出，使得代码执行被打断。v10.0.0 修复了此差异，所以现在console.assert()在 Node 和浏览器中执行行为相同。<br>可以通过扩展 Node.js 的 console 并重写 console.assert() 方法来实现与浏览器中类似的功能。<br><em>console.assert 在不同浏览器中可能获得不同的效果</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用一个新的不带补丁的 assert 实现来创建一个简单的 console 扩展。</span></span><br><span class="line"><span class="keyword">const</span> myConsole = <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="variable language_">console</span>, &#123;</span><br><span class="line">  <span class="attr">assert</span>: &#123;</span><br><span class="line">    <span class="attr">value</span>: <span class="keyword">function</span> <span class="title function_">assert</span>(<span class="params">assertion, message, ...args</span>) &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">assert</span>(assertion, message, ...args);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">error</span>(err.<span class="property">stack</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">configurable</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">enumerable</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">writable</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = myConsole;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable language_">console</span> = <span class="built_in">require</span>(<span class="string">&#x27;./myConsole&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">assert</span>(<span class="literal">false</span>, <span class="string">&#x27;会打印这个消息，但不会抛出错误&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;这个也会打印&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>console.clear()<br>当 stdout 是一个 TTY 时，调用 console.clear() 将尝试清除 TTY。 当 stdout 不是一个TTY时，该方法什么都不做。<br>注意：console.clear() 的具体行为可能因操作系统和终端类型而异。 对于大多数Linux操作系统，console.clear() 与 clear shell 命令行为类似。 在Windows上，console.clear() 将只清除当前终端视图中Node.js二进制文件的输出。</p>
+<p>console.count([label])</p>
+<ul>
+<li>label <string> 计数器的显示标签。 默认为 ‘default’。<br>维护一个指定 label 的内部计数器并且输出到 stdout 指定 label 调用 console.count() 的次数。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>()</span><br><span class="line"><span class="attr">default</span>: <span class="number">1</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>(<span class="string">&#x27;default&#x27;</span>)</span><br><span class="line"><span class="attr">default</span>: <span class="number">2</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>(<span class="string">&#x27;abc&#x27;</span>)</span><br><span class="line"><span class="attr">abc</span>: <span class="number">1</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>(<span class="string">&#x27;xyz&#x27;</span>)</span><br><span class="line"><span class="attr">xyz</span>: <span class="number">1</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>(<span class="string">&#x27;abc&#x27;</span>)</span><br><span class="line"><span class="attr">abc</span>: <span class="number">2</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="variable language_">console</span>.<span class="title function_">count</span>()</span><br><span class="line"><span class="attr">default</span>: <span class="number">3</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></string></li>
+</ul>
+<p>console.countReset([label=’default’])</p>
+<ul>
+<li>label <string> 计数器的显示标签。 默认为 ‘default’。<br>重置指定 label 的内部计数器。</string></li>
+</ul>
+<p>console.debug(data[, …args])<br>console.debug()函数是console.log()的别名。</p>
+<p>console.dir(obj[, options])<br>在 obj 上使用 util.inspect() 并打印结果字符串到 stdout。(在控制台中显示指定对象的属性，并通过类似文件树样式的交互列表显示。)<br>该函数会绕过任何定义在 obj 上的自定义的 inspect() 函数。<br>可选的 options 对象可以传入用于改变被格式化的字符串：</p>
+<ul>
+<li>showHidden - 如果为 true，则该对象中的不可枚举属性和 symbol 属性也会显示。默认为 false。</li>
+<li>depth - 告诉 util.inspect() 函数当格式化对象时要递归多少次。 这对于检查较大的复杂对象很有用。 默认为 2。 设为 null 可无限递归。</li>
+<li>colors - 如果为 true，则输出会带有 ANSI 颜色代码。 默认为 false。 颜色是可定制的，详见定制 util.inspect() 颜色。</li>
+</ul>
+<p>console.error([data][, …args])<br>打印到 stderr，并带上换行符。 可以传入多个参数，第一个参数作为主要信息，其他参数作为类似于 printf(3) 中的代替值（参数都会传给 util.format()）。<br>如果在第一个字符串中没有找到格式化元素（如 %d），则在每个参数上调用 util.inspect() 并将结果字符串值拼在一起。 详见 <a target="_blank" rel="noopener" href="https://www.nodeapp.cn/util.html#util_util_format_format_args">util.format()</a>。</p>
+<p>console.group([…label])#<br>…label <any><br>将后续行的缩进增加两个空格。<br>如果提供了一个或多个 labels，则首先打印这些 labels，而不需要额外的缩进。</any></p>
+<p>console.groupCollapsed()<br>console.group()的一个别名.</p>
+<p>console.groupEnd()<br>将后续行的缩进减少两个空格。</p>
+<p>console.info([data][, …args])<br>console.info() 函数是 console.log() 的一个别名。</p>
+<p>console.log([data][, …args])<br>打印到 stdout，并带上换行符。 可以传入多个参数，第一个参数作为主要信息，其他参数作为类似于 printf(3) 中的代替值（参数都会传给 util.format()）。</p>
+<p>console.time(label)<br>启动一个定时器，用以计算一个操作的持续时间。 定时器由一个唯一的 label 标识。 当调用 console.timeEnd() 时，可以使用相同的 label 来停止定时器，并以毫秒为单位将持续时间输出到 stdout。 定时器持续时间精确到亚毫秒。</p>
+<p>console.timeEnd(label)<br>停止之前通过调用 console.time() 启动的定时器，并打印结果到 stdout：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>(<span class="string">&#x27;100-elements&#x27;</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>(<span class="string">&#x27;100-elements&#x27;</span>);</span><br><span class="line"><span class="comment">// 打印 100-elements: 225.438ms</span></span><br></pre></td></tr></table></figure>
+<p>该方法在使用时不会将输出的时间返回到 js，它只能用于控制台调试。请勿将该方法作为普通计时器或性能数据收集器的一部分。</p>
+<p>console.trace([message][, …args])<br>打印字符串 ‘Trace :’ 到 stderr ，并通过 util.format() 格式化消息与堆栈跟踪在代码中的当前位置。</p>
+<p>console.warn([data][, …args])<br>console.warn() 函数是 console.error() 的一个别名。</p>
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">60k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:37</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bg-beautifier.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+  
+    <script type="text/javascript"
+        count="150"
+        opacity: 1
+        src="/js/canvas-nest.min.js">
+    </script>
+  
+
+</body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+</html>
