@@ -93,7 +93,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
   </ul>
 </nav>
 
@@ -218,21 +218,21 @@
 <p>‘timeout’ 事件<br><em>如果套接字因不活动而超时则触发。 这只是通知套接字已空闲。 用户必须手动关闭连接。</em></p>
 <p>socket.end([data[, encoding]][, callback])</p>
 <ul>
-<li>data <string> | <Buffer> | <Uint8Array></Uint8Array></Buffer></string></li>
-<li>encoding <string> 仅当数据为 string 时使用。 默认值: ‘utf8’。</string></li>
-<li>callback <Function> 套接字完成时的可选回调。<br>半关闭套接字。 即，它发送一个 FIN 数据包。 服务器可能仍会发送一些数据。</Function></li>
+<li>data <string> | <Buffer> | <Uint8Array></li>
+<li>encoding <string> 仅当数据为 string 时使用。 默认值: ‘utf8’。</li>
+<li>callback <Function> 套接字完成时的可选回调。<br>半关闭套接字。 即，它发送一个 FIN 数据包。 服务器可能仍会发送一些数据。</li>
 </ul>
 <p>socket.pause()<br>暂停读取数据。 也就是说，不会触发 ‘data’ 事件。 用于限制上传。</p>
 <p>socket.pending<br>如果套接字尚未连接，则为 true，要么是因为 .connect() 尚未被调用，要么是因为它仍在连接过程中</p>
 <p>socket.resume()<br>调用 socket.pause() 后继续读取。</p>
 <p>socket.setNoDelay([noDelay])</p>
 <ul>
-<li>noDelay <boolean> 默认值: true<br>启用/禁用 Nagle 算法的使用。<br>创建 TCP 连接时，它将启用 Nagle 算法。<br>Nagle 的算法在数据通过网络发送之前延迟数据。 它试图以延迟为代价来优化吞吐量。<br>为 noDelay 传入 true 或不传入参数将禁用套接字的 Nagle 算法。 为 noDelay 传入 false 将启用 Nagle 的算法。</boolean></li>
+<li>noDelay <boolean> 默认值: true<br>启用/禁用 Nagle 算法的使用。<br>创建 TCP 连接时，它将启用 Nagle 算法。<br>Nagle 的算法在数据通过网络发送之前延迟数据。 它试图以延迟为代价来优化吞吐量。<br>为 noDelay 传入 true 或不传入参数将禁用套接字的 Nagle 算法。 为 noDelay 传入 false 将启用 Nagle 的算法。</li>
 </ul>
 <p>socket.setTimeout(timeout[, callback])</p>
 <ul>
-<li>timeout <number></number></li>
-<li>callback <Function><br>将套接字设置为在套接字上 timeout 毫秒不活动后超时。 默认情况下 net.Socket 没有超时。<br>当空闲超时被触发时，套接字将收到 ‘timeout’ 事件，但连接不会被切断。 用户必须手动调用 socket.end() 或 socket.destroy() 才能结束连接。</Function></li>
+<li>timeout <number></li>
+<li>callback <Function><br>将套接字设置为在套接字上 timeout 毫秒不活动后超时。 默认情况下 net.Socket 没有超时。<br>当空闲超时被触发时，套接字将收到 ‘timeout’ 事件，但连接不会被切断。 用户必须手动调用 socket.end() 或 socket.destroy() 才能结束连接。</li>
 </ul>
 <p>socket.readyState<br>此属性将连接状态表示为字符串。</p>
 <ul>
@@ -283,16 +283,16 @@
 <p>os.constants<br>包含用于错误码、进程信号等的常用操作系统特定常量。 定义的特定常量在操作系统常量中描述。</p>
 <p>os.cpus()<br>返回包含有关每个逻辑 CPU 内核的信息的对象数组。<br>每个对象上包含的属性包括：</p>
 <ul>
-<li>model <string></string></li>
-<li>speed <number> （以兆赫为单位）</number></li>
+<li>model <string></li>
+<li>speed <number> （以兆赫为单位）</li>
 <li>times <Object><ul>
-<li>user <number> CPU 在用户模式下花费的毫秒数。</number></li>
-<li>nice <number> CPU 在良好模式下花费的毫秒数。</number></li>
-<li>sys <number> CPU 在系统模式下花费的毫秒数。</number></li>
-<li>idle <number> CPU 在空闲模式下花费的毫秒数。</number></li>
-<li>irq <number> CPU 在中断请求模式下花费的毫秒数。</number></li>
+<li>user <number> CPU 在用户模式下花费的毫秒数。</li>
+<li>nice <number> CPU 在良好模式下花费的毫秒数。</li>
+<li>sys <number> CPU 在系统模式下花费的毫秒数。</li>
+<li>idle <number> CPU 在空闲模式下花费的毫秒数。</li>
+<li>irq <number> CPU 在中断请求模式下花费的毫秒数。</li>
 </ul>
-</Object></li>
+</li>
 </ul>
 <p><em>nice 值仅适用于 POSIX。 在 Windows 上，所有处理器的 nice 值始终为 0。</em></p>
 <p>os.devNull<br>空设备的特定于平台的文件路径。<br>Windows 上是 \.\nul<br>POSIX 上是 /dev/null</p>
@@ -306,20 +306,20 @@
 <p>os.loadavg()<br>返回包含 1、5 和 15 分钟平均负载的数组。<br>平均负载是操作系统计算的系统活动量度，并表示为小数。<br>平均负载是 Unix 特有的概念。 在 Windows 上，返回值始终为 [0, 0, 0]。</p>
 <p>os.networkInterfaces()<br>返回包含已分配网络地址的网络接口的对象。<br>返回对象上的每个键都标识一个网络接口。 关联的值是每个对象描述一个分配的网络地址的对象数组。<br>分配的网络地址对象上可用的属性包括：</p>
 <ul>
-<li>address <string> 分配的 IPv4 或 IPv6 地址</string></li>
-<li>netmask <string> IPv4 或 IPv6 网络掩码</string></li>
-<li>family <string> IPv4 或 IPv6</string></li>
-<li>mac <string> 网络接口的 MAC 地址</string></li>
-<li>internal <boolean> 如果网络接口是不能远程访问的环回或类似接口，则为 true；否则为 false</boolean></li>
-<li>scopeid <number> 数字的 IPv6 范围 ID（仅在 family 为 IPv6 时指定）</number></li>
-<li>cidr <string> 使用 CIDR 表示法的路由前缀分配的 IPv4 或 IPv6 地址。 如果 netmask 无效，则此属性设置为 null。</string></li>
+<li>address <string> 分配的 IPv4 或 IPv6 地址</li>
+<li>netmask <string> IPv4 或 IPv6 网络掩码</li>
+<li>family <string> IPv4 或 IPv6</li>
+<li>mac <string> 网络接口的 MAC 地址</li>
+<li>internal <boolean> 如果网络接口是不能远程访问的环回或类似接口，则为 true；否则为 false</li>
+<li>scopeid <number> 数字的 IPv6 范围 ID（仅在 family 为 IPv6 时指定）</li>
+<li>cidr <string> 使用 CIDR 表示法的路由前缀分配的 IPv4 或 IPv6 地址。 如果 netmask 无效，则此属性设置为 null。</li>
 </ul>
 <p>os.platform()<br>返回标识为其编译 Node.js 二进制文件的操作系统平台的字符串。 该值在编译时设置。 可能的值为 ‘aix’、’darwin’、’freebsd’、’linux’、’openbsd’、’sunos’、以及 ‘win32’。<br><em>返回值相当于 process.platform。</em><br><em>如果 Node.js 是在安卓操作系统上构建的，则也可能返回值 ‘android’。 安卓支持是实验的。</em></p>
 <p>os.release()<br>以字符串形式返回操作系统。<br>在 POSIX 系统上，操作系统版本是通过调用 uname(3) 来确定的。 在 Windows 上，使用 GetVersionExW()。 </p>
 <p>os.setPriority([pid, ]priority)</p>
 <ul>
-<li>pid <integer> 要为其设置调度优先级的进程 ID。 默认值: 0。</integer></li>
-<li>priority <integer> 分配给进程的调度优先级。<br>尝试为 pid 指定的进程设置调度优先级。 如果未提供 pid 或为 0，则使用当前进程的进程 ID。<br>priority 输入必须是 -20（高优先级）和 19（低优先级）之间的整数。 由于 Unix 优先级和 Windows 优先级之间的差异，priority 映射到 os.constants.priority 中的六个优先级常量之一。 当检索进程优先级时，此范围映射可能会导致返回值在 Windows 上略有不同。 为避免混淆，请将 priority 设置为优先级常量之一。</integer></li>
+<li>pid <integer> 要为其设置调度优先级的进程 ID。 默认值: 0。</li>
+<li>priority <integer> 分配给进程的调度优先级。<br>尝试为 pid 指定的进程设置调度优先级。 如果未提供 pid 或为 0，则使用当前进程的进程 ID。<br>priority 输入必须是 -20（高优先级）和 19（低优先级）之间的整数。 由于 Unix 优先级和 Windows 优先级之间的差异，priority 映射到 os.constants.priority 中的六个优先级常量之一。 当检索进程优先级时，此范围映射可能会导致返回值在 Windows 上略有不同。 为避免混淆，请将 priority 设置为优先级常量之一。</li>
 </ul>
 <p><em>在 Windows 上，将优先级设置为 PRIORITY_HIGHEST 需要提升用户权限。 否则设置的优先级将被静默地降低到 PRIORITY_HIGH。</em></p>
 <p>os.tmpdir()<br>以字符串形式返回操作系统默认的临时文件的目录。</p>
@@ -327,7 +327,7 @@
 <p>os.type()<br>返回 uname(3) 返回的操作系统名称。 例如，它在 Linux 上返回 ‘Linux’，在 macOS 上返回 ‘Darwin’，在 Windows 上返回 ‘Windows_NT’。</p>
 <p>s.userInfo([options])</p>
 <ul>
-<li>options <Object><br>encoding <string> 用于解释结果字符串的字符编码。 如果 encoding 设置为 ‘buffer’，则 username、shell 和 homedir 的值将是 Buffer 实例。 默认值: ‘utf8’。<br>返回有关当前有效用户的信息。 在 POSIX 平台上，这通常是密码文件的子集。 返回的对象包括 username、uid、gid、shell 和 homedir。 在 Windows 上，uid 和 gid 字段是 -1，而 shell 是 null。<br>os.userInfo() 返回的 homedir 的值由操作系统提供。 这与 os.homedir() 的结果不同，后者在回退到操作系统响应之前查询主目录的环境变量。<br>如果用户没有 username 或 homedir，则抛出 SystemError。</string></Object></li>
+<li>options <Object><br>encoding <string> 用于解释结果字符串的字符编码。 如果 encoding 设置为 ‘buffer’，则 username、shell 和 homedir 的值将是 Buffer 实例。 默认值: ‘utf8’。<br>返回有关当前有效用户的信息。 在 POSIX 平台上，这通常是密码文件的子集。 返回的对象包括 username、uid、gid、shell 和 homedir。 在 Windows 上，uid 和 gid 字段是 -1，而 shell 是 null。<br>os.userInfo() 返回的 homedir 的值由操作系统提供。 这与 os.homedir() 的结果不同，后者在回退到操作系统响应之前查询主目录的环境变量。<br>如果用户没有 username 或 homedir，则抛出 SystemError。</li>
 </ul>
 <h4 id="path-路径"><a href="#path-路径" class="headerlink" title="path 路径"></a>path 路径</h4><p><strong>Windows 与 POSIX 的对比</strong><br>node:path 模块的默认操作因运行 Node.js 应用程序的操作系统而异。 具体来说，当在 Windows 操作系统上运行时，node:path 模块将假定正在使用 Windows 风格的路径。</p>
 <p>因此，在 POSIX 和 Windows 上使用 path.basename() 可能会产生不同的结果：</p>
@@ -359,13 +359,13 @@ path.dirname(path)<br>path.dirname() 方法返回 path 的目录名，类似于 
 <p>path.extname(path)<br>path.extname() 方法返回 path 的扩展名，即 path 的最后一部分中从最后一次出现的 .（句点）字符到字符串的结尾。 如果 path 的最后一部分中没有 .，或者除了 path 的基本名称（参见 path.basename()）的第一个字符之外没有 . 个字符，则返回空字符串。</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">path.extname(<span class="string">&#x27;index.html&#x27;</span>);</span><br><span class="line"><span class="regexp">//</span> 返回: <span class="string">&#x27;.html&#x27;</span></span><br><span class="line"></span><br><span class="line">path.extname(<span class="string">&#x27;index.coffee.md&#x27;</span>);</span><br><span class="line"><span class="regexp">//</span> 返回: <span class="string">&#x27;.md&#x27;</span></span><br><span class="line"></span><br><span class="line">path.extname(<span class="string">&#x27;index.&#x27;</span>);</span><br><span class="line"><span class="regexp">//</span> 返回: <span class="string">&#x27;.&#x27;</span></span><br><span class="line"></span><br><span class="line">path.extname(<span class="string">&#x27;index&#x27;</span>);</span><br><span class="line"><span class="regexp">//</span> 返回: <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">path.extname(<span class="string">&#x27;.index&#x27;</span>);</span><br><span class="line"><span class="regexp">//</span> 返回: <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">path.extname(<span class="string">&#x27;.index.md&#x27;</span>);</span><br><span class="line"><span class="regexp">//</span> 返回: <span class="string">&#x27;.md&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>如果 path 不是字符串，则抛出 TypeError。</p>
-<p>path.format(pathObject)<br>pathObject <Object> 任何具有以下属性的 JavaScript 对象：</Object></p>
+<p>path.format(pathObject)<br>pathObject <Object> 任何具有以下属性的 JavaScript 对象：</p>
 <ul>
-<li>dir <string></string></li>
-<li>root <string></string></li>
-<li>base <string></string></li>
-<li>name <string></string></li>
-<li>ext <string></string></li>
+<li>dir <string></li>
+<li>root <string></li>
+<li>base <string></li>
+<li>name <string></li>
+<li>ext <string></li>
 </ul>
 <p><strong>path.format() 方法从对象返回路径字符串。 这与 path.parse() 相反。</strong></p>
 <p>当向 pathObject 提供属性时，存在一个属性优先于另一个属性的组合：<br><em>如果提供 pathObject.dir，则忽略 pathObject.root</em><br><em>如果 pathObject.base 存在，则忽略 pathObject.ext 和 pathObject.name</em><br>例如，在 POSIX 上：</p>
@@ -378,7 +378,7 @@ path.dirname(path)<br>path.dirname() 方法返回 path 的目录名，类似于 
 <p>在 Windows 上：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">path.<span class="title function_">isAbsolute</span>(<span class="string">&#x27;//server&#x27;</span>);    <span class="comment">// true</span></span><br><span class="line">path.<span class="title function_">isAbsolute</span>(<span class="string">&#x27;\\\\server&#x27;</span>);  <span class="comment">// true</span></span><br><span class="line">path.<span class="title function_">isAbsolute</span>(<span class="string">&#x27;C:/foo/..&#x27;</span>);   <span class="comment">// true</span></span><br><span class="line">path.<span class="title function_">isAbsolute</span>(<span class="string">&#x27;C:\\foo\\..&#x27;</span>); <span class="comment">// true</span></span><br><span class="line">path.<span class="title function_">isAbsolute</span>(<span class="string">&#x27;bar\\baz&#x27;</span>);    <span class="comment">// false</span></span><br><span class="line">path.<span class="title function_">isAbsolute</span>(<span class="string">&#x27;bar/baz&#x27;</span>);     <span class="comment">// false</span></span><br><span class="line">path.<span class="title function_">isAbsolute</span>(<span class="string">&#x27;.&#x27;</span>);           <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
 <p>如果 path 不是字符串，则抛出 TypeError。</p>
-<p>path.join([…paths])<br>…paths <string> 路径片段的序列<br>返回: <string><br><em>path.join() 方法使用特定于平台的分隔符作为定界符将所有给定的 path 片段连接在一起，然后规范化生成的路径。</em><br><em>零长度的 path 片段被忽略。 如果连接的路径字符串是零长度字符串，则将返回 ‘.’，表示当前工作目录。</em></string></string></p>
+<p>path.join([…paths])<br>…paths <string> 路径片段的序列<br>返回: <string><br><em>path.join() 方法使用特定于平台的分隔符作为定界符将所有给定的 path 片段连接在一起，然后规范化生成的路径。</em><br><em>零长度的 path 片段被忽略。 如果连接的路径字符串是零长度字符串，则将返回 ‘.’，表示当前工作目录。</em></p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">path.join(<span class="string">&#x27;/foo&#x27;</span>, <span class="string">&#x27;bar&#x27;</span>, <span class="string">&#x27;baz/asdf&#x27;</span>, <span class="string">&#x27;quux&#x27;</span>, <span class="string">&#x27;..&#x27;</span>);</span><br><span class="line"><span class="regexp">//</span> 返回: <span class="string">&#x27;/foo/bar/baz/asdf&#x27;</span></span><br><span class="line"></span><br><span class="line">path.join(<span class="string">&#x27;foo&#x27;</span>, &#123;&#125;, <span class="string">&#x27;bar&#x27;</span>);</span><br><span class="line"><span class="regexp">//</span> 抛出 <span class="string">&#x27;TypeError: Path must be a string. Received &#123;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>如果任何路径片段不是字符串，则抛出 TypeError。</p>
 <p>path.normalize(path)<br>path.normalize() 方法规范化给定的 path，解析 ‘..’ 和 ‘.’ 片段。<br><em>当找到多个连续的路径片段分隔符（例如 POSIX 上的 / 和 Windows 上的 \ 或 /）时，则它们将被平台特定路径片段分隔符（POSIX 上的 / 和 Windows 上的 \）的单个实例替换。 保留尾随的分隔符。</em><br>如果 path 是零长度字符串，则返回 ‘.’，表示当前工作目录。</p>
@@ -387,12 +387,12 @@ path.dirname(path)<br>path.dirname() 方法返回 path 的目录名，类似于 
 <p>path.parse(path)<br>path.parse() 方法返回一个对象，其属性表示 path 的重要元素。 尾随的目录分隔符被忽略，见 path.sep。</p>
 <p>返回的对象将具有以下属性：</p>
 <ul>
-<li>dir <string></string></li>
-<li>root <string></string></li>
-<li>base <string></string></li>
-<li>name <string></string></li>
+<li>dir <string></li>
+<li>root <string></li>
+<li>base <string></li>
+<li>name <string></li>
 <li>ext <string><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 例如，在 POSIX 上： --&gt;</span><br><span class="line"></span><br><span class="line">path.parse(<span class="string">&#x27;/home/user/dir/file.txt&#x27;</span>);</span><br><span class="line"><span class="regexp">//</span> 返回:</span><br><span class="line"><span class="regexp">//</span> &#123; root: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line"><span class="regexp">//</span>   dir: <span class="string">&#x27;/home/user/dir&#x27;</span>,</span><br><span class="line"><span class="regexp">//</span>   base: <span class="string">&#x27;file.txt&#x27;</span>,</span><br><span class="line"><span class="regexp">//</span>   ext: <span class="string">&#x27;.txt&#x27;</span>,</span><br><span class="line"><span class="regexp">//</span>   name: <span class="string">&#x27;file&#x27;</span> &#125;</span><br><span class="line">┌─────────────────────┬────────────┐</span><br><span class="line">│          dir        │    base    │</span><br><span class="line">├──────┬              ├──────┬─────┤</span><br><span class="line">│ root │              │ name │ ext │</span><br><span class="line"><span class="string">&quot;  /    home/user/dir / file  .txt &quot;</span></span><br><span class="line">└──────┴──────────────┴──────┴─────┘</span><br><span class="line">(<span class="string">&quot;&quot;</span> 行中的所有空格都应被忽略。它们纯粹是为了格式化。)</span><br><span class="line">&lt;!-- 在 Windows 上： --&gt;</span><br><span class="line"></span><br><span class="line">path.parse(<span class="string">&#x27;C:\\path\\dir\\file.txt&#x27;</span>);</span><br><span class="line"><span class="regexp">//</span> 返回:</span><br><span class="line"><span class="regexp">//</span> &#123; root: <span class="string">&#x27;C:\\&#x27;</span>,</span><br><span class="line"><span class="regexp">//</span>   dir: <span class="string">&#x27;C:\\path\\dir&#x27;</span>,</span><br><span class="line"><span class="regexp">//</span>   base: <span class="string">&#x27;file.txt&#x27;</span>,</span><br><span class="line"><span class="regexp">//</span>   ext: <span class="string">&#x27;.txt&#x27;</span>,</span><br><span class="line"><span class="regexp">//</span>   name: <span class="string">&#x27;file&#x27;</span> &#125;</span><br><span class="line">┌─────────────────────┬────────────┐</span><br><span class="line">│          dir        │    base    │</span><br><span class="line">├──────┬              ├──────┬─────┤</span><br><span class="line">│ root │              │ name │ ext │</span><br><span class="line"><span class="string">&quot; C:\      path\dir   \ file  .txt &quot;</span></span><br><span class="line">└──────┴──────────────┴──────┴─────┘</span><br><span class="line">(<span class="string">&quot;&quot;</span> 行中的所有空格都应被忽略。它们纯粹是为了格式化。)</span><br></pre></td></tr></table></figure>
-如果 path 不是字符串，则抛出 TypeError。</string></li>
+如果 path 不是字符串，则抛出 TypeError。</li>
 </ul>
 <p>path.posix<br>path.posix 属性提供对 path 方法的 POSIX 特定实现的访问。<br><em>API 可通过 require(‘node:path’).posix 或 require(‘node:path/posix’) 访问。</em></p>
 <p>path.relative(from, to)<br><em>path.relative() 方法根据当前工作目录返回从 from 到 to 的相对路径。 如果 from 和 to 都解析为相同的路径（在分别调用 path.resolve() 之后），则返回零长度字符串。</em><br><em>如果零长度字符串作为 from 或 to 传入，则将使用当前工作目录而不是零长度字符串。</em></p>

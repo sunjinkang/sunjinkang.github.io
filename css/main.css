@@ -2123,23 +2123,27 @@ header.header {
 }
 .posts-expand .post-header {
   font-size: 1.125em;
-  padding-bottom: 80px;
   text-align: center;
-  height: 270px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+}
+.posts-expand .post-header.post-top-background {
+  padding-bottom: 80px;
+  height: 270px;
 }
 .posts-expand .post-title {
   font-size: 1.5em;
   font-weight: normal;
   margin: initial;
-  padding-top: 120px;
-  color: #00ff8c;
+  color: #f00;
   overflow-wrap: break-word;
+}
+.posts-expand .post-top-background .post-title {
+  padding-top: 120px;
 }
 .posts-expand .post-title-link {
   border-bottom: 0;
-  color: var(--link-color);
+  color: #f00;
   display: inline-block;
   position: relative;
 }
@@ -2167,7 +2171,7 @@ header.header {
   transform: rotate(30deg);
 }
 .posts-expand .post-meta-container {
-  color: #00ff8c;
+  color: #f00;
   font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-size: 0.75em;
   margin-top: 3px;
@@ -2177,7 +2181,7 @@ header.header {
   margin-top: 2px;
 }
 .posts-expand .post-meta-container time {
-  border-bottom: 1px dashed #00ff8c;
+  border-bottom: 1px dashed #f00;
 }
 .post-meta {
   display: flex;

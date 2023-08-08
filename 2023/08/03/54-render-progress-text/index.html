@@ -23,20 +23,20 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="前言生活中，大家应该都遇到过进度条，有时候进度条的文字在进度条内部，当进度覆盖到文字的时候，会有一种反差，比如：同一个文字被进度覆盖的部分是白色字体，未被进度覆盖的是黑色字体，本文即是针对这种效果的实现。 实现一：使用伪类预置说明content与attr（PS: 本文仅针对需要的使用方式进行说明，不做详细说明，感兴趣的可以前往mdn的attr进行查看） contentCSS 的 content C">
+    <meta name="description" content="前言生活中，大家应该都遇到过进度条，有时候进度条的文字在进度条内部，当进度覆盖到文字的时候，会有一种反差，比如：同一个文字被进度覆盖的部分是白色字体，未被进度覆盖的是黑色字体，本文即是针对这种效果的实现。">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="进度条中同一文字颜色反差的实现">
 <meta property="og:url" content="https://sunjinkang.github.io/2023/08/03/54-render-progress-text/index.html">
 <meta property="og:site_name" content="Sun with no word">
-<meta property="og:description" content="前言生活中，大家应该都遇到过进度条，有时候进度条的文字在进度条内部，当进度覆盖到文字的时候，会有一种反差，比如：同一个文字被进度覆盖的部分是白色字体，未被进度覆盖的是黑色字体，本文即是针对这种效果的实现。 实现一：使用伪类预置说明content与attr（PS: 本文仅针对需要的使用方式进行说明，不做详细说明，感兴趣的可以前往mdn的attr进行查看） contentCSS 的 content C">
+<meta property="og:description" content="前言生活中，大家应该都遇到过进度条，有时候进度条的文字在进度条内部，当进度覆盖到文字的时候，会有一种反差，比如：同一个文字被进度覆盖的部分是白色字体，未被进度覆盖的是黑色字体，本文即是针对这种效果的实现。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//content_attr.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//content-progress.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2023/08/03/54-render-progress-text/content_attr.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2023/08/03/54-render-progress-text/content-progress.png">
 <meta property="article:published_time" content="2023-08-03T07:19:59.000Z">
-<meta property="article:modified_time" content="2023-08-04T01:58:06.734Z">
+<meta property="article:modified_time" content="2023-08-08T02:51:30.754Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sunjinkang.github.io/.io//content_attr.png">
+<meta name="twitter:image" content="https://sunjinkang.github.io/2023/08/03/54-render-progress-text/content_attr.png">
 
 
 <link rel="canonical" href="https://sunjinkang.github.io/2023/08/03/54-render-progress-text/">
@@ -91,7 +91,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
   </ul>
 </nav>
 
@@ -227,7 +227,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-08-04 09:58:06" itemprop="dateModified" datetime="2023-08-04T09:58:06+08:00">2023-08-04</time>
+      <time title="修改时间：2023-08-08 10:51:30" itemprop="dateModified" datetime="2023-08-08T10:51:30+08:00">2023-08-08</time>
     </span>
 
   
@@ -256,6 +256,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <h6 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h6><p>生活中，大家应该都遇到过进度条，有时候进度条的文字在进度条内部，当进度覆盖到文字的时候，会有一种反差，比如：同一个文字被进度覆盖的部分是白色字体，未被进度覆盖的是黑色字体，本文即是针对这种效果的实现。</p>
+<span id="more"></span>
 <h6 id="实现一：使用伪类"><a href="#实现一：使用伪类" class="headerlink" title="实现一：使用伪类"></a>实现一：使用伪类</h6><p><em>预置说明</em><br>content与attr（PS: 本文仅针对需要的使用方式进行说明，不做详细说明，感兴趣的可以前往<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/attr">mdn的attr</a>进行查看）</p>
 <p>content<br>CSS 的 content CSS 属性用于在元素的 ::before 和 ::after 伪元素中插入内容。使用 content 属性插入的内容都是匿名的可替换元素。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=<span class="string">&quot;http://www.mozilla.org/en-US/&quot;</span>&gt;<span class="title class_">Home</span> <span class="title class_">Page</span>&lt;/a&gt;</span><br><span class="line"></span><br><span class="line"><span class="attr">a</span>::before &#123;</span><br><span class="line">  <span class="attr">content</span>: <span class="title function_">url</span>(<span class="attr">http</span>:<span class="comment">//www.mozilla.org/favicon.ico) &quot; MOZILLA: &quot;;</span></span><br><span class="line">  <span class="attr">font</span>:</span><br><span class="line">    x-small <span class="title class_">Arial</span>,</span><br><span class="line">    freeSans,</span><br><span class="line">    sans-serif;</span><br><span class="line">  <span class="attr">color</span>: gray;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -267,12 +268,12 @@
 <p>示例：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// html code</span></span><br><span class="line">&lt;p data-foo=<span class="string">&quot;hello&quot;</span>&gt;world&lt;/p&gt;</span><br><span class="line"><span class="comment">// css code</span></span><br><span class="line"><span class="attr">p</span>:before &#123;</span><br><span class="line">  <span class="attr">content</span>: <span class="title function_">attr</span>(data-foo) <span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// result</span></span><br><span class="line"><span class="comment">// hello world</span></span><br></pre></td></tr></table></figure>
 
-<p>注意：attr理论上可以单独使用，但由于浏览器兼容性问题，目前最好不要使用，本文中attr是与content一起使用，限制较小。<br><img src="/.io//content_attr.png" alt="content_attr"></p>
+<p>注意：attr理论上可以单独使用，但由于浏览器兼容性问题，目前最好不要使用，本文中attr是与content一起使用，限制较小。<br><img src="content_attr.png" alt="content_attr"></p>
 <p>方案：使用content和attr可以获取标签中的属性，将进度条的文字同时放在标签的属性里面，再通过伪类和content、attr搭配，根据进度显示不同宽度，将新的文字覆盖到原有的底层文字之上，实现进度条文字反差的效果。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;progress-bar&quot;</span> <span class="attr">data-content</span>=<span class="string">&quot;当前进度：18%&quot;</span>&gt;</span>当前进度：18%<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.progress-bar</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">color</span>: lightblue;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">white-space</span>: pre;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#333</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.progress-bar</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">18%</span>;</span><br><span class="line">  <span class="attribute">content</span>: <span class="built_in">attr</span>(data-content);</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">background-color</span>: lightblue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>效果如下：<br><img src="/.io//content-progress.png" alt="content进度条"></p>
+<p>效果如下：<br><img src="content-progress.png" alt="content进度条"></p>
 <p><em>说明</em><br>该方案中的文字好像只能处于默认的左侧位置，使用伪类获取的内容文字无法位于中间，暂未找到解决办法</p>
 <h6 id="方案二：使用双层元素层叠"><a href="#方案二：使用双层元素层叠" class="headerlink" title="方案二：使用双层元素层叠"></a>方案二：使用双层元素层叠</h6><p>方案：本质与方案一类似，只不过方案二是把两个元素叠在一起，元素内容相同</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;progress-wrapper&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;progress-bottom&quot;</span>&gt;</span>当前进度：18%<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;progress-top&quot;</span>&gt;</span>当前进度：18%<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>

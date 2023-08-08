@@ -89,7 +89,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
   </ul>
 </nav>
 
@@ -260,8 +260,8 @@
 <h3 id="vue3允许组件有多个根节点"><a href="#vue3允许组件有多个根节点" class="headerlink" title="vue3允许组件有多个根节点"></a>vue3允许组件有多个根节点</h3><h3 id="移除过滤器"><a href="#移除过滤器" class="headerlink" title="移除过滤器"></a>移除过滤器</h3><p>过滤器已移除，且不再支持，建议用计算属性或方法代替过滤器，而不是使用过滤器</p>
 <h3 id="template应用挂载变更"><a href="#template应用挂载变更" class="headerlink" title="template应用挂载变更"></a>template应用挂载变更</h3><p>在 Vue 2.x 中，当挂载一个具有 template 的应用时，被渲染的内容会替换我们要挂载的目标元素。<br>在 Vue 3.x 中，被渲染的应用会作为子元素插入，从而替换目标元素的 innerHTML</p>
 <h3 id="过渡的-class-名更改"><a href="#过渡的-class-名更改" class="headerlink" title="过渡的 class 名更改"></a>过渡的 class 名更改</h3><p>过渡类名 v-enter 修改为 v-enter-from、过渡类名 v-leave 修改为 v-leave-from</p>
-<h3 id="组件的相关-prop-名称变化"><a href="#组件的相关-prop-名称变化" class="headerlink" title=" 组件的相关 prop 名称变化"></a><transition> 组件的相关 prop 名称变化</transition></h3><p>leave-class 已经被重命名为 leave-from-class (在渲染函数或 JSX 中可以写为：leaveFromClass)<br>enter-class 已经被重命名为 enter-from-class (在渲染函数或 JSX 中可以写为：enterFromClass)</p>
-<h3 id="Transition-Group-根元素"><a href="#Transition-Group-根元素" class="headerlink" title="Transition Group 根元素"></a>Transition Group 根元素</h3><p><transition-group> 不再默认渲染根元素，但仍然可以用 tag attribute 创建根元素，希望保留原效果的，设置 tag=’span’ 即可</transition-group></p>
+<h3 id="组件的相关-prop-名称变化"><a href="#组件的相关-prop-名称变化" class="headerlink" title=" 组件的相关 prop 名称变化"></a><transition> 组件的相关 prop 名称变化</h3><p>leave-class 已经被重命名为 leave-from-class (在渲染函数或 JSX 中可以写为：leaveFromClass)<br>enter-class 已经被重命名为 enter-from-class (在渲染函数或 JSX 中可以写为：enterFromClass)</p>
+<h3 id="Transition-Group-根元素"><a href="#Transition-Group-根元素" class="headerlink" title="Transition Group 根元素"></a>Transition Group 根元素</h3><p><transition-group> 不再默认渲染根元素，但仍然可以用 tag attribute 创建根元素，希望保留原效果的，设置 tag=’span’ 即可</p>
 <h3 id="移除v-on-native修饰符"><a href="#移除v-on-native修饰符" class="headerlink" title="移除v-on.native修饰符"></a>移除v-on.native修饰符</h3><p>v-on 的 .native 修饰符已被移除。同时，新增的 emits 选项允许子组件定义真正会被触发的事件。因此，对于子组件中未被定义为组件触发的所有事件监听器，Vue 现在将把它们作为原生事件监听器添加到子组件的根元素中 (除非在子组件的选项中设置了 inheritAttrs: false)。</p>
 <h3 id="v-if-与-v-for-的优先级变更"><a href="#v-if-与-v-for-的优先级变更" class="headerlink" title="v-if 与 v-for 的优先级变更"></a>v-if 与 v-for 的优先级变更</h3><table>
 <thead>

@@ -1,7 +1,7 @@
 function hexoChangeBanner() {
   var url = document.location.pathname;
   var folderName = url.substr(1, url.length - 2);
-  console.log(folderName);
+  console.log(`目录：${folderName}`);
 
   var listPostUrl = [
     "/" + folderName + "/" + "post-banner.png",

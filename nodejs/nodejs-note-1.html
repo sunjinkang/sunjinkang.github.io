@@ -98,7 +98,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
   </ul>
 </nav>
 
@@ -374,7 +374,7 @@
 <li>description。包简介。</li>
 <li>version。版本号。一个语义化的版本号，这在<a target="_blank" rel="noopener" href="http://semver.org/%E4%B8%8A%E6%9C%89%E8%AF%A6%E7%BB%86%E5%AE%9A%E4%B9%89%EF%BC%8C%E9%80%9A%E5%B8%B8%E4%B8%BAmajor.minor.revision%E6%A0%BC%E5%BC%8F%E3%80%82%E8%AF%A5%E7%89%88%E6%9C%AC%E5%8F%B7%E5%8D%81%E5%88%86%E9%87%8D%E8%A6%81%EF%BC%8C%E5%B8%B8%E5%B8%B8%E7%94%A8%E4%BA%8E%E4%B8%80%E4%BA%9B%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%9A%84%E5%9C%BA%E5%90%88%E3%80%82">http://semver.org/上有详细定义，通常为major.minor.revision格式。该版本号十分重要，常常用于一些版本控制的场合。</a></li>
 <li>keywords。关键词数组，NPM中主要用来做分类搜索。一个好的关键词数组有利于用户快速找到你编写的包。 </li>
-<li>maintainers。包维护者列表。每个维护者由name、email和web这3个属性组成。示例如下：”maintainers”: [{ “name”: “Jackson Tian”, “email”: “<a href="mailto:&#x73;&#x68;&#121;&#118;&#x6f;&#x31;&#x39;&#x38;&#55;&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;">&#x73;&#x68;&#121;&#118;&#x6f;&#x31;&#x39;&#x38;&#55;&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;</a>“, “web”: “<a target="_blank" rel="noopener" href="http://html5ify.com&quot;/">http://html5ify.com&quot;</a> }], NPM通过该属性进行权限认证</li>
+<li>maintainers。包维护者列表。每个维护者由name、email和web这3个属性组成。示例如下：”maintainers”: [{ “name”: “Jackson Tian”, “email”: “<a href="mailto:&#x73;&#x68;&#x79;&#118;&#x6f;&#x31;&#57;&#56;&#x37;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#x73;&#x68;&#x79;&#118;&#x6f;&#x31;&#57;&#56;&#x37;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a>“, “web”: “<a target="_blank" rel="noopener" href="http://html5ify.com&quot;/">http://html5ify.com&quot;</a> }], NPM通过该属性进行权限认证</li>
 <li>contributors。贡献者列表。在开源社区中，为开源项目提供代码是经常出现的事情，如果名字能出现在知名项目的contributors列表中，是一件比较有荣誉感的事。列表中的第一个贡献应当是包的作者本人。它的格式与维护者列表相同。</li>
 <li>bugs。一个可以反馈bug的网页地址或邮件地址。</li>
 <li>licenses。当前包所使用的许可证列表，表示这个包可以在哪些许可证下使用。它的格式如下：”licenses”: [{ “type”: “GPLv2”, “url”: “<a target="_blank" rel="noopener" href="http://www.example.com/licenses/gpl.html&quot;">http://www.example.com/licenses/gpl.html&quot;</a>, }] </li>
@@ -415,9 +415,9 @@
 </ul>
 </li>
 <li>管理包权限<ul>
-<li>npm owner ls <package name></package></li>
-<li>npm owner add <user> <package name> </package></user></li>
-<li>npm owner rm <user> <package name> </package></user></li>
+<li>npm owner ls <package name></li>
+<li>npm owner add <user> <package name> </li>
+<li>npm owner rm <user> <package name> </li>
 </ul>
 </li>
 </ul>

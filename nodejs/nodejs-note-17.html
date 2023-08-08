@@ -94,7 +94,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
   </ul>
 </nav>
 
@@ -224,7 +224,7 @@
 <p><em>注意，当该事件被触发且处理后，’request’ 事件不会被触发。</em></p>
 <p>‘clientError’ 事件</p>
 <ul>
-<li>exception <Error></Error></li>
+<li>exception <Error></li>
 <li>socket &lt;net.Socket&gt;<br>如果客户端触发了一个 ‘error’ 事件，则它会被传递到这里。 该事件的监听器负责关闭或销毁底层的 socket。<br>默认情况下，请求异常时会立即销毁 socket。<br>socket 参数是发生错误的 net.Socket 对象。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.<span class="title function_">createServer</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">end</span>();</span><br><span class="line">&#125;);</span><br><span class="line">server.<span class="title function_">on</span>(<span class="string">&#x27;clientError&#x27;</span>, <span class="function">(<span class="params">err, socket</span>) =&gt;</span> &#123;</span><br><span class="line">  socket.<span class="title function_">end</span>(<span class="string">&#x27;HTTP/1.1 400 Bad Request\r\n\r\n&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure>
 当 ‘clientError’ 事件发生时，不会有 request 或 response 对象，所以发送的任何 HTTP 响应，包括响应头和内容，必须被直接写入到 socket 对象。 注意，确保响应是一个被正确格式化的 HTTP 响应消息。</li>
 </ul>
@@ -232,80 +232,80 @@
 <ul>
 <li>request &lt;http.IncomingMessage&gt; HTTP 请求，同 ‘request’ 事件。</li>
 <li>socket &lt;net.Socket&gt; 服务器与客户端之间的网络 socket。</li>
-<li>head <Buffer> 流的第一个数据包，可能为空。<br>每当客户端发送 HTTP CONNECT 请求时触发。 <em>如果该事件未被监听，则发送 CONNECT 请求的客户端会关闭连接。</em><br>当该事件被触发后，请求的 socket 上没有 ‘data’ 事件监听器，这意味着需要绑定 ‘data’ 事件监听器，用来处理 socket 上被发送到服务器的数据。</Buffer></li>
+<li>head <Buffer> 流的第一个数据包，可能为空。<br>每当客户端发送 HTTP CONNECT 请求时触发。 <em>如果该事件未被监听，则发送 CONNECT 请求的客户端会关闭连接。</em><br>当该事件被触发后，请求的 socket 上没有 ‘data’ 事件监听器，这意味着需要绑定 ‘data’ 事件监听器，用来处理 socket 上被发送到服务器的数据。</li>
 </ul>
 <p>‘upgrade’ 事件</p>
 <ul>
 <li>request &lt;http.IncomingMessage&gt; HTTP 请求，同 ‘request’ 事件。</li>
 <li>socket &lt;net.Socket&gt; 服务器与客户端之间的网络 socket。</li>
-<li>head <Buffer> 流的第一个数据包，可能为空。<br>每当客户端发送 HTTP upgrade 请求时触发。 如果该事件未被监听，则发送 upgrade 请求的客户端会关闭连接。<br>当该事件被触发后，请求的 socket 上没有 ‘data’ 事件监听器，这意味着需要绑定 ‘data’ 事件监听器，用来处理 socket 上被发送到服务器的数据。</Buffer></li>
+<li>head <Buffer> 流的第一个数据包，可能为空。<br>每当客户端发送 HTTP upgrade 请求时触发。 如果该事件未被监听，则发送 upgrade 请求的客户端会关闭连接。<br>当该事件被触发后，请求的 socket 上没有 ‘data’ 事件监听器，这意味着需要绑定 ‘data’ 事件监听器，用来处理 socket 上被发送到服务器的数据。</li>
 </ul>
 <p>server.maxHeadersCount</p>
 <ul>
-<li><number> 默认为 2000。<br>限制请求头的最大数量，默认为 2000。 如果设为 0，则没有限制。</number></li>
+<li><number> 默认为 2000。<br>限制请求头的最大数量，默认为 2000。 如果设为 0，则没有限制。</li>
 </ul>
 <p>server.setTimeout([msecs][, callback])</p>
 <ul>
-<li>msecs <number> 默认为 120000 (2 分钟)。</number></li>
-<li>callback <Function><br>设置 socket 的超时时间。 如果发生超时，则触发服务器对象的 ‘timeout’ 事件，并传入 socket 作为一个参数。</Function></li>
+<li>msecs <number> 默认为 120000 (2 分钟)。</li>
+<li>callback <Function><br>设置 socket 的超时时间。 如果发生超时，则触发服务器对象的 ‘timeout’ 事件，并传入 socket 作为一个参数。</li>
 </ul>
 <p><em>默认情况下，服务器的超时时间是 2 分钟，且超时后的 socket 会被自动销毁。 但是，如果你为服务器的 ‘timeout’ 事件分配了一个回调函数，则超时必须被显式地处理。</em><br>返回 server。</p>
 <p>server.timeout</p>
 <ul>
-<li><number> 超时时间，以毫秒为单位。默认为 120000 (2 分钟)。<br>socket 被认定为超时的空闲毫秒数。</number></li>
+<li><number> 超时时间，以毫秒为单位。默认为 120000 (2 分钟)。<br>socket 被认定为超时的空闲毫秒数。</li>
 </ul>
 <p><em>值设为 0 可禁用请求连接的超时行为。</em><br><em>注意，socket 的超时逻辑是在连接上设定的，所以改变这个值只影响服务器新建的连接，而不会影响任何已存在的连接。</em></p>
 <p>server.keepAliveTimeout</p>
 <ul>
-<li><number> 超时毫秒. 默认为 5000 (5秒).<br>服务器完成最后的响应之后需要等待的额外的传入数据的活跃毫秒数, socket 才能被销毁.<br>如果服务器在 keep-alive 计时已激活时接收到新的数据, 他会重置常规的非活动计时, 即server.timeout.<br>值为 0 时禁用传入连接 keep-alive 的超时行为。 </number></li>
+<li><number> 超时毫秒. 默认为 5000 (5秒).<br>服务器完成最后的响应之后需要等待的额外的传入数据的活跃毫秒数, socket 才能被销毁.<br>如果服务器在 keep-alive 计时已激活时接收到新的数据, 他会重置常规的非活动计时, 即server.timeout.<br>值为 0 时禁用传入连接 keep-alive 的超时行为。 </li>
 </ul>
 <p><em>注意: scoket 的超时逻辑上取决于服务器连接, 所以改变这个值只影响服务器的新连接, 不影响任何已存在的连接.</em></p>
 <p><strong>http.ServerResponse 类</strong><br>该对象在 HTTP 服务器内部被创建。 它作为第二个参数被传入 ‘request’ 事件。<br>这个类实现了（而不是继承自）可写流 接口。</p>
 <p>‘finish’ 事件<br><em>当响应已被发送时触发。 更具体地说，当响应头和响应主体的最后一部分已被交给操作系统通过网络进行传输时，触发该事件。 这并不意味着客户端已接收到任何东西。</em><br>该事件触发后，响应对象上不再触发其他事件。</p>
 <p>response.addTrailers(headers)</p>
 <ul>
-<li>headers <Object><br>该方法会添加 HTTP 尾部响应头（一种在消息尾部的响应头）到响应。</Object></li>
+<li>headers <Object><br>该方法会添加 HTTP 尾部响应头（一种在消息尾部的响应头）到响应。</li>
 </ul>
 <p><em>仅当响应使用分块编码时，尾部响应头才会被发送；否则（比如请求为 HTTP/1.0），尾部响应头会被丢弃。</em><br><em>注意，发送尾部响应头之前，需先发送 Trailer 响应头，并在值里带上尾部响应头字段的列表。</em></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">response.<span class="title function_">writeHead</span>(<span class="number">200</span>, &#123; <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;text/plain&#x27;</span>,<span class="string">&#x27;Trailer&#x27;</span>: <span class="string">&#x27;Content-MD5&#x27;</span> &#125;);</span><br><span class="line">response.<span class="title function_">write</span>(fileData);</span><br><span class="line">response.<span class="title function_">addTrailers</span>(&#123; <span class="string">&#x27;Content-MD5&#x27;</span>: <span class="string">&#x27;7895bf4b8828b55ceaf47747b4bca667&#x27;</span> &#125;);</span><br><span class="line">response.<span class="title function_">end</span>();</span><br></pre></td></tr></table></figure>
 <p>如果尾部响应头字段的名称或值包含无效字符，则抛出 TypeError 错误。</p>
 <p>response.getHeader(name)</p>
 <ul>
-<li>name <string><br>返回: <string><br>读取一个已入队列但尚未发送到客户端的响应头。 注意，名称不区分大小写。<br>const contentType = response.getHeader(‘content-type’);</string></string></li>
+<li>name <string><br>返回: <string><br>读取一个已入队列但尚未发送到客户端的响应头。 注意，名称不区分大小写。<br>const contentType = response.getHeader(‘content-type’);</li>
 </ul>
 <p>response.headersSent</p>
 <ul>
 <li><boolean>
-返回一个布尔值（只读）。 如果响应头已被发送则为 true，否则为 false。</boolean></li>
+返回一个布尔值（只读）。 如果响应头已被发送则为 true，否则为 false。</li>
 </ul>
 <p>response.removeHeader(name)</p>
 <ul>
-<li>name <string><br>从隐式发送的队列中移除一个响应头。</string></li>
+<li>name <string><br>从隐式发送的队列中移除一个响应头。</li>
 </ul>
 <p>response.sendDate</p>
 <ul>
 <li><boolean>
-当为 true 时，如果响应头里没有日期响应头，则日期响应头会被自动生成并发送。默认为 true</boolean></li>
+当为 true 时，如果响应头里没有日期响应头，则日期响应头会被自动生成并发送。默认为 true</li>
 </ul>
 <p><em>该属性只可在测试时被禁用，因为HTTP响应需要包含日期响应头</em></p>
 <p>response.setHeader(name, value)</p>
 <ul>
-<li>name <string></string></li>
-<li>value <string> | &lt;string[]&gt;<br>为一个隐式的响应头设置值。 如果该响应头已存在，则值会被覆盖。 如果要发送多个名称相同的响应头，则使用字符串数组。<br>如果响应头字段的名称或值包含无效字符，则抛出 TypeError 错误。<br>response.setHeader() 设置的响应头会与 response.writeHead() 设置的响应头合并，且 response.writeHead() 的优先。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回 content-type = text/plain</span></span><br><span class="line"><span class="keyword">const</span> server = http.<span class="title function_">createServer</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;text/html&#x27;</span>);</span><br><span class="line">  res.<span class="title function_">setHeader</span>(<span class="string">&#x27;X-Foo&#x27;</span>, <span class="string">&#x27;bar&#x27;</span>);</span><br><span class="line">  res.<span class="title function_">writeHead</span>(<span class="number">200</span>, &#123; <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;text/plain&#x27;</span> &#125;);</span><br><span class="line">  res.<span class="title function_">end</span>(<span class="string">&#x27;ok&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></string></li>
+<li>name <string></li>
+<li>value <string> | &lt;string[]&gt;<br>为一个隐式的响应头设置值。 如果该响应头已存在，则值会被覆盖。 如果要发送多个名称相同的响应头，则使用字符串数组。<br>如果响应头字段的名称或值包含无效字符，则抛出 TypeError 错误。<br>response.setHeader() 设置的响应头会与 response.writeHead() 设置的响应头合并，且 response.writeHead() 的优先。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回 content-type = text/plain</span></span><br><span class="line"><span class="keyword">const</span> server = http.<span class="title function_">createServer</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;text/html&#x27;</span>);</span><br><span class="line">  res.<span class="title function_">setHeader</span>(<span class="string">&#x27;X-Foo&#x27;</span>, <span class="string">&#x27;bar&#x27;</span>);</span><br><span class="line">  res.<span class="title function_">writeHead</span>(<span class="number">200</span>, &#123; <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;text/plain&#x27;</span> &#125;);</span><br><span class="line">  res.<span class="title function_">end</span>(<span class="string">&#x27;ok&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
 </ul>
 <p>response.statusCode</p>
 <ul>
 <li><number>
 当使用隐式的响应头时（没有显式地调用 response.writeHead()），该属性控制响应头刷新时将被发送到客户端的状态码。
 response.statusCode = 404;
-响应头被发送到客户端后，该属性表示被发出的状态码。</number></li>
+响应头被发送到客户端后，该属性表示被发出的状态码。</li>
 </ul>
 <p>response.write(chunk[, encoding][, callback])</p>
 <ul>
-<li>chunk <string> | <Buffer></Buffer></string></li>
-<li>encoding <string></string></li>
-<li>callback <Function></Function></li>
-<li>返回: <boolean><br>如果该方法被调用且 response.writeHead() 没有被调用，则它会切换到隐式响应头模式并刷新隐式响应头。<br>该方法会发送一块响应主体。 它可被多次调用，以便提供连续的响应主体片段。<br>请注意在http模块中，当请求是HEAD请求时，响应主体被省略。 类似地，204和304响应 <em>不能</em> 包括消息体。<br>chunk 可以是一个字符串或一个 buffer。 如果 chunk 是一个字符串，则第二个参数指定如何将它编码成一个字节流。 encoding 默认为 ‘utf8’。 当数据块被刷新时，callback 会被调用。<br>注意：这是原始的 HTTP 主体，且与可能被使用的高级主体编码无关。</boolean></li>
+<li>chunk <string> | <Buffer></li>
+<li>encoding <string></li>
+<li>callback <Function></li>
+<li>返回: <boolean><br>如果该方法被调用且 response.writeHead() 没有被调用，则它会切换到隐式响应头模式并刷新隐式响应头。<br>该方法会发送一块响应主体。 它可被多次调用，以便提供连续的响应主体片段。<br>请注意在http模块中，当请求是HEAD请求时，响应主体被省略。 类似地，204和304响应 <em>不能</em> 包括消息体。<br>chunk 可以是一个字符串或一个 buffer。 如果 chunk 是一个字符串，则第二个参数指定如何将它编码成一个字节流。 encoding 默认为 ‘utf8’。 当数据块被刷新时，callback 会被调用。<br>注意：这是原始的 HTTP 主体，且与可能被使用的高级主体编码无关。</li>
 </ul>
 <p><em>response.write() 首次被调用时，会发送缓冲的响应头信息和响应主体的第一块数据到客户端。 response.write() 第二次被调用时，Node.js 能够确定数据会被接收，于是开始传输新数据。 也就是说，响应的完成取决于响应主体的第一块数据。</em><br>如果全部数据被成功刷新到内核缓冲区，则返回 true。 如果全部或部分数据还在内存中排队，则返回 false。 当缓冲区再次空闲时，则触发 ‘drain’ 事件。</p>
 <p><strong>http.IncomingMessage 类</strong><br>IncomingMessage 对象由 http.Server 或 http.ClientRequest 创建，并作为第一个参数分别递给 ‘request’ 和 ‘response’ 事件。 它可以用来访问响应状态、消息头、以及数据。<br>它实现了 可读流 接口</p>
@@ -313,12 +313,12 @@ response.statusCode = 404;
 <ul>
 <li><string>
 在服务器请求中，该属性返回客户端发送的 HTTP 版本。 在客户端响应中，该属性返回连接到的服务器的 HTTP 版本。 可能的值有 '1.1' 或 '1.0'。
-message.httpVersionMajor 返回 HTTP 版本的第一个整数值，message.httpVersionMinor 返回 HTTP 版本的第二个整数值。</string></li>
+message.httpVersionMajor 返回 HTTP 版本的第一个整数值，message.httpVersionMinor 返回 HTTP 版本的第二个整数值。</li>
 </ul>
 <p>message.rawHeaders</p>
 <ul>
 <li><Array>
-接收到的原始的请求头或响应头列表。</Array></li>
+接收到的原始的请求头或响应头列表。</li>
 </ul>
 <p><em>注意，键和值在同一个列表中。 偶数位的是键，奇数位的是对应的值。</em><br>头信息的名称不会被转换为小写，重复的也不会被合并。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(request.<span class="property">rawHeaders</span>);</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// [ &#x27;user-agent&#x27;,</span></span><br><span class="line"><span class="comment">//   &#x27;this is invalid because there can be only one&#x27;,</span></span><br><span class="line"><span class="comment">//   &#x27;User-Agent&#x27;,</span></span><br><span class="line"><span class="comment">//   &#x27;curl/7.22.0&#x27;,</span></span><br><span class="line"><span class="comment">//   &#x27;Host&#x27;,</span></span><br><span class="line"><span class="comment">//   &#x27;127.0.0.1:8000&#x27;,</span></span><br><span class="line"><span class="comment">//   &#x27;ACCEPT&#x27;,</span></span><br><span class="line"><span class="comment">//   &#x27;*/*&#x27; ]</span></span><br></pre></td></tr></table></figure>
@@ -336,9 +336,9 @@ message.httpVersionMajor 返回 HTTP 版本的第一个整数值，message.httpV
 <p>每个Http2Session实例创建时，只与一个net.Socket或tls.TLSSocket相关联。当Socket或Http2Session某一个被销毁时，两者都将被销毁。</p>
 <p>Event: ‘frameError’</p>
 <ul>
-<li>type <integer> The frame type.</integer></li>
-<li>code <integer> The error code.</integer></li>
-<li>id <integer> The stream id (or 0 if the frame isn’t associated with a stream).<br>当试图在会话上发送帧发生错误时，将触发’frameError’事件。如果无法发送的帧与特定的Http2Stream相关联，则尝试在Http2Stream上发出’frameError’事件。<br>如果’frameError’事件与某个流相关联，该流将在’frameError’事件发生后立即关闭并销毁。如果该事件没有与流关联，Http2Session将在’frameError’事件之后立即关闭。</integer></li>
+<li>type <integer> The frame type.</li>
+<li>code <integer> The error code.</li>
+<li>id <integer> The stream id (or 0 if the frame isn’t associated with a stream).<br>当试图在会话上发送帧发生错误时，将触发’frameError’事件。如果无法发送的帧与特定的Http2Stream相关联，则尝试在Http2Stream上发出’frameError’事件。<br>如果’frameError’事件与某个流相关联，该流将在’frameError’事件发生后立即关闭并销毁。如果该事件没有与流关联，Http2Session将在’frameError’事件之后立即关闭。</li>
 </ul>
 <p>Event: ‘localSettings’</p>
 <ul>
@@ -347,26 +347,26 @@ message.httpVersionMajor 返回 HTTP 版本的第一个整数值，message.httpV
 <p>Event: ‘timeout’<br>在使用Http2Session.settimeout()方法设置此Http2Session的超时时间之后，如果在配置的毫秒数之后Http2Session上没有活动，则会触发’timeout’事件。它的侦听器不期望任何参数。</p>
 <p>http2session.alpnProtocol</p>
 <ul>
-<li><string> | <undefined><br>如果Http2Session还没有连接到socket，Value将是undefined，如果Http2Session没有连接到TLSSocket, Value将是h2c，或者将返回被连接的TLSSocket自己的alpnProtocol属性的值。</undefined></string></li>
+<li><string> | <undefined><br>如果Http2Session还没有连接到socket，Value将是undefined，如果Http2Session没有连接到TLSSocket, Value将是h2c，或者将返回被连接的TLSSocket自己的alpnProtocol属性的值。</li>
 </ul>
 <p>http2session.destroy([error][, code])</p>
 <ul>
-<li>error <Error> 如果Http2Session由于错误而被销毁，则返回Error对象。</Error></li>
-<li>code <number> HTTP/2在最终超时帧中发送的错误码。如果未指定，且error没有定义，则默认为INTERNAL_ERROR，否则默认为NO_ERROR。<br>立即终止Http2Session和相关的net.Socket或tls.TLSSocket。<br>一旦销毁，Http2Session将发出’close’事件。如果error未定义，则’error’事件将在’close’事件之前立即触发。<br>如果有任何剩余的与Http2Session相关联的开放Http2Streams，它们也将被销毁。</number></li>
+<li>error <Error> 如果Http2Session由于错误而被销毁，则返回Error对象。</li>
+<li>code <number> HTTP/2在最终超时帧中发送的错误码。如果未指定，且error没有定义，则默认为INTERNAL_ERROR，否则默认为NO_ERROR。<br>立即终止Http2Session和相关的net.Socket或tls.TLSSocket。<br>一旦销毁，Http2Session将发出’close’事件。如果error未定义，则’error’事件将在’close’事件之前立即触发。<br>如果有任何剩余的与Http2Session相关联的开放Http2Streams，它们也将被销毁。</li>
 </ul>
 <p>http2session.encrypted</p>
 <ul>
-<li><boolean> | <undefined><br>Value is undefined if the Http2Session session socket has not yet been connected, true if the Http2Session is connected with a TLSSocket, and false if the Http2Session is connected to any other kind of socket or stream.<br>如果Http2Session会话未连接socket，则为undefined;如果Http2Session与TLSSocket连接，则为true;如果Http2Session连接到任何其他类型的socket或流，则为false。</undefined></boolean></li>
+<li><boolean> | <undefined><br>Value is undefined if the Http2Session session socket has not yet been connected, true if the Http2Session is connected with a TLSSocket, and false if the Http2Session is connected to any other kind of socket or stream.<br>如果Http2Session会话未连接socket，则为undefined;如果Http2Session与TLSSocket连接，则为true;如果Http2Session连接到任何其他类型的socket或流，则为false。</li>
 </ul>
 <p>http2session.pendingSettingsAck</p>
 <ul>
 <li><boolean>
-指示Http2Session当前是否正在等待对发送的SETTINGS帧的确认。将在调用http2session.settings()方法后为true。当所有发送的设置帧被确认后，将为false。</boolean></li>
+指示Http2Session当前是否正在等待对发送的SETTINGS帧的确认。将在调用http2session.settings()方法后为true。当所有发送的设置帧被确认后，将为false。</li>
 </ul>
 <p>http2session.ref()<br>在这个Http2Session实例的底层net.Socket上调用ref()。<br>与之相反的是http2session.unref()</p>
 <p>http2session.setLocalWindowSize(windowSize)</p>
 <ul>
-<li>windowSize <number><br>设置本地端点的窗口大小。windowSize是要设置的总窗口大小，而不是增量。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http2 = <span class="built_in">require</span>(<span class="string">&#x27;node:http2&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http2.<span class="title function_">createServer</span>();</span><br><span class="line"><span class="keyword">const</span> expectedWindowSize = <span class="number">2</span> ** <span class="number">20</span>;</span><br><span class="line">server.<span class="title function_">on</span>(<span class="string">&#x27;connect&#x27;</span>, <span class="function">(<span class="params">session</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Set local window size to be 2 ** 20</span></span><br><span class="line">  session.<span class="title function_">setLocalWindowSize</span>(expectedWindowSize);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></number></li>
+<li>windowSize <number><br>设置本地端点的窗口大小。windowSize是要设置的总窗口大小，而不是增量。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http2 = <span class="built_in">require</span>(<span class="string">&#x27;node:http2&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http2.<span class="title function_">createServer</span>();</span><br><span class="line"><span class="keyword">const</span> expectedWindowSize = <span class="number">2</span> ** <span class="number">20</span>;</span><br><span class="line">server.<span class="title function_">on</span>(<span class="string">&#x27;connect&#x27;</span>, <span class="function">(<span class="params">session</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Set local window size to be 2 ** 20</span></span><br><span class="line">  session.<span class="title function_">setLocalWindowSize</span>(expectedWindowSize);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
 </ul>
 <p>http2session.state<br>提供有关Http2Session当前状态的杂项信息。</p>
 <ul>
@@ -379,21 +379,21 @@ message.httpVersionMajor 返回 HTTP 版本的第一个整数值，message.httpV
 - remoteWindowSize <number> Http2Session在没有接收WINDOW_UPDATE的情况下可以发送的字节数。
 - outboundQueueSize <number> 当前在此Http2Session的出站队列中的帧数。
 - deflateDynamicTableSize <number> 出站报头压缩状态表的当前大小(以字节为单位)。
-- inflateDynamicTableSize <number> 入站报头压缩状态表的当前大小(以字节为单位)。</number></number></number></number></number></number></number></number></number></Object></li>
+- inflateDynamicTableSize <number> 入站报头压缩状态表的当前大小(以字节为单位)。</li>
 </ul>
 <p>http2session.type</p>
 <ul>
 <li><number>
 The http2session.type will be equal to http2.constants.NGHTTP2_SESSION_SERVER if this Http2Session instance is a server, and http2.constants.NGHTTP2_SESSION_CLIENT if the instance is a client.
-http2session.type将等于http2.constants.NGHTTP2_SESSION_SERVER(如果这个Http2Session实例是一个服务器),等于http2.constants.NGHTTP2_SESSION_CLIENT(如果实例是客户端)。</number></li>
+http2session.type将等于http2.constants.NGHTTP2_SESSION_SERVER(如果这个Http2Session实例是一个服务器),等于http2.constants.NGHTTP2_SESSION_CLIENT(如果实例是客户端)。</li>
 </ul>
-<p><strong>Class: ServerHttp2Session</strong><br>Extends: <Http2Session></Http2Session></p>
-<p><strong>Class: ClientHttp2Session</strong><br>Extends: <Http2Session></Http2Session></p>
+<p><strong>Class: ServerHttp2Session</strong><br>Extends: <Http2Session></p>
+<p><strong>Class: ClientHttp2Session</strong><br>Extends: <Http2Session></p>
 <p>Event: ‘altsvc’</p>
 <ul>
-<li>alt <string></string></li>
-<li>origin <string></string></li>
-<li>streamId <number><br>当客户端接收到altsvc帧时，就会触发’altsvc’事件。该事件由ALTSVC值、起源和流ID触发。如果在ALTSVC帧中没有提供origin, origin将是一个空字符串。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http2 = <span class="built_in">require</span>(<span class="string">&#x27;node:http2&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> client = http2.<span class="title function_">connect</span>(<span class="string">&#x27;https://example.org&#x27;</span>);</span><br><span class="line"></span><br><span class="line">client.<span class="title function_">on</span>(<span class="string">&#x27;altsvc&#x27;</span>, <span class="function">(<span class="params">alt, origin, streamId</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(alt);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(origin);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(streamId);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></number></li>
+<li>alt <string></li>
+<li>origin <string></li>
+<li>streamId <number><br>当客户端接收到altsvc帧时，就会触发’altsvc’事件。该事件由ALTSVC值、起源和流ID触发。如果在ALTSVC帧中没有提供origin, origin将是一个空字符串。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http2 = <span class="built_in">require</span>(<span class="string">&#x27;node:http2&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> client = http2.<span class="title function_">connect</span>(<span class="string">&#x27;https://example.org&#x27;</span>);</span><br><span class="line"></span><br><span class="line">client.<span class="title function_">on</span>(<span class="string">&#x27;altsvc&#x27;</span>, <span class="function">(<span class="params">alt, origin, streamId</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(alt);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(origin);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(streamId);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
 </ul>
 <p>Event: ‘origin’</p>
 <ul>
@@ -422,45 +422,45 @@ http2session.type将等于http2.constants.NGHTTP2_SESSION_SERVER(如果这个Htt
 <p>http2stream.priority(options)</p>
 <ul>
 <li>options <Object><ul>
-<li>exclusive <boolean> 当为true且parent标识父流时，此流将成为父流的唯一直接依赖项，所有其他现有依赖项都将成为此流的依赖项。默认值:false。</boolean></li>
-<li>parent <number> 指定此流所依赖的流的数字标识符。</number></li>
-<li>weight <number> 指定一个流相对于具有相同父流的其他流的相对依赖关系。取值为1 ~ 256之间的数字。</number></li>
-<li>silent <boolean> 当为true时，在本地改变优先级，而不向连接的对等体发送优先级帧。<br>更新此Http2Stream实例的优先级。</boolean></li>
+<li>exclusive <boolean> 当为true且parent标识父流时，此流将成为父流的唯一直接依赖项，所有其他现有依赖项都将成为此流的依赖项。默认值:false。</li>
+<li>parent <number> 指定此流所依赖的流的数字标识符。</li>
+<li>weight <number> 指定一个流相对于具有相同父流的其他流的相对依赖关系。取值为1 ~ 256之间的数字。</li>
+<li>silent <boolean> 当为true时，在本地改变优先级，而不向连接的对等体发送优先级帧。<br>更新此Http2Stream实例的优先级。</li>
 </ul>
-</Object></li>
+</li>
 </ul>
 <p>http2stream.sendTrailers(headers)</p>
 <ul>
 <li>headers &lt;HTTP/2 Headers Object&gt;<br>向连接的HTTP/2对等端发送一个尾随报头帧。此方法将导致Http2Stream立即关闭，并且只能在’wantTrailers’事件触发后调用。当发送请求或发送响应时，必须设置options.waitForTrailers选项，以便在最后的数据帧之后保持Http2Stream打开，以便可以发送trailers。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http2 = <span class="built_in">require</span>(<span class="string">&#x27;node:http2&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> server = http2.<span class="title function_">createServer</span>();</span><br><span class="line">server.<span class="title function_">on</span>(<span class="string">&#x27;stream&#x27;</span>, <span class="function">(<span class="params">stream</span>) =&gt;</span> &#123;</span><br><span class="line">  stream.<span class="title function_">respond</span>(<span class="literal">undefined</span>, &#123; <span class="attr">waitForTrailers</span>: <span class="literal">true</span> &#125;);</span><br><span class="line">  stream.<span class="title function_">on</span>(<span class="string">&#x27;wantTrailers&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    stream.<span class="title function_">sendTrailers</span>(&#123; <span class="attr">xyz</span>: <span class="string">&#x27;abc&#x27;</span> &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  stream.<span class="title function_">end</span>(<span class="string">&#x27;Hello World&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 HTTP/1规范禁止trailers包含HTTP/2伪报头字段(例如:’:method’， ‘:path’，等等)。</li>
 </ul>
-<p><strong>Class: ClientHttp2Stream</strong><br>Extends <Http2Stream></Http2Stream></p>
+<p><strong>Class: ClientHttp2Stream</strong><br>Extends <Http2Stream></p>
 <p>Event: ‘response’</p>
 <ul>
 <li>headers &lt;HTTP/2 Headers Object&gt;</li>
-<li>flags <number><br>当从连接的HTTP/2服务器接收到此流的响应报头帧时，会触发’response’事件。监听器返回两个参数:一个包含接收到的HTTP/2 Headers对象的对象，以及与头部相关的标志。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http2 = <span class="built_in">require</span>(<span class="string">&#x27;node:http2&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> client = http2.<span class="title function_">connect</span>(<span class="string">&#x27;https://localhost&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> req = client.<span class="title function_">request</span>(&#123; <span class="string">&#x27;:path&#x27;</span>: <span class="string">&#x27;/&#x27;</span> &#125;);</span><br><span class="line">req.<span class="title function_">on</span>(<span class="string">&#x27;response&#x27;</span>, <span class="function">(<span class="params">headers, flags</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(headers[<span class="string">&#x27;:status&#x27;</span>]);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></number></li>
+<li>flags <number><br>当从连接的HTTP/2服务器接收到此流的响应报头帧时，会触发’response’事件。监听器返回两个参数:一个包含接收到的HTTP/2 Headers对象的对象，以及与头部相关的标志。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http2 = <span class="built_in">require</span>(<span class="string">&#x27;node:http2&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> client = http2.<span class="title function_">connect</span>(<span class="string">&#x27;https://localhost&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> req = client.<span class="title function_">request</span>(&#123; <span class="string">&#x27;:path&#x27;</span>: <span class="string">&#x27;/&#x27;</span> &#125;);</span><br><span class="line">req.<span class="title function_">on</span>(<span class="string">&#x27;response&#x27;</span>, <span class="function">(<span class="params">headers, flags</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(headers[<span class="string">&#x27;:status&#x27;</span>]);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
 </ul>
 <p><strong>Class: ServerHttp2Stream</strong></p>
 <p>http2stream.respondWithFile(path[, headers[, options]])</p>
 <ul>
-<li>path <string> | <Buffer> | <URL></URL></Buffer></string></li>
+<li>path <string> | <Buffer> | <URL></li>
 <li>headers &lt;HTTP/2 Headers Object&gt;</li>
 <li>options <Object><ul>
-<li>statCheck <Function></Function></li>
-<li>onError <Function> 在发送之前发生错误时调用的回调函数。</Function></li>
-<li>waitForTrailers <boolean> 当为true时，Http2Stream将在最后一个数据帧被发送后发出’wantTrailers’事件。</boolean></li>
-<li>offset <number> 开始读取的偏移位置。</number></li>
-<li>length <number> fd要发送的数据量<br>发送一个常规文件作为响应。该路径必须指定一个常规文件，否则将在Http2Stream对象上触发’error’事件。<br>当使用时，Http2Stream对象的Duplex接口将自动关闭。<br>可以指定options.statCheck函数，让用户代码有机会基于fs设置额外的内容标头。给定文件的统计细节:<br>如果在试图读取文件数据时发生错误，Http2Stream将使用RST_STREAM帧和标准INTERNAL_ERROR代码关闭。如果定义了onError回调函数，则将调用它。否则流将被破坏。<br>options.statCheck函数也可以通过返回false来取消发送操作。<br>内容长度报头字段将被自动设置。<br>偏移量和长度选项可用于将响应限制到特定的范围子集。<br>options.onError函数还可以用于处理在文件传递开始之前可能发生的所有错误。默认行为是销毁流。<br>如果设置了options.waitForTrailers选项，’wantTrailers’事件将在最后一块要发送的有效负载数据排队后立即触发。然后可以使用http2stream.sendTrailers()方法向对等端发送尾随报头字段。<br>如果设置了options.waitForTrailers, Http2Stream将不会在传输最后一个数据帧时自动关闭。用户代码必须调用Http2Stream.sendTrailers()或Http2Stream.close()来关闭Http2Stream。</number></li>
+<li>statCheck <Function></li>
+<li>onError <Function> 在发送之前发生错误时调用的回调函数。</li>
+<li>waitForTrailers <boolean> 当为true时，Http2Stream将在最后一个数据帧被发送后发出’wantTrailers’事件。</li>
+<li>offset <number> 开始读取的偏移位置。</li>
+<li>length <number> fd要发送的数据量<br>发送一个常规文件作为响应。该路径必须指定一个常规文件，否则将在Http2Stream对象上触发’error’事件。<br>当使用时，Http2Stream对象的Duplex接口将自动关闭。<br>可以指定options.statCheck函数，让用户代码有机会基于fs设置额外的内容标头。给定文件的统计细节:<br>如果在试图读取文件数据时发生错误，Http2Stream将使用RST_STREAM帧和标准INTERNAL_ERROR代码关闭。如果定义了onError回调函数，则将调用它。否则流将被破坏。<br>options.statCheck函数也可以通过返回false来取消发送操作。<br>内容长度报头字段将被自动设置。<br>偏移量和长度选项可用于将响应限制到特定的范围子集。<br>options.onError函数还可以用于处理在文件传递开始之前可能发生的所有错误。默认行为是销毁流。<br>如果设置了options.waitForTrailers选项，’wantTrailers’事件将在最后一块要发送的有效负载数据排队后立即触发。然后可以使用http2stream.sendTrailers()方法向对等端发送尾随报头字段。<br>如果设置了options.waitForTrailers, Http2Stream将不会在传输最后一个数据帧时自动关闭。用户代码必须调用Http2Stream.sendTrailers()或Http2Stream.close()来关闭Http2Stream。</li>
 </ul>
-</Object></li>
+</li>
 </ul>
 <p><strong>Class: Http2Server</strong><br>Extends: &lt;net.Server&gt;<br>使用http2.createServer()后创建的Http2Server实例。Http2Server类不由node:http2模块直接导出</p>
 <p>Event: ‘stream’</p>
 <ul>
-<li>stream <Http2Stream> 对流的引用</Http2Stream></li>
+<li>stream <Http2Stream> 对流的引用</li>
 <li>headers &lt;HTTP/2 Headers Object&gt; header对象</li>
-<li>flags <number> 相关的数字标志</number></li>
-<li>rawHeaders <Array> 一个数组，其中包含原始标头名称和它们各自的值。<br>当与服务器相关的Http2Session触发’stream’事件时，就会触发’stream’事件。可以查看Http2Session的’stream’事件</Array></li>
+<li>flags <number> 相关的数字标志</li>
+<li>rawHeaders <Array> 一个数组，其中包含原始标头名称和它们各自的值。<br>当与服务器相关的Http2Session触发’stream’事件时，就会触发’stream’事件。可以查看Http2Session的’stream’事件</li>
 </ul>
 <p>server.updateSettings([settings])</p>
 <ul>
@@ -485,7 +485,7 @@ HTTP/1规范禁止trailers包含HTTP/2伪报头字段(例如:’:method’， �
 <p>http2.getPackedSettings([settings])</p>
 <ul>
 <li>settings &lt;HTTP/2 Settings Object&gt;</li>
-<li>Returns: <Buffer><br>返回一个Buffer实例，该实例包含HTTP/2规范中指定的给定HTTP/2设置的序列化表示。这将用于HTTP2-Settings报头字段。<br>与http2.getUnpackedSettings(buf)作用相反</Buffer></li>
+<li>Returns: <Buffer><br>返回一个Buffer实例，该实例包含HTTP/2规范中指定的给定HTTP/2设置的序列化表示。这将用于HTTP2-Settings报头字段。<br>与http2.getUnpackedSettings(buf)作用相反</li>
 </ul>
 <p>Headers object<br>头文件在JavaScript对象上表示为own-properties。属性键将被序列化为小写。属性值应该是字符串(如果不是，它们将被强制转换为字符串)或字符串数组(以便每个报头字段发送多个值)。</p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> headers = &#123;</span><br><span class="line">  <span class="string">&#x27;:status&#x27;</span>: <span class="string">&#x27;200&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;content-type&#x27;</span>: <span class="string">&#x27;text-plain&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;ABC&#x27;</span>: [<span class="string">&#x27;has&#x27;</span>, <span class="string">&#x27;more&#x27;</span>, <span class="string">&#x27;than&#x27;</span>, <span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;value&#x27;</span>],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">stream.respond(headers);</span><br></pre></td></tr></table></figure>
@@ -516,26 +516,26 @@ HTTP/1规范禁止trailers包含HTTP/2伪报头字段(例如:’:method’， �
 <p>new Agent([options])</p>
 <ul>
 <li>options <Object> 要在代理上设置的一组可配置选项。可以具有与http.Agent(options)相同的字段。还有：<ul>
-<li>maxCachedSessions <number> TLS缓存的最大会话数。使用0禁用TLS会话缓存。默认值:100。</number></li>
-<li>servername <string> 服务器名指示要发送到服务器的扩展名的值。使用空字符串”禁用发送扩展名。Default:目标服务器的主机名，除非目标服务器是使用IP地址指定的，在这种情况下，默认为’’(无扩展名)。</string></li>
+<li>maxCachedSessions <number> TLS缓存的最大会话数。使用0禁用TLS会话缓存。默认值:100。</li>
+<li>servername <string> 服务器名指示要发送到服务器的扩展名的值。使用空字符串”禁用发送扩展名。Default:目标服务器的主机名，除非目标服务器是使用IP地址指定的，在这种情况下，默认为’’(无扩展名)。</li>
 </ul>
-</Object></li>
+</li>
 </ul>
 <p>Event: ‘keylog’</p>
 <ul>
-<li>line <Buffer> ASCII文本行，NSS SSLKEYLOGFILE格式。</Buffer></li>
+<li>line <Buffer> ASCII文本行，NSS SSLKEYLOGFILE格式。</li>
 <li>tlsSocket &lt;tls.TLSSocket&gt; 生成的tls.TLSSocket实例<br>keylog事件在此代理管理的连接生成密钥材料或接收密钥材料时触发(通常在握手完成之前，但不一定)。可以存储此密钥材料以进行调试，因为它允许对捕获的TLS流量进行解密。每个socket可能会触发多次。</li>
 </ul>
 <p>https.request(options[, callback])<br>https.request(url[, options][, callback])</p>
 <ul>
-<li>url <string> | <URL></URL></string></li>
+<li>url <string> | <URL></li>
 <li>options <Object> | <string> | <URL> 与http.request()选项一致, 存在如下默认值差异:<ul>
 <li>protocol Default: ‘https:’</li>
 <li>port Default: 443</li>
 <li>agent Default: https.globalAgent</li>
 </ul>
-</URL></string></Object></li>
-<li>callback <Function></Function></li>
+</li>
+<li>callback <Function></li>
 <li>Returns: &lt;http.ClientRequest&gt;<br>以下来自tls.connect()的额外属性也可以添加到options中：ca, cert, ciphers, clientCertEngine, crl, dhparam, ecdhCurve, honorCipherOrder, key, passphrase, pfx, rejectUnauthorized, secureOptions, secureProtocol, servername, sessionIdContext, highWaterMark.<br>options可以是一个对象、一个字符串或者一个URL对象。如果options是字符串，会自动使用new URL()解析。如果是一个URL对象，会自动转换为一个普通的options对象。<br>https.request()返回一个http.ClientRequest类的实例。 ClientRequest实例是一个可写流。如果需要使用POST请求上传文件，可以写入ClientRequest的对象中。</li>
 </ul>
 

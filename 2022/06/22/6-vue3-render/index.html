@@ -30,16 +30,16 @@
 <meta property="og:site_name" content="Sun with no word">
 <meta property="og:description" content="渲染流程(1)创建一个vue实例 -&gt; 初始化实例（包括需要相关事件与生命周期函数等）(2)调用beforeCreate(3)初始化注入，包括data、method等添加到实例对象(4)实例创建完成，调用created(5)有el挂载，使用template替换；无挂载，使用mount自动挂载(6)有template，进行编译，使其成为render函数(7)（1）有template，使用模板构">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//vue3_render.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//render.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//render_node1.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//render_node2.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//render_function.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/06/22/6-vue3-render/vue3_render.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/06/22/6-vue3-render/render.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/06/22/6-vue3-render/render_node1.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/06/22/6-vue3-render/render_node2.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/06/22/6-vue3-render/render_function.png">
 <meta property="article:published_time" content="2022-06-22T14:12:51.000Z">
 <meta property="article:modified_time" content="2023-08-03T02:59:03.735Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sunjinkang.github.io/.io//vue3_render.png">
+<meta name="twitter:image" content="https://sunjinkang.github.io/2022/06/22/6-vue3-render/vue3_render.png">
 
 
 <link rel="canonical" href="https://sunjinkang.github.io/2022/06/22/6-vue3-render/">
@@ -94,7 +94,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
   </ul>
 </nav>
 
@@ -258,11 +258,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="渲染流程"><a href="#渲染流程" class="headerlink" title="渲染流程"></a>渲染流程</h2><p><img src="/.io//vue3_render.png" alt="vue3_render"><br>(1)创建一个vue实例 -&gt; 初始化实例（包括需要相关事件与生命周期函数等）<br>(2)调用beforeCreate<br>(3)初始化注入，包括data、method等添加到实例对象<br>(4)实例创建完成，调用created<br>(5)有el挂载，使用template替换；无挂载，使用mount自动挂载<br>(6)有template，进行编译，使其成为render函数<br>(7)（1）有template，使用模板构建抽象语法树；（2）通过数据获取元素的outerHTML属性值即元素结构的字符串形式构建HTML模板<br>(8)调用beforeMount（vue实例挂载在虚拟DOM上）<br>(9)生成HTML元素节点，替换页面原有的挂载节点（页面渲染）<br>(10)调用mounted<br>– （1）数据变更，即将重新渲染<br>– （2）调用beforeUpdate<br>– （3）进行虚拟DOM和真实DOM对比，进行patch<br>– （4）渲染完成，调用updated<br>(11)实例销毁之前调用beforeUnmount<br>(12)实例销毁，vm.$destroy<br>(13)销毁后调用unmounted</p>
+        <h2 id="渲染流程"><a href="#渲染流程" class="headerlink" title="渲染流程"></a>渲染流程</h2><p><img src="vue3_render.png" alt="vue3_render"><br>(1)创建一个vue实例 -&gt; 初始化实例（包括需要相关事件与生命周期函数等）<br>(2)调用beforeCreate<br>(3)初始化注入，包括data、method等添加到实例对象<br>(4)实例创建完成，调用created<br>(5)有el挂载，使用template替换；无挂载，使用mount自动挂载<br>(6)有template，进行编译，使其成为render函数<br>(7)（1）有template，使用模板构建抽象语法树；（2）通过数据获取元素的outerHTML属性值即元素结构的字符串形式构建HTML模板<br>(8)调用beforeMount（vue实例挂载在虚拟DOM上）<br>(9)生成HTML元素节点，替换页面原有的挂载节点（页面渲染）<br>(10)调用mounted<br>– （1）数据变更，即将重新渲染<br>– （2）调用beforeUpdate<br>– （3）进行虚拟DOM和真实DOM对比，进行patch<br>– （4）渲染完成，调用updated<br>(11)实例销毁之前调用beforeUnmount<br>(12)实例销毁，vm.$destroy<br>(13)销毁后调用unmounted</p>
 <span id="more"></span>
 
-<h2 id="render函数"><a href="#render函数" class="headerlink" title="render函数"></a>render函数</h2><p><img src="/.io//render.png" alt="render"><br>(1)首先会判断Vnode是否存在，如果不存在，则调用unmount函数，进行组件的卸载<br>(2)否则调用patch函数，对组件进行patch（PS: patch是一个递归的过程）<br>(3)patch 结束后，会调用flushPostFlushCbs函数冲刷任务池<br>(4)最后更新容器上的Vnode<br>注：patch函数的主要职责就是去判断Vnode的节点类型（打上patchFlag标志），然后调用对应类型的Vnode处理方式，进行更细致的patch（最后进行render渲染）</p>
-<h2 id="patch函数"><a href="#patch函数" class="headerlink" title="patch函数"></a>patch函数</h2><p><img src="/.io//render_node1.png" alt="render_node1"><br><img src="/.io//render_node2.png" alt="render_node2"><br><img src="/.io//render_function.png" alt="render_function"><br>注：patch依据不同节点类型，执行不同的处理函数，包括：Text、Comment、Static、Fragment等<br>(1)n1 与 n2 是待比较的两个节点，n1 为旧节点，n2 为新节点<br>(2)container 是新节点的容器<br>(3)anchor 是一个锚点，用来标识当我们对新旧节点做增删或移动等操作时，以哪个节点为参照物<br>(4)optimized 参数是是否开启优化模式的标识</p>
+<h2 id="render函数"><a href="#render函数" class="headerlink" title="render函数"></a>render函数</h2><p><img src="render.png" alt="render"><br>(1)首先会判断Vnode是否存在，如果不存在，则调用unmount函数，进行组件的卸载<br>(2)否则调用patch函数，对组件进行patch（PS: patch是一个递归的过程）<br>(3)patch 结束后，会调用flushPostFlushCbs函数冲刷任务池<br>(4)最后更新容器上的Vnode<br>注：patch函数的主要职责就是去判断Vnode的节点类型（打上patchFlag标志），然后调用对应类型的Vnode处理方式，进行更细致的patch（最后进行render渲染）</p>
+<h2 id="patch函数"><a href="#patch函数" class="headerlink" title="patch函数"></a>patch函数</h2><p><img src="render_node1.png" alt="render_node1"><br><img src="render_node2.png" alt="render_node2"><br><img src="render_function.png" alt="render_function"><br>注：patch依据不同节点类型，执行不同的处理函数，包括：Text、Comment、Static、Fragment等<br>(1)n1 与 n2 是待比较的两个节点，n1 为旧节点，n2 为新节点<br>(2)container 是新节点的容器<br>(3)anchor 是一个锚点，用来标识当我们对新旧节点做增删或移动等操作时，以哪个节点为参照物<br>(4)optimized 参数是是否开启优化模式的标识</p>
 <h2 id="卸载组件"><a href="#卸载组件" class="headerlink" title="卸载组件"></a>卸载组件</h2><p>如果调用render函数时没有传Vnode，则会调用unmount函数对组件进行卸载 ，卸载过程中：<br>(1)如果存在ref，会首先重置ref<br>(2)如果组件是经过Keep-Alive缓存的组件，会通过deactivate对组件进行卸载<br>(3)如果是组件类型Vnode，会通过unmountComponent函数对组件进行卸载</p>
 
     </div>

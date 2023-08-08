@@ -30,15 +30,15 @@
 <meta property="og:site_name" content="Sun with no word">
 <meta property="og:description" content="概念ArrayLike，也叫作类数组。是一种按照索引存储数据且具有length属性的对象。 特征1、具有length属性2、按照索引方式存储数据3、不具有数组的方法，如push、pop等">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//document.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//prototype_call.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//slice_call.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//array_from.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/08/04/18-fake-array/document.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/08/04/18-fake-array/prototype_call.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/08/04/18-fake-array/slice_call.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/08/04/18-fake-array/array_from.png">
 <meta property="article:published_time" content="2022-08-04T02:57:14.000Z">
 <meta property="article:modified_time" content="2023-08-03T03:01:05.993Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sunjinkang.github.io/.io//document.png">
+<meta name="twitter:image" content="https://sunjinkang.github.io/2022/08/04/18-fake-array/document.png">
 
 
 <link rel="canonical" href="https://sunjinkang.github.io/2022/08/04/18-fake-array/">
@@ -93,7 +93,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
   </ul>
 </nav>
 
@@ -258,7 +258,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>ArrayLike，也叫作类数组。是一种按照索引存储数据且具有length属性的对象。</p>
-<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><p>1、具有length属性<br>2、按照索引方式存储数据<br>3、不具有数组的方法，如push、pop等<br><img src="/.io//document.png" alt="document获取的伪数组"></p>
+<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><p>1、具有length属性<br>2、按照索引方式存储数据<br>3、不具有数组的方法，如push、pop等<br><img src="document.png" alt="document获取的伪数组"></p>
 <span id="more"></span>
 
 <h4 id="有哪些常见的伪数组"><a href="#有哪些常见的伪数组" class="headerlink" title="有哪些常见的伪数组"></a>有哪些常见的伪数组</h4><p>1、function的arguments对象<br>2、document.getElementsByTagName、document.getElementsByClassName等document方法获取的NodeList对象<br>3、上传文件是选择的file对象<br>4、自定义的某些对象</p>
@@ -267,7 +267,7 @@
 <p>2、instanceof</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fakeArray表示伪数组</span></span><br><span class="line"><span class="comment">// array 表示正常数组</span></span><br><span class="line">fakeArray <span class="keyword">instanceof</span> <span class="title class_">Array</span>; <span class="comment">// false</span></span><br><span class="line">array <span class="keyword">instanceof</span> <span class="title class_">Array</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="将数组转为真正数组的方法"><a href="#将数组转为真正数组的方法" class="headerlink" title="将数组转为真正数组的方法"></a>将数组转为真正数组的方法</h4><p>1、使用Array.prototype.slice.call()<br><img src="/.io//prototype_call.png" alt="Array.prototype.slice.call转换"><br>2、使用[].slice.call()<br><img src="/.io//slice_call.png" alt="slice.call转换"><br>3、使用Array.from()<br><img src="/.io//array_from.png" alt="array.from转换"></p>
+<h4 id="将数组转为真正数组的方法"><a href="#将数组转为真正数组的方法" class="headerlink" title="将数组转为真正数组的方法"></a>将数组转为真正数组的方法</h4><p>1、使用Array.prototype.slice.call()<br><img src="prototype_call.png" alt="Array.prototype.slice.call转换"><br>2、使用[].slice.call()<br><img src="slice_call.png" alt="slice.call转换"><br>3、使用Array.from()<br><img src="array_from.png" alt="array.from转换"></p>
 
     </div>
 

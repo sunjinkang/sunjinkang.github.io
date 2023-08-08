@@ -30,12 +30,12 @@
 <meta property="og:site_name" content="Sun with no word">
 <meta property="og:description" content="什么是尾调用？某个函数的最后一步调用另一个函数 1234567891011121314151617181920212223242526function call1(a) &amp;#123; return call2(a);&amp;#125;&#x2F;&#x2F; 以下三种情况不属于尾调用！！！&#x2F;&#x2F; 函数调用后还有其他操作function call1(a) &amp;#123; const x &#x3D; call2(a); return x;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//call-stack.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/10/17/40-tail-call/call-stack.png">
 <meta property="article:published_time" content="2022-10-17T02:26:13.000Z">
-<meta property="article:modified_time" content="2023-08-03T03:04:05.710Z">
+<meta property="article:modified_time" content="2023-08-08T02:52:54.022Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sunjinkang.github.io/.io//call-stack.png">
+<meta name="twitter:image" content="https://sunjinkang.github.io/2022/10/17/40-tail-call/call-stack.png">
 
 
 <link rel="canonical" href="https://sunjinkang.github.io/2022/10/17/40-tail-call/">
@@ -90,7 +90,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
   </ul>
 </nav>
 
@@ -226,7 +226,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-08-03 11:04:05" itemprop="dateModified" datetime="2023-08-03T11:04:05+08:00">2023-08-03</time>
+      <time title="修改时间：2023-08-08 10:52:54" itemprop="dateModified" datetime="2023-08-08T10:52:54+08:00">2023-08-08</time>
     </span>
 
   
@@ -259,7 +259,7 @@
 <span id="more"></span>
 <h6 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h6><p><em>注意：尾调用优化是否方便可行取决于运行环境对此类优化的支持度</em></p>
 <p>函数调用会在内存中形成一个‘调用记录’，又称为‘调用帧’。用来保存调用位置和内存变量等信息。如果A函数内部调用B函数，在A的调用记录上，会生成一个B的调用记录，等到B运行结束，将结果返回给A，B的调用记录才会消失。如果B的内部还调用C，那么在B上面会形成一个C的调用记录，以此类推。所有的调用记录，形成了一个‘调用栈’(call stack)。</p>
-<p><img src="/.io//call-stack.png" alt="call-stack"></p>
+<p><img src="call-stack.png" alt="call-stack"></p>
 <p>但是，尾调用由于是函数调用的最后一步操作，所以不需要保存外部函数的调用记录，因为调用位置、内部变量等信息都不会再用到，只要直接用内层函数的调用记录，取代外层函数调用记录就可以了。所以，如果所有函数都是尾调用，那么每次执行的时候，只需要记录一项调用记录，从而节省大量内存，即‘尾调用优化’。</p>
 <p><em>注意：只有不再用到外层函数的内部变量，内层函数的调用帧才会取代外层函数的调用帧，否则就无法进行‘尾调用优化’</em></p>
 <h6 id="尾递归"><a href="#尾递归" class="headerlink" title="尾递归"></a>尾递归</h6><p>函数调用自身，称为递归。如果尾调用自身，就称为尾递归。</p>

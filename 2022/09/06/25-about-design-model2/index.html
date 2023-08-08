@@ -30,17 +30,17 @@
 <meta property="og:site_name" content="Sun with no word">
 <meta property="og:description" content="结构型设计模式结构型设计模式关注于如何将类或对象组合成更大、更复杂的结构，以简化设计 外观模式外观模式(Facade):为一组复杂的子系统接口提供一个更高级的统一接口，通过这个接口使得对子系统接口的访问更容易。在JavaScript中有时也会用于对底层结构兼容性做统一封装来简化用户使用">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//out-look.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//station-culculate.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//decorator.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//bridge1.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//bridge2.png">
-<meta property="og:image" content="https://sunjinkang.github.io/.io//bridge3.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/09/06/25-about-design-model2/out-look.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/09/06/25-about-design-model2/station-culculate.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/09/06/25-about-design-model2/decorator.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/09/06/25-about-design-model2/bridge1.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/09/06/25-about-design-model2/bridge2.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2022/09/06/25-about-design-model2/bridge3.png">
 <meta property="article:published_time" content="2022-09-06T07:11:48.000Z">
 <meta property="article:modified_time" content="2023-08-03T03:02:00.842Z">
 <meta property="article:author" content="Sun Jinkang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sunjinkang.github.io/.io//out-look.png">
+<meta name="twitter:image" content="https://sunjinkang.github.io/2022/09/06/25-about-design-model2/out-look.png">
 
 
 <link rel="canonical" href="https://sunjinkang.github.io/2022/09/06/25-about-design-model2/">
@@ -95,7 +95,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
   </ul>
 </nav>
 
@@ -262,18 +262,18 @@
         <h4 id="结构型设计模式"><a href="#结构型设计模式" class="headerlink" title="结构型设计模式"></a>结构型设计模式</h4><p>结构型设计模式关注于如何将类或对象组合成更大、更复杂的结构，以简化设计</p>
 <h6 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h6><p>外观模式(Facade):为一组复杂的子系统接口提供一个更高级的统一接口，通过这个接口使得对子系统接口的访问更容易。在JavaScript中有时也会用于对底层结构兼容性做统一封装来简化用户使用</p>
 <span id="more"></span>
-<p>多用于兼容模式<br><img src="/.io//out-look.png" alt="out-look"></p>
+<p>多用于兼容模式<br><img src="out-look.png" alt="out-look"></p>
 <h6 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h6><p>适配器模式(Adapter):将一个类(对象)的接口(方法或者属性)转化成另外一个接口,以满足用户需求，使类(对象)之间接口的不兼容问题通过适配器得以解决</p>
 <p>(1)适配异类框架<br>(2)参数适配器：通常是以一个参数对象方式传入<br>(3)数据适配<br>比如一个数组，每个元素代表不同意义，数据结构语义不好，将其适配为一个对象等<br>(4)服务端数据适配<br>获取接口的数据，先做一个适配，再使用统一的处理方法</p>
 <h6 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h6><p>代理模式(Proxy):由于一个对象不能直接引用另一个对象，所以需要通过代理对象在这两个对象之间起到中介的作用</p>
-<p><strong>代理对象</strong><br>(1)img之类的标签通过src属性可以向其他域下的服务器发送请求<br>缺点：请求是get请求，且是单向的，不会有响应数据<br>示例：站长统计<br><img src="/.io//station-culculate.png" alt="station-culculate"></p>
+<p><strong>代理对象</strong><br>(1)img之类的标签通过src属性可以向其他域下的服务器发送请求<br>缺点：请求是get请求，且是单向的，不会有响应数据<br>示例：站长统计<br><img src="station-culculate.png" alt="station-culculate"></p>
 <p>(2)JSONP<br>通过script标签<br>需要其他域下的服务端配合前端做出针对处理</p>
 <p>(3)代理模板<br>不同域之间相互调用对方的页面是有限制的，那么自己域中的两个页面相互之间的调用是可以的，即代理页面B调用被代理的页面A中对象的方式是可以的。那么要实现这种方式我们只需要在被访问的域中，请求返回的Header重定向到代理页面，并在代理页面中处理被代理的页面A</p>
-<h6 id="装修者模式"><a href="#装修者模式" class="headerlink" title="装修者模式"></a>装修者模式</h6><p>装饰者模式(Decorator):在不改变原对象的基础上，通过对其进行包装拓展(添加属性或者方法)使原有对象可以满足用户的更复杂需求<br><img src="/.io//decorator.png" alt="decorator"></p>
+<h6 id="装修者模式"><a href="#装修者模式" class="headerlink" title="装修者模式"></a>装修者模式</h6><p>装饰者模式(Decorator):在不改变原对象的基础上，通过对其进行包装拓展(添加属性或者方法)使原有对象可以满足用户的更复杂需求<br><img src="decorator.png" alt="decorator"></p>
 <p><strong>适配器与装修者的区别</strong><br>适配器方法是对原有对象适配，添加的方法与原有方法功能上大致相似；使用适配器时新增的方法是要调用原来的方法，要了解原有方法实现的具体细节<br>装饰者提供的方法与原来的方法功能项是有一定区别的；不需要了解对象原有的功能，并且对象原有的方法照样可以原封不动地使用</p>
 <h6 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h6><p>桥接模式(Bridge):在系统沿着多个维度变化的同时，又不增加其复杂度并已达到解耦</p>
 <p>先抽象提取共用部分，然后将实现与抽象通过桥接方法链接在一起，来实现解耦的作用</p>
-<p><img src="/.io//bridge1.png" alt="bridge1"><br><img src="/.io//bridge2.png" alt="bridge2"><br><img src="/.io//bridge3.png" alt="bridge3"></p>
+<p><img src="bridge1.png" alt="bridge1"><br><img src="bridge2.png" alt="bridge2"><br><img src="bridge3.png" alt="bridge3"></p>
 <p>桥接模式最主要的特点即是将实现层(如元素绑定的事件)与抽象层(如修饰页面UI逻辑)解耦分离，使两部分可以独立变化</p>
 <h6 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h6><p>组合模式(Composite):又称部分-整体模式，将对象组合成树形结构以表示“部分整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</p>
 <p>组合模式常用语创建表单。</p>

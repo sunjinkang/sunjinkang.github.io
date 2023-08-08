@@ -92,7 +92,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
   </ul>
 </nav>
 
@@ -233,7 +233,7 @@
 <p><strong>模块作用域</strong><br>__dirname</p>
 <ul>
 <li><string>
-当前模块的目录名。 这与 __filename 的 path.dirname() 相同。</string></li>
+当前模块的目录名。 这与 __filename 的 path.dirname() 相同。</li>
 </ul>
 <p>示例：从 /Users/mjr 运行 node example.js</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(__dirname);</span><br><span class="line"><span class="regexp">//</span> 打印: <span class="regexp">/Users/m</span>jr</span><br><span class="line">console.log(path.dirname(__filename));</span><br><span class="line"><span class="regexp">//</span> 打印: <span class="regexp">/Users/m</span>jr</span><br></pre></td></tr></table></figure>
@@ -242,7 +242,7 @@
 <ul>
 <li><string>
 当前模块的文件名。 这是当前模块文件的已解析符号链接的绝对路径。
-对于主程序，这不一定与命令行中使用的文件名相同</string></li>
+对于主程序，这不一定与命令行中使用的文件名相同</li>
 </ul>
 <p>示例：从 /Users/mjr 运行 node example.js</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(__filename);</span><br><span class="line"><span class="regexp">//</span> 打印: <span class="regexp">/Users/m</span>jr/example.js</span><br><span class="line">console.log(__dirname);</span><br><span class="line"><span class="regexp">//</span> 打印: <span class="regexp">/Users/m</span>jr</span><br></pre></td></tr></table></figure>
@@ -251,16 +251,16 @@
 <ul>
 <li><Object>
 模块在需要时缓存在此对象中。 通过从此对象中删除键值，下一次 require 将重新加载模块。 这不适用于原生插件，因为重新加载会导致错误。
-添加或替换条目也是可能的。 在本地模块之前检查此缓存，如果将匹配本地模块的名称添加到缓存中，则只有 node: 前缀的 require 调用将接收本地模块。 小心使用！</Object></li>
+添加或替换条目也是可能的。 在本地模块之前检查此缓存，如果将匹配本地模块的名称添加到缓存中，则只有 node: 前缀的 require 调用将接收本地模块。 小心使用！</li>
 </ul>
 <p>require.main</p>
 <ul>
-<li><module> | <undefined><br>Module 对象代表 Node.js 进程启动时加载的入口脚本，如果程序的入口点不是 CommonJS 模块，则为 undefined。</undefined></module></li>
+<li><module> | <undefined><br>Module 对象代表 Node.js 进程启动时加载的入口脚本，如果程序的入口点不是 CommonJS 模块，则为 undefined。</li>
 </ul>
 <p>module.path</p>
 <ul>
 <li><string>
-模块的目录名称。 这通常与 module.id 的 path.dirname() 相同。</string></li>
+模块的目录名称。 这通常与 module.id 的 path.dirname() 相同。</li>
 </ul>
 <p>module.paths</p>
 <ul>

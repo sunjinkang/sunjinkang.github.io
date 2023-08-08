@@ -91,7 +91,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fa fa-archive fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
   </ul>
 </nav>
 
@@ -207,13 +207,13 @@
 <p>new crypto.Certificate()#<br>可以使用 new 关键字或者调用 crypto.Certificate() 方法创建 Certificate 类的实例:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> cert1 = <span class="keyword">new</span> crypto.<span class="title class_">Certificate</span>();</span><br><span class="line"><span class="keyword">const</span> cert2 = crypto.<span class="title class_">Certificate</span>();</span><br></pre></td></tr></table></figure>
 
-<p>certificate.exportChallenge(spkac)<br>spkac <string> | <Buffer> | <TypedArray> | <DataView><br>返回 <Buffer> 返回 spkac 数据结构的 challenge 部分，spkac 包含一个公钥和一个 challange。</Buffer></DataView></TypedArray></Buffer></string></p>
+<p>certificate.exportChallenge(spkac)<br>spkac <string> | <Buffer> | <TypedArray> | <DataView><br>返回 <Buffer> 返回 spkac 数据结构的 challenge 部分，spkac 包含一个公钥和一个 challange。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cert = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>).<span class="title class_">Certificate</span>();</span><br><span class="line"><span class="keyword">const</span> spkac = <span class="title function_">getSpkacSomehow</span>();<span class="comment">// 生成过程省略了，不存在这个函数，只是一种象征意义</span></span><br><span class="line"><span class="keyword">const</span> challenge = cert.<span class="title function_">exportChallenge</span>(spkac);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(challenge.<span class="title function_">toString</span>(<span class="string">&#x27;utf8&#x27;</span>));</span><br><span class="line"><span class="comment">// Prints: the challenge as a UTF8 string</span></span><br></pre></td></tr></table></figure>
 
-<p>certificate.exportPublicKey(spkac)<br>spkac <string> | <Buffer> | <TypedArray> | <DataView><br>返回 <Buffer> 数据结构的公钥部分，spkac 包含一个公钥和一个 challange。</Buffer></DataView></TypedArray></Buffer></string></p>
+<p>certificate.exportPublicKey(spkac)<br>spkac <string> | <Buffer> | <TypedArray> | <DataView><br>返回 <Buffer> 数据结构的公钥部分，spkac 包含一个公钥和一个 challange。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cert = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>).<span class="title class_">Certificate</span>();</span><br><span class="line"><span class="keyword">const</span> spkac = <span class="title function_">getSpkacSomehow</span>();<span class="comment">// 生成过程省略了，不存在这个函数，只是一种象征意义</span></span><br><span class="line"><span class="keyword">const</span> publicKey = cert.<span class="title function_">exportPublicKey</span>(spkac);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(publicKey);</span><br><span class="line"><span class="comment">// Prints: the public key as &lt;Buffer ...&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>certificate.verifySpkac(spkac)<br>spkac <Buffer> | <TypedArray> | <DataView><br>返回 <boolean> 如果 spkac 数据结构是有效的返回 true，否则返回 false。</boolean></DataView></TypedArray></Buffer></p>
+<p>certificate.verifySpkac(spkac)<br>spkac <Buffer> | <TypedArray> | <DataView><br>返回 <boolean> 如果 spkac 数据结构是有效的返回 true，否则返回 false。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cert = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>).<span class="title class_">Certificate</span>();</span><br><span class="line"><span class="keyword">const</span> spkac = <span class="title function_">getSpkacSomehow</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(cert.<span class="title function_">verifySpkac</span>(<span class="title class_">Buffer</span>.<span class="title function_">from</span>(spkac)));</span><br><span class="line"><span class="comment">// Prints: true 或者 false</span></span><br></pre></td></tr></table></figure>
 
 <h6 id="Class-Cipher"><a href="#Class-Cipher" class="headerlink" title="Class: Cipher"></a>Class: Cipher</h6><p>Cipher类的实例用于加密数据。这个类可以用在以下两种方法中的一种:</p>
@@ -221,69 +221,69 @@
 <li>作为stream，既可读又可写，未加密数据的编写是为了在可读的方面生成加密的数据</li>
 <li>使用cipher.update()和cipher.final()方法产生加密的数据。<br>crypto.createCipher()或crypto.createCipheriv()方法用于创建Cipher实例。Cipher对象不能直接使用new关键字创建。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用Cipher对象作为流</span></span><br><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> cipher = crypto.<span class="title function_">createCipher</span>(<span class="string">&#x27;aes192&#x27;</span>, <span class="string">&#x27;a password&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> encrypted = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">cipher.<span class="title function_">on</span>(<span class="string">&#x27;readable&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> data = cipher.<span class="title function_">read</span>();</span><br><span class="line">  <span class="keyword">if</span> (data)</span><br><span class="line">    encrypted += data.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">cipher.<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(encrypted);</span><br><span class="line">  <span class="comment">// Prints: ca981be48e90867604588e75d04feabb63cc007a8f8ad89b10616ed84d815504</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">cipher.<span class="title function_">write</span>(<span class="string">&#x27;some clear text data&#x27;</span>);</span><br><span class="line">cipher.<span class="title function_">end</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用Cipher和管道流</span></span><br><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> cipher = crypto.<span class="title function_">createCipher</span>(<span class="string">&#x27;aes192&#x27;</span>, <span class="string">&#x27;a password&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> input = fs.<span class="title function_">createReadStream</span>(<span class="string">&#x27;test.js&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> output = fs.<span class="title function_">createWriteStream</span>(<span class="string">&#x27;test.enc&#x27;</span>);</span><br><span class="line"></span><br><span class="line">input.<span class="title function_">pipe</span>(cipher).<span class="title function_">pipe</span>(output);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用cipher.update()和cipher.final()方法</span></span><br><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> cipher = crypto.<span class="title function_">createCipher</span>(<span class="string">&#x27;aes192&#x27;</span>, <span class="string">&#x27;a password&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> encrypted = cipher.<span class="title function_">update</span>(<span class="string">&#x27;some clear text data&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>, <span class="string">&#x27;hex&#x27;</span>);</span><br><span class="line">encrypted += cipher.<span class="title function_">final</span>(<span class="string">&#x27;hex&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(encrypted);</span><br><span class="line"><span class="comment">// Prints: ca981be48e90867604588e75d04feabb63cc007a8f8ad89b10616ed84d815504</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<p>cipher.final([outputEncoding])<br>outputEncoding <string><br>返回任何加密的内容。如果 outputEncoding 参数是’latin1’, ‘base64’ 或者 ‘hex’，返回字符串。 如果没有提供 outputEncoding，则返回Buffer。<br><em>一旦cipher.final()方法已被调用，Cipher 对象就不能再用于加密数据。如果试图再次调用cipher.final()，将会抛出一个错误。</em></string></p>
-<p>cipher.setAAD(buffer)<br>buffer <Buffer><br>返回<Cipher>方法链。<br>当使用经过验证的加密模式(目前只支持GCM)时，cipher.setAAD()方法设置用于additional authenticated data(附加验证的data(AAD))输入参数的值。<br><em>cipher.setAAD()法必须在cipher.update()之前调用。</em></Cipher></Buffer></p>
+<p>cipher.final([outputEncoding])<br>outputEncoding <string><br>返回任何加密的内容。如果 outputEncoding 参数是’latin1’, ‘base64’ 或者 ‘hex’，返回字符串。 如果没有提供 outputEncoding，则返回Buffer。<br><em>一旦cipher.final()方法已被调用，Cipher 对象就不能再用于加密数据。如果试图再次调用cipher.final()，将会抛出一个错误。</em></p>
+<p>cipher.setAAD(buffer)<br>buffer <Buffer><br>返回<Cipher>方法链。<br>当使用经过验证的加密模式(目前只支持GCM)时，cipher.setAAD()方法设置用于additional authenticated data(附加验证的data(AAD))输入参数的值。<br><em>cipher.setAAD()法必须在cipher.update()之前调用。</em></p>
 <p>cipher.getAuthTag()#<br>当使用经验证的加密模式时(目前只有GCM支持),cipher.getAuthTag()方法返回一个Buffer，此Buffer包含已从给定数据计算后的authentication tag。<br><em>cipher.getAuthTag()方法只能在使用cipher.final()方法完全加密后调用。</em></p>
-<p>cipher.setAutoPadding([autoPadding])<br>autoPadding <boolean> 默认为 true.<br>返回<Cipher>方法链。<br>当使用块加密算法时，Cipher类会自动添加padding到输入数据中，来适配相应块大小。可调用cipher.setAutoPadding(false)禁用默认padding。<br>当autoPadding是false时，整个输入数据的长度必须是cipher块大小的倍数，否则cipher.final()将抛出一个错误。 禁用自动填充对于非标准填充是有用的，例如使用0x0代替PKCS填充。<br><em>cipher.setAutoPadding()必须在cipher.final()之前被调用。</em></Cipher></boolean></p>
+<p>cipher.setAutoPadding([autoPadding])<br>autoPadding <boolean> 默认为 true.<br>返回<Cipher>方法链。<br>当使用块加密算法时，Cipher类会自动添加padding到输入数据中，来适配相应块大小。可调用cipher.setAutoPadding(false)禁用默认padding。<br>当autoPadding是false时，整个输入数据的长度必须是cipher块大小的倍数，否则cipher.final()将抛出一个错误。 禁用自动填充对于非标准填充是有用的，例如使用0x0代替PKCS填充。<br><em>cipher.setAutoPadding()必须在cipher.final()之前被调用。</em></p>
 <p>cipher.update(data[, inputEncoding][, outputEncoding])<br>用data更新密码。如果给出了inputEncoding的论证，它的值必须是’utf8’, ‘ascii’, 或者’latin1’，而data参数是使用指定编码的字符串。如果不给出inputEncoding的参数，则data必须是Buffer，TypedArray， 或者DataView。如果data是一个Buffer，TypedArray， 或者 DataView， 那么inputEncoding就被忽略了。<br>outputEncoding指定了加密数据的输出格式，可以是’latin1’， ‘base64’ 或者 ‘hex’。如果指定了outputEncoding，则返回使用指定编码的字符串。如果没有outputEncoding被提供，会返回Buffer。<br><em>cipher.update()方法可以用新数据多次调用，直到cipher.final()被调用。在cipher.final()之后调用cipher.update()将抛出错误。</em></p>
 <h6 id="Class-Decipher"><a href="#Class-Decipher" class="headerlink" title="Class: Decipher"></a>Class: Decipher</h6><p>Decipher类的实例用于解密数据。这个类可以用在以下两种方法中的一种:</p>
 <ul>
 <li>作为stream，既可读，又可写，加密数据的编写是为了在可读的方面生成未加密的数据</li>
 <li>使用decipher.update()和decipher.final()方法产生未加密的数据。<br>crypto.createDecipher()或crypto.createDecipheriv()的方法 用于创建Decipher实例。Decipher对象不能直接使用new关键字创建。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用Decipher对象作为流</span></span><br><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> decipher = crypto.<span class="title function_">createDecipher</span>(<span class="string">&#x27;aes192&#x27;</span>, <span class="string">&#x27;a password&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> decrypted = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">decipher.<span class="title function_">on</span>(<span class="string">&#x27;readable&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> data = decipher.<span class="title function_">read</span>();</span><br><span class="line">  <span class="keyword">if</span> (data)</span><br><span class="line">    decrypted += data.<span class="title function_">toString</span>(<span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">decipher.<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(decrypted);</span><br><span class="line">  <span class="comment">// Prints: some clear text data</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> encrypted =</span><br><span class="line">    <span class="string">&#x27;ca981be48e90867604588e75d04feabb63cc007a8f8ad89b10616ed84d815504&#x27;</span>;</span><br><span class="line">decipher.<span class="title function_">write</span>(encrypted, <span class="string">&#x27;hex&#x27;</span>);</span><br><span class="line">decipher.<span class="title function_">end</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用Decipher和管道流</span></span><br><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> decipher = crypto.<span class="title function_">createDecipher</span>(<span class="string">&#x27;aes192&#x27;</span>, <span class="string">&#x27;a password&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> input = fs.<span class="title function_">createReadStream</span>(<span class="string">&#x27;test.enc&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> output = fs.<span class="title function_">createWriteStream</span>(<span class="string">&#x27;test.js&#x27;</span>);</span><br><span class="line"></span><br><span class="line">input.<span class="title function_">pipe</span>(decipher).<span class="title function_">pipe</span>(output);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用decipher.update()和decipher.final()方法</span></span><br><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> decipher = crypto.<span class="title function_">createDecipher</span>(<span class="string">&#x27;aes192&#x27;</span>, <span class="string">&#x27;a password&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> encrypted =</span><br><span class="line">    <span class="string">&#x27;ca981be48e90867604588e75d04feabb63cc007a8f8ad89b10616ed84d815504&#x27;</span>;</span><br><span class="line"><span class="keyword">let</span> decrypted = decipher.<span class="title function_">update</span>(encrypted, <span class="string">&#x27;hex&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">decrypted += decipher.<span class="title function_">final</span>(<span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(decrypted);</span><br><span class="line"><span class="comment">// Prints: some clear text data</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<p>decipher.final([outputEncoding])<br>outputEncoding <string><br>返回任何剩余的解密内容。如果outputEncoding参数是’latin1’，’ascii’或’utf8’之一，则返回一个字符串。 如果未提供输出编码，则返回Buffer。<br><em>一旦调用了decipher.final()方法，Decipher对象就不能再用于解密数据。 试图不止一次调用decipher.final()会导致错误被抛出。</em></string></p>
-<p>decipher.setAAD(buffer)<br>buffer <Buffer> | <TypedArray> | <DataView><br>返回<cipher>的一个方法链。<br>当使用经过验证的加密模式（当前仅支持GCM）时，decipher.setAAD()方法会设置用于附加验证数据(AAD)输入参数的值。<br><em>decipher.setAAD() 必须在decipher.update()之前被调用。</em></cipher></DataView></TypedArray></Buffer></p>
-<p>decipher.setAuthTag(buffer)<br>buffer <Buffer> | <TypedArray> | <DataView><br>返回<cipher>的一个方法链。<br>When using an authenticated encryption mode (only GCM is currently supported), the decipher.setAuthTag() method is used to pass in the received authentication tag. If no tag is provided, or if the cipher text has been tampered with, decipher.final() will throw, indicating that the cipher text should be discarded due to failed authentication.<br>(当使用经过身份验证的加密模式(目前只支持GCM)时，使用decipher.setAuthTag()方法传入接收到的身份验证标记。如果没有提供标记，或者密文已经被篡改，则decipher.final()将抛出，表明由于身份验证失败，密文应该被丢弃。)<br><em>decipher.setAuthTag()必须在decipher.final()之前被调用。</em></cipher></DataView></TypedArray></Buffer></p>
+<p>decipher.final([outputEncoding])<br>outputEncoding <string><br>返回任何剩余的解密内容。如果outputEncoding参数是’latin1’，’ascii’或’utf8’之一，则返回一个字符串。 如果未提供输出编码，则返回Buffer。<br><em>一旦调用了decipher.final()方法，Decipher对象就不能再用于解密数据。 试图不止一次调用decipher.final()会导致错误被抛出。</em></p>
+<p>decipher.setAAD(buffer)<br>buffer <Buffer> | <TypedArray> | <DataView><br>返回<cipher>的一个方法链。<br>当使用经过验证的加密模式（当前仅支持GCM）时，decipher.setAAD()方法会设置用于附加验证数据(AAD)输入参数的值。<br><em>decipher.setAAD() 必须在decipher.update()之前被调用。</em></p>
+<p>decipher.setAuthTag(buffer)<br>buffer <Buffer> | <TypedArray> | <DataView><br>返回<cipher>的一个方法链。<br>When using an authenticated encryption mode (only GCM is currently supported), the decipher.setAuthTag() method is used to pass in the received authentication tag. If no tag is provided, or if the cipher text has been tampered with, decipher.final() will throw, indicating that the cipher text should be discarded due to failed authentication.<br>(当使用经过身份验证的加密模式(目前只支持GCM)时，使用decipher.setAuthTag()方法传入接收到的身份验证标记。如果没有提供标记，或者密文已经被篡改，则decipher.final()将抛出，表明由于身份验证失败，密文应该被丢弃。)<br><em>decipher.setAuthTag()必须在decipher.final()之前被调用。</em></p>
 <p>decipher.setAutoPadding([autoPadding])</p>
 <ul>
-<li>autoPadding <boolean> 默认为 true.</boolean></li>
-<li>返回<Cipher>方法链。<br>When data has been encrypted without standard block padding, calling decipher.setAutoPadding(false) will disable automatic padding to prevent decipher.final() from checking for and removing padding.<br>(当数据加密时没有标准块填充，调用decipher.setAutoPadding(false)将禁用自动填充，以防止decipher.final()检查和删除填充。)<br>Turning auto padding off will only work if the input data’s length is a multiple of the ciphers block size.<br>(关闭自动填充只有当输入数据的长度是密码块大小的倍数时才会工作。)</Cipher></li>
+<li>autoPadding <boolean> 默认为 true.</li>
+<li>返回<Cipher>方法链。<br>When data has been encrypted without standard block padding, calling decipher.setAutoPadding(false) will disable automatic padding to prevent decipher.final() from checking for and removing padding.<br>(当数据加密时没有标准块填充，调用decipher.setAutoPadding(false)将禁用自动填充，以防止decipher.final()检查和删除填充。)<br>Turning auto padding off will only work if the input data’s length is a multiple of the ciphers block size.<br>(关闭自动填充只有当输入数据的长度是密码块大小的倍数时才会工作。)</li>
 </ul>
 <p><em>decipher.setAutoPadding()必须在decipher.final()之前被调用。</em></p>
 <p>decipher.update(data[, inputEncoding][, outputEncoding])</p>
 <ul>
-<li>data <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>inputEncoding <string></string></li>
-<li>outputEncoding <string><br>使用新数据更新解密。如果给出inputEncoding参数，它的值必须是’latin1’, ‘base64’或’hex’中的一个，data参数是使用指定编码的字符串。如果未给出inputEncoding参数，则data必须是Buffer。如果data是Buffer，则忽略inputEncoding。<br>outputEncoding指定加密数据的输出格式，可以是’latin1’, ‘ascii’或’utf8’。如果指定了outputEncoding，则返回使用指定编码的字符串。如果未提供outputEncoding，则返回Buffer。<br>可以使用新数据多次调用decipher.update()方法，直到调用decipher.final()。在decipher.final()之后调用decipher.update()会导致抛出错误。</string></li>
+<li>data <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>inputEncoding <string></li>
+<li>outputEncoding <string><br>使用新数据更新解密。如果给出inputEncoding参数，它的值必须是’latin1’, ‘base64’或’hex’中的一个，data参数是使用指定编码的字符串。如果未给出inputEncoding参数，则data必须是Buffer。如果data是Buffer，则忽略inputEncoding。<br>outputEncoding指定加密数据的输出格式，可以是’latin1’, ‘ascii’或’utf8’。如果指定了outputEncoding，则返回使用指定编码的字符串。如果未提供outputEncoding，则返回Buffer。<br>可以使用新数据多次调用decipher.update()方法，直到调用decipher.final()。在decipher.final()之后调用decipher.update()会导致抛出错误。</li>
 </ul>
 <h6 id="Class-DiffieHellman"><a href="#Class-DiffieHellman" class="headerlink" title="Class: DiffieHellman"></a>Class: DiffieHellman</h6><p>DiffieHellman类是一个用来创建Diffie-Hellman键交换的工具。 DiffieHellman类的实例可以使用crypto.createDiffieHellman()方法。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> assert = <span class="built_in">require</span>(<span class="string">&#x27;assert&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Generate Alice&#x27;s keys...</span></span><br><span class="line"><span class="keyword">const</span> alice = crypto.<span class="title function_">createDiffieHellman</span>(<span class="number">2048</span>);</span><br><span class="line"><span class="keyword">const</span> aliceKey = alice.<span class="title function_">generateKeys</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Generate Bob&#x27;s keys...</span></span><br><span class="line"><span class="keyword">const</span> bob = crypto.<span class="title function_">createDiffieHellman</span>(alice.<span class="title function_">getPrime</span>(), alice.<span class="title function_">getGenerator</span>());</span><br><span class="line"><span class="keyword">const</span> bobKey = bob.<span class="title function_">generateKeys</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Exchange and generate the secret...</span></span><br><span class="line"><span class="keyword">const</span> aliceSecret = alice.<span class="title function_">computeSecret</span>(bobKey);</span><br><span class="line"><span class="keyword">const</span> bobSecret = bob.<span class="title function_">computeSecret</span>(aliceKey);</span><br><span class="line"></span><br><span class="line"><span class="comment">// OK</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(assert.<span class="title function_">strictEqual</span>(aliceSecret.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>), bobSecret.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>)));</span><br></pre></td></tr></table></figure>
 
 <p>diffieHellman.computeSecret(otherPublicKey[, inputEncoding][, outputEncoding])</p>
 <ul>
-<li>otherPublicKey <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>inputEncoding <string></string></li>
-<li>outputEncoding <string><br>Computes the shared secret using otherPublicKey as the other party’s public key and returns the computed shared secret. The supplied key is interpreted using the specified inputEncoding, and secret is encoded using specified outputEncoding. Encodings can be ‘latin1’, ‘hex’, or ‘base64’. If the inputEncoding is not provided, otherPublicKey is expected to be a Buffer, TypedArray, or DataView.<br>If outputEncoding is given a string is returned; otherwise, a Buffer is returned.<br>(使用otherPublicKey作为另一方的公钥计算共享密钥，并返回计算出的共享密钥。提供的key使用指定的inputEncoding进行解释，secret使用指定的outputEncoding进行编码。编码可以是’latin1’， ‘hex’或’base64’。如果inputEncoding未提供，otherPublicKey将被期望为Buffer、TypedArray或DataView。<br>如果给出outputEncoding，则返回一个字符串;否则，返回Buffer。)</string></li>
+<li>otherPublicKey <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>inputEncoding <string></li>
+<li>outputEncoding <string><br>Computes the shared secret using otherPublicKey as the other party’s public key and returns the computed shared secret. The supplied key is interpreted using the specified inputEncoding, and secret is encoded using specified outputEncoding. Encodings can be ‘latin1’, ‘hex’, or ‘base64’. If the inputEncoding is not provided, otherPublicKey is expected to be a Buffer, TypedArray, or DataView.<br>If outputEncoding is given a string is returned; otherwise, a Buffer is returned.<br>(使用otherPublicKey作为另一方的公钥计算共享密钥，并返回计算出的共享密钥。提供的key使用指定的inputEncoding进行解释，secret使用指定的outputEncoding进行编码。编码可以是’latin1’， ‘hex’或’base64’。如果inputEncoding未提供，otherPublicKey将被期望为Buffer、TypedArray或DataView。<br>如果给出outputEncoding，则返回一个字符串;否则，返回Buffer。)</li>
 </ul>
 <p>diffieHellman.generateKeys([encoding])</p>
 <ul>
-<li>encoding <string><br>Generates private and public Diffie-Hellman key values, and returns the public key in the specified encoding. This key should be transferred to the other party. Encoding can be ‘latin1’, ‘hex’, or ‘base64’. If encoding is provided a string is returned; otherwise a Buffer is returned.<br>(生成私有和公共的Diffie-Hellman密钥值，并返回指定编码的公钥。这把钥匙应该移交给对方。Encoding可以是’latin1’， ‘hex’或’base64’。如果提供了编码，则返回字符串;否则返回Buffer。)</string></li>
+<li>encoding <string><br>Generates private and public Diffie-Hellman key values, and returns the public key in the specified encoding. This key should be transferred to the other party. Encoding can be ‘latin1’, ‘hex’, or ‘base64’. If encoding is provided a string is returned; otherwise a Buffer is returned.<br>(生成私有和公共的Diffie-Hellman密钥值，并返回指定编码的公钥。这把钥匙应该移交给对方。Encoding可以是’latin1’， ‘hex’或’base64’。如果提供了编码，则返回字符串;否则返回Buffer。)</li>
 </ul>
 <p>diffieHellman.getGenerator([encoding])</p>
 <ul>
-<li>encoding <string><br>Returns the Diffie-Hellman generator in the specified encoding, which can be ‘latin1’, ‘hex’, or ‘base64’. If encoding is provided a string is returned; otherwise a Buffer is returned.<br>(返回指定编码的Diffie-Hellman生成器，可以是’latin1’、’hex’或’base64’。如果提供了编码，则返回字符串;否则返回Buffer。)</string></li>
+<li>encoding <string><br>Returns the Diffie-Hellman generator in the specified encoding, which can be ‘latin1’, ‘hex’, or ‘base64’. If encoding is provided a string is returned; otherwise a Buffer is returned.<br>(返回指定编码的Diffie-Hellman生成器，可以是’latin1’、’hex’或’base64’。如果提供了编码，则返回字符串;否则返回Buffer。)</li>
 </ul>
 <p>diffieHellman.getPrime([encoding])</p>
 <ul>
-<li>encoding <string><br>Returns the Diffie-Hellman prime in the specified encoding, which can be ‘latin1’, ‘hex’, or ‘base64’. If encoding is provided a string is returned; otherwise a Buffer is returned.<br>(返回指定编码的Diffie-Hellman素数，可以是’latin1’、’hex’或’base64’。如果提供了编码，则返回字符串;否则返回Buffer。)</string></li>
+<li>encoding <string><br>Returns the Diffie-Hellman prime in the specified encoding, which can be ‘latin1’, ‘hex’, or ‘base64’. If encoding is provided a string is returned; otherwise a Buffer is returned.<br>(返回指定编码的Diffie-Hellman素数，可以是’latin1’、’hex’或’base64’。如果提供了编码，则返回字符串;否则返回Buffer。)</li>
 </ul>
 <p>diffieHellman.getPrivateKey([encoding])</p>
 <ul>
-<li>encoding <string><br>Returns the Diffie-Hellman private key in the specified encoding, which can be ‘latin1’, ‘hex’, or ‘base64’. If encoding is provided a string is returned; otherwise a Buffer is returned.<br>(返回指定编码的Diffie-Hellman私钥，可以是’latin1’、’hex’或’base64’。如果提供了编码，则返回字符串;否则返回Buffer。)</string></li>
+<li>encoding <string><br>Returns the Diffie-Hellman private key in the specified encoding, which can be ‘latin1’, ‘hex’, or ‘base64’. If encoding is provided a string is returned; otherwise a Buffer is returned.<br>(返回指定编码的Diffie-Hellman私钥，可以是’latin1’、’hex’或’base64’。如果提供了编码，则返回字符串;否则返回Buffer。)</li>
 </ul>
 <p>diffieHellman.getPublicKey([encoding])</p>
 <ul>
-<li>encoding <string><br>Returns the Diffie-Hellman public key in the specified encoding, which can be ‘latin1’, ‘hex’, or ‘base64’. If encoding is provided a string is returned; otherwise a Buffer is returned.<br>(返回指定编码的Diffie-Hellman公钥，可以是’latin1’、’hex’或’base64’。如果提供了编码，则返回字符串;否则返回Buffer。)</string></li>
+<li>encoding <string><br>Returns the Diffie-Hellman public key in the specified encoding, which can be ‘latin1’, ‘hex’, or ‘base64’. If encoding is provided a string is returned; otherwise a Buffer is returned.<br>(返回指定编码的Diffie-Hellman公钥，可以是’latin1’、’hex’或’base64’。如果提供了编码，则返回字符串;否则返回Buffer。)</li>
 </ul>
 <p>diffieHellman.setPrivateKey(privateKey[, encoding])</p>
 <ul>
-<li>privateKey <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>encoding <string><br>Sets the Diffie-Hellman private key. If the encoding argument is provided and is either ‘latin1’, ‘hex’, or ‘base64’, privateKey is expected to be a string. If no encoding is provided, privateKey is expected to be a Buffer, TypedArray, or DataView.<br>(设置Diffie-Hellman私钥。如果encoding参数是’latin1’， ‘hex’或’base64’， privateKey将是一个字符串。如果没有提供编码，privateKey应该是Buffer、TypedArray或DataView。)</string></li>
+<li>privateKey <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>encoding <string><br>Sets the Diffie-Hellman private key. If the encoding argument is provided and is either ‘latin1’, ‘hex’, or ‘base64’, privateKey is expected to be a string. If no encoding is provided, privateKey is expected to be a Buffer, TypedArray, or DataView.<br>(设置Diffie-Hellman私钥。如果encoding参数是’latin1’， ‘hex’或’base64’， privateKey将是一个字符串。如果没有提供编码，privateKey应该是Buffer、TypedArray或DataView。)</li>
 </ul>
 <p>diffieHellman.setPublicKey(publicKey[, encoding])</p>
 <ul>
-<li>publicKey <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>encoding <string><br>Sets the Diffie-Hellman public key. If the encoding argument is provided and is either ‘latin1’, ‘hex’ or ‘base64’, publicKey is expected to be a string. If no encoding is provided, publicKey is expected to be a Buffer, TypedArray, or DataView.<br>(设置Diffie-Hellman公钥。如果encoding参数是’latin1’， ‘hex’或’base64’， publicKey将是一个字符串。如果没有提供编码，则publicKey应该是Buffer、TypedArray或DataView。)</string></li>
+<li>publicKey <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>encoding <string><br>Sets the Diffie-Hellman public key. If the encoding argument is provided and is either ‘latin1’, ‘hex’ or ‘base64’, publicKey is expected to be a string. If no encoding is provided, publicKey is expected to be a Buffer, TypedArray, or DataView.<br>(设置Diffie-Hellman公钥。如果encoding参数是’latin1’， ‘hex’或’base64’， publicKey将是一个字符串。如果没有提供编码，则publicKey应该是Buffer、TypedArray或DataView。)</li>
 </ul>
 <p>diffieHellman.verifyError<br>A bit field containing any warnings and/or errors resulting from a check performed during initialization of the DiffieHellman object.<br>The following values are valid for this property (as defined in constants module):<br>(一个位字段，包含在DiffieHellman对象初始化期间执行的检查所导致的任何警告和/或错误。<br>以下值对该属性有效(在constants模块中定义))</p>
 <ul>
@@ -298,15 +298,15 @@
 <p>ecdh.computeSecret(otherPublicKey[, inputEncoding][, outputEncoding])<br>作用参考diffieHellman.computeSecret</p>
 <p>ecdh.generateKeys([encoding[, format]])</p>
 <ul>
-<li>encoding <string></string></li>
-<li>format <string> Defaults to uncompressed.<br>Generates private and public EC Diffie-Hellman key values, and returns the public key in the specified format and encoding. This key should be transferred to the other party.<br>The format argument specifies point encoding and can be ‘compressed’ or ‘uncompressed’. If format is not specified, the point will be returned in ‘uncompressed’ format.<br>The encoding argument can be ‘latin1’, ‘hex’, or ‘base64’. If encoding is provided a string is returned; otherwise a Buffer is returned.<br>(生成私有和公共EC Diffie-Hellman key值，并返回指定格式和编码的公钥。这把钥匙应该移交给对方。<br>format参数指定点编码，可以是’compressed’或’uncompressed’。如果未指定format，则该点将以“未压缩”格式返回。<br>encoding参数可以是’latin1’， ‘hex’或’base64’。如果提供了编码，则返回字符串;否则返回Buffer。)</string></li>
+<li>encoding <string></li>
+<li>format <string> Defaults to uncompressed.<br>Generates private and public EC Diffie-Hellman key values, and returns the public key in the specified format and encoding. This key should be transferred to the other party.<br>The format argument specifies point encoding and can be ‘compressed’ or ‘uncompressed’. If format is not specified, the point will be returned in ‘uncompressed’ format.<br>The encoding argument can be ‘latin1’, ‘hex’, or ‘base64’. If encoding is provided a string is returned; otherwise a Buffer is returned.<br>(生成私有和公共EC Diffie-Hellman key值，并返回指定格式和编码的公钥。这把钥匙应该移交给对方。<br>format参数指定点编码，可以是’compressed’或’uncompressed’。如果未指定format，则该点将以“未压缩”格式返回。<br>encoding参数可以是’latin1’， ‘hex’或’base64’。如果提供了编码，则返回字符串;否则返回Buffer。)</li>
 </ul>
 <p>ecdh.getPrivateKey([encoding])<br>作用参考diffieHellman.getPrivateKey</p>
 <p>ecdh.getPublicKey([encoding][, format])<br>作用参考diffieHellman.getPublicKey、ecdh.generateKeys</p>
 <p>ecdh.setPrivateKey(privateKey[, encoding])</p>
 <ul>
-<li>privateKey <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>encoding <string><br>Sets the EC Diffie-Hellman private key. The encoding can be ‘latin1’, ‘hex’ or ‘base64’. If encoding is provided, privateKey is expected to be a string; otherwise privateKey is expected to be a Buffer, TypedArray, or DataView.<br>If privateKey is not valid for the curve specified when the ECDH object was created, an error is thrown. Upon setting the private key, the associated public point (key) is also generated and set in the ECDH object.<br>(设置EC Diffie-Hellman私钥。编码可以是’latin1’， ‘hex’或’base64’。如果提供了编码，privateKey应该是一个字符串;否则privateKey将被期望为Buffer, TypedArray或DataView。<br>如果privateKey对于创建ECDH对象时指定的曲线无效，则抛出错误。在设置私钥之后，还会生成相关的公共点(密钥)，并在ECDH对象中进行设置。)</string></li>
+<li>privateKey <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>encoding <string><br>Sets the EC Diffie-Hellman private key. The encoding can be ‘latin1’, ‘hex’ or ‘base64’. If encoding is provided, privateKey is expected to be a string; otherwise privateKey is expected to be a Buffer, TypedArray, or DataView.<br>If privateKey is not valid for the curve specified when the ECDH object was created, an error is thrown. Upon setting the private key, the associated public point (key) is also generated and set in the ECDH object.<br>(设置EC Diffie-Hellman私钥。编码可以是’latin1’， ‘hex’或’base64’。如果提供了编码，privateKey应该是一个字符串;否则privateKey将被期望为Buffer, TypedArray或DataView。<br>如果privateKey对于创建ECDH对象时指定的曲线无效，则抛出错误。在设置私钥之后，还会生成相关的公共点(密钥)，并在ECDH对象中进行设置。)</li>
 </ul>
 <h6 id="Class-Hash"><a href="#Class-Hash" class="headerlink" title="Class: Hash"></a>Class: Hash</h6><p>Hash类是用于创建数据哈希值的工具类。它能用以下方法使用：</p>
 <ul>
@@ -315,12 +315,12 @@
 </ul>
 <p>hash.digest([encoding])</p>
 <ul>
-<li>encoding <string><br>Calculates the digest of all of the data passed to be hashed (using the hash.update() method). The encoding can be ‘hex’, ‘latin1’ or ‘base64’. If encoding is provided a string will be returned; otherwise a Buffer is returned.<br>The Hash object can not be used again after hash.digest() method has been called. Multiple calls will cause an error to be thrown.<br>(计算传递给散列的所有数据的摘要(使用hash.update()方法)。编码可以是’hex’， ‘latin1’或’base64’。如果提供了编码，则返回一个字符串;否则返回Buffer。<br>Hash对象在调用Hash .digest()方法后不能再次使用。多次调用将导致抛出错误。)</string></li>
+<li>encoding <string><br>Calculates the digest of all of the data passed to be hashed (using the hash.update() method). The encoding can be ‘hex’, ‘latin1’ or ‘base64’. If encoding is provided a string will be returned; otherwise a Buffer is returned.<br>The Hash object can not be used again after hash.digest() method has been called. Multiple calls will cause an error to be thrown.<br>(计算传递给散列的所有数据的摘要(使用hash.update()方法)。编码可以是’hex’， ‘latin1’或’base64’。如果提供了编码，则返回一个字符串;否则返回Buffer。<br>Hash对象在调用Hash .digest()方法后不能再次使用。多次调用将导致抛出错误。)</li>
 </ul>
 <p>hash.update(data[, inputEncoding])</p>
 <ul>
-<li>data <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>inputEncoding <string><br>Updates the hash content with the given data, the encoding of which is given in inputEncoding and can be ‘utf8’, ‘ascii’ or ‘latin1’. If encoding is not provided, and the data is a string, an encoding of ‘utf8’ is enforced. If data is a Buffer, TypedArray, or DataView, then inputEncoding is ignored.<br>This can be called many times with new data as it is streamed.<br>(用给定的数据更新哈希内容，其编码在inputEncoding中给出，可以是’utf8’， ‘ascii’或’latin1’。如果没有提供编码，并且数据是字符串，则强制使用’utf8’编码。如果data是Buffer、TypedArray或DataView，则inputEncoding将被忽略。<br>在流化新数据时，可以多次调用这个函数。)</string></li>
+<li>data <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>inputEncoding <string><br>Updates the hash content with the given data, the encoding of which is given in inputEncoding and can be ‘utf8’, ‘ascii’ or ‘latin1’. If encoding is not provided, and the data is a string, an encoding of ‘utf8’ is enforced. If data is a Buffer, TypedArray, or DataView, then inputEncoding is ignored.<br>This can be called many times with new data as it is streamed.<br>(用给定的数据更新哈希内容，其编码在inputEncoding中给出，可以是’utf8’， ‘ascii’或’latin1’。如果没有提供编码，并且数据是字符串，则强制使用’utf8’编码。如果data是Buffer、TypedArray或DataView，则inputEncoding将被忽略。<br>在流化新数据时，可以多次调用这个函数。)</li>
 </ul>
 <h6 id="Class-Hmac"><a href="#Class-Hmac" class="headerlink" title="Class: Hmac"></a>Class: Hmac</h6><p>Hmac类是用于创建加密Hmac摘要的工具。它可以有两种用法:</p>
 <ul>
@@ -329,12 +329,12 @@
 </ul>
 <p>hmac.digest([encoding])</p>
 <ul>
-<li>encoding <string><br>Calculates the HMAC digest of all of the data passed using hmac.update(). The encoding can be ‘hex’, ‘latin1’ or ‘base64’. If encoding is provided a string is returned; otherwise a Buffer is returned;<br>The Hmac object can not be used again after hmac.digest() has been called. Multiple calls to hmac.digest() will result in an error being thrown.<br>(计算使用HMAC .update()传递的所有数据的HMAC摘要。编码可以是’hex’， ‘latin1’或’base64’。如果提供了编码，则返回字符串;否则返回Buffer;<br>Hmac对象在调用Hmac .digest()后不能再使用。多次调用hmac.digest()将导致抛出错误。)</string></li>
+<li>encoding <string><br>Calculates the HMAC digest of all of the data passed using hmac.update(). The encoding can be ‘hex’, ‘latin1’ or ‘base64’. If encoding is provided a string is returned; otherwise a Buffer is returned;<br>The Hmac object can not be used again after hmac.digest() has been called. Multiple calls to hmac.digest() will result in an error being thrown.<br>(计算使用HMAC .update()传递的所有数据的HMAC摘要。编码可以是’hex’， ‘latin1’或’base64’。如果提供了编码，则返回字符串;否则返回Buffer;<br>Hmac对象在调用Hmac .digest()后不能再使用。多次调用hmac.digest()将导致抛出错误。)</li>
 </ul>
 <p>hmac.update(data[, inputEncoding])</p>
 <ul>
-<li>data <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>inputEncoding <string><br>Updates the Hmac content with the given data, the encoding of which is given in inputEncoding and can be ‘utf8’, ‘ascii’ or ‘latin1’. If encoding is not provided, and the data is a string, an encoding of ‘utf8’ is enforced. If data is a Buffer, TypedArray, or DataView, then inputEncoding is ignored.<br>This can be called many times with new data as it is streamed.<br>(用给定的数据更新Hmac内容，这些数据的编码在inputEncoding中给出，可以是’utf8’， ‘ascii’或’latin1’。如果没有提供编码，并且数据是字符串，则强制使用’utf8’编码。如果data是Buffer、TypedArray或DataView，则inputEncoding将被忽略。<br>在流化新数据时，可以多次调用这个函数。)</string></li>
+<li>data <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>inputEncoding <string><br>Updates the Hmac content with the given data, the encoding of which is given in inputEncoding and can be ‘utf8’, ‘ascii’ or ‘latin1’. If encoding is not provided, and the data is a string, an encoding of ‘utf8’ is enforced. If data is a Buffer, TypedArray, or DataView, then inputEncoding is ignored.<br>This can be called many times with new data as it is streamed.<br>(用给定的数据更新Hmac内容，这些数据的编码在inputEncoding中给出，可以是’utf8’， ‘ascii’或’latin1’。如果没有提供编码，并且数据是字符串，则强制使用’utf8’编码。如果data是Buffer、TypedArray或DataView，则inputEncoding将被忽略。<br>在流化新数据时，可以多次调用这个函数。)</li>
 </ul>
 <h6 id="Class-Sign"><a href="#Class-Sign" class="headerlink" title="Class: Sign"></a>Class: Sign</h6><p>“Sign”类是生成签名的实用工具。它有两种使用方式:</p>
 <ul>
@@ -344,24 +344,24 @@
 <p>sign.sign(privateKey[, outputFormat])</p>
 <ul>
 <li>privateKey <string> | <Object><ul>
-<li>key <string></string></li>
-<li>passphrase <string></string></li>
+<li>key <string></li>
+<li>passphrase <string></li>
 </ul>
-</Object></string></li>
-<li>outputFormat <string><br>Calculates the signature on all the data passed through using either sign.update() or sign.write().<br>(使用sign.update()或sign.write()对传递的所有数据计算签名。)<br>The privateKey argument can be an object or a string. If privateKey is a string, it is treated as a raw key with no passphrase. If privateKey is an object, it must contain one or more of the following properties:<br>(privateKey参数可以是一个对象或字符串。如果privateKey是一个字符串，它将被视为没有密码短语的原始密钥。如果privateKey是一个对象，它必须包含以下一个或多个属性)</string></li>
-<li>key: <string> - PEM encoded private key (required)</string></li>
-<li>passphrase: <string> - passphrase for the private key</string></li>
+</li>
+<li>outputFormat <string><br>Calculates the signature on all the data passed through using either sign.update() or sign.write().<br>(使用sign.update()或sign.write()对传递的所有数据计算签名。)<br>The privateKey argument can be an object or a string. If privateKey is a string, it is treated as a raw key with no passphrase. If privateKey is an object, it must contain one or more of the following properties:<br>(privateKey参数可以是一个对象或字符串。如果privateKey是一个字符串，它将被视为没有密码短语的原始密钥。如果privateKey是一个对象，它必须包含以下一个或多个属性)</li>
+<li>key: <string> - PEM encoded private key (required)</li>
+<li>passphrase: <string> - passphrase for the private key</li>
 <li>padding: <integer> - Optional padding value for RSA, one of the following:<ul>
 <li>crypto.constants.RSA_PKCS1_PADDING (default)</li>
 <li>crypto.constants.RSA_PKCS1_PSS_PADDING<br>Note that RSA_PKCS1_PSS_PADDING will use MGF1 with the same hash function used to sign the message as specified in section 3.1 of RFC 4055.</li>
 </ul>
-</integer></li>
-<li>saltLength: <integer> - salt length for when padding is RSA_PKCS1_PSS_PADDING. The special value crypto.constants.RSA_PSS_SALTLEN_DIGEST sets the salt length to the digest size, crypto.constants.RSA_PSS_SALTLEN_MAX_SIGN (default) sets it to the maximum permissible value.<br>The outputFormat can specify one of ‘latin1’, ‘hex’ or ‘base64’. If outputFormat is provided a string is returned; otherwise a Buffer is returned.<br>(outputFormat可以指定’latin1’， ‘hex’或’base64’中的一个。如果提供了outputFormat，则返回一个字符串;否则返回Buffer。)<br>The Sign object can not be again used after sign.sign() method has been called. Multiple calls to sign.sign() will result in an error being thrown.<br>(Sign对象在调用Sign . Sign()方法后不能再次使用。多次调用sign.sign()将导致抛出错误。)</integer></li>
+</li>
+<li>saltLength: <integer> - salt length for when padding is RSA_PKCS1_PSS_PADDING. The special value crypto.constants.RSA_PSS_SALTLEN_DIGEST sets the salt length to the digest size, crypto.constants.RSA_PSS_SALTLEN_MAX_SIGN (default) sets it to the maximum permissible value.<br>The outputFormat can specify one of ‘latin1’, ‘hex’ or ‘base64’. If outputFormat is provided a string is returned; otherwise a Buffer is returned.<br>(outputFormat可以指定’latin1’， ‘hex’或’base64’中的一个。如果提供了outputFormat，则返回一个字符串;否则返回Buffer。)<br>The Sign object can not be again used after sign.sign() method has been called. Multiple calls to sign.sign() will result in an error being thrown.<br>(Sign对象在调用Sign . Sign()方法后不能再次使用。多次调用sign.sign()将导致抛出错误。)</li>
 </ul>
 <p>sign.update(data[, inputEncoding])</p>
 <ul>
-<li>data <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>inputEncoding <string><br>Updates the Sign content with the given data, the encoding of which is given in inputEncoding and can be ‘utf8’, ‘ascii’ or ‘latin1’. If encoding is not provided, and the data is a string, an encoding of ‘utf8’ is enforced. If data is a Buffer, TypedArray, or DataView, then inputEncoding is ignored.<br>This can be called many times with new data as it is streamed.<br>(用给定的数据更新Sign内容，其编码在inputEncoding中给出，可以是’utf8’， ‘ascii’或’latin1’。如果没有提供编码，并且数据是字符串，则强制使用’utf8’编码。如果data是Buffer、TypedArray或DataView，则inputEncoding将被忽略。<br>在流化新数据时，可以多次调用这个函数。)</string></li>
+<li>data <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>inputEncoding <string><br>Updates the Sign content with the given data, the encoding of which is given in inputEncoding and can be ‘utf8’, ‘ascii’ or ‘latin1’. If encoding is not provided, and the data is a string, an encoding of ‘utf8’ is enforced. If data is a Buffer, TypedArray, or DataView, then inputEncoding is ignored.<br>This can be called many times with new data as it is streamed.<br>(用给定的数据更新Sign内容，其编码在inputEncoding中给出，可以是’utf8’， ‘ascii’或’latin1’。如果没有提供编码，并且数据是字符串，则强制使用’utf8’编码。如果data是Buffer、TypedArray或DataView，则inputEncoding将被忽略。<br>在流化新数据时，可以多次调用这个函数。)</li>
 </ul>
 <h6 id="Class-Verify"><a href="#Class-Verify" class="headerlink" title="Class: Verify"></a>Class: Verify</h6><p>Verify类是验证签名的工具。它可以两种方式使用:</p>
 <ul>
@@ -370,187 +370,187 @@
 </ul>
 <p>verify.update(data[, inputEncoding])</p>
 <ul>
-<li>data <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>inputEncoding <string><br>Updates the Verify content with the given data, the encoding of which is given in inputEncoding and can be ‘utf8’, ‘ascii’ or ‘latin1’. If encoding is not provided, and the data is a string, an encoding of ‘utf8’ is enforced. If data is a Buffer, TypedArray, or DataView, then inputEncoding is ignored.<br>This can be called many times with new data as it is streamed.<br>(用给定的数据更新Verify内容，其编码在inputEncoding中给出，可以是’utf8’， ‘ascii’或’latin1’。如果没有提供编码，并且数据是字符串，则强制使用’utf8’编码。如果data是Buffer、TypedArray或DataView，则inputEncoding将被忽略。<br>在流化新数据时，可以多次调用这个函数。)</string></li>
+<li>data <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>inputEncoding <string><br>Updates the Verify content with the given data, the encoding of which is given in inputEncoding and can be ‘utf8’, ‘ascii’ or ‘latin1’. If encoding is not provided, and the data is a string, an encoding of ‘utf8’ is enforced. If data is a Buffer, TypedArray, or DataView, then inputEncoding is ignored.<br>This can be called many times with new data as it is streamed.<br>(用给定的数据更新Verify内容，其编码在inputEncoding中给出，可以是’utf8’， ‘ascii’或’latin1’。如果没有提供编码，并且数据是字符串，则强制使用’utf8’编码。如果data是Buffer、TypedArray或DataView，则inputEncoding将被忽略。<br>在流化新数据时，可以多次调用这个函数。)</li>
 </ul>
 <p>verify.verify(object, signature[, signatureFormat])</p>
 <ul>
-<li>object <string> | <Object></Object></string></li>
-<li>signature <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>signatureFormat <string><br>Verifies the provided data using the given object and signature. The object argument can be either a string containing a PEM encoded object, which can be an RSA public key, a DSA public key, or an X.509 certificate, or an object with one or more of the following properties:<br>(使用给定对象和签名验证提供的数据。object参数可以是一个包含PEM编码对象的字符串，该对象可以是RSA公钥、DSA公钥或X.509证书，也可以是具有以下一个或多个属性的对象:)</string></li>
-<li>key: <string> - PEM encoded public key (required)</string></li>
+<li>object <string> | <Object></li>
+<li>signature <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>signatureFormat <string><br>Verifies the provided data using the given object and signature. The object argument can be either a string containing a PEM encoded object, which can be an RSA public key, a DSA public key, or an X.509 certificate, or an object with one or more of the following properties:<br>(使用给定对象和签名验证提供的数据。object参数可以是一个包含PEM编码对象的字符串，该对象可以是RSA公钥、DSA公钥或X.509证书，也可以是具有以下一个或多个属性的对象:)</li>
+<li>key: <string> - PEM encoded public key (required)</li>
 <li>padding: <integer> - Optional padding value for RSA, one of the following:<ul>
 <li>crypto.constants.RSA_PKCS1_PADDING (default)</li>
 <li>crypto.constants.RSA_PKCS1_PSS_PADDING<br>Note that RSA_PKCS1_PSS_PADDING will use MGF1 with the same hash function used to verify the message as specified in section 3.1 of RFC 4055.</li>
 </ul>
-</integer></li>
-<li>saltLength: <integer> - salt length for when padding is RSA_PKCS1_PSS_PADDING. The special value crypto.constants.RSA_PSS_SALTLEN_DIGEST sets the salt length to the digest size, crypto.constants.RSA_PSS_SALTLEN_AUTO (default) causes it to be determined automatically.<br>The signature argument is the previously calculated signature for the data, in the signatureFormat which can be ‘latin1’, ‘hex’ or ‘base64’. If a signatureFormat is specified, the signature is expected to be a string; otherwise signature is expected to be a Buffer, TypedArray, or DataView.<br>(signature参数是之前为数据计算的签名，signatureFormat可以是’latin1’， ‘hex’或’base64’。如果指定了signatureFormat，则期望签名是一个字符串;否则签名应该是Buffer、TypedArray或DataView。)<br>Returns true or false depending on the validity of the signature for the data and public key.<br>(根据数据和公钥的签名的有效性返回true或false。)<br>The verify object can not be used again after verify.verify() has been called. Multiple calls to verify.verify() will result in an error being thrown.<br>(在调用verify.verify()之后，验证对象不能再次使用。多次调用verify.verify()将导致抛出错误。)</integer></li>
+</li>
+<li>saltLength: <integer> - salt length for when padding is RSA_PKCS1_PSS_PADDING. The special value crypto.constants.RSA_PSS_SALTLEN_DIGEST sets the salt length to the digest size, crypto.constants.RSA_PSS_SALTLEN_AUTO (default) causes it to be determined automatically.<br>The signature argument is the previously calculated signature for the data, in the signatureFormat which can be ‘latin1’, ‘hex’ or ‘base64’. If a signatureFormat is specified, the signature is expected to be a string; otherwise signature is expected to be a Buffer, TypedArray, or DataView.<br>(signature参数是之前为数据计算的签名，signatureFormat可以是’latin1’， ‘hex’或’base64’。如果指定了signatureFormat，则期望签名是一个字符串;否则签名应该是Buffer、TypedArray或DataView。)<br>Returns true or false depending on the validity of the signature for the data and public key.<br>(根据数据和公钥的签名的有效性返回true或false。)<br>The verify object can not be used again after verify.verify() has been called. Multiple calls to verify.verify() will result in an error being thrown.<br>(在调用verify.verify()之后，验证对象不能再次使用。多次调用verify.verify()将导致抛出错误。)</li>
 </ul>
 <h4 id="crypto-module-methods-and-properties"><a href="#crypto-module-methods-and-properties" class="headerlink" title="crypto module methods and properties"></a>crypto module methods and properties</h4><p>crypto.constants<br>Returns an object containing commonly used constants for crypto and security related operations. The specific constants currently defined are described in Crypto Constants.<br>(返回一个对象，其中包含用于加密和安全相关操作的常用常量。当前定义的特定常数在Crypto constants中描述。)</p>
 <p>crypto.DEFAULT_ENCODING<br>The default encoding to use for functions that can take either strings or buffers. The default value is ‘buffer’, which makes methods default to Buffer objects.<br>The crypto.DEFAULT_ENCODING mechanism is provided for backwards compatibility with legacy programs that expect ‘latin1’ to be the default encoding.<br>New applications should expect the default to be ‘buffer’. This property may become deprecated in a future Node.js release.<br>(可接受字符串或缓冲区的函数所使用的默认编码。默认值是’buffer’，它使方法默认为buffer对象。<br>加密。提供DEFAULT_ENCODING机制是为了向后兼容那些期望’latin1’为默认编码的遗留程序。<br>新应用程序应该期望默认值为’buffer’。这个属性在未来的Node.js版本中可能会被弃用。)</p>
 <p>crypto.fips<br>Property for checking and controlling whether a FIPS compliant crypto provider is currently in use. Setting to true requires a FIPS build of Node.js.<br>(属性，用于检查和控制当前是否正在使用符合FIPS的加密提供程序。设置为true需要Node.js的FIPS版本。)</p>
 <p>crypto.createCipher(algorithm, password[, options])</p>
 <ul>
-<li>algorithm <string></string></li>
-<li>password <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>options <Object> stream.transform options<br>Creates and returns a Cipher object that uses the given algorithm and password. Optional options argument controls stream behavior.<br>(创建并返回使用给定算法和密码的Cipher对象。参数可选options控制流行为。)<br>The algorithm is dependent on OpenSSL, examples are ‘aes192’, etc. On recent OpenSSL releases, openssl list-cipher-algorithms will display the available cipher algorithms.<br>(该算法依赖于OpenSSL，例如’aes192’等。在最新的OpenSSL版本中，OpenSSL list-cipher-algorithms将显示可用的密码算法。)<br>The password is used to derive the cipher key and initialization vector (IV). The value must be either a ‘latin1’ encoded string, a Buffer, a TypedArray, or a DataView.<br>(密码用于导出密码密钥和初始化向量(IV)。该值必须是’latin1’编码的字符串、Buffer、TypedArray或DataView。)<br>The implementation of crypto.createCipher() derives keys using the OpenSSL function EVP_BytesToKey with the digest algorithm set to MD5, one iteration, and no salt. The lack of salt allows dictionary attacks as the same password always creates the same key. The low iteration count and non-cryptographically secure hash algorithm allow passwords to be tested very rapidly.<br>(crypto.createCipher()的实现使用OpenSSL函数evp_bytickey派生密钥，并将摘要算法设置为MD5，一次迭代，无盐。盐的缺乏使得字典攻击成为可能，因为相同的密码总是创建相同的密钥。低迭代次数和非加密安全的哈希算法允许非常快速地测试密码。)<br>In line with OpenSSL’s recommendation to use PBKDF2 instead of EVP_BytesToKey it is recommended that developers derive a key and IV on their own using crypto.pbkdf2() and to use crypto.createCipheriv() to create the Cipher object. Users should not use ciphers with counter mode (e.g. CTR, GCM, or CCM) in crypto.createCipher(). A warning is emitted when they are used in order to avoid the risk of IV reuse that causes vulnerabilities. For the case when IV is reused in GCM, see Nonce-Disrespecting Adversaries for details.<br>(根据OpenSSL的建议，使用PBKDF2而不是EVP_BytesToKey，建议开发人员使用crypto.pbkdf2()自己派生密钥和IV，并使用crypto.createCipheriv()创建Cipher对象。用户不应该在cipher . createcipher()中使用带有计数器模式的密码(例如CTR、GCM或CCM)。在使用它们时发出警告，以避免IV重用导致漏洞的风险。对于在GCM中重用IV的情况，请参阅nonce - disrespect Adversaries了解详细信息。)</Object></li>
+<li>algorithm <string></li>
+<li>password <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>options <Object> stream.transform options<br>Creates and returns a Cipher object that uses the given algorithm and password. Optional options argument controls stream behavior.<br>(创建并返回使用给定算法和密码的Cipher对象。参数可选options控制流行为。)<br>The algorithm is dependent on OpenSSL, examples are ‘aes192’, etc. On recent OpenSSL releases, openssl list-cipher-algorithms will display the available cipher algorithms.<br>(该算法依赖于OpenSSL，例如’aes192’等。在最新的OpenSSL版本中，OpenSSL list-cipher-algorithms将显示可用的密码算法。)<br>The password is used to derive the cipher key and initialization vector (IV). The value must be either a ‘latin1’ encoded string, a Buffer, a TypedArray, or a DataView.<br>(密码用于导出密码密钥和初始化向量(IV)。该值必须是’latin1’编码的字符串、Buffer、TypedArray或DataView。)<br>The implementation of crypto.createCipher() derives keys using the OpenSSL function EVP_BytesToKey with the digest algorithm set to MD5, one iteration, and no salt. The lack of salt allows dictionary attacks as the same password always creates the same key. The low iteration count and non-cryptographically secure hash algorithm allow passwords to be tested very rapidly.<br>(crypto.createCipher()的实现使用OpenSSL函数evp_bytickey派生密钥，并将摘要算法设置为MD5，一次迭代，无盐。盐的缺乏使得字典攻击成为可能，因为相同的密码总是创建相同的密钥。低迭代次数和非加密安全的哈希算法允许非常快速地测试密码。)<br>In line with OpenSSL’s recommendation to use PBKDF2 instead of EVP_BytesToKey it is recommended that developers derive a key and IV on their own using crypto.pbkdf2() and to use crypto.createCipheriv() to create the Cipher object. Users should not use ciphers with counter mode (e.g. CTR, GCM, or CCM) in crypto.createCipher(). A warning is emitted when they are used in order to avoid the risk of IV reuse that causes vulnerabilities. For the case when IV is reused in GCM, see Nonce-Disrespecting Adversaries for details.<br>(根据OpenSSL的建议，使用PBKDF2而不是EVP_BytesToKey，建议开发人员使用crypto.pbkdf2()自己派生密钥和IV，并使用crypto.createCipheriv()创建Cipher对象。用户不应该在cipher . createcipher()中使用带有计数器模式的密码(例如CTR、GCM或CCM)。在使用它们时发出警告，以避免IV重用导致漏洞的风险。对于在GCM中重用IV的情况，请参阅nonce - disrespect Adversaries了解详细信息。)</li>
 </ul>
 <p><strong>所谓加Salt方法，就是加点“佐料”（Salt这个单词就是盐的意思）。其基本想法是这样的：当用户首次提供密码时（通常是注册时），由系统自动往这个密码里撒一些“佐料”，然后再散列。而当用户登录时，系统为用户提供的代码撒上同样的“佐料”，然后散列，再比较散列值，已确定密码是否正确。</strong></p>
 <p>crypto.createCipheriv(algorithm, key, iv[, options])</p>
 <ul>
-<li>algorithm <string></string></li>
-<li>key <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>iv <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>options <Object> stream.transform options<br>Creates and returns a Cipher object, with the given algorithm, key and initialization vector (iv). Optional options argument controls stream behavior.<br>(使用给定的算法、密钥和初始化向量(iv)创建并返回Cipher对象。可选options参数控制流行为。)<br>The algorithm is dependent on OpenSSL, examples are ‘aes192’, etc. On recent OpenSSL releases, openssl list-cipher-algorithms will display the available cipher algorithms.<br>(该算法依赖于OpenSSL，例如’aes192’等。在最新的OpenSSL版本中，OpenSSL list-cipher-algorithms将显示可用的密码算法。)<br>The key is the raw key used by the algorithm and iv is an initialization vector. Both arguments must be ‘utf8’ encoded strings, Buffers, TypedArray, or DataViews.<br>(key是算法使用的原始键，iv是初始化向量。两个参数都必须是’utf8’编码的字符串、Buffers、TypedArray或DataViews。)</Object></li>
+<li>algorithm <string></li>
+<li>key <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>iv <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>options <Object> stream.transform options<br>Creates and returns a Cipher object, with the given algorithm, key and initialization vector (iv). Optional options argument controls stream behavior.<br>(使用给定的算法、密钥和初始化向量(iv)创建并返回Cipher对象。可选options参数控制流行为。)<br>The algorithm is dependent on OpenSSL, examples are ‘aes192’, etc. On recent OpenSSL releases, openssl list-cipher-algorithms will display the available cipher algorithms.<br>(该算法依赖于OpenSSL，例如’aes192’等。在最新的OpenSSL版本中，OpenSSL list-cipher-algorithms将显示可用的密码算法。)<br>The key is the raw key used by the algorithm and iv is an initialization vector. Both arguments must be ‘utf8’ encoded strings, Buffers, TypedArray, or DataViews.<br>(key是算法使用的原始键，iv是初始化向量。两个参数都必须是’utf8’编码的字符串、Buffers、TypedArray或DataViews。)</li>
 </ul>
 <p>crypto.createDecipher(algorithm, password[, options])</p>
 <ul>
-<li>algorithm <string></string></li>
-<li>password <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>options <Object> stream.transform options<br>Creates and returns a Decipher object that uses the given algorithm and password (key). Optional options argument controls stream behavior.<br>(创建并返回使用给定算法和密码(密钥)的Decipher对象。参数可选options控制流行为。)<br>The implementation of crypto.createDecipher() derives keys using the OpenSSL function EVP_BytesToKey with the digest algorithm set to MD5, one iteration, and no salt. The lack of salt allows dictionary attacks as the same password always creates the same key. The low iteration count and non-cryptographically secure hash algorithm allow passwords to be tested very rapidly.<br>(crypto.createDecipher()的实现使用OpenSSL函数EVP_BytesToKey派生密钥，并将摘要算法设置为MD5，一次迭代，无盐。盐的缺乏使得字典攻击成为可能，因为相同的密码总是创建相同的密钥。低迭代次数和非加密安全的哈希算法允许非常快速地测试密码。)<br>In line with OpenSSL’s recommendation to use PBKDF2 instead of EVP_BytesToKey it is recommended that developers derive a key and IV on their own using crypto.pbkdf2() and to use crypto.createDecipheriv() to create the Decipher object.<br>(根据OpenSSL的建议，使用PBKDF2而不是EVP_BytesToKey，建议开发人员使用crypto.pbkdf2()自己派生密钥和IV，并使用crypto.createDecipheriv()来创建Decipher对象。)</Object></li>
+<li>algorithm <string></li>
+<li>password <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>options <Object> stream.transform options<br>Creates and returns a Decipher object that uses the given algorithm and password (key). Optional options argument controls stream behavior.<br>(创建并返回使用给定算法和密码(密钥)的Decipher对象。参数可选options控制流行为。)<br>The implementation of crypto.createDecipher() derives keys using the OpenSSL function EVP_BytesToKey with the digest algorithm set to MD5, one iteration, and no salt. The lack of salt allows dictionary attacks as the same password always creates the same key. The low iteration count and non-cryptographically secure hash algorithm allow passwords to be tested very rapidly.<br>(crypto.createDecipher()的实现使用OpenSSL函数EVP_BytesToKey派生密钥，并将摘要算法设置为MD5，一次迭代，无盐。盐的缺乏使得字典攻击成为可能，因为相同的密码总是创建相同的密钥。低迭代次数和非加密安全的哈希算法允许非常快速地测试密码。)<br>In line with OpenSSL’s recommendation to use PBKDF2 instead of EVP_BytesToKey it is recommended that developers derive a key and IV on their own using crypto.pbkdf2() and to use crypto.createDecipheriv() to create the Decipher object.<br>(根据OpenSSL的建议，使用PBKDF2而不是EVP_BytesToKey，建议开发人员使用crypto.pbkdf2()自己派生密钥和IV，并使用crypto.createDecipheriv()来创建Decipher对象。)</li>
 </ul>
 <p>crypto.createDecipheriv(algorithm, key, iv[, options])</p>
 <ul>
-<li>algorithm <string></string></li>
-<li>key <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>iv <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>options <Object> stream.transform options</Object></li>
+<li>algorithm <string></li>
+<li>key <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>iv <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>options <Object> stream.transform options</li>
 </ul>
 <p>crypto.createDiffieHellman(prime[, primeEncoding][, generator][, generatorEncoding])</p>
 <ul>
-<li>prime <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>primeEncoding <string></string></li>
-<li>generator <number> | <string> | <Buffer> | <TypedArray> | <DataView> Defaults to 2.</DataView></TypedArray></Buffer></string></number></li>
-<li>generatorEncoding <string></string></li>
+<li>prime <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>primeEncoding <string></li>
+<li>generator <number> | <string> | <Buffer> | <TypedArray> | <DataView> Defaults to 2.</li>
+<li>generatorEncoding <string></li>
 </ul>
 <p>crypto.createDiffieHellman(primeLength[, generator])</p>
 <ul>
-<li>primeLength <number></number></li>
-<li>generator <number> | <string> | <Buffer> | <TypedArray> | <DataView> Defaults to 2.</DataView></TypedArray></Buffer></string></number></li>
+<li>primeLength <number></li>
+<li>generator <number> | <string> | <Buffer> | <TypedArray> | <DataView> Defaults to 2.</li>
 </ul>
 <p>crypto.createECDH(curveName)</p>
 <ul>
-<li>curveName <string><br>Use crypto.getCurves() to obtain a list of available curve names. On recent OpenSSL releases, openssl ecparam -list_curves will also display the name and description of each available elliptic curve.</string></li>
+<li>curveName <string><br>Use crypto.getCurves() to obtain a list of available curve names. On recent OpenSSL releases, openssl ecparam -list_curves will also display the name and description of each available elliptic curve.</li>
 </ul>
 <p>crypto.createHash(algorithm[, options])</p>
 <ul>
-<li>algorithm <string></string></li>
-<li>options <Object> stream.transform options<br>On recent releases of OpenSSL, openssl list-message-digest-algorithms will display the available digest algorithms.</Object></li>
+<li>algorithm <string></li>
+<li>options <Object> stream.transform options<br>On recent releases of OpenSSL, openssl list-message-digest-algorithms will display the available digest algorithms.</li>
 </ul>
 <p>crypto.createHmac(algorithm, key[, options])</p>
 <ul>
-<li>algorithm <string></string></li>
-<li>key <string> | <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></string></li>
-<li>options <Object> stream.transform options<br>On recent releases of OpenSSL, openssl list-message-digest-algorithms will display the available digest algorithms.<br>The key is the HMAC key used to generate the cryptographic HMAC hash.</Object></li>
+<li>algorithm <string></li>
+<li>key <string> | <Buffer> | <TypedArray> | <DataView></li>
+<li>options <Object> stream.transform options<br>On recent releases of OpenSSL, openssl list-message-digest-algorithms will display the available digest algorithms.<br>The key is the HMAC key used to generate the cryptographic HMAC hash.</li>
 </ul>
 <p>crypto.createSign(algorithm[, options])</p>
 <ul>
-<li>algorithm <string></string></li>
-<li>options <Object> <a target="_blank" rel="noopener" href="https://www.nodeapp.cn/stream.html#stream_constructor_new_stream_writable_options">stream.Writable options</a><br>Creates and returns a Sign object that uses the given algorithm. Use crypto.getHashes() to obtain an array of names of the available signing algorithms. Optional options argument controls the stream.Writable behavior.</Object></li>
+<li>algorithm <string></li>
+<li>options <Object> <a target="_blank" rel="noopener" href="https://www.nodeapp.cn/stream.html#stream_constructor_new_stream_writable_options">stream.Writable options</a><br>Creates and returns a Sign object that uses the given algorithm. Use crypto.getHashes() to obtain an array of names of the available signing algorithms. Optional options argument controls the stream.Writable behavior.</li>
 </ul>
 <p>crypto.createVerify(algorithm[, options])</p>
 <ul>
-<li>algorithm <string></string></li>
-<li>options <Object> stream.Writable options<br>Creates and returns a Verify object that uses the given algorithm. Use crypto.getHashes() to obtain an array of names of the available signing algorithms. Optional options argument controls the stream.Writable behavior.</Object></li>
+<li>algorithm <string></li>
+<li>options <Object> stream.Writable options<br>Creates and returns a Verify object that uses the given algorithm. Use crypto.getHashes() to obtain an array of names of the available signing algorithms. Optional options argument controls the stream.Writable behavior.</li>
 </ul>
 <p>crypto.getCiphers()<br>Returns an array with the names of the supported cipher algorithms.</p>
 <p>crypto.getCurves()<br>Returns an array with the names of the supported elliptic curves.</p>
 <p>crypto.getDiffieHellman(groupName)</p>
 <ul>
-<li>groupName <string><br>Creates a predefined DiffieHellman key exchange object. The supported groups are: ‘modp1’, ‘modp2’, ‘modp5’ (defined in RFC 2412, but see Caveats) and ‘modp14’, ‘modp15’, ‘modp16’, ‘modp17’, ‘modp18’ (defined in RFC 3526). </string></li>
+<li>groupName <string><br>Creates a predefined DiffieHellman key exchange object. The supported groups are: ‘modp1’, ‘modp2’, ‘modp5’ (defined in RFC 2412, but see Caveats) and ‘modp14’, ‘modp15’, ‘modp16’, ‘modp17’, ‘modp18’ (defined in RFC 3526). </li>
 </ul>
 <p>crypto.getHashes()<br>Returns an array of the names of the supported hash algorithms, such as RSA-SHA256.</p>
 <p>crypto.pbkdf2(password, salt, iterations, keylen, digest, callback)</p>
 <ul>
-<li>password <string></string></li>
-<li>salt <string></string></li>
-<li>iterations <number></number></li>
-<li>keylen <number></number></li>
-<li>digest <string></string></li>
+<li>password <string></li>
+<li>salt <string></li>
+<li>iterations <number></li>
+<li>keylen <number></li>
+<li>digest <string></li>
 <li>callback <Function><ul>
-<li>err <Error></Error></li>
-<li>derivedKey <Buffer><br>The iterations argument must be a number set as high as possible. The higher the number of iterations, the more secure the derived key will be, but will take a longer amount of time to complete.<br>The salt should also be as unique as possible. It is recommended that the salts are random and their lengths are at least 16 bytes. See NIST SP 800-132 for details.</Buffer></li>
+<li>err <Error></li>
+<li>derivedKey <Buffer><br>The iterations argument must be a number set as high as possible. The higher the number of iterations, the more secure the derived key will be, but will take a longer amount of time to complete.<br>The salt should also be as unique as possible. It is recommended that the salts are random and their lengths are at least 16 bytes. See NIST SP 800-132 for details.</li>
 </ul>
-</Function></li>
+</li>
 </ul>
 <p>crypto.pbkdf2Sync(password, salt, iterations, keylen, digest)</p>
 <ul>
-<li>password <string></string></li>
-<li>salt <string></string></li>
-<li>iterations <number></number></li>
-<li>keylen <number></number></li>
-<li>digest <string><br>同crypto.pbkdf2</string></li>
+<li>password <string></li>
+<li>salt <string></li>
+<li>iterations <number></li>
+<li>keylen <number></li>
+<li>digest <string><br>同crypto.pbkdf2</li>
 </ul>
 <p>crypto.privateDecrypt(privateKey, buffer)</p>
 <ul>
 <li>privateKey <Object> | <string><ul>
-<li>key <string> A PEM encoded private key.</string></li>
-<li>passphrase <string> An optional passphrase for the private key.</string></li>
+<li>key <string> A PEM encoded private key.</li>
+<li>passphrase <string> An optional passphrase for the private key.</li>
 <li>padding &lt;crypto.constants&gt; An optional padding value defined in crypto.constants, which may be: crypto.constants.RSA_NO_PADDING, RSA_PKCS1_PADDING, or crypto.constants.RSA_PKCS1_OAEP_PADDING.</li>
 </ul>
-</string></Object></li>
-<li>buffer <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></li>
-<li>Returns: <Buffer> A new Buffer with the decrypted content.<br>privateKey can be an object or a string. If privateKey is a string, it is treated as the key with no passphrase and will use RSA_PKCS1_OAEP_PADDING.</Buffer></li>
+</li>
+<li>buffer <Buffer> | <TypedArray> | <DataView></li>
+<li>Returns: <Buffer> A new Buffer with the decrypted content.<br>privateKey can be an object or a string. If privateKey is a string, it is treated as the key with no passphrase and will use RSA_PKCS1_OAEP_PADDING.</li>
 </ul>
 <p>crypto.privateEncrypt(privateKey, buffer)</p>
 <ul>
 <li>privateKey <Object> | <string><ul>
-<li>key <string> A PEM encoded private key.</string></li>
-<li>passphrase <string> An optional passphrase for the private key.</string></li>
+<li>key <string> A PEM encoded private key.</li>
+<li>passphrase <string> An optional passphrase for the private key.</li>
 <li>padding &lt;crypto.constants&gt; An optional padding value defined in crypto.constants, which may be: crypto.constants.RSA_NO_PADDING or RSA_PKCS1_PADDING.</li>
 </ul>
-</string></Object></li>
-<li>buffer <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></li>
-<li>Returns: <Buffer> A new Buffer with the encrypted content.<br>privateKey can be an object or a string. If privateKey is a string, it is treated as the key with no passphrase and will use RSA_PKCS1_PADDING.</Buffer></li>
+</li>
+<li>buffer <Buffer> | <TypedArray> | <DataView></li>
+<li>Returns: <Buffer> A new Buffer with the encrypted content.<br>privateKey can be an object or a string. If privateKey is a string, it is treated as the key with no passphrase and will use RSA_PKCS1_PADDING.</li>
 </ul>
 <p>crypto.publicDecrypt(key, buffer)</p>
 <ul>
 <li>key <Object> | <string><ul>
-<li>key <string> A PEM encoded public or private key.</string></li>
-<li>passphrase <string> An optional passphrase for the private key.</string></li>
+<li>key <string> A PEM encoded public or private key.</li>
+<li>passphrase <string> An optional passphrase for the private key.</li>
 <li>padding &lt;crypto.constants&gt; An optional padding value defined in crypto.constants, which may be: crypto.constants.RSA_NO_PADDING or RSA_PKCS1_PADDING.</li>
 </ul>
-</string></Object></li>
-<li>buffer <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></li>
-<li>Returns: <Buffer> A new Buffer with the decrypted content.<br>key can be an object or a string. If key is a string, it is treated as the key with no passphrase and will use RSA_PKCS1_PADDING.<br>Because RSA public keys can be derived from private keys, a private key may be passed instead of a public key.<br>(因为RSA公钥可以从私钥派生，所以传递的是私钥而不是公钥。)</Buffer></li>
+</li>
+<li>buffer <Buffer> | <TypedArray> | <DataView></li>
+<li>Returns: <Buffer> A new Buffer with the decrypted content.<br>key can be an object or a string. If key is a string, it is treated as the key with no passphrase and will use RSA_PKCS1_PADDING.<br>Because RSA public keys can be derived from private keys, a private key may be passed instead of a public key.<br>(因为RSA公钥可以从私钥派生，所以传递的是私钥而不是公钥。)</li>
 </ul>
 <p>crypto.publicEncrypt(key, buffer)</p>
 <ul>
 <li>key <Object> | <string><ul>
-<li>key <string> A PEM encoded public or private key.</string></li>
-<li>passphrase <string> An optional passphrase for the private key.</string></li>
+<li>key <string> A PEM encoded public or private key.</li>
+<li>passphrase <string> An optional passphrase for the private key.</li>
 <li>padding &lt;crypto.constants&gt; An optional padding value defined in crypto.constants, which may be: crypto.constants.RSA_NO_PADDING, RSA_PKCS1_PADDING, or crypto.constants.RSA_PKCS1_OAEP_PADDING.</li>
 </ul>
-</string></Object></li>
-<li>buffer <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></li>
-<li>Returns: <Buffer> A new Buffer with the encrypted content.</Buffer></li>
+</li>
+<li>buffer <Buffer> | <TypedArray> | <DataView></li>
+<li>Returns: <Buffer> A new Buffer with the encrypted content.</li>
 </ul>
 <p>crypto.randomBytes(size[, callback])</p>
 <ul>
-<li>size <number></number></li>
+<li>size <number></li>
 <li>callback <Function><ul>
-<li>err <Error></Error></li>
+<li>err <Error></li>
 <li>buf <Buffer><br>生成加密强伪随机数据. size参数是指示要生成的字节数的数值。<br>如果提供 callback回调函数 ,这些字节是异步生成的并且使用两个参数调用callback函数：err和buf。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line">crypto.<span class="title function_">randomBytes</span>(<span class="number">256</span>, <span class="function">(<span class="params">err, buf</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;buf.length&#125;</span> bytes of random data: <span class="subst">$&#123;buf.toString(<span class="string">&#x27;hex&#x27;</span>)&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-如果未提供 callback回调函数, 则同步地生成随机字节并返回为Buffer。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Synchronous</span></span><br><span class="line"><span class="keyword">const</span> buf = crypto.<span class="title function_">randomBytes</span>(<span class="number">256</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(</span><br><span class="line">  <span class="string">`<span class="subst">$&#123;buf.length&#125;</span> bytes of random data: <span class="subst">$&#123;buf.toString(<span class="string">&#x27;hex&#x27;</span>)&#125;</span>`</span>);</span><br></pre></td></tr></table></figure></Buffer></li>
+如果未提供 callback回调函数, 则同步地生成随机字节并返回为Buffer。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Synchronous</span></span><br><span class="line"><span class="keyword">const</span> buf = crypto.<span class="title function_">randomBytes</span>(<span class="number">256</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(</span><br><span class="line">  <span class="string">`<span class="subst">$&#123;buf.length&#125;</span> bytes of random data: <span class="subst">$&#123;buf.toString(<span class="string">&#x27;hex&#x27;</span>)&#125;</span>`</span>);</span><br></pre></td></tr></table></figure></li>
 </ul>
-</Function></li>
+</li>
 </ul>
 <p>crypto.randomFillSync(buffer[, offset][, size])</p>
 <ul>
-<li>buffer <Buffer> | <Uint8Array> Must be supplied.</Uint8Array></Buffer></li>
-<li>offset <number> Defaults to 0.</number></li>
-<li>size <number> Defaults to buffer.length - offset.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> buf = <span class="title class_">Buffer</span>.<span class="title function_">alloc</span>(<span class="number">10</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(crypto.<span class="title function_">randomFillSync</span>(buf).<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line"></span><br><span class="line">crypto.<span class="title function_">randomFillSync</span>(buf, <span class="number">5</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(buf.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// The above is equivalent to the following:</span></span><br><span class="line">crypto.<span class="title function_">randomFillSync</span>(buf, <span class="number">5</span>, <span class="number">5</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(buf.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br></pre></td></tr></table></figure></number></li>
+<li>buffer <Buffer> | <Uint8Array> Must be supplied.</li>
+<li>offset <number> Defaults to 0.</li>
+<li>size <number> Defaults to buffer.length - offset.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> buf = <span class="title class_">Buffer</span>.<span class="title function_">alloc</span>(<span class="number">10</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(crypto.<span class="title function_">randomFillSync</span>(buf).<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line"></span><br><span class="line">crypto.<span class="title function_">randomFillSync</span>(buf, <span class="number">5</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(buf.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// The above is equivalent to the following:</span></span><br><span class="line">crypto.<span class="title function_">randomFillSync</span>(buf, <span class="number">5</span>, <span class="number">5</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(buf.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br></pre></td></tr></table></figure></li>
 </ul>
 <p>crypto.randomFill(buffer[, offset][, size], callback)</p>
 <ul>
-<li>buffer <Buffer> | <Uint8Array>必须被支持.</Uint8Array></Buffer></li>
-<li>offset <number> Defaults to 0.</number></li>
-<li>size <number> Defaults to buffer.length - offset.</number></li>
-<li>callback <Function> function(err, buf) {}.<br>If the callback function is not provided, an error will be thrown.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> buf = <span class="title class_">Buffer</span>.<span class="title function_">alloc</span>(<span class="number">10</span>);</span><br><span class="line">crypto.<span class="title function_">randomFill</span>(buf, <span class="function">(<span class="params">err, buf</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(buf.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">crypto.<span class="title function_">randomFill</span>(buf, <span class="number">5</span>, <span class="function">(<span class="params">err, buf</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(buf.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// The above is equivalent to the following:</span></span><br><span class="line">crypto.<span class="title function_">randomFill</span>(buf, <span class="number">5</span>, <span class="number">5</span>, <span class="function">(<span class="params">err, buf</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(buf.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></Function></li>
+<li>buffer <Buffer> | <Uint8Array>必须被支持.</li>
+<li>offset <number> Defaults to 0.</li>
+<li>size <number> Defaults to buffer.length - offset.</li>
+<li>callback <Function> function(err, buf) {}.<br>If the callback function is not provided, an error will be thrown.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> buf = <span class="title class_">Buffer</span>.<span class="title function_">alloc</span>(<span class="number">10</span>);</span><br><span class="line">crypto.<span class="title function_">randomFill</span>(buf, <span class="function">(<span class="params">err, buf</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(buf.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">crypto.<span class="title function_">randomFill</span>(buf, <span class="number">5</span>, <span class="function">(<span class="params">err, buf</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(buf.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// The above is equivalent to the following:</span></span><br><span class="line">crypto.<span class="title function_">randomFill</span>(buf, <span class="number">5</span>, <span class="number">5</span>, <span class="function">(<span class="params">err, buf</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(buf.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
 </ul>
 <p>crypto.setEngine(engine[, flags])</p>
 <ul>
-<li>engine <string></string></li>
+<li>engine <string></li>
 <li>flags &lt;crypto.constants&gt; Defaults to crypto.constants.ENGINE_METHOD_ALL.<br>Load and set the engine for some or all OpenSSL functions (selected by flags).<br>The flags is a bit field taking one of or a mix of the following flags (defined in crypto.constants):</li>
 <li>crypto.constants.ENGINE_METHOD_RSA</li>
 <li>crypto.constants.ENGINE_METHOD_DSA</li>
@@ -568,8 +568,8 @@
 </ul>
 <p>crypto.timingSafeEqual(a, b)</p>
 <ul>
-<li>a <Buffer> | <TypedArray> | <DataView></DataView></TypedArray></Buffer></li>
-<li>b <Buffer> | <TypedArray> | <DataView><br>This function is based on a constant-time algorithm. Returns true if a is equal to b, without leaking timing information that would allow an attacker to guess one of the values. This is suitable for comparing HMAC digests or secret values like authentication cookies or capability urls<br>(该函数基于常数时间算法。如果a等于b，则返回true，而不会泄露时间信息，使攻击者能够猜测其中一个值。这适用于比较HMAC摘要或机密值，如身份验证cookie或功能url)<br>a and b must both be Buffers, TypedArrays, or DataViews, and they must have the same length.</DataView></TypedArray></Buffer></li>
+<li>a <Buffer> | <TypedArray> | <DataView></li>
+<li>b <Buffer> | <TypedArray> | <DataView><br>This function is based on a constant-time algorithm. Returns true if a is equal to b, without leaking timing information that would allow an attacker to guess one of the values. This is suitable for comparing HMAC digests or secret values like authentication cookies or capability urls<br>(该函数基于常数时间算法。如果a等于b，则返回true，而不会泄露时间信息，使攻击者能够猜测其中一个值。这适用于比较HMAC摘要或机密值，如身份验证cookie或功能url)<br>a and b must both be Buffers, TypedArrays, or DataViews, and they must have the same length.</li>
 </ul>
 
       </div>
