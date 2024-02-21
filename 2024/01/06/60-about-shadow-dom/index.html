@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="什么是Shadow Dom？ 一种连接节点的树状结构，代表标记文档（通常是在 web 文档中的 HTML 文档）中出现的不同元素和文本字符串。  浏览器渲染文档的时候会给指定的DOM结构插入编写好的DOM元素，但是插入的Shadow DOM 会与主文档的DOM保持分离，也就是说Shadow DOM不存在于主DOM树上。并且Shadow DOM封装出来的DOM元素是独立的，外部的配置不会影响到内部，">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="关于shadow dom及如何创建一个shadow dom">
+<meta property="og:url" content="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/index.html">
+<meta property="og:site_name" content="Sun with no word">
+<meta property="og:description" content="什么是Shadow Dom？ 一种连接节点的树状结构，代表标记文档（通常是在 web 文档中的 HTML 文档）中出现的不同元素和文本字符串。  浏览器渲染文档的时候会给指定的DOM结构插入编写好的DOM元素，但是插入的Shadow DOM 会与主文档的DOM保持分离，也就是说Shadow DOM不存在于主DOM树上。并且Shadow DOM封装出来的DOM元素是独立的，外部的配置不会影响到内部，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/chrome-setting.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/shadow-dom.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/shadow-dom-structure.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/open-closed.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/mount-tag.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/mount-tag-error.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/normal-css.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/css-class.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/css-host.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/css-hook.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/fake-class.png">
+<meta property="article:published_time" content="2024-01-06T03:20:34.000Z">
+<meta property="article:modified_time" content="2024-01-26T01:42:14.058Z">
+<meta property="article:author" content="Sun Jinkang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/chrome-setting.png">
+
+
+<link rel="canonical" href="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/","path":"2024/01/06/60-about-shadow-dom/","title":"关于shadow dom及如何创建一个shadow dom"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>关于shadow dom及如何创建一个shadow dom | Sun with no word</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sun with no word</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">something about what I have learned and some interesting things</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-unity"><a href="/unity" rel="section"><i class="fab fa-unity fa-fw"></i>unity</a></li><li class="menu-item menu-item-linux"><a href="/linux" rel="section"><i class="fab fa-linux fa-fw"></i>linux</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFShadow-Dom%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是Shadow Dom？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Shadow-Dom%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">Shadow Dom的结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Shadow-DOM%E7%9A%84%E4%BD%9C%E7%94%A8%E5%8F%8A%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BAShadow-DOM%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">Shadow DOM的作用及如何创建Shadow DOM？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Shadow-DOM%E7%89%B9%E7%82%B9"><span class="nav-number">4.</span> <span class="nav-text">Shadow DOM特点</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sun Jinkang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sun Jinkang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sunjinkang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sunjinkang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2060037942@qq.com" title="E-Mail → mailto:2060037942@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <img src="/images/backToTop.png" />
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/sunjinkang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="关于shadow dom及如何创建一个shadow dom | Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header post-top-background" id="id-post-top">
+        <h1 class="post-title" itemprop="name headline">
+          关于shadow dom及如何创建一个shadow dom
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-01-06 11:20:34" itemprop="dateCreated datePublished" datetime="2024-01-06T11:20:34+08:00">2024-01-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-26 09:42:14" itemprop="dateModified" datetime="2024-01-26T09:42:14+08:00">2024-01-26</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>908</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="什么是Shadow-Dom？"><a href="#什么是Shadow-Dom？" class="headerlink" title="什么是Shadow Dom？"></a>什么是Shadow Dom？</h4><blockquote>
+<p>一种连接节点的树状结构，代表标记文档（通常是在 web 文档中的 HTML 文档）中出现的不同元素和文本字符串。</p>
+</blockquote>
+<p>浏览器渲染文档的时候会给指定的DOM结构插入编写好的DOM元素，但是插入的Shadow DOM 会与主文档的DOM保持分离，也就是说Shadow DOM不存在于主DOM树上。并且Shadow DOM封装出来的DOM元素是独立的，外部的配置不会影响到内部，内部的配置也不会影响外部。</p>
+<p><strong>Chrome中查看Shadow Dom</strong><br>1.打开浏览器控制台的设置选项<br>2.找到Preference -&gt; Elements，把show user anent shadow dom勾上<br><img src="chrome-setting.png" alt="chrome-setting"><br><img src="shadow-dom.png" alt="shadow-dom"></p>
+<h4 id="Shadow-Dom的结构"><a href="#Shadow-Dom的结构" class="headerlink" title="Shadow Dom的结构"></a>Shadow Dom的结构</h4><p><img src="shadow-dom-structure.png" alt="shadow-dom-structure"></p>
+<p>Shadow DOM术语<br>Shadow host: Shadow DOM 附加到的常规 DOM 节点。<br>Shadow tree: Shadow DOM 内部的 DOM 树。<br>Shadow boundary: Shadow DOM 终止，常规 DOM 开始的地方。<br>Shadow root: Shadow tree的根节点。</p>
+<h4 id="Shadow-DOM的作用及如何创建Shadow-DOM？"><a href="#Shadow-DOM的作用及如何创建Shadow-DOM？" class="headerlink" title="Shadow DOM的作用及如何创建Shadow DOM？"></a>Shadow DOM的作用及如何创建Shadow DOM？</h4><p><em>作用</em><br>Shadow DOM是独立于DOM树的，外部的样式不会影响到Shadow DOM的内部，并且使用一般的javascript操作dom的方式去操作Shadow DOM，都是不生效的。这种良好的密封性，使得Shadow DOM可以用于创建类似video这类的标签，方便开发。</p>
+<p><em>如何创建Shadow DOM？</em></p>
+<p>使用attachShadow给指定元素挂载一个shadow dom，并且返回对shadow root的引用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// html</span></span><br><span class="line">&lt;div id=<span class="string">&quot;first&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>第一个例子<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;total&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="comment">// js</span></span><br><span class="line"><span class="keyword">const</span> firstParent = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;first&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> shadow = firstParent.<span class="title function_">attachShadow</span>(&#123; <span class="attr">mode</span>: <span class="string">&#x27;open&#x27;</span> &#125;);</span><br><span class="line"><span class="keyword">const</span> span = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;span&#x27;</span>);</span><br><span class="line">span.<span class="property">textContent</span> = <span class="string">&#x27;Shadow DOM&#x27;</span>;</span><br><span class="line">shadow.<span class="title function_">appendChild</span>(span);</span><br></pre></td></tr></table></figure>
+
+<p><em>Shadow DOM mode</em><br>使用attachShadow()方法，必须传递一个对象作为参数来指定shadow DOM树的封装模式，否则将会抛出一个TypeError。该对象必须具有mode属性，值为 open 或 closed。</p>
+<ul>
+<li><p>open<br>shadow root 元素可以从 js 外部访问根节点，例如使用 shadowRoot:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> shadowSpan = firstParent.<span class="property">shadowRoot</span>?.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;span&#x27;</span>);</span><br><span class="line"><span class="comment">// shadowRoot 返回一个 ShadowRoot 对象</span></span><br></pre></td></tr></table></figure></li>
+<li><p>closed<br>拒绝从 js 外部访问关闭的 shadow root 节点, shadowRoot 返回 null</p>
+</li>
+</ul>
+<p><img src="open-closed.png" alt="open-closed"></p>
+<p><em>可以挂载Shadow DOM的标签</em></p>
+<p><img src="mount-tag.png" alt="mount-tag"></p>
+<p>注意：如果将Shadow DOM挂载到不可挂载标签上，挂载会失败，控制台会报错。<br><img src="mount-tag-error.png" alt="mount-tag-error"></p>
+<h4 id="Shadow-DOM特点"><a href="#Shadow-DOM特点" class="headerlink" title="Shadow DOM特点"></a>Shadow DOM特点</h4><ul>
+<li>外部的样式不影响Shadow DOM内部<br>Shadow DOM是游离在 DOM 树之外的节点树，所以文档上的CSS不会作用在他身上<br><img src="normal-css.png" alt="normal-css"></li>
+</ul>
+<p>在MDN上提到了两种方式可以修改Shadow DOM的样式，感兴趣的可以自己去看看：<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Web_components/Using_shadow_DOM#%E5%9C%A8%E5%BD%B1%E5%AD%90_dom_%E5%86%85%E5%BA%94%E7%94%A8%E6%A0%B7%E5%BC%8F">https://developer.mozilla.org/zh-CN/docs/Web/API/Web_components/Using_shadow_DOM#%E5%9C%A8%E5%BD%B1%E5%AD%90_dom_%E5%86%85%E5%BA%94%E7%94%A8%E6%A0%B7%E5%BC%8F</a></p>
+<p>这里给Shadow DOM添加样式使用的是第二种：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// html</span></span><br><span class="line">&lt;div id=<span class="string">&quot;third&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>第三个例子<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// js</span></span><br><span class="line"><span class="keyword">const</span> thirdParent = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;third&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> shadow3 = thirdParent.<span class="title function_">attachShadow</span>(&#123; <span class="attr">mode</span>: <span class="string">&#x27;open&#x27;</span> &#125;);</span><br><span class="line"><span class="keyword">const</span> span3 = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;span&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用class的方式设置样式</span></span><br><span class="line">span3.<span class="property">innerHTML</span> = <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;div class=&quot;text&quot;&gt;Shadow DOM3&lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;style&gt;</span></span><br><span class="line"><span class="string">    .text &#123;</span></span><br><span class="line"><span class="string">      border: 1px solid #ccc;</span></span><br><span class="line"><span class="string">      color: pink;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &lt;/style&gt;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用伪类host设置样式</span></span><br><span class="line">span3.<span class="property">innerHTML</span> = <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;div&gt;Shadow DOM3&lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;style&gt;</span></span><br><span class="line"><span class="string">    :host &#123;</span></span><br><span class="line"><span class="string">      border: 1px solid #ccc;</span></span><br><span class="line"><span class="string">      color: pink;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &lt;/style&gt;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line">shadow3.<span class="title function_">appendChild</span>(span3);</span><br></pre></td></tr></table></figure>
+<p><img src="css-class.png" alt="css-class"><br><img src="css-host.png" alt="css-host"></p>
+<ul>
+<li><p>样式钩子<br>shadow dom还有一个非常重要的一个特点就是可以使用CSS自定义属性来创建样式占位符，并允许用户填充。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// html</span></span><br><span class="line">&lt;div id=<span class="string">&quot;third&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>第三个例子<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// style</span></span><br><span class="line">#third &#123;</span><br><span class="line">  --<span class="attr">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// js</span></span><br><span class="line"><span class="keyword">const</span> thirdParent = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;third&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> shadow3 = thirdParent.<span class="title function_">attachShadow</span>(&#123; <span class="attr">mode</span>: <span class="string">&#x27;open&#x27;</span> &#125;);</span><br><span class="line"><span class="keyword">const</span> span3 = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;span&#x27;</span>);</span><br><span class="line"></span><br><span class="line">span3.<span class="property">innerHTML</span> = <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;div class=&quot;text&quot;&gt;Shadow DOM3&lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;style&gt;</span></span><br><span class="line"><span class="string">    .text &#123;</span></span><br><span class="line"><span class="string">      border: 1px solid #ccc;</span></span><br><span class="line"><span class="string">      color: var(--color);</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &lt;/style&gt;</span></span><br><span class="line"><span class="string">`</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="css-hook.png" alt="css-hook"></p>
+</li>
+<li><p>使用伪类修改Shadow DOM的内部样式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// style</span></span><br><span class="line">input[placeholder=<span class="string">&#x27;user&#x27;</span>]::-webkit-input-placeholder &#123;</span><br><span class="line">  <span class="attr">color</span>: red;</span><br><span class="line">  font-<span class="attr">size</span>: 18px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// html</span></span><br><span class="line">&lt;input placeholder=<span class="string">&quot;user&quot;</span> <span class="keyword">class</span>=<span class="string">&quot;user&quot;</span> name=<span class="string">&quot;user&quot;</span> type=<span class="string">&quot;text&quot;</span> /&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">input</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">placeholder</span>=<span class="string">&quot;password&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">class</span>=<span class="string">&quot;password&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">name</span>=<span class="string">&quot;password&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">type</span>=<span class="string">&quot;text&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">/&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="fake-class.png" alt="fake-class"></p>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------已经到底啦！<i class="fa fa-paw"></i>-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/01/06/59-about-unocss/" rel="prev" title="关于原子CSS引擎 -- unocss">
+                  <i class="fa fa-chevron-left"></i> 关于原子CSS引擎 -- unocss
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/01/29/61-about-docker-command/" rel="next" title="关于docker的使用问题">
+                  关于docker的使用问题 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">73k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:27</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bg-beautifier.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+  
+    <script type="text/javascript"
+        count="150"
+        opacity: 1
+        src="/js/canvas-nest.min.js">
+    </script>
+  
+
+</body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+</html>

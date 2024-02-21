@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="linux查看磁盘使用情况命令1234567891011121314151617181920语法：df [选项]... [FILE]...-a, --all 包含所有的具有 0 Blocks 的文件系统--block-size&#x3D;&amp;#123;SIZE&amp;#125; 使用 &amp;#123;SIZE&amp;#125; 大小的 Blocks-h, --human-readable 使用人类可读的格式(预设值是不加这个">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="linux - 关于磁盘命令">
+<meta property="og:url" content="https://sunjinkang.github.io/linux/linux-command-1.html">
+<meta property="og:site_name" content="Sun with no word">
+<meta property="og:description" content="linux查看磁盘使用情况命令1234567891011121314151617181920语法：df [选项]... [FILE]...-a, --all 包含所有的具有 0 Blocks 的文件系统--block-size&#x3D;&amp;#123;SIZE&amp;#125; 使用 &amp;#123;SIZE&amp;#125; 大小的 Blocks-h, --human-readable 使用人类可读的格式(预设值是不加这个">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-11T11:23:54.000Z">
+<meta property="article:modified_time" content="2024-02-21T06:35:57.580Z">
+<meta property="article:author" content="Sun Jinkang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sunjinkang.github.io/linux/linux-command-1">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/linux/linux-command-1.html","path":"linux/linux-command-1.html","title":"linux - 关于磁盘命令"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>linux - 关于磁盘命令 | Sun with no word
+</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sun with no word</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">something about what I have learned and some interesting things</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-unity"><a href="/unity" rel="section"><i class="fab fa-unity fa-fw"></i>unity</a></li><li class="menu-item menu-item-linux"><a href="/linux" rel="section"><i class="fab fa-linux fa-fw"></i>linux</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#linux%E6%9F%A5%E7%9C%8B%E7%A3%81%E7%9B%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">linux查看磁盘使用情况命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%BE%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">使用命令举例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#du%EF%BC%9A%E5%88%97%E5%87%BA%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84%E7%9B%AE%E5%BD%95%E5%A4%A7%E5%B0%8F%EF%BC%8Cdisk-usage"><span class="nav-number">3.</span> <span class="nav-text">du：列出文件系统下的目录大小，disk usage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%B7%B2%E8%A2%AB%E5%88%A0%E9%99%A4%E4%BD%86%E6%9C%AA%E9%87%8A%E6%94%BE%E7%9A%84%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">查看已被删除但未释放的文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A5%E4%B8%8A%E5%86%85%E5%AE%B9%E5%8F%AF%E5%9C%A8man%E6%89%8B%E5%86%8C%E4%B8%AD%E6%9F%A5%E7%9C%8B%E5%85%B7%E4%BD%93%E5%86%85%E5%AE%B9"><span class="nav-number">5.</span> <span class="nav-text">以上内容可在man手册中查看具体内容</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sun Jinkang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sun Jinkang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sunjinkang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sunjinkang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2060037942@qq.com" title="E-Mail → mailto:2060037942@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <img src="/images/backToTop.png" />
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/sunjinkang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header post-top-background" id="id-post-top">
+
+<h1 class="post-title" itemprop="name headline">linux - 关于磁盘命令
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h4 id="linux查看磁盘使用情况命令"><a href="#linux查看磁盘使用情况命令" class="headerlink" title="linux查看磁盘使用情况命令"></a>linux查看磁盘使用情况命令</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">语法：</span><br><span class="line"><span class="built_in">df</span> [选项]... [FILE]...</span><br><span class="line"></span><br><span class="line">-a, --all 包含所有的具有 0 Blocks 的文件系统</span><br><span class="line">--block-size=&#123;SIZE&#125; 使用 &#123;SIZE&#125; 大小的 Blocks</span><br><span class="line">-h, --human-readable 使用人类可读的格式(预设值是不加这个选项的...)</span><br><span class="line">-H, --si 很像 -h, 但是用 1000 为单位而不是用 1024</span><br><span class="line">-i, --inodes 列出 inode 资讯，不列出已使用 block</span><br><span class="line">-k, --kilobytes 就像是 --block-size=1024</span><br><span class="line">-l, --<span class="built_in">local</span> 限制列出的文件结构</span><br><span class="line">-m, --megabytes 就像 --block-size=1048576</span><br><span class="line">--no-sync 取得资讯前不 <span class="built_in">sync</span> (预设值)</span><br><span class="line">-P, --portability 使用 POSIX 输出格式</span><br><span class="line">--<span class="built_in">sync</span> 在取得资讯前 <span class="built_in">sync</span></span><br><span class="line">-t, --<span class="built_in">type</span>=TYPE 限制列出文件系统的 TYPE</span><br><span class="line">-T, --print-type 显示文件系统的形式</span><br><span class="line">-x, --exclude-type=TYPE 限制列出文件系统不要显示 TYPE</span><br><span class="line">-v (忽略)</span><br><span class="line">--<span class="built_in">help</span> 显示这个帮手并且离开</span><br><span class="line">--version 输出版本资讯并且离开</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用命令举例"><a href="#使用命令举例" class="headerlink" title="使用命令举例"></a>使用命令举例</h4><p><em>说明</em><br>Filesystem：代表该文件系统所有的分区<br>1K-blocks：说明下面的数字单位是1KB（默认），可利用-h或-m来改变容量<br>Used：已经使用的硬盘空间<br>Available：剩下的磁盘空间大小<br>Use%：磁盘使用率<br>Mounted on：磁盘挂载的目录所在（挂载点）</p>
+<p><em>以 MB 为单位查看磁盘占用情况</em></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:~<span class="comment"># df -m</span></span><br><span class="line">Filesystem     1M-blocks  Used Available Use% Mounted on</span><br><span class="line">udev               16072     0     16072   0% /dev</span><br><span class="line">tmpfs               3217    10      3208   1% /run</span><br><span class="line">/dev/vda1         396797 78460    318321  20% /</span><br><span class="line">tmpfs              16085     0     16085   0% /dev/shm</span><br><span class="line">tmpfs                  5     0         5   0% /run/lock</span><br><span class="line">tmpfs              16085     0     16085   0% /sys/fs/cgroup</span><br><span class="line">/dev/vda15           105     9        96   9% /boot/efi</span><br><span class="line">overlay           396797 78460    318321  20% /var/lib/docker/overlay2/04c65d21c919fc334c6cf13c2c3f3f5246c68591ff99335016cc5a49a2da0118/merged</span><br><span class="line">overlay           396797 78460    318321  20% /var/lib/docker/overlay2/9c36fd2e009478330599a29068dfdb363be16726381b52f120e233241f1b2790/merged</span><br><span class="line">overlay           396797 78460    318321  20% /var/lib/docker/overlay2/b844f9a9ae8f4d8799a5c00960aa1011498e299a00246f81edb2a362fec82772/merged</span><br><span class="line">overlay           396797 78460    318321  20% /var/lib/docker/overlay2/6176224b017c21cd8c2c290b1c1cb4b3adf3d464498a558271c837db4c9f7fc7/merged</span><br><span class="line">overlay           396797 78460    318321  20% /var/lib/docker/overlay2/b7e90c6775a6d381fc028cd3b76a49b37743b888fb6045e8f6ebde6f582cae41/merged</span><br><span class="line">tmpfs               3217     0      3217   0% /run/user/0</span><br></pre></td></tr></table></figure>
+
+<p><em>使用人类友好的单位查看磁盘占用情况</em></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:~<span class="comment"># df -h</span></span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">udev             16G     0   16G   0% /dev</span><br><span class="line">tmpfs           3.2G  9.1M  3.2G   1% /run</span><br><span class="line">/dev/vda1       388G   77G  311G  20% /</span><br><span class="line">tmpfs            16G     0   16G   0% /dev/shm</span><br><span class="line">tmpfs           5.0M     0  5.0M   0% /run/lock</span><br><span class="line">tmpfs            16G     0   16G   0% /sys/fs/cgroup</span><br><span class="line">/dev/vda15      105M  8.9M   96M   9% /boot/efi</span><br><span class="line">overlay         388G   77G  311G  20% /var/lib/docker/overlay2/04c65d21c919fc334c6cf13c2c3f3f5246c68591ff99335016cc5a49a2da0118/merged</span><br><span class="line">overlay         388G   77G  311G  20% /var/lib/docker/overlay2/9c36fd2e009478330599a29068dfdb363be16726381b52f120e233241f1b2790/merged</span><br><span class="line">overlay         388G   77G  311G  20% /var/lib/docker/overlay2/b844f9a9ae8f4d8799a5c00960aa1011498e299a00246f81edb2a362fec82772/merged</span><br><span class="line">overlay         388G   77G  311G  20% /var/lib/docker/overlay2/6176224b017c21cd8c2c290b1c1cb4b3adf3d464498a558271c837db4c9f7fc7/merged</span><br><span class="line">overlay         388G   77G  311G  20% /var/lib/docker/overlay2/b7e90c6775a6d381fc028cd3b76a49b37743b888fb6045e8f6ebde6f582cae41/merged</span><br><span class="line">tmpfs           3.2G     0  3.2G   0% /run/user/0</span><br></pre></td></tr></table></figure>
+
+<p><em>列出文件系统下所有特殊文件格式的磁盘使用情况</em></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:~<span class="comment"># df -aT</span></span><br><span class="line">Filesystem     Type        1K-blocks     Used Available Use% Mounted on</span><br><span class="line">sysfs          sysfs               0        0         0    - /sys</span><br><span class="line">proc           proc                0        0         0    - /proc</span><br><span class="line">udev           devtmpfs     16457540        0  16457540   0% /dev</span><br><span class="line">devpts         devpts              0        0         0    - /dev/pts</span><br><span class="line">tmpfs          tmpfs         3294040     9316   3284724   1% /run</span><br><span class="line">/dev/vda1      ext4        406319508 80461588 325841536  20% /</span><br><span class="line">securityfs     securityfs          0        0         0    - /sys/kernel/security</span><br><span class="line">tmpfs          tmpfs        16470180        0  16470180   0% /dev/shm</span><br><span class="line">tmpfs          tmpfs            5120        0      5120   0% /run/lock</span><br><span class="line">tmpfs          tmpfs        16470180        0  16470180   0% /sys/fs/cgroup</span><br></pre></td></tr></table></figure>
+
+<p><em>列出指定文件路径下的磁盘使用情况</em></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># df -h [路径]</span></span><br><span class="line">root@ubuntu:~<span class="comment"># df -h /usr</span></span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/vda1       388G   77G  311G  20% /</span><br></pre></td></tr></table></figure>
+
+<p><em>输出版本咨询</em></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:~<span class="comment"># df --version</span></span><br><span class="line"><span class="built_in">df</span> (GNU coreutils) 8.28</span><br><span class="line">Copyright (C) 2017 Free Software Foundation, Inc.</span><br><span class="line">License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;.</span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.</span><br><span class="line"></span><br><span class="line">Written by Torbjorn Granlund, David MacKenzie, and Paul Eggert.</span><br></pre></td></tr></table></figure>
+
+<h4 id="du：列出文件系统下的目录大小，disk-usage"><a href="#du：列出文件系统下的目录大小，disk-usage" class="headerlink" title="du：列出文件系统下的目录大小，disk usage"></a>du：列出文件系统下的目录大小，disk usage</h4><p><em>举例</em></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:~<span class="comment"># du</span></span><br><span class="line">4       ./.cache</span><br><span class="line">8       ./.ssh</span><br><span class="line">24      ./quick-usage/upgrade</span><br><span class="line">40      ./quick-usage/deploy/compose</span><br><span class="line">28      ./quick-usage/deploy/dble</span><br><span class="line">12      ./quick-usage/deploy/compose_v1</span><br><span class="line">680     ./quick-usage/deploy</span><br><span class="line">716     ./quick-usage</span><br><span class="line">4       ./.gnupg/private-keys-v1.d</span><br><span class="line">8       ./.gnupg</span><br><span class="line">768     .</span><br></pre></td></tr></table></figure>
+
+<p><em>du参数说明</em></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-a : 列出所有的文件与目录容量，因为默认仅统计目录下面的文件量而已；</span><br><span class="line">-h : 以人们较易读的容量格式（G/M）显示；</span><br><span class="line">-s : 列出总量，而不列出每个个别的目录占用了容量；</span><br><span class="line">-S : 不包括子目录下的总计，与-s有点差别；</span><br><span class="line">-k : 以KB列出容量显示；</span><br><span class="line">-m : 以MB列出容量显示</span><br></pre></td></tr></table></figure>
+
+<p><em>查看usr/下的所有文件大小并根据大小降序排列</em></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用的时候，下面这几个命令展示的结果是一样的，但是less命令的展示效果类似查看文件</span></span><br><span class="line"><span class="comment"># du -sm /usr/* | sort -nr | less</span></span><br><span class="line"><span class="comment"># du -sm /usr/* | sort -nr | more</span></span><br><span class="line"><span class="comment"># du -sm /usr/* | sort -nr</span></span><br><span class="line">root@ubuntu:~<span class="comment"># du -sm /usr/* | sort -nr | less</span></span><br><span class="line">root@ubuntu:~<span class="comment"># du -sm /usr/* | sort -nr | more</span></span><br><span class="line">468     /usr/lib</span><br><span class="line">376     /usr/bin</span><br><span class="line">271     /usr/src</span><br><span class="line">202     /usr/share</span><br><span class="line">31      /usr/sbin</span><br><span class="line">13      /usr/local</span><br><span class="line">1       /usr/include</span><br><span class="line">1       /usr/games</span><br></pre></td></tr></table></figure>
+
+<p><em>查看usr目录下占用前5的文件</em></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:~<span class="comment"># du -sm /usr/* | sort -nr | head -n 5</span></span><br><span class="line">468     /usr/lib</span><br><span class="line">376     /usr/bin</span><br><span class="line">271     /usr/src</span><br><span class="line">202     /usr/share</span><br><span class="line">31      /usr/sbin</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>df是查看文件系统的磁盘使用情况，包含已删除但为被OS释放的文件所占用的容量大小<br>du是查看目录大小，不包含已删除的文件</p>
+</blockquote>
+<h4 id="查看已被删除但未释放的文件"><a href="#查看已被删除但未释放的文件" class="headerlink" title="查看已被删除但未释放的文件"></a>查看已被删除但未释放的文件</h4><p>lsof (list opened files)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lsof -wn |grep deleted</span><br><span class="line">systemd-l   731                   root  txt       REG              252,1     219272       2005 /lib/systemd/systemd-logind (deleted)</span><br><span class="line">dbus-daem   769             messagebus  txt       REG              252,1     236584       4307 /usr/bin/dbus-daemon (deleted)</span><br><span class="line">agetty     1682                   root  txt       REG              252,1      56552       3846 /sbin/agetty (deleted)</span><br><span class="line">mysqld    20656                   5700    6u      REG              0,152          0    4394263 /opt/udb/mysql/tmp/iblcR0CS (deleted)</span><br><span class="line">mysqld    20656                   5700    7u      REG              0,152          0    4394264 /opt/udb/mysql/tmp/ib9DHifd (deleted)</span><br></pre></td></tr></table></figure>
+
+<p><em>注意</em><br>如果使用 ( lsof -n |grep deleted ) 命令查看时，可能会出现以下错误<br>lsof: no pwd entry for UID 5701</p>
+<p>错误原因<br>1.进程在用户被删除之前启动，并且从那以后一直在运行<br>2.进程在容器内被启动</p>
+<p>解决方法<br>-w 是指忽略这些错误</p>
+<h4 id="以上内容可在man手册中查看具体内容"><a href="#以上内容可在man手册中查看具体内容" class="headerlink" title="以上内容可在man手册中查看具体内容"></a>以上内容可在man手册中查看具体内容</h4><p>man手册地址：<a target="_blank" rel="noopener" href="https://man7.org/">https://man7.org</a></p>
+<p>man手册分为man1-man8：</p>
+<ul>
+<li>man1:用户命令；</li>
+<li>man2:系统调用；</li>
+<li>man3:C库调用；</li>
+<li>man4:设备文件及特殊文件；</li>
+<li>man5:文件格式：(配置文件格式)；</li>
+<li>man6:游戏使用帮助；</li>
+<li>man7:杂项；</li>
+<li>man8:管理工具及守护进行。</li>
+</ul>
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">73k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:27</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bg-beautifier.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+  
+    <script type="text/javascript"
+        count="150"
+        opacity: 1
+        src="/js/canvas-nest.min.js">
+    </script>
+  
+
+</body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+</html>

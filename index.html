@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-unity"><a href="/unity" rel="section"><i class="fab fa-unity fa-fw"></i>unity</a></li><li class="menu-item menu-item-linux"><a href="/linux" rel="section"><i class="fab fa-linux fa-fw"></i>linux</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
   </ul>
 </nav>
 
@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives">
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -173,6 +173,647 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2024/01/29/61-about-docker-command/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header " >
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/01/29/61-about-docker-command/" class="post-title-link" itemprop="url">关于docker的使用问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-01-29 16:10:54 / 修改时间：16:27:36" itemprop="dateCreated datePublished" datetime="2024-01-29T16:10:54+08:00">2024-01-29</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>144</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong>问题：删除docker网络，报错存在active endpoints</strong><br>例如： while removing network: network docker_dms_net id ec0611ba3525 has active endpoints</p>
+<p>解决方法：<br>第一种：<br>重启docker</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service docker restart</span><br></pre></td></tr></table></figure>
+
+<p>第二种：</p>
+<ol>
+<li><p>查看docker的网络</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network ls</span><br></pre></td></tr></table></figure></li>
+<li><p>查看网络的endpoint, 停止使用网络的container</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">docker network inspect &lt;network-id&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// container-id 是Containers下对应的数据</span></span><br><span class="line"><span class="comment">// 例如：</span></span><br><span class="line"><span class="comment">// &quot;Containers&quot;: &#123;</span></span><br><span class="line"><span class="comment">//   &quot;6bcc2418b08f9e1446053ab2e95bda066ec79bcbb0bd200c5e5110dc9bc637a3&quot;: &#123;</span></span><br><span class="line"><span class="comment">//       &quot;Name&quot;: &quot;dms-mysql-2&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;EndpointID&quot;: &quot;75b980a5ad52734eccf237b9bcef0b5c1b2b1426274326eb317d006aceac3eff&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;MacAddress&quot;: &quot;02:42:ac:1f:86:03&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;IPv4Address&quot;: &quot;172.31.134.3/24&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;IPv6Address&quot;: &quot;&quot;</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">// container-id为：6bcc2418b08f9e1446053ab2e95bda066ec79bcbb0bd200c5e5110dc9bc637a3</span></span><br><span class="line">docker container stop &lt;container-id&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/01/29/61-about-docker-command/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header " >
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/01/06/60-about-shadow-dom/" class="post-title-link" itemprop="url">关于shadow dom及如何创建一个shadow dom</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-01-06 11:20:34" itemprop="dateCreated datePublished" datetime="2024-01-06T11:20:34+08:00">2024-01-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-26 09:42:14" itemprop="dateModified" datetime="2024-01-26T09:42:14+08:00">2024-01-26</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>908</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="什么是Shadow-Dom？"><a href="#什么是Shadow-Dom？" class="headerlink" title="什么是Shadow Dom？"></a>什么是Shadow Dom？</h4><blockquote>
+<p>一种连接节点的树状结构，代表标记文档（通常是在 web 文档中的 HTML 文档）中出现的不同元素和文本字符串。</p>
+</blockquote>
+<p>浏览器渲染文档的时候会给指定的DOM结构插入编写好的DOM元素，但是插入的Shadow DOM 会与主文档的DOM保持分离，也就是说Shadow DOM不存在于主DOM树上。并且Shadow DOM封装出来的DOM元素是独立的，外部的配置不会影响到内部，内部的配置也不会影响外部。</p>
+<p><strong>Chrome中查看Shadow Dom</strong><br>1.打开浏览器控制台的设置选项<br>2.找到Preference -&gt; Elements，把show user anent shadow dom勾上<br><img src="chrome-setting.png" alt="chrome-setting"><br><img src="shadow-dom.png" alt="shadow-dom"></p>
+<h4 id="Shadow-Dom的结构"><a href="#Shadow-Dom的结构" class="headerlink" title="Shadow Dom的结构"></a>Shadow Dom的结构</h4>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/01/06/60-about-shadow-dom/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2024/01/06/59-about-unocss/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header " >
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/01/06/59-about-unocss/" class="post-title-link" itemprop="url">关于原子CSS引擎 -- unocss</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-01-06 10:23:11" itemprop="dateCreated datePublished" datetime="2024-01-06T10:23:11+08:00">2024-01-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-19 14:51:05" itemprop="dateModified" datetime="2024-01-19T14:51:05+08:00">2024-01-19</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>unocss是一个即时的原子CSS引擎，它可以让你用简短的类名来控制元素的样式，而不需要写复杂的CSS代码。<br>之前有分享提到过Tailwind，不知道大家是否还记得，Tailwind就是一种原子化的CSS框架。</p>
+<blockquote>
+<p>原子化CSS是一种CSS架构方式，其支持小型、单一用途的类，其名称基于视觉功能。更加通俗的来讲，原子化CSS是一种新的CSS编程思路，它倾向于创建小巧且单一用途的class，并且以视觉效果进行命名。</p>
+</blockquote>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>它可以让你快速地开发和原型设计，而不需要考虑CSS的细节。<br>它可以让你的CSS文件更小，因为它只生成你用到的工具类。<br>它可以让你的CSS更一致，因为它遵循一套预设的规则和变量。<br>它可以让你的CSS更灵活，因为它支持自定义工具类，变体，指令和图标。<br>它可以让你的CSS更易于维护，因为它避免了样式冲突和重复代码。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/01/06/59-about-unocss/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/11/14/58-quick-contrast/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header " >
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/11/14/58-quick-contrast/" class="post-title-link" itemprop="url">diff算法 -- 快速对比</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-14 19:51:24" itemprop="dateCreated datePublished" datetime="2023-11-14T19:51:24+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-12-25 11:01:08" itemprop="dateModified" datetime="2023-12-25T11:01:08+08:00">2023-12-25</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>  前面我们说了diff算法里面的双端对比，主要是在vue2中使用。但在vue3中，使用了另一种比双端diff更快的算法 – 快速diff，今天我们来看一下快速diff的使用方式。</p>
+<h4 id="快速diff的使用场景"><a href="#快速diff的使用场景" class="headerlink" title="快速diff的使用场景"></a>快速diff的使用场景</h4><ul>
+<li>预处理前置节点</li>
+<li>预处理后置节点</li>
+<li>仅有新增节点</li>
+<li>仅有卸载节点</li>
+<li>新增、卸载、移动节点</li>
+</ul>
+<p>仅从上面这五种场景的字面意思上面我们大概能看出它们对应的处理情况，下面我们来看一下，每种场景具体的处理逻辑是怎么样的。（PS：为了便于理解，本文中的节点仅用数字表示）</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/11/14/58-quick-contrast/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/11/09/57-double-end-contrast/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header " >
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/11/09/57-double-end-contrast/" class="post-title-link" itemprop="url">diff算法 -- 双端对比</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 13:27:17" itemprop="dateCreated datePublished" datetime="2023-11-09T13:27:17+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-12-25 11:01:08" itemprop="dateModified" datetime="2023-12-25T11:01:08+08:00">2023-12-25</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>  diff算法，全称为difference算法，是一种用于比较和查找文本、源代码或任何字符串之间差异的算法。前端中在react、vue等中使用diff算法对比虚拟DOM树，进行虚拟DOM树的更新，进而完成真实DOM的更新，达到更新页面的效果。在vue2中使用的就是双端diff算法。</p>
+<h4 id="什么是双端对比？"><a href="#什么是双端对比？" class="headerlink" title="什么是双端对比？"></a>什么是双端对比？</h4><blockquote>
+<p>双端对比，即双端diff算法，一种同时对新旧两组子节点的两个端点进行比较的算法。<br>但就从上面这句话来看，可能有点抽象，可参考下面这张图片<br><img src="double-end-contrast.png" alt="double-end-contrast"></p>
+</blockquote>
+<h4 id="双端对比的简单实现"><a href="#双端对比的简单实现" class="headerlink" title="双端对比的简单实现"></a>双端对比的简单实现</h4>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/11/09/57-double-end-contrast/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header " >
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/09/04/56-weixin-mini-game/" class="post-title-link" itemprop="url">微信小游戏制作</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-09-04 14:21:41" itemprop="dateCreated datePublished" datetime="2023-09-04T14:21:41+08:00">2023-09-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-12-25 11:01:08" itemprop="dateModified" datetime="2023-12-25T11:01:08+08:00">2023-12-25</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>23 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><h6 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h6><p>微信小游戏使用《小游戏可视化制作工具》进行制作开发。<a target="_blank" rel="noopener" href="https://gamemaker.weixin.qq.com/#/">《小游戏可视化制作工具》</a>是一款web应用，可用于开发微信小游戏。以可视化的操作方式编辑游戏场景，使用积木作为脚本设计精灵的行为逻辑。</p>
+<blockquote>
+<p>《小游戏可视化制作工具》推荐使用Chrome浏览器或者最新的QQ浏览器打开。</p>
+</blockquote>
+<p>《小游戏可视化制作工具》支持微信扫码登录，创建的小游戏项目为开发者私人所有，无法跟他人共享或共同编辑。<br>《小游戏可视化制作工具》的账号密码登录为团队开发登录使用，暂未开放注册。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/09/04/56-weixin-mini-game/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -581,628 +1222,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/06/15/52-vite-plugin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun with no word">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun with no word">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header " >
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/06/15/52-vite-plugin/" class="post-title-link" itemprop="url">Vite 插件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-06-15 21:13:24" itemprop="dateCreated datePublished" datetime="2023-06-15T21:13:24+08:00">2023-06-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-08-04 09:54:01" itemprop="dateModified" datetime="2023-08-04T09:54:01+08:00">2023-08-04</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.5k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>9 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="vite插件"><a href="#vite插件" class="headerlink" title="vite插件"></a>vite插件</h4><h6 id="什么是vite插件"><a href="#什么是vite插件" class="headerlink" title="什么是vite插件"></a>什么是vite插件</h6><p>vite 其实就是一个由原生 ES Module 驱动的新型 Web 开发前端构建工具。<br>vite 插件 就可以很好的扩展 vite 自身不能做到的事情，比如一些打包的数据展示，开发中或者打包中的数据处理等等。</p>
-<h6 id="插件-API"><a href="#插件-API" class="headerlink" title="插件 API"></a>插件 API</h6><p>Vite 插件扩展了设计出色的 Rollup 接口，带有一些 Vite 独有的配置项。因此，你只需要编写一个 Vite 插件，就可以同时为开发环境和生产环境工作。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/06/15/52-vite-plugin/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/19/51-about-thunk-function/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun with no word">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun with no word">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header " >
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/19/51-about-thunk-function/" class="post-title-link" itemprop="url">Thunk函数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-04-19 17:00:23" itemprop="dateCreated datePublished" datetime="2023-04-19T17:00:23+08:00">2023-04-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-08-08 10:53:12" itemprop="dateModified" datetime="2023-08-08T10:53:12+08:00">2023-08-08</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h6 id="求值策略"><a href="#求值策略" class="headerlink" title="求值策略"></a>求值策略</h6><p>在介绍Thunk函数之前，需要先介绍一下什么叫做求值策略，即函数的参数应该什么时候求值。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">num</span>) &#123;</span><br><span class="line"> <span class="keyword">return</span> num+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>(<span class="number">2</span>+<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
-<p>类似上面这样将一个表达式作为参数传入函数，表达式应该什么时候计算？实际上可以分为两种情况：</p>
-<ul>
-<li>一种是**传值调用(call by value)**，即表达式在传入函数之前就已经进行了计算，test(2+3)就相当于test(5)，js、C语言、JAVA等语言使用的是这种策略。</li>
-<li>一种是**传名调用(call by name)**，即直接将表达式传入函数，只在需要的时候进行表达式的运算，Haskell(哈斯克尔)使用的是这种策略。<br>传值调用比较简单和便于理解，但是在没有用到的时候，先进行了计算，可能造成性能浪费。
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/04/19/51-about-thunk-function/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/19/50-try-catch-return/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun with no word">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun with no word">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header " >
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/19/50-try-catch-return/" class="post-title-link" itemprop="url">try...catch和return</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-04-19 10:42:04" itemprop="dateCreated datePublished" datetime="2023-04-19T10:42:04+08:00">2023-04-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-08-03 11:05:54" itemprop="dateModified" datetime="2023-08-03T11:05:54+08:00">2023-08-03</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>709</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h6 id="关于return"><a href="#关于return" class="headerlink" title="关于return"></a>关于return</h6><blockquote>
-<p>return 语句终止函数的执行，并返回一个指定的值给函数调用者</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`before: <span class="subst">$&#123;i&#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">if</span> (i === <span class="number">2</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`after: <span class="subst">$&#123;i&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`result`</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>();</span><br><span class="line"><span class="comment">// before: 0</span></span><br><span class="line"><span class="comment">// after: 0</span></span><br><span class="line"><span class="comment">// before: 1</span></span><br><span class="line"><span class="comment">// after: 1</span></span><br><span class="line"><span class="comment">// before: 2</span></span><br></pre></td></tr></table></figure>
-<p>注意：自动分号补全规则会影响 return 语句。在 return 关键字和被返回的表达式之间不允许使用换行符。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/04/19/50-try-catch-return/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/18/49-typed-array/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun with no word">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun with no word">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header " >
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/18/49-typed-array/" class="post-title-link" itemprop="url">js类型化数组</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-04-18 18:17:14" itemprop="dateCreated datePublished" datetime="2023-04-18T18:17:14+08:00">2023-04-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-08-03 11:05:40" itemprop="dateModified" datetime="2023-08-03T11:05:40+08:00">2023-08-03</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>214</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h6 id="什么是类型化数组（Typed-Array）"><a href="#什么是类型化数组（Typed-Array）" class="headerlink" title="什么是类型化数组（Typed Array）?"></a>什么是类型化数组（Typed Array）?</h6><blockquote>
-<p>JavaScript 类型化数组（typed array）是一种类似数组的对象，并提供了一种用于在内存缓冲区中访问原始二进制数据的机制。</p>
-</blockquote>
-<p><em>JavaScript 类型化数组中的每一个元素都是原始二进制值，而二进制值采用多种支持的格式之一（从 8 位整数到 64 位浮点数）。</em></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/04/18/49-typed-array/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/04/06/48-difference-about-require-import/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun with no word">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun with no word">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header " >
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/06/48-difference-about-require-import/" class="post-title-link" itemprop="url">import、import()、require的区别</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-04-06 10:42:59" itemprop="dateCreated datePublished" datetime="2023-04-06T10:42:59+08:00">2023-04-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-24 17:24:46" itemprop="dateModified" datetime="2023-07-24T17:24:46+08:00">2023-07-24</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
-      
-    </div>
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/03/31/47-about-generate-function/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Sun Jinkang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sun with no word">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Sun with no word">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header " >
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/31/47-about-generate-function/" class="post-title-link" itemprop="url">生成器函数和yield关键字</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-03-31 14:00:46" itemprop="dateCreated datePublished" datetime="2023-03-31T14:00:46+08:00">2023-03-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-08-03 11:05:03" itemprop="dateModified" datetime="2023-08-03T11:05:03+08:00">2023-08-03</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h6 id="什么是生成器函数？"><a href="#什么是生成器函数？" class="headerlink" title="什么是生成器函数？"></a>什么是生成器函数？</h6><blockquote>
-<p>function* 这种声明方式 (function关键字后跟一个星号）会定义一个生成器函数 (generator function)，它返回一个 Generator 对象。<br>也可以使用构造函数 GeneratorFunction 或 function* expression 定义**生成器函数 **</p>
-</blockquote>
-<h6 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title function_">name</span>(<span class="params">[param[, param[, ... param]]]</span>) &#123; statements &#125;</span><br><span class="line"><span class="comment">// name: 函数名</span></span><br><span class="line"><span class="comment">// param: 参数</span></span><br><span class="line"><span class="comment">// statements: 执行语句</span></span><br><span class="line"><span class="comment">// 声明方式可以为：function* name()&#123;&#125; 或者 function *name()&#123;&#125;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/03/31/47-about-generate-function/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>
@@ -1214,7 +1235,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1225,13 +1246,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">61k</span>
+    <span title="站点总字数">73k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:41</span>
+    <span title="站点阅读时长">4:27</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

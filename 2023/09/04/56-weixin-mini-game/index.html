@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="概览工具微信小游戏使用《小游戏可视化制作工具》进行制作开发。《小游戏可视化制作工具》是一款web应用，可用于开发微信小游戏。以可视化的操作方式编辑游戏场景，使用积木作为脚本设计精灵的行为逻辑。  《小游戏可视化制作工具》推荐使用Chrome浏览器或者最新的QQ浏览器打开。  《小游戏可视化制作工具》支持微信扫码登录，创建的小游戏项目为开发者私人所有，无法跟他人共享或共同编辑。《小游戏可视化制作工具">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="微信小游戏制作">
+<meta property="og:url" content="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/index.html">
+<meta property="og:site_name" content="Sun with no word">
+<meta property="og:description" content="概览工具微信小游戏使用《小游戏可视化制作工具》进行制作开发。《小游戏可视化制作工具》是一款web应用，可用于开发微信小游戏。以可视化的操作方式编辑游戏场景，使用积木作为脚本设计精灵的行为逻辑。  《小游戏可视化制作工具》推荐使用Chrome浏览器或者最新的QQ浏览器打开。  《小游戏可视化制作工具》支持微信扫码登录，创建的小游戏项目为开发者私人所有，无法跟他人共享或共同编辑。《小游戏可视化制作工具">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/weixin_idea.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/work_setting.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/upload.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/normal.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/jingling.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/number.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/text.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/wrapper.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/event.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/logic.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/control.png">
+<meta property="og:image" content="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/move.png">
+<meta property="article:published_time" content="2023-09-04T06:21:41.000Z">
+<meta property="article:modified_time" content="2023-12-25T03:01:08.671Z">
+<meta property="article:author" content="Sun Jinkang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/weixin_idea.png">
+
+
+<link rel="canonical" href="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/","path":"2023/09/04/56-weixin-mini-game/","title":"微信小游戏制作"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>微信小游戏制作 | Sun with no word</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sun with no word</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">something about what I have learned and some interesting things</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-babel"><a href="/babel" rel="section"><i class="fas fa-file-code fa-fw"></i>babel</a></li><li class="menu-item menu-item-node"><a href="/nodejs" rel="section"><i class="fab fa-node-js fa-fw"></i>node</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-vue"><a href="/vue" rel="section"><i class="fab fa-vuejs fa-fw"></i>vue</a></li><li class="menu-item menu-item-unity"><a href="/unity" rel="section"><i class="fab fa-unity fa-fw"></i>unity</a></li><li class="menu-item menu-item-linux"><a href="/linux" rel="section"><i class="fab fa-linux fa-fw"></i>linux</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A6%82%E8%A7%88"><span class="nav-number">1.</span> <span class="nav-text">概览</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7"><span class="nav-number">1.0.1.</span> <span class="nav-text">工具</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%B0%8F%E6%B8%B8%E6%88%8F%E7%BC%96%E8%BE%91%E5%99%A8%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.0.2.</span> <span class="nav-text">小游戏编辑器介绍</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%88%B6%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.0.3.</span> <span class="nav-text">制作流程</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E4%B8%96%E7%95%8C"><span class="nav-number">1.0.4.</span> <span class="nav-text">游戏世界</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8"><span class="nav-number">1.0.5.</span> <span class="nav-text">编辑器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">发布流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E5%BB%BA%E8%AE%AE"><span class="nav-number">3.</span> <span class="nav-text">优化建议</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sun Jinkang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sun Jinkang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sunjinkang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sunjinkang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2060037942@qq.com" title="E-Mail → mailto:2060037942@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <img src="/images/backToTop.png" />
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/sunjinkang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sun Jinkang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="微信小游戏制作 | Sun with no word">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header post-top-background" id="id-post-top">
+        <h1 class="post-title" itemprop="name headline">
+          微信小游戏制作
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-09-04 14:21:41" itemprop="dateCreated datePublished" datetime="2023-09-04T14:21:41+08:00">2023-09-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-12-25 11:01:08" itemprop="dateModified" datetime="2023-12-25T11:01:08+08:00">2023-12-25</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>23 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><h6 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h6><p>微信小游戏使用《小游戏可视化制作工具》进行制作开发。<a target="_blank" rel="noopener" href="https://gamemaker.weixin.qq.com/#/">《小游戏可视化制作工具》</a>是一款web应用，可用于开发微信小游戏。以可视化的操作方式编辑游戏场景，使用积木作为脚本设计精灵的行为逻辑。</p>
+<blockquote>
+<p>《小游戏可视化制作工具》推荐使用Chrome浏览器或者最新的QQ浏览器打开。</p>
+</blockquote>
+<p>《小游戏可视化制作工具》支持微信扫码登录，创建的小游戏项目为开发者私人所有，无法跟他人共享或共同编辑。<br>《小游戏可视化制作工具》的账号密码登录为团队开发登录使用，暂未开放注册。</p>
+<h6 id="小游戏编辑器介绍"><a href="#小游戏编辑器介绍" class="headerlink" title="小游戏编辑器介绍"></a>小游戏编辑器介绍</h6><p><img src="weixin_idea.png" alt="weixin_idea"></p>
+<p>概览编辑器，可分为8个区域，分别是：</p>
+<ul>
+<li>工具栏：添加素材，运行游戏，预览发布，搜索，保存退出等功能入口；</li>
+<li>场景面板：添加/切换不同场景，如果游戏复杂可能存在多个场景，比如：不同关卡、开始界面、结束界面等等；</li>
+<li>资源面板：管理当前项目的所有资源（包括精灵/声音/函数），资源管理器中的精灵可拖拽进入编辑区域生成一个新的图层精灵实例；</li>
+<li>积木面板：用于控制精灵实例的积木脚本，积木是与资源一一对应的，一个资源的多个实例图层都会公用一套积木；</li>
+<li>图层面板：管理当前场景中的精灵实例，已经在编辑区域有实例的精灵都是一个图层，在图层面板可以拖拽调整图层顺序，也可以打组成为容器（Ctrl+G）；</li>
+<li>编辑区域：这里就是所见即所得的游戏界面！编辑区域与图层是一一对应的，我们可以选中区域中的精灵实例进行拖拽位置，调整大小等；</li>
+<li>属性面板：由两块组成，当我们选择资源时，只显示资源属性，当我们选择图层时，同时显示图层属性和资源属性。每个图层都有自己的属性互不影响；</li>
+<li>数据面板：对（全局/精灵私有）的变量/列表/表格/通知等数据进行管理</li>
+</ul>
+<h6 id="制作流程"><a href="#制作流程" class="headerlink" title="制作流程"></a>制作流程</h6><ol>
+<li>在浏览器中打开制作工具</li>
+<li>通过 [新建小游戏/复制示例/改编他人作品] 等方式创建一个游戏项目</li>
+<li>导入素材，编辑场景，拖入积木，完善游戏</li>
+<li>在电脑上运行调试</li>
+<li>在移动端预览调试，也可以分享给他人体验</li>
+<li>发布到MP平台，完成小游戏</li>
+</ol>
+<h6 id="游戏世界"><a href="#游戏世界" class="headerlink" title="游戏世界"></a>游戏世界</h6><p><em>精灵</em><br>在计算机图形学中，当一张二维图像集成进场景中，成为整个游戏的一部分时，这张图就被称为精灵（英：Sprite）</p>
+<p><em>数字</em><br>数字也是一类特殊的精灵，它是由 “0-9” 十个数字及“-”和“.”组合形成的一个整体。使用也非常方便，可以通过以下这组积木进行实时动态修改。</p>
+<blockquote>
+<p>外观-「修改[?]的值为(n)」<br>外观-「将[?]的值增加(1)」</p>
+</blockquote>
+<p><em>文字</em><br>文字也是一类特殊的精灵，添加之后可以在图层属性面板修改：对齐方式、字体大小、行高、文字颜色。只能通过以下积木修改内容。</p>
+<blockquote>
+<p>外观-「修改[?]的内容为(你好)」</p>
+</blockquote>
+<h6 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h6><ul>
+<li><p>工具栏</p>
+<ul>
+<li><p>作品设置<br><img src="work_setting.png" alt="work_setting"><br>[适配模式] 我们可以调整在移动端的适配模式，推荐竖屏游戏使用宽度适配，横屏游戏使用高度适配<br>[使用默认资源进度条] 是否显示默认资源加载中的提示<br>[资源加载方式] 如果项目非常大并且多个场景，建议选择切换场景时加载，并且搭配[资源管理]插件一起使用，建议默认选择全部加载后启动<br>[分享标题] 设置一个好的分享标题可以吸引别人玩你的游戏，出现在小游戏分享给好友的卡片中，如不设置默认显示项目名<br>[分享缩略图] 分享图非常关键，无论是在预览时分享给好友，还是在社区，还是发布成独立小游戏，分享作品时该图片是给人的第一印象<br>[游戏说明] 游戏说明会出现在社区的项目页中，只有需要分享时才有必要设置该项</p>
+</li>
+<li><p>游戏适配<br>1、设计尺寸<br>目前通过可视化工具制作的游戏只能运行在微信小游戏端。官方设定的设计尺寸是：750<em>1334，也就是iPhone 7的尺寸。因此在iPhone 7的手机中，可以完美的展示制作工具中看到界面，不会有任何裁剪或者黑边。也会依照此比例，在其他设备上进行等比缩放。</em>循环滚动逻辑会改造为插件模式。*<br>2、适配方案</p>
+<blockquote>
+<p>设置背景图片的高度设计更高一点，为iPhone X的高度。或者将背景精灵纹理进行拉伸处理，这样能把黑边填充满。<br>设置适配模式为适配高度，将游戏等比缩放，假如iPhone X的高度是iPhone 7 的1.2倍，结果是将游戏等比放大1.2倍。但这种方法带来的问题是水平方向会裁剪，左右会失去一部分细节。<br>通过开启相对于场景布局来调整精灵在不同屏幕尺寸中的适配情况，无需过多的操作，只需要在场景中摆放完后选择开启想要的布局模式即可</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>资源管理<br>游戏素材是游戏的“原材料”，通常包含图片、文本、音频。图片又可分为：单图、帧动画等。</p>
+</li>
+</ul>
+<p>在《小游戏可视化制作工具》中，游戏资源有以下几类</p>
+<blockquote>
+<p>[精灵] 最常用的资源，用途广泛甚至可以替代背景<br>[文字] 特殊的精灵，有两种文字类型，基础文字和带气泡背景的文字，常用于标题，按钮和提示等展示<br>[数字] 特殊的精灵，由0-9和.-两个符号组成，相当于特殊字体，常用于展示得分和其他数值变化<br>[背景] 特殊的精灵，每个场景只有一个且自动生成，并且不会超出屏幕区域，只适用于快速搭建小场景游戏<br>[容器] 多个精灵的组合层，本身也是独立的空精灵<br>[UI插件] 特殊的资源，自带一些行为属性，较为独立，部分积木无法影响到UI插件<br>[声音] 可以被积木引用并播放<br>[函数] 多个积木的合集，适用于需要在不同精灵多次使用相同积木组合的场合<br>游戏资源 = 素材 + 积木。换句话说可视化制作工具中的资源是具有积木逻辑的素材</p>
+</blockquote>
+<ul>
+<li>系统素材<br>素材库包含：系统素材/我的素材/UI插件三个部分，官方提供了多个拥有自主版权的主题素材，如：《积木小Y》、《彩色飞机大战》等。</li>
+</ul>
+<p><em>素材库中的积木小Y是主要 文本/数字 等素材的导入入口，其中 [基础文字] 最为常用</em></p>
+<ul>
+<li><p>上传素材<br><img src="upload.png" alt="upload"><br>使用上传素材需要切换到[我的素材]Tab页，同时针对上传的素材有特殊要求：</p>
+</li>
+<li><p>单图和音频：将素材拖拽扔进我的素材或者上传素材的上传区域即可</p>
+</li>
+<li><p>帧动画组：打开上传素材界面，并将帧动画组的素材名称规范命名为：xx1.png、xx2.png、xx3.png、xx4.png、xx5.png…，然后选中整个帧动画组整体拖拽扔进上传区域，即可自动生成帧动画组素材</p>
+</li>
+<li><p>数字：打开上传素材界面，将数字以规范命名为：xx1.png、xx2.png、xx3.png等，即可自动填充到对应的位置，也可以手动点击单个窗口上传对应的数字和字符，只有上传了负号和小数点的数字精灵，才支持负数和显示小数，否则只能显示正整数</p>
+</li>
+<li><p>文本框：打开上传素材界面，上传一张图片作为文本框的背景，还可以调整文本有效区域和真实图片之间的间距</p>
+<ul>
+<li><p>绘图：开发者可以自行对素材进行编辑修改或者创作一些简单的素材</p>
+</li>
+<li><p>录音：开发者可以创作个性的录音素材，并对素材进行剪辑等操作</p>
+</li>
+<li><p>绑定积木脚本：资源是和积木逻辑绑定的，每一个素材资源对应一套积木，关于积木脚本的详细信息可参考后续文章</p>
+</li>
+<li><p>资源的复用<br>除了从素材库添加资源时默认创建在当前场景中的图层实例，还可以从资源管理器直接拖拽“精灵素材”至当前的编辑区域，即可在当前“场景”添加一个精灵实例，并同时会生成一个对应的“图层”。<br>该实例是“精灵素材”资源的引用，将完全继承“精灵素材”的所有积木脚本。其属性会复制原始的“精灵素材”，可以在图层属性面板修改这些属性。</p>
+</li>
+<li><p>声音和音效<br>声音资源也是从素材库添加，声音分为 [音效] 和 [背景音乐] 两类，在资源库中他们名并没有实际的区别，上传声音素材时，时间过长的会被分类为背景音乐，较短的被分类为音效，可以通过选择全部主题，点击音效来播放预览系统提供的一些音效</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><em>声音是咖啡色的积木，总共只有5个相关的积木，我们推荐音效使用播放，背景音乐使用循环播放，在一些手机系统导致的声音暂停的情况下，我们会在重新进入小游戏时把背景音乐自动重启</em><br><em>在编辑游戏的过程中往往会反复调试音效，记得多使用资源面板中的替换音效功能而不是直接删除再添加，会省力的多</em></p>
+<ul>
+<li>场景管理<br>可以添加多个场景，并设置某一个场景为主场景，主场景并不一定是第一个场景，场景之间是通过积木「切换场景到XX」来互相跳转的，目前暂不支持场景的排序<br>和场景相关的积木：</li>
+</ul>
+<ol>
+<li>「事件-当场景启动时」</li>
+<li>「控制-切换场景到XX」</li>
+<li>「控制-销毁XX」</li>
+<li>「控制-重启当前场景」</li>
+</ol>
+<p>主场景<br>游戏首次加载的场景我们称为主场景(左上角有房子标识)。<br>在主场景中我们可以使用「当游戏开始时」积木作为启动事件，此事件只会触发一次。其他场景可通过「当场景启动时」作为启动事件。<br>这里推荐所有入口都用「当场景启动时」作为启动场景的入口事件，「当游戏开始时」这个积木使用限制较多，只推荐在做简单的demo时使用</p>
+<ul>
+<li>图层管理</li>
+</ul>
+<p>层级<br>图层的顺序影响精灵实例渲染的顺序，以及影响该实例对应的资源积木逻辑执行的顺序，所以管理好图层顺序也很重要，可以通过拖拽来调整图层层级顺序（不能拖动到背景层下方）</p>
+<p>隐藏和锁定<br>图层面板选中图层后右键或者点右侧的菜单按钮会出现 [隐藏/锁定/删除] 三个操作：<br>[锁定] 图层的层级在编辑区域也会影响到下一层精灵的选中，我们可以暂时锁定上层的精灵，方便我们选中下一层，这里的锁定只会影响编辑，并不会对游戏运行过程产生影响<br>[隐藏] 我们也可以直接在图层面板隐藏对应的图层，也可以影响编辑区域中的选中关系，注意这里的隐藏会影响到游戏逻辑，隐藏是一个非常重的操作，如果该精灵是隐藏的，那么他将无法参与碰撞和被用户点击到<br>[删除] 删除图层操作只是将当前图层实例从当前场景中删除，并不会删除代码和对应的资源</p>
+<p>摄像机<br>[设置XX为摄像机的世界区域] 摄像机的边界，摄像机不会移出超出该区域的部分，一般使用方法为在场景中放置一个大正方形作为区域并添加该积木，流程较为麻烦后续会优化该积木<br>[将XX移出摄像机镜头] 一般用于UI设置，需要成为UI的资源才有必要添加该积木<br>[设置摄像机的跟随对象为XX] 使用摄像机的主要目的，我们在制作RPG类型的游戏时有时候会需要把摄像机对准主角，主角始终会在游戏的中间<br>[设置摄像机的缩放比例] 设置摄像机缩放的比例，用于特写<br>[设置摄像机的缩放比例增加] 设置摄像机缩放的比例增减，常用于镜头抖动<br>[设置摄像机的偏移] 设置摄像机缩放的偏移，根据具体场景例如其他角色对话时使用<br>[设置摄像机的偏移增加] 设置摄像机缩放的偏移增减，常用于镜头抖动和来回移动对话</p>
+<ul>
+<li>属性<br>属性是精灵在画布上表现的数据体现，属性是和编辑区域看到的是一一对应的，在可视化制作工具里，属性分为图层属性和资源属性</li>
+</ul>
+<p>资源属性<br>当我们选中资源面板的资源时，我们就会显示资源属性，工具弱化了资源属性的功能和展示<br>大部分情况下，资源能设置的只有宽高和造型</p>
+<p>通用属性<br><img src="normal.png" alt="normal"></p>
+<p>精灵特有属性<br><img src="jingling.png" alt="jingling"></p>
+<p>数字特有属性<br><img src="number.png" alt="number"></p>
+<p>文本特有属性<br>纯文本不支持部分属性如宽高或翻转，对话框文本由两个部分组成，修改宽高会修改对话框部分<br><img src="text.png" alt="text"></p>
+<p>容器特有属性<br><img src="wrapper.png" alt="wrapper"></p>
+<p>插件特有属性<br>每个插件都有自己定义的属性，各不同用</p>
+<ul>
+<li>数据管理<br>数据面板总共有4种类型，变量/列表/表格/通知，其中 [变量/列表/表格] 是一类，都分别有全局的和私有的两种类型，对应积木列表中的积木标签，而通知相关的积木则在控制和事件标签中。<br>[变量/列表/表格] 都有格子对应的取值积木，分别对应 [红色/橙色/黄色]<br>新建时需要选择是私有变量还是全局变量，<br>全部变量在整个游戏中是唯一的，一旦改变，任何读取全局变量的积木都会拿到最新的值。<br>局部变量局部变量是属于某个精灵个体的，并且精灵的克隆体也拥有其自己的局部变量。</li>
+</ul>
+<p><em>在大部分情况下我们都推荐使用全局变量，只有在当前精灵对象存在克隆体时，为了让每个克隆体单独拥有一份变量才需要设置</em></p>
+<p>列表<br>建议只使用全局列表，除非克隆体需要使用</p>
+<p>表格<br>表格通常是我们用来定义初始化参数用的，例如答题游戏的题目和选项，关卡的配置等</p>
+<ul>
+<li>积木脚本</li>
+</ul>
+<p>积木是可视化制作工具中承担非常重要的逻辑关联的一部分，我们采用事件头触发的模式竖向排列拼接积木，每个事件头被触发后才会执行内部的积木，如果是散落的积木则不会执行<br>这里有几个通用概念，大部分积木都会有主语的选择，当我们选主语为其他精灵时，我们就可以在当前精灵控制其他精灵<br>还有几个固定的选项:<br>自己: 指精灵自己，常用主语，一般积木都默认操作自己，也可以用来在克隆体启动时指代克隆体本身<br>创建者: 特指克隆体的创建者，在当克隆体被创建时使用，用于找到创建该克隆体的对象<br>随机: 只会在屏幕内随机，而不是真正的无限随机<br>手指: 指用户操作屏幕的触发坐标点<br>被碰撞者: 在发生碰撞时使用，在监听碰撞的事件里找到被碰撞的对象<br>X: 横坐标<br>Y: 纵坐标<br>边缘: 特指场景的边缘，通常就是屏幕看到的区域<br>子精灵: 容器特有的选项，通常用于控制被克隆的容器<br>阻塞动画: 部分动画积木具有等待的效果，必须等待动画完成才会往下执行</p>
+<p>事件<br>丰富的事件钩子积木能快速简单的控制游戏流程，监听状态和输入<br>启动事件都是“头部积木”，只有启动事件被触发，其中包含的积木队列才会被依次执行。<br><img src="event.png" alt="event"></p>
+<p>逻辑<br><img src="logic.png" alt="logic"></p>
+<p>控制<br><img src="control.png" alt="control"></p>
+<p>运动<br><img src="move.png" alt="move"></p>
+<p>函数<br>函数是一系列积木的组合，由开发者自己创建，在当前项目使用<br>如果我们需要多次在不同的精灵里使用同一批积木时，例如敌人和主角的碰撞逻辑，敌人的销毁逻辑等，我们就需要自己创建一些函数来节省我们的积木，提高开发效率<br>并且函数具有传递参数的功能，当我们给函数增加参数并命名后，我们在调用函数时就可以给函数传递对应的参数来达到不同的效果</p>
+<ul>
+<li>碰撞系统</li>
+</ul>
+<p>碰撞描边<br>为了游戏性能，实际的计算不会去判断精灵的像素点是否相交，而是把它们简化为更简单的几个图形。这样做的目的是在碰撞性能与准确性之间保持一个平衡。另外值得注意的一个问题：是越复杂的图形碰撞计算越耗时，也意味着游戏可能会卡顿，所以在制作游戏的时候需要注意。为此编辑器提供了一个设置碰撞图形的功能。<br>系统默认是采用多边形的轮廓，程序会自动计算出来。如果想改变它。<br>往场景里面添加一个精灵，然后选中，在右侧的属性面板可以看到“调整碰撞轮廓”，可以手动去调整描边的类型与大小。<br><em>轮廓是跟随图层实例的，它的描边数据是保存在实例上，而不是对象上。</em></p>
+<p>碰撞积木<br>在积木编辑区域，添加事件列表如下，在列表中选择“当精灵发生碰撞”事件<br>碰到边缘<br>碰到边缘比较简单，就是画布的边界。当这个条件满足的时候就会会触发这个事件的逻辑。<br>碰到精灵<br>当前精灵与其他精灵发生碰撞，也可以选择某一类精灵<br><em>下拉列表，可以跨场景选择到其他场景的精灵，但实际是不生效的。</em></p>
+<p>碰撞与相交<br>相交：两个精灵的碰撞轮廓一直是有重叠区。<br>碰撞：如果两个精灵，从相离到相交，则记录为一次碰撞事件。碰撞事件触发后，两个精灵一直处于相交状态，则不会再次触发碰撞事件。直到两个精灵相离后再次相交。</p>
+<ul>
+<li>插件<br>插件分为两种，全局的和非全局的。像轮盘组件，可以在游戏场景中实例化多次的。而数据缓存，只能有一个全局实例，更像是一个库，只要打开一个开关，就可以使用它提供的功能。不像轮盘还要拖入到画布中实例化才可以使用。插件有两个入口，系统全局的在顶部菜单栏。另一种是在资源库中</li>
+</ul>
+<p><em>注意：不能给UI插件添加物理行为、碰撞事件监听等逻辑，会导致程序异常。</em></p>
+<ul>
+<li><p>固体行为<br>当给精灵添加固体行为的时候，就不能被穿透，可以当做地板或者墙壁使用。假如给A加上固体行为，B碰到A时会被挡住。但是这个行为使用是有场景限制的，必须配合其他行为一起使用。<br>固体行为使其他行为对对象产生反应，就好像它是不可逾越的障碍一样。具有这种行为的对象称为固体。它影响以下行为：<br>方向控制。被固体阻挡<br>平台角色。平台角色无法从下方跳至固体上方</p>
+</li>
+<li><p>跳跃穿透行为<br>当给精灵添加跳跃行为的时候，只能被单向穿透，可以当做特殊地板使用。假如给A加上跳跃穿透行为，B添加了平台角色行为，B跳跃或者横向跑动的时候可以穿过A，但B从高度下落碰到A时，则无法穿透A。这个行为使用有场景限制，必须配合平台角色行为一起使用。</p>
+</li>
+</ul>
+<p><em>单独使用这个行为是没有任何意义，必须配合其他行为使用。</em></p>
+<ul>
+<li><p>平台角色行为<br>当给精灵添加平台角色行为的时候，添加此行为后，精灵可以在平台上跳跃、跑动，配合”固体”和”跳跃穿透”一起使用。<br>平台角色行为实现了侧视图“跳跃并运行”样式的移动。它支持斜坡，移动平台，“跳跃式”平台和任意重力角。<br>平台角色行为将落在具有“固体”或“跳跃穿透”的任何对象上。不同之处在于，平台角色可以从“跳跃穿透”下面跳到上面去，而从固体下跳会使角色反弹，穿透不了。</p>
+</li>
+<li><p>物理行为<br>物理从原来单纯的积木模式，切换行为插件模式。只有给精灵添加了物理行为才能使用物理相关的积木。 物理行为模拟现实的对象物理。它由Box2D驱动。<br>物理行为是相对复杂的。建议使用以下教程，以基本了解如何使用物理行为以及在开始使用物理行为之前要了解的一些要点：<br>物理：基础知识<br>物理：力，脉冲，扭矩和关节</p>
+</li>
+</ul>
+<p><em>强烈建议完全通过物理行为（通过设置力，脉冲，转矩等）来控制物理对象，而不是尝试通过“设置位置”，“设置角度”等来操纵对象。</em></p>
+<ul>
+<li>方向控制行为<br>方向控制行为允许对象在默认情况下由箭头键控制的对角线上，下，左，右和对角线移动。在自顶向下视图游戏中控制玩家通常很有用。也可以将其设置为4个方向，或者简单地向上/向下或向左/向右移动，这对于拨片或滑块很有用。</li>
+</ul>
+<p><em>方向控制行为被具有固体行为的任何对象阻止。</em></p>
+<ul>
+<li><p>遮罩行为<br>遮罩用于规定精灵可渲染的范围，带有遮罩行为的精灵会使用约束框（也就是属性中遮罩类型的Size规定的范围创建一个渲染遮罩，该精灵的所有子精灵（容器的子元素）都会依据这个遮罩进行裁剪，遮罩范围外的将不会渲染。<br>简而言之，就是只绘制精灵的局部。</p>
+</li>
+<li><p>弹出行为<br>利用缓动（允许你以平滑的方式更改对象的属性）做的一个弹出特效行为，模拟游戏常用的动画弹窗。</p>
+</li>
+<li><p>缓动动画行为<br>“缓动动画”行为支持将精灵以特定缓动动画的方式移动到某个位置。它还支持以缓动动画的方式对精灵进行透明度修改、宽高调整以及比例缩放等功能。</p>
+</li>
+</ul>
+<h4 id="发布流程"><a href="#发布流程" class="headerlink" title="发布流程"></a>发布流程</h4><ul>
+<li>预览和体验：有50人上限的限制，但是最快速便捷，你可以选择下载二维码或者直接在微信右上角拉起分享给他人</li>
+<li>发布到社区</li>
+<li><a target="_blank" rel="noopener" href="https://gamemaker.weixin.qq.com/doc/minigame/release.html#%E5%8F%91%E5%B8%83%E5%88%B0%E7%8B%AC%E7%AB%8B%E5%B0%8F%E6%B8%B8%E6%88%8F">发布到独立小游戏</a></li>
+</ul>
+<h4 id="优化建议"><a href="#优化建议" class="headerlink" title="优化建议"></a>优化建议</h4><p><a target="_blank" rel="noopener" href="https://gamemaker.weixin.qq.com/doc/minigame/optimize.html">https://gamemaker.weixin.qq.com/doc/minigame/optimize.html</a></p>
+<p>RPG类型的游戏：rpg游戏是角色扮演游戏类型，rpg是英文Role-Playing Game的缩写简称</p>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------已经到底啦！<i class="fa fa-paw"></i>-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/08/09/55-burying-point/" rel="prev" title="关于埋点">
+                  <i class="fa fa-chevron-left"></i> 关于埋点
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/11/09/57-double-end-contrast/" rel="next" title="diff算法 -- 双端对比">
+                  diff算法 -- 双端对比 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Jinkang</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">73k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:27</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bg-beautifier.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+  
+    <script type="text/javascript"
+        count="150"
+        opacity: 1
+        src="/js/canvas-nest.min.js">
+    </script>
+  
+
+</body>
+<script type="text/javascript" src="/js/bg-beautifier.js"></script>
+<script>hexoChangeBanner();</script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
+</html>
