@@ -23,27 +23,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="什么是RPM？RPM（Red Hat Package Manager）是一种常见且强大的二进制软件包管理工具，它以 .rpm 格式打包软件，并提供了一系列命令和工具来方便地安装、升级、查询和卸载软件包。 常见命令及举例 安装包命令：语法格式：rpm -ivh [包名]例如：rpm -ivh example.rpm参数 i 安装软件包 v 显示详细输出 h 显示安装进度  根据需要，安装命令可能需要">
+    <meta name="description" content="Linux - grep命令grep命令介绍grep 是用于在文本中搜索匹配特定模式的行的 Unix 和 Linux 命令。grep也可用于搜索文件夹内的文件内容。  搜索包含关键字的行：语法格式：grep &quot;关键字&quot; 文件名例如：grep &quot;root&quot; &#x2F;etc&#x2F;passwd 会找到包含 “root” 这个关键字的行。   搜索以某关键字开头的行：语法格式">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="linux - 软件管理(2)-rpm">
-<meta property="og:url" content="https://sunjinkang.github.io/linux/linux-command-3.html">
+<meta property="og:title" content="linux - grep命令">
+<meta property="og:url" content="https://sunjinkang.github.io/linux/linux-command-4.html">
 <meta property="og:site_name" content="Sun with no word">
-<meta property="og:description" content="什么是RPM？RPM（Red Hat Package Manager）是一种常见且强大的二进制软件包管理工具，它以 .rpm 格式打包软件，并提供了一系列命令和工具来方便地安装、升级、查询和卸载软件包。 常见命令及举例 安装包命令：语法格式：rpm -ivh [包名]例如：rpm -ivh example.rpm参数 i 安装软件包 v 显示详细输出 h 显示安装进度  根据需要，安装命令可能需要">
+<meta property="og:description" content="Linux - grep命令grep命令介绍grep 是用于在文本中搜索匹配特定模式的行的 Unix 和 Linux 命令。grep也可用于搜索文件夹内的文件内容。  搜索包含关键字的行：语法格式：grep &quot;关键字&quot; 文件名例如：grep &quot;root&quot; &#x2F;etc&#x2F;passwd 会找到包含 “root” 这个关键字的行。   搜索以某关键字开头的行：语法格式">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-02-21T07:41:52.000Z">
-<meta property="article:modified_time" content="2024-03-12T02:09:56.567Z">
+<meta property="article:published_time" content="2024-02-27T03:25:40.000Z">
+<meta property="article:modified_time" content="2024-03-07T05:18:25.242Z">
 <meta property="article:author" content="Sun Jinkang">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="grep">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://sunjinkang.github.io/linux/linux-command-3">
+<link rel="canonical" href="https://sunjinkang.github.io/linux/linux-command-4">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/linux/linux-command-3.html","path":"linux/linux-command-3.html","title":"linux - 软件管理(2)-rpm"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/linux/linux-command-4.html","path":"linux/linux-command-4.html","title":"linux - grep命令"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>linux - 软件管理(2)-rpm | Sun with no word
+<title>linux - grep命令 | Sun with no word
 </title>
   
 
@@ -120,7 +122,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFRPM%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是RPM？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4%E5%8F%8A%E4%B8%BE%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">常见命令及举例</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux-grep%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">Linux - grep命令</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -186,7 +188,7 @@
     
     <div class="post-block" lang="zh-CN"><header class="post-header post-top-background" id="id-post-top">
 
-<h1 class="post-title" itemprop="name headline">linux - 软件管理(2)-rpm
+<h1 class="post-title" itemprop="name headline">linux - grep命令
 </h1>
 
 <div class="post-meta-container">
@@ -197,14 +199,33 @@
       
       
       <div class="post-body">
-          <h4 id="什么是RPM？"><a href="#什么是RPM？" class="headerlink" title="什么是RPM？"></a>什么是RPM？</h4><p>RPM（Red Hat Package Manager）是一种常见且强大的二进制软件包管理工具，它以 .rpm 格式打包软件，并提供了一系列命令和工具来方便地安装、升级、查询和卸载软件包。</p>
-<h4 id="常见命令及举例"><a href="#常见命令及举例" class="headerlink" title="常见命令及举例"></a>常见命令及举例</h4><ul>
-<li>安装包命令：<br>语法格式：<code>rpm -ivh [包名]</code><br>例如：<code>rpm -ivh example.rpm</code><br>参数</li>
-<li>i 安装软件包</li>
-<li>v 显示详细输出</li>
-<li>h 显示安装进度</li>
+          <h4 id="Linux-grep命令"><a href="#Linux-grep命令" class="headerlink" title="Linux - grep命令"></a>Linux - grep命令</h4><p>grep命令介绍<br><code>grep</code> 是用于在文本中搜索匹配特定模式的行的 Unix 和 Linux 命令。grep也可用于搜索文件夹内的文件内容。</p>
+<ul>
+<li>搜索包含关键字的行：<br>语法格式：<code>grep &quot;关键字&quot; 文件名</code><br>例如：<code>grep &quot;root&quot; /etc/passwd</code> 会找到包含 “root” 这个关键字的行。</li>
 </ul>
-<p><em>根据需要，安装命令可能需要在前面加 sudo</em></p>
+<ul>
+<li>搜索以某关键字开头的行：<br>语法格式：<code>grep &quot;^关键字&quot; 文件名</code><br>例如：<code>grep &quot;^root&quot; /etc/passwd</code> 会找到以 “root” 开头的行。</li>
+</ul>
+<ul>
+<li>搜索以某关键字开头的，不区分大小写的行：<br>语法格式：<code>grep -i &quot;^关键字&quot; 文件名</code><br>例如：<code>grep -i &quot;^root&quot; /etc/passwd</code> 会找到以 “root”、”Root”、”rOot”等开头的行。</li>
+</ul>
+<ul>
+<li>搜索某关键字结尾的行：<br>语法格式：<code>grep &quot;关键字$&quot; 文件名</code><br>例如：<code>grep &quot;root$&quot; /etc/passwd</code> 会找到以 “root” 结尾的行。<br>此外，<code>grep</code> 支持正则表达式和多个文件名的操作。</li>
+</ul>
+<ul>
+<li>打印结果显示行号：<br>语法格式：<code>grep -n &quot;关键字&quot; 文件名</code><br>例如：<code>grep -n &quot;root&quot; /etc/passwd</code> 会找到包含 “root” 的行，并显示具体行号。</li>
+</ul>
+<ul>
+<li>在指定目录下多个文件内容中查找包含的关键字<br>语法格式：<code>grep -r &quot;关键字&quot; 目录</code><br>例如：<code>grep -r &quot;root&quot; /etc</code> 查找etc目录下文件中包含 “root” 的行</li>
+</ul>
+<ul>
+<li>查找包含关键字的文件名<br>语法格式：<code>ls | grep &quot;关键字&quot;</code><br>例如：<code>ls | grep &quot;root&quot;</code> 查找当前目录下文件名中包含 “root” 的文件</li>
+</ul>
+<p>man手册中关于 -r 与 -R 的解释：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-r, --recursive</span><br><span class="line">Read all files under each directory, recursively, following symbolic links only <span class="keyword">if</span> they are on the <span class="built_in">command</span> line.  Note that <span class="keyword">if</span> no file operand is  given,  grep  searches  the  working directory.  This is equivalent to the -d recurse option.</span><br><span class="line"><span class="comment"># 译文：递归地读取每个目录下的所有文件，仅当符号链接位于命令行中时才按照符号链接读取。注意，如果没有给出文件操作数，grep将搜索工作目录。这相当于-d递归选项。</span></span><br><span class="line"></span><br><span class="line">-R, --dereference-recursive</span><br><span class="line">Read all files under each directory, recursively.  Follow all symbolic links, unlike -r.</span><br><span class="line"><span class="comment"># 译文：递归地读取每个目录下的所有文件。遵循所有符号链接，不像-r。</span></span><br></pre></td></tr></table></figure>
+
+<p>linux系统中.bashrc文件作用？？</p>
+<p><code>grep -r</code> 和 <code>grep -R</code> 的区别？？？</p>
 
       </div>
       

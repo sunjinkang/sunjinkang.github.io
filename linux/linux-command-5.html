@@ -23,27 +23,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sunjinkang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="什么是RPM？RPM（Red Hat Package Manager）是一种常见且强大的二进制软件包管理工具，它以 .rpm 格式打包软件，并提供了一系列命令和工具来方便地安装、升级、查询和卸载软件包。 常见命令及举例 安装包命令：语法格式：rpm -ivh [包名]例如：rpm -ivh example.rpm参数 i 安装软件包 v 显示详细输出 h 显示安装进度  根据需要，安装命令可能需要">
+    <meta name="description" content="以上内容可在man手册中查看具体内容man手册地址：https:&#x2F;&#x2F;man7.org man手册分为man1-man8：  man1:用户命令； man2:系统调用； man3:C库调用； man4:设备文件及特殊文件； man5:文件格式：(配置文件格式)； man6:游戏使用帮助； man7:杂项； man8:管理工具及守护进行。  man只是包含了一些基础的东西，而man-pages包含了详">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="linux - 软件管理(2)-rpm">
-<meta property="og:url" content="https://sunjinkang.github.io/linux/linux-command-3.html">
+<meta property="og:title" content="linux - 关于man手册">
+<meta property="og:url" content="https://sunjinkang.github.io/linux/linux-command-5.html">
 <meta property="og:site_name" content="Sun with no word">
-<meta property="og:description" content="什么是RPM？RPM（Red Hat Package Manager）是一种常见且强大的二进制软件包管理工具，它以 .rpm 格式打包软件，并提供了一系列命令和工具来方便地安装、升级、查询和卸载软件包。 常见命令及举例 安装包命令：语法格式：rpm -ivh [包名]例如：rpm -ivh example.rpm参数 i 安装软件包 v 显示详细输出 h 显示安装进度  根据需要，安装命令可能需要">
+<meta property="og:description" content="以上内容可在man手册中查看具体内容man手册地址：https:&#x2F;&#x2F;man7.org man手册分为man1-man8：  man1:用户命令； man2:系统调用； man3:C库调用； man4:设备文件及特殊文件； man5:文件格式：(配置文件格式)； man6:游戏使用帮助； man7:杂项； man8:管理工具及守护进行。  man只是包含了一些基础的东西，而man-pages包含了详">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-02-21T07:41:52.000Z">
-<meta property="article:modified_time" content="2024-03-12T02:09:56.567Z">
+<meta property="article:published_time" content="2024-02-28T03:09:30.000Z">
+<meta property="article:modified_time" content="2024-02-28T05:10:13.736Z">
 <meta property="article:author" content="Sun Jinkang">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="man手册">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://sunjinkang.github.io/linux/linux-command-3">
+<link rel="canonical" href="https://sunjinkang.github.io/linux/linux-command-5">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/linux/linux-command-3.html","path":"linux/linux-command-3.html","title":"linux - 软件管理(2)-rpm"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://sunjinkang.github.io/linux/linux-command-5.html","path":"linux/linux-command-5.html","title":"linux - 关于man手册"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>linux - 软件管理(2)-rpm | Sun with no word
+<title>linux - 关于man手册 | Sun with no word
 </title>
   
 
@@ -120,7 +122,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFRPM%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是RPM？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4%E5%8F%8A%E4%B8%BE%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">常见命令及举例</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A5%E4%B8%8A%E5%86%85%E5%AE%B9%E5%8F%AF%E5%9C%A8man%E6%89%8B%E5%86%8C%E4%B8%AD%E6%9F%A5%E7%9C%8B%E5%85%B7%E4%BD%93%E5%86%85%E5%AE%B9"><span class="nav-number">1.</span> <span class="nav-text">以上内容可在man手册中查看具体内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85man%E6%89%8B%E5%86%8C%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">安装man手册命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E5%AE%89%E8%A3%85man%E5%90%8E%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8man%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">Docker容器中安装man后无法使用man问题？</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -186,7 +188,7 @@
     
     <div class="post-block" lang="zh-CN"><header class="post-header post-top-background" id="id-post-top">
 
-<h1 class="post-title" itemprop="name headline">linux - 软件管理(2)-rpm
+<h1 class="post-title" itemprop="name headline">linux - 关于man手册
 </h1>
 
 <div class="post-meta-container">
@@ -197,14 +199,33 @@
       
       
       <div class="post-body">
-          <h4 id="什么是RPM？"><a href="#什么是RPM？" class="headerlink" title="什么是RPM？"></a>什么是RPM？</h4><p>RPM（Red Hat Package Manager）是一种常见且强大的二进制软件包管理工具，它以 .rpm 格式打包软件，并提供了一系列命令和工具来方便地安装、升级、查询和卸载软件包。</p>
-<h4 id="常见命令及举例"><a href="#常见命令及举例" class="headerlink" title="常见命令及举例"></a>常见命令及举例</h4><ul>
-<li>安装包命令：<br>语法格式：<code>rpm -ivh [包名]</code><br>例如：<code>rpm -ivh example.rpm</code><br>参数</li>
-<li>i 安装软件包</li>
-<li>v 显示详细输出</li>
-<li>h 显示安装进度</li>
+          <h4 id="以上内容可在man手册中查看具体内容"><a href="#以上内容可在man手册中查看具体内容" class="headerlink" title="以上内容可在man手册中查看具体内容"></a>以上内容可在man手册中查看具体内容</h4><p>man手册地址：<a target="_blank" rel="noopener" href="https://man7.org/">https://man7.org</a></p>
+<p>man手册分为man1-man8：</p>
+<ul>
+<li>man1:用户命令；</li>
+<li>man2:系统调用；</li>
+<li>man3:C库调用；</li>
+<li>man4:设备文件及特殊文件；</li>
+<li>man5:文件格式：(配置文件格式)；</li>
+<li>man6:游戏使用帮助；</li>
+<li>man7:杂项；</li>
+<li>man8:管理工具及守护进行。</li>
 </ul>
-<p><em>根据需要，安装命令可能需要在前面加 sudo</em></p>
+<p><em>man只是包含了一些基础的东西，而man-pages包含了详细的帮助手册</em></p>
+<h4 id="安装man手册命令"><a href="#安装man手册命令" class="headerlink" title="安装man手册命令"></a>安装man手册命令</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 有时候可能需要在命令前面加上 sudo</span></span><br><span class="line"><span class="comment"># -y 表示安装过程中出现的问询直接使用yes进行后续操作，对于 -y 的位置并没有特别说明，放在yum后面貌似都可以</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装man</span></span><br><span class="line">yum -y install man</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">yum install -y man</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">yum install man -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装man-pages</span></span><br><span class="line">yum -y install man-pages</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 man 和 man-pages</span></span><br><span class="line">yum -y install man man-pages</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载man</span></span><br><span class="line">yum -y remove man</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载man-pages</span></span><br><span class="line">yum -y remove man-pages</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载 man 和 man-pages</span></span><br><span class="line">yum -y remove man man-pages</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="Docker容器中安装man后无法使用man问题？"><a href="#Docker容器中安装man后无法使用man问题？" class="headerlink" title="Docker容器中安装man后无法使用man问题？"></a>Docker容器中安装man后无法使用man问题？</h4><p>现象：在docker容器中安装了man之后，使用man查看命令时，直接报错，无法查看</p>
+<blockquote>
+<p>No manual entry for man</p>
+</blockquote>
+<p>原因：</p>
+<ol>
+<li>我们使用的docker镜像已经被官方精简过了，把所有已安装软件的man页都删除了，这样镜像可以更小</li>
+<li>docker镜像中的/etc/yum.conf 也被刻意处理了一下，里面有个tsflags的选项，配置了nodocs，这样的话，新安装的软件也会被自动剔掉man文件（估计rpm知道man文件是被故意删掉的，所以也不报错）</li>
+</ol>
+<p>解决办法：<br>将 /etc/yum.conf 中下面的代码注释掉：</p>
+<blockquote>
+<p>tsflags=nodocs<br>卸载掉相关软件，重新yum安装，即可正常使用man手册查看命令</p>
+</blockquote>
 
       </div>
       
