@@ -27,12 +27,13 @@
   <!-- Custom Files headBegin end-->
   <!-- front-matter head_begin begin -->
   <!-- front-matter head_begin end -->
-  <link rel="preload" href="../../css/style.css" as="style">
+    <link rel="shortcut icon" type='image/x-icon' href="/./images/fire_s.ico">
+  <link rel="preload" href="/css/style.css" as="style">
   <link rel="preload" href="https://unpkg.com/volantis-static@0.0.1654736714924/media/fonts/VarelaRound/VarelaRound-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 <link rel="preload" href="https://unpkg.com/volantis-static@0.0.1654736714924/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
   <!-- feed -->
-      <link rel="alternate" href="../../atom.xml" title="Sun with no word" type="application/atom+xml">
+      <link rel="alternate" href="/atom.xml" title="Sun with no word" type="application/atom+xml">
   <!-- 页面元数据 -->
   <title>Sun with no word</title>
   <meta name="keywords" content="">
@@ -267,103 +268,6 @@ button {
   position: relative;
   overflow: hidden;
   margin-bottom: -100px;
-}
-.cover-wrapper .cover-bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-}
-.cover-wrapper .cover-bg.lazyload:not(.loaded) {
-  opacity: 0;
-  -webkit-opacity: 0;
-  -moz-opacity: 0;
-}
-.cover-wrapper .cover-bg.lazyload.loaded {
-  animation-delay: 0s;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-out;
-  animation-name: fadeIn;
-}
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-    -webkit-opacity: 0;
-    -moz-opacity: 0;
-    filter: blur(12px);
-    transform: scale(1.02);
-    -webkit-transform: scale(1.02);
-    -khtml-transform: scale(1.02);
-    -moz-transform: scale(1.02);
-    -o-transform: scale(1.02);
-    -ms-transform: scale(1.02);
-  }
-  100% {
-    opacity: 1;
-    -webkit-opacity: 1;
-    -moz-opacity: 1;
-  }
-}
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-    -webkit-opacity: 0;
-    -moz-opacity: 0;
-    filter: blur(12px);
-    transform: scale(1.02);
-    -webkit-transform: scale(1.02);
-    -khtml-transform: scale(1.02);
-    -moz-transform: scale(1.02);
-    -o-transform: scale(1.02);
-    -ms-transform: scale(1.02);
-  }
-  100% {
-    opacity: 1;
-    -webkit-opacity: 1;
-    -moz-opacity: 1;
-  }
-}
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0;
-    -webkit-opacity: 0;
-    -moz-opacity: 0;
-    filter: blur(12px);
-    transform: scale(1.02);
-    -webkit-transform: scale(1.02);
-    -khtml-transform: scale(1.02);
-    -moz-transform: scale(1.02);
-    -o-transform: scale(1.02);
-    -ms-transform: scale(1.02);
-  }
-  100% {
-    opacity: 1;
-    -webkit-opacity: 1;
-    -moz-opacity: 1;
-  }
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    -webkit-opacity: 0;
-    -moz-opacity: 0;
-    filter: blur(12px);
-    transform: scale(1.02);
-    -webkit-transform: scale(1.02);
-    -khtml-transform: scale(1.02);
-    -moz-transform: scale(1.02);
-    -o-transform: scale(1.02);
-    -ms-transform: scale(1.02);
-  }
-  100% {
-    opacity: 1;
-    -webkit-opacity: 1;
-    -moz-opacity: 1;
-  }
 }
 .cover-wrapper .cover-body {
   z-index: 1;
@@ -828,6 +732,71 @@ button {
   .cover-wrapper.dock .menu {
     background: rgba(255,255,255,0.5);
     backdrop-filter: saturate(200%) blur(20px);
+  }
+}
+.cover-wrapper #parallax-window {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+.parallax-mirror {
+  animation-delay: 0s;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  animation-name: fadeIn;
+}
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    filter: blur(12px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    filter: blur(12px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    filter: blur(12px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    filter: blur(12px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
   }
 }
 @font-face {
@@ -1668,8 +1637,8 @@ ul.list-v >li>a:hover {
 }
 
   </style>
-  <link rel="stylesheet" href="../../css/style.css" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/style.css"></noscript>
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
   
 <script>
 if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
@@ -1741,9 +1710,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   volantis.GLOBAL_CONFIG ={
     debug: "env",
-    cdn: {"js":{"app":"../../js/app.js","parallax":"../../js/plugins/parallax.js","rightMenu":"../../js/plugins/rightMenu.js","rightMenus":"../../js/plugins/rightMenus.js","sites":"../../js/plugins/tags/sites.js","friends":"../../js/plugins/tags/friends.js","contributors":"../../js/plugins/tags/contributors.js","search":"../../js/search/hexo.js"},"css":{"style":"../../css/style.css"}},
+    cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1711537053757),
+    lastupdate: new Date(1711623346689),
     sidebar: {
       for_page: ["blogger","category","tagcloud","donate"],
       for_post: ["toc"],
@@ -2186,9 +2155,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 		<div class="nav-main">
       
         
-        <a class="title flat-box" target="_self" href='../../index.html'>
+        <a class="title flat-box" target="_self" href='/'>
           
-            <img no-lazy class='logo' src='/images/favicon-16x16-next.png'/>
+            <img no-lazy class='logo' src='/images/fire_s_64.jpg'/>
           
           
           
@@ -2204,11 +2173,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="../../index.html" title="博客"
+                href="/" title="博客"
                   
                   
                   
-                    active-action="action-indexhtml"
+                    active-action="action-home"
                   >
                   <i class='fa-solid fa-rss fa-fw'></i>博客
                 </a>
@@ -2221,7 +2190,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="../../categories/" title="分类"
+                href="/categories/" title="分类"
                   
                   
                   
@@ -2238,7 +2207,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="../../tags/" title="标签"
+                href="/tags/" title="标签"
                   
                   
                   
@@ -2255,7 +2224,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="../../archives/" title="归档"
+                href="/archives/" title="归档"
                   
                   
                   
@@ -2291,11 +2260,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="../../index.html" title="博客"
+                href="/" title="博客"
                   
                   
                   
-                    active-action="action-indexhtml"
+                    active-action="action-home"
                   >
                   <i class='fa-solid fa-rss fa-fw'></i>博客
                 </a>
@@ -2308,7 +2277,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="../../categories/" title="分类"
+                href="/categories/" title="分类"
                   
                   
                   
@@ -2325,7 +2294,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="../../tags/" title="标签"
+                href="/tags/" title="标签"
                   
                   
                   
@@ -2342,7 +2311,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="../../archives/" title="归档"
+                href="/archives/" title="归档"
                   
                   
                   
@@ -2374,7 +2343,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
       <div id="none" class='cover-wrapper  dock' style="display: none;">
         
-  <div class='cover-bg lazyload placeholder' data-bg="https://gcore.jsdelivr.net/gh/MHG-LAB/cron@gh-pages/bing/bing.jpg"></div>
+  <div id="parallax-window"></div>
 
 <div class='cover-body'>
   <div class='top'>
@@ -2389,7 +2358,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div class='list-h'>
         
           
-            <a href="../../archives/"
+            <a href="/archives/"
               
               
               active-action="action-archives">
@@ -2420,6 +2389,67 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/21/32-apply-array-to-params/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Sun with no word">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="Sun with no word">
+    <meta itemprop="description" content="study blog from sun jinkang">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/2022/09/21/32-apply-array-to-params/"  itemprop="url">
+        js中apply怎么把数组转化为参数？
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      <h6 id="apply可以改变函数的this指向（类似的还有call和bind），且函数的输入参数需要是一个数组"><a href="#apply可以改变函数的this指向（类似的还有call和bind），且函数的输入参数需要是一个数组" class="headerlink" title="apply可以改变函数的this指向（类似的还有call和bind），且函数的输入参数需要是一个数组"></a>apply可以改变函数的this指向（类似的还有call和bind），且函数的输入参数需要是一个数组</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line"> <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"> <span class="variable language_">console</span>.<span class="title function_">log</span>(b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">10</span>];</span><br><span class="line"><span class="title function_">test</span>(array);</span><br><span class="line"><span class="comment">// [1, 10]</span></span><br><span class="line"><span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line">test.<span class="title function_">apply</span>(<span class="literal">null</span>, array);</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> test = &#123;</span><br><span class="line"> <span class="attr">func</span>: <span class="keyword">function</span> (<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(b);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">10</span>];</span><br><span class="line">test.<span class="title function_">func</span>(array);</span><br><span class="line"><span class="comment">// [1, 10]</span></span><br><span class="line"><span class="comment">// undefined</span></span><br><span class="line">test.<span class="property">func</span>.<span class="title function_">apply</span>(test.<span class="property">func</span>, array);</span><br><span class="line">test.<span class="property">func</span>.<span class="title function_">apply</span>(<span class="literal">null</span>, array);</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">8</span>];</span><br><span class="line"><span class="title class_">Math</span>.<span class="title function_">max</span>(array);</span><br><span class="line"><span class="comment">// NaN</span></span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">8</span>];</span><br><span class="line"><span class="title class_">Math</span>.<span class="property">max</span>.<span class="title function_">apply</span>(<span class="literal">null</span>, array);</span><br><span class="line"><span class="comment">// 8</span></span><br></pre></td></tr></table></figure>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="/images/fire_s.ico">
+            <meta itemprop="name" content="Sun Jinkang">
+            <meta itemprop="url" content="">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2022-09-21T17:07:53+08:00">2022-09-21</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2022/09/21/32-apply-array-to-params/' itemprop="url">
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
   <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/20/33-data-structure1/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Sun with no word">
@@ -2438,7 +2468,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="../../2022/09/20/33-data-structure1/"  itemprop="url">
+      <a href="/2022/09/20/33-data-structure1/"  itemprop="url">
         数据结构与算法阅读笔记(1)
       </a>
     </h2>
@@ -2455,12 +2485,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
+          
+          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="/images/fire_s.ico">
+            <meta itemprop="name" content="Sun Jinkang">
+            <meta itemprop="url" content="">
+          </span>
+        
         <time itemprop="dateCreated datePublished" datetime="2022-09-20T17:41:00+08:00">2022-09-20</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='../../2022/09/20/33-data-structure1/' itemprop="url">
+          <a class='readmore' href='/2022/09/20/33-data-structure1/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2494,7 +2532,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="../../2022/09/20/28-about-design-model5/"  itemprop="url">
+      <a href="/2022/09/20/28-about-design-model5/"  itemprop="url">
         JavaScript设计模式读书笔记(6)
       </a>
     </h2>
@@ -2509,12 +2547,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
+          
+          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="/images/fire_s.ico">
+            <meta itemprop="name" content="Sun Jinkang">
+            <meta itemprop="url" content="">
+          </span>
+        
         <time itemprop="dateCreated datePublished" datetime="2022-09-20T15:22:12+08:00">2022-09-20</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='../../2022/09/20/28-about-design-model5/' itemprop="url">
+          <a class='readmore' href='/2022/09/20/28-about-design-model5/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2548,7 +2594,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="../../2022/09/19/27-about-design-model4/"  itemprop="url">
+      <a href="/2022/09/19/27-about-design-model4/"  itemprop="url">
         JavaScript设计模式读书笔记(5)
       </a>
     </h2>
@@ -2563,12 +2609,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
+          
+          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="/images/fire_s.ico">
+            <meta itemprop="name" content="Sun Jinkang">
+            <meta itemprop="url" content="">
+          </span>
+        
         <time itemprop="dateCreated datePublished" datetime="2022-09-19T17:51:10+08:00">2022-09-19</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='../../2022/09/19/27-about-design-model4/' itemprop="url">
+          <a class='readmore' href='/2022/09/19/27-about-design-model4/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2602,7 +2656,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="../../2022/09/07/26-about-design-model3/"  itemprop="url">
+      <a href="/2022/09/07/26-about-design-model3/"  itemprop="url">
         JavaScript设计模式读书笔记(4)
       </a>
     </h2>
@@ -2618,12 +2672,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
+          
+          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="/images/fire_s.ico">
+            <meta itemprop="name" content="Sun Jinkang">
+            <meta itemprop="url" content="">
+          </span>
+        
         <time itemprop="dateCreated datePublished" datetime="2022-09-07T17:40:43+08:00">2022-09-07</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='../../2022/09/07/26-about-design-model3/' itemprop="url">
+          <a class='readmore' href='/2022/09/07/26-about-design-model3/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2657,7 +2719,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="../../2022/09/06/25-about-design-model2/"  itemprop="url">
+      <a href="/2022/09/06/25-about-design-model2/"  itemprop="url">
         JavaScript设计模式读书笔记(3)
       </a>
     </h2>
@@ -2672,12 +2734,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
+          
+          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="/images/fire_s.ico">
+            <meta itemprop="name" content="Sun Jinkang">
+            <meta itemprop="url" content="">
+          </span>
+        
         <time itemprop="dateCreated datePublished" datetime="2022-09-06T15:11:48+08:00">2022-09-06</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='../../2022/09/06/25-about-design-model2/' itemprop="url">
+          <a class='readmore' href='/2022/09/06/25-about-design-model2/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2711,7 +2781,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="../../2022/09/05/31-get-and-set-prototypeof/"  itemprop="url">
+      <a href="/2022/09/05/31-get-and-set-prototypeof/"  itemprop="url">
         Object获取及设置原型对象
       </a>
     </h2>
@@ -2727,12 +2797,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
+          
+          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="/images/fire_s.ico">
+            <meta itemprop="name" content="Sun Jinkang">
+            <meta itemprop="url" content="">
+          </span>
+        
         <time itemprop="dateCreated datePublished" datetime="2022-09-05T13:54:58+08:00">2022-09-05</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='../../2022/09/05/31-get-and-set-prototypeof/' itemprop="url">
+          <a class='readmore' href='/2022/09/05/31-get-and-set-prototypeof/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2766,7 +2844,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="../../2022/09/05/30-some-convenient-code/"  itemprop="url">
+      <a href="/2022/09/05/30-some-convenient-code/"  itemprop="url">
         开发中使用的便捷代码
       </a>
     </h2>
@@ -2780,12 +2858,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
+          
+          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="/images/fire_s.ico">
+            <meta itemprop="name" content="Sun Jinkang">
+            <meta itemprop="url" content="">
+          </span>
+        
         <time itemprop="dateCreated datePublished" datetime="2022-09-05T13:24:10+08:00">2022-09-05</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='../../2022/09/05/30-some-convenient-code/' itemprop="url">
+          <a class='readmore' href='/2022/09/05/30-some-convenient-code/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2819,7 +2905,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="../../2022/09/04/24-about-design-model1/"  itemprop="url">
+      <a href="/2022/09/04/24-about-design-model1/"  itemprop="url">
         JavaScript设计模式读书笔记(2)
       </a>
     </h2>
@@ -2834,12 +2920,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
+          
+          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="/images/fire_s.ico">
+            <meta itemprop="name" content="Sun Jinkang">
+            <meta itemprop="url" content="">
+          </span>
+        
         <time itemprop="dateCreated datePublished" datetime="2022-09-04T21:29:09+08:00">2022-09-04</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='../../2022/09/04/24-about-design-model1/' itemprop="url">
+          <a class='readmore' href='/2022/09/04/24-about-design-model1/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2873,7 +2967,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="../../2022/09/02/29-es6-object-strong/"  itemprop="url">
+      <a href="/2022/09/02/29-es6-object-strong/"  itemprop="url">
         es6对象增强
       </a>
     </h2>
@@ -2888,65 +2982,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
+          
+          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="/images/fire_s.ico">
+            <meta itemprop="name" content="Sun Jinkang">
+            <meta itemprop="url" content="">
+          </span>
+        
         <time itemprop="dateCreated datePublished" datetime="2022-09-02T10:42:05+08:00">2022-09-02</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='../../2022/09/02/29-es6-object-strong/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/08/20/23-about-design-model/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Sun with no word">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="Sun with no word">
-    <meta itemprop="description" content="study blog from sun jinkang">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="../../2022/08/20/23-about-design-model/"  itemprop="url">
-        JavaScript设计模式读书笔记(1)
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      <h4 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h4><p>一、面向过程与面向对象<br>面向对象编程就是将你的需求抽象成一个对象，然后针对这个对象分析其特征（属性)与动作（方法)。这个对象我们称之为类。面向对象编程思想其中有一个特点就是封装，就是说把你需要的功能放在一个对象里<br>二、封装<br>1、使用原型(prototype)为类添加属性和方法的两种方式(<strong>注意两种不能混用</strong>)：<br>(1)为原型对象属性赋值</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-08-20T14:47:46+08:00">2022-08-20</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='../../2022/08/20/23-about-design-model/' itemprop="url">
+          <a class='readmore' href='/2022/09/02/29-es6-object-strong/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2966,7 +3015,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <br>
       <div class="prev-next">
         
-          <a class="prev" rel="prev" href="../3/">
+          <a class="prev" rel="prev" href="/page/3/">
             <section class="post prev white-box shadow floatable blur" >
               <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
             </section>
@@ -2976,7 +3025,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           4 / 7
         </p>
         
-          <a class="next" rel="next" href="../5/">
+          <a class="next" rel="next" href="/page/5/">
             <section class="post next white-box shadow floatable blur">
               &nbsp;下一页&nbsp;<i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
             </section>
@@ -2999,7 +3048,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='content'>
     
       
-        <a class='avatar flat-box rectangle' href='../../about/'>
+        <a class='avatar flat-box rectangle' href='/about/'>
           <img no-lazy src='/images/fire_s_240.jpg'/>
         </a>
       
@@ -3018,7 +3067,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div class="social-wrapper">
         
           
-            <a href="../../mailto:2060037942@qq.com"
+            <a href="mailto:2060037942@qq.com"
               class="social fa-solid fa-envelope flat-btn"
               target="_blank"
               rel="external nofollow noopener noreferrer">
@@ -3064,6 +3113,21 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       
+  
+  <section class="widget tagcloud desktop mobile pjax">
+    
+  <header>
+    
+      <a href='/blog/tags/'><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/blog-giscus/" style="font-size: 14px; color: #999">blog, giscus</a> <a href="/tags/docker/" style="font-size: 14px; color: #999">docker</a>
+    </div>
+  </section>
+
 
     
   
@@ -3152,7 +3216,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="social-wrapper" itemprop="about" itemscope itemtype="http://schema.org/Thing">
           
             
-              <a href="../../mailto:2060037942@qq.com"
+              <a href="mailto:2060037942@qq.com"
                 class="social fas fa-envelope flat-btn"
                 target="_blank"
                 rel="external nofollow noopener noreferrer" itemprop="url">
@@ -3235,7 +3299,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <!-- internal -->
 
-<script src="../../../../js/app.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -3251,19 +3315,19 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
       const sites_api = document.getElementById('sites-api');
       if (sites_api != undefined && typeof SitesJS === 'undefined') {
-        volantis.js("../../js/plugins/tags/sites.js")
+        volantis.js("/js/plugins/tags/sites.js")
       }
     
     
       const friends_api = document.getElementById('friends-api');
       if (friends_api != undefined && typeof FriendsJS === 'undefined') {
-        volantis.js("../../js/plugins/tags/friends.js")
+        volantis.js("/js/plugins/tags/friends.js")
       }
     
     
       const contributors_api = document.getElementById('contributors-api');
       if (contributors_api != undefined && typeof ContributorsJS === 'undefined') {
-        volantis.js("../../js/plugins/tags/contributors.js")
+        volantis.js("/js/plugins/tags/contributors.js")
       }
     
   };
@@ -3344,7 +3408,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   function pjax_giscus() {
     const HEAD = check_giscus();
     if (!HEAD) return;
-    let cfg = Object.assign({"theme":{"light":"light","dark":"dark"}},pdata.commentConfig)
+    let cfg = Object.assign({"repo":"sunjinkang/comments","repo-id":"R_kgDOLmkg1g","category":"Announcements","category-id":"DIC_kwDOLmkg1s4CeSpJ","mapping":"pathname","reactions-enabled":"1","emit-metadata":"0","lang":"zh-CN","theme":{"light":"light","dark":"dark"}},pdata.commentConfig)
     const script = document.createElement('script');
     script.setAttribute('src', 'https://giscus.app/client.js');
     Object.keys(cfg).forEach(k=>{
@@ -3390,7 +3454,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   function loadSearchScript() {
     // see: layout/_partial/scripts/_ctrl/cdnCtrl.ejs
-    return volantis.js("../../js/search/hexo.js");
+    return volantis.js("/js/search/hexo.js");
   }
 
   function loadSearchService() {
@@ -3462,6 +3526,61 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
 
+
+
+  <script>
+  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp"];
+  let index = 0;
+  let IntervalParallax = null;
+
+  function parallax(){
+    let ParallaxWindow = document.querySelector("#parallax-window");
+    
+    Parallax.window = ParallaxWindow;
+    Parallax.options.fade = 1500;
+    Parallax.cache = 1;
+    next_parallax();
+    Parallax.init();
+    if (imgs.length>1) {
+      IntervalParallax = setInterval(function () {
+        next_parallax();
+      }, '5000');
+    }
+  }
+
+  function next_parallax() {
+    if (typeof Parallax == "undefined") {
+      return
+    }
+    
+      if (!document.querySelector("#full")&&!document.querySelector("#half")) {
+        return
+      }
+    
+    if (imgs.length>=1) {
+      Parallax.options.src = imgs[index % imgs.length];
+      Parallax.start();
+      index++;
+      if (Parallax.cache) {
+        fetch(imgs[index % imgs.length] +"?t=" + new Date().getTime());
+        if (index == imgs.length) {
+          Parallax.cache = 0;
+        }
+      }
+    }
+  }
+  var runningOnBrowser = typeof window !== "undefined";
+  var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+  if (!isBot) {
+    volantis.js('/js/plugins/parallax.js').then(()=>{
+      parallax()
+    })
+    volantis.pjax.send(()=>{
+      clearInterval(IntervalParallax)
+    },"clearIntervalParallax");
+    volantis.pjax.push(parallax);
+  }
+</script>
 
 
 

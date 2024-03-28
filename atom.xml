@@ -6,7 +6,7 @@
   <link href="https://sunjinkang.github.io/atom.xml" rel="self"/>
   
   <link href="https://sunjinkang.github.io/"/>
-  <updated>2024-01-29T08:27:36.709Z</updated>
+  <updated>2024-03-28T07:35:50.263Z</updated>
   <id>https://sunjinkang.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>关于github个人博客使用giscus作为评论系统的操作说明</title>
+    <link href="https://sunjinkang.github.io/2024/03/28/62-about-giscus/"/>
+    <id>https://sunjinkang.github.io/2024/03/28/62-about-giscus/</id>
+    <published>2024-03-28T06:05:44.000Z</published>
+    <updated>2024-03-28T07:35:50.263Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>本人使用github搭建个人博客，博客框架为Hexo(5.4.2)，博客主题为Volantis(5.8.0)。为了便于使用，接入了Giscus作为评论系统。本篇文章主要说明接入Giscus的具体操作。</p><h4 id="步骤一"><a href="#步骤一" class="headerlink" title="步骤一"></a>步骤一</h4><ul><li>建一个公共库<br>由于Giscus使用github的discussion作为评论数据存放地，所以使用Giscus需要先建一个github的<em>公共仓库</em>，仓库名称可根据自己的需要进行设置。本文中评论的仓库名为comments。<br><img src="create-repo.png" class="lazyload" data-srcset="create-repo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="create-repo"></li></ul><p><em>除了要求是个公共库之外，是否需要README、gitignore无具体要求</em></p><ul><li>开启公共库的discussion功能</li></ul><p>公共库 -&gt; Settings -&gt; General -&gt; Features -&gt; 勾选discussion<br><img src="check-discussion.png" class="lazyload" data-srcset="check-discussion.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="check-discussion"></p><h4 id="步骤二"><a href="#步骤二" class="headerlink" title="步骤二"></a>步骤二</h4><ul><li>公共库安装Giscus<br>前往<a href="https://github.com/apps/giscus">这里</a>，点击 <font color="red">Install</font> 安装Giscus<br><img src="install-giscus.png" class="lazyload" data-srcset="install-giscus.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="install-giscus"></li></ul><p>选择创建的公共库，将公共库与Giscus关联起来<br><img src="giscus-select-repo.png" class="lazyload" data-srcset="giscus-select-repo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="giscus-select-repo"></p><h4 id="步骤三"><a href="#步骤三" class="headerlink" title="步骤三"></a>步骤三</h4><ul><li>Giscus官网配置<br>前往 <a href="https://giscus.app/">Giscus官网</a>，进行配置。<br><img src="giscus-config1.png" class="lazyload" data-srcset="giscus-config1.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="giscus-config1"><br>仓库名有三个前置条件，如果按照本文顺序进行安装，这里的检查会通过，否则会报错。如果报错了，请检查一下之前的配置是不是有哪里配置错了。</li></ul><p><img src="giscus-config2.png" class="lazyload" data-srcset="giscus-config2.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="giscus-config2"><br>可以根据自己的需要选择，本文默认选了第一个。</p><p><img src="giscus-config3.png" class="lazyload" data-srcset="giscus-config3.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="giscus-config3"><br>选择 Announcements 类型即可，官方也是这样推荐的，因为这样便于管理。</p><p>其他的配置使用默认配置就好。</p><p><img src="giscus-config4.png" class="lazyload" data-srcset="giscus-config4.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="giscus-config4"><br>在你想出现评论的位置添加上面的 <em>&lt;/script/&gt;</em> 标签。但如果已经存在带有giscus类的元素，则评论会被放在那里。<br>将上面标签中的数据填入项目中giscus配置的对应位置。</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">giscus:</span></span><br><span class="line">  <span class="comment"># 以下配置按照 yml 格式增删填写即可</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="comment">#data-repo</span></span><br><span class="line">  <span class="attr">repo-id:</span> <span class="comment">#data-repo-id</span></span><br><span class="line">  <span class="attr">category:</span> <span class="comment">#data-category</span></span><br><span class="line">  <span class="attr">category-id:</span> <span class="comment">#data-category-id</span></span><br><span class="line">  <span class="attr">mapping:</span> <span class="string">&quot;pathname&quot;</span></span><br><span class="line">  <span class="attr">reactions-enabled:</span> <span class="string">&quot;1&quot;</span></span><br><span class="line">  <span class="attr">emit-metadata:</span> <span class="string">&quot;0&quot;</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">&quot;zh-CN&quot;</span></span><br></pre></td></tr></table></figure><p>以上配置完成后，理论上项目中就可以使用评论系统了。</p><p>登录后，输入评论，可以查看公共库的discussion中是否有对应的评论<br><img src="giscus-comments.png" class="lazyload" data-srcset="giscus-comments.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="giscus-comments"><br><img src="github-comments.png" class="lazyload" data-srcset="github-comments.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="github-comments"><br>可以看到，博客中的评论在github的公共仓库中也存在，配置Giscus的评论系统成功！</p>]]></content>
+    
+    
+    <summary type="html">&lt;h4 id=&quot;说明&quot;&gt;&lt;a href=&quot;#说明&quot; class=&quot;headerlink&quot; title=&quot;说明&quot;&gt;&lt;/a&gt;说明&lt;/h4&gt;&lt;p&gt;本人使用github搭建个人博客，博客框架为Hexo(5.4.2)，博客主题为Volantis(5.8.0)。为了便于使用，接入了Giscus作为评论系统。本篇文章主要说明接入Giscus的具体操作。&lt;/p&gt;
+&lt;h4 id=&quot;步骤一&quot;&gt;&lt;a href=&quot;#步骤一&quot; class=&quot;headerlink&quot; title=&quot;步骤一&quot;&gt;&lt;/a&gt;步骤一&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;建一个公共库&lt;br&gt;由于Giscus使用github的discussion作为评论数据存放地，所以使用Giscus需要先建一个github的&lt;em&gt;公共仓库&lt;/em&gt;，仓库名称可根据自己的需要进行设置。本文中评论的仓库名为comments。&lt;br&gt;&lt;img src=&quot;create-repo.png&quot; class=&quot;lazyload&quot; data-srcset=&quot;create-repo.png&quot; srcset=&quot;data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==&quot; alt=&quot;create-repo&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;除了要求是个公共库之外，是否需要README、gitignore无具体要求&lt;/em&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="blog, giscus" scheme="https://sunjinkang.github.io/tags/blog-giscus/"/>
+    
+  </entry>
+  
+  <entry>
     <title>关于docker的使用问题</title>
     <link href="https://sunjinkang.github.io/2024/01/29/61-about-docker-command/"/>
     <id>https://sunjinkang.github.io/2024/01/29/61-about-docker-command/</id>
     <published>2024-01-29T08:10:54.000Z</published>
-    <updated>2024-01-29T08:27:36.709Z</updated>
+    <updated>2024-03-28T09:18:33.258Z</updated>
     
     <content type="html"><![CDATA[<p><strong>问题：删除docker网络，报错存在active endpoints</strong><br>例如： while removing network: network docker_dms_net id ec0611ba3525 has active endpoints</p><p>解决方法：<br>第一种：<br>重启docker</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service docker restart</span><br></pre></td></tr></table></figure><p>第二种：</p><ol><li><p>查看docker的网络</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network ls</span><br></pre></td></tr></table></figure></li><li><p>查看网络的endpoint, 停止使用网络的container</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">docker network inspect &lt;network-id&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// container-id 是Containers下对应的数据</span></span><br><span class="line"><span class="comment">// 例如：</span></span><br><span class="line"><span class="comment">// &quot;Containers&quot;: &#123;</span></span><br><span class="line"><span class="comment">//   &quot;6bcc2418b08f9e1446053ab2e95bda066ec79bcbb0bd200c5e5110dc9bc637a3&quot;: &#123;</span></span><br><span class="line"><span class="comment">//       &quot;Name&quot;: &quot;dms-mysql-2&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;EndpointID&quot;: &quot;75b980a5ad52734eccf237b9bcef0b5c1b2b1426274326eb317d006aceac3eff&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;MacAddress&quot;: &quot;02:42:ac:1f:86:03&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;IPv4Address&quot;: &quot;172.31.134.3/24&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;IPv6Address&quot;: &quot;&quot;</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">// container-id为：6bcc2418b08f9e1446053ab2e95bda066ec79bcbb0bd200c5e5110dc9bc637a3</span></span><br><span class="line">docker container stop &lt;container-id&gt;</span><br></pre></td></tr></table></figure></li></ol><p>停止所有使用network的container之后，删除network即可。如果存在其他报错，建议google一下</p>]]></content>
     
@@ -40,6 +63,8 @@
     
     
     
+    
+    <category term="docker" scheme="https://sunjinkang.github.io/tags/docker/"/>
     
   </entry>
   
@@ -403,32 +428,6 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>前端压缩图片方法-canvas.toDataURL &amp; canvas.toBlob</title>
-    <link href="https://sunjinkang.github.io/2022/12/08/43-compress-picture/"/>
-    <id>https://sunjinkang.github.io/2022/12/08/43-compress-picture/</id>
-    <published>2022-12-08T08:48:13.000Z</published>
-    <updated>2023-08-03T03:04:25.342Z</updated>
-    
-    <content type="html"><![CDATA[<h6 id="为什么压缩图片？"><a href="#为什么压缩图片？" class="headerlink" title="为什么压缩图片？"></a>为什么压缩图片？</h6><p>浏览器在加载页面的时候，图片也是影响请求前端用户体验的一环：如果图片较大，请求耗时越长，那页面会长时间处于加载中或者白屏状态，导致用户体验较差。所以压缩图片就成了一种比较常用的优化前端性能的手段。</p><h6 id="压缩图片方法"><a href="#压缩图片方法" class="headerlink" title="压缩图片方法"></a>压缩图片方法</h6><ul><li>第一种：将图片传给后端，后端进行压缩</li><li>第二种：使用canvas压缩图片<br>思路：</li></ul><ul><li>通过<input type="file"/>获取二进制图片</li><li>使用 FileReader 把二进制图片转换成base64格式，用于生成 Image 对象</li><li>把图片绘制成 Canvas（这一步可以对图片尺寸进行压缩，这一步压缩效率最高，图片尺寸是最影响图片大小的）</li><li>将Canvas 再转成 base64 图片（这一步可以对图片质量进行压缩）<span id="more"></span><h6 id="toDataURL"><a href="#toDataURL" class="headerlink" title="toDataURL"></a>toDataURL</h6></li></ul><ul><li>canvas对象的一种方法，用于将canvas对象转换为base64位编码.</li><li>转化实现：将图片绘制到canvas中，然后将canvas对象转换为base64编码，从而实现图片转为base64编码；</li><li>转换为base64位编码的好处：<ul><li>将图片转换为base64位编码后，图片会跟随代码（html、css、js）一起请求加载，不会再单独进行请求加载；</li><li>可以防止由于图片路径错误导致图片加载失败的问题；</li></ul></li><li>注意事项：<ul><li>如果画布的高度或宽度是 0，那么会返回字符串“data:,”</li></ul></li><li>参数：toDataURL(type, encoderOptions)<ul><li>type指定转换为base64编码后图片的格式，如：image/png、image/jpeg、image/webp等等，默认为image/png格式；</li><li>encoderOptions用于设置转换为base64编码后图片的质量，在指定图片格式为 image/jpeg 或 image/webp 的情况下，取值范围为0-1，超出取值范围用默认值0.92代替；<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toDataURL">MDN HTMLCanvasElement.toDataURL()</a></li></ul></li></ul><h6 id="toBlob"><a href="#toBlob" class="headerlink" title="toBlob"></a>toBlob</h6><ul><li>创造 Blob 对象，用以展示 canvas 上的图片</li><li>参数：toBlob(callback, type, quality)<ul><li>callback：回调函数，可获得一个单独的 Blob 对象参数。如果图像未被成功创建，可能会获得 null 值</li><li>type(可选): DOMString 类型，指定图片格式，默认格式（未指定或不支持）为 image/png</li><li>quality(可选): Number 类型，值在 0 与 1 之间，当请求图片格式为 image/jpeg 或者 image/webp 时用来指定图片展示质量。如果这个参数的值不在指定类型与范围之内，则使用默认值，其余参数将被忽略<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toBlob">MDN HTMLCanvasElement.toBlob()</a></li></ul></li></ul><h6 id="toDataURL和toBlob的差异与共同点"><a href="#toDataURL和toBlob的差异与共同点" class="headerlink" title="toDataURL和toBlob的差异与共同点"></a>toDataURL和toBlob的差异与共同点</h6><ul><li><p>差异</p><ul><li>绘制处理图片的过程不同：<ul><li>toBlob是直接将canvas中绘制的图形转换成Blob实例对象，再将Blob实例对象转成File实例对象即可</li><li>toDataURL则是将canvas中绘制的图形转成base64编码的字符串，然后再将base64编码的字符串转成File的实例对象</li></ul></li><li>结果不同：<ul><li>toBlob无返回值，通过传参中的回调函数，可获得一个单独的 Blob 对象参数</li><li>toDataURL返回一个包含 data URI 的DOMString</li></ul></li><li>执行不同：<ul><li>toDataURL是同步执行的，执行操作的时候会阻止UI</li><li>toBlob通过回调函数获取返回值，非阻塞方式进行图像格式转换</li></ul></li><li>toDataURL结果比toBlob占用更多的内存，toDataURL包含在base64中压缩的完整二进制数据，base64编码本身意味着二进制数据比现在大37％</li></ul></li><li><p>共同点</p><ul><li>canvas方法，在指定图片格式为 image/jpeg 或 image/webp 的情况下，可以从 0 到 1 的区间内选择图片的质量。如果超出取值范围，将会使用默认值 0.92</li></ul></li></ul><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// toBlob</span></span><br><span class="line">canvas.<span class="title function_">toBlob</span>(</span><br><span class="line">  <span class="keyword">function</span> (<span class="params">b</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> compressUrl = <span class="variable constant_">URL</span>.<span class="title function_">createObjectURL</span>(b); <span class="comment">//压缩后的文件url</span></span><br><span class="line">    <span class="keyword">let</span> fileName =</span><br><span class="line">      imgFile.<span class="property">name</span>.<span class="title function_">substring</span>(<span class="number">0</span>, imgFile.<span class="property">name</span>.<span class="title function_">lastIndexOf</span>(<span class="string">&#x27;.&#x27;</span>)) +</span><br><span class="line">      <span class="string">&#x27;.&#x27;</span> +</span><br><span class="line">      imgType.<span class="title function_">split</span>(<span class="string">&#x27;/&#x27;</span>)[<span class="number">1</span>]; <span class="comment">//重构文件名</span></span><br><span class="line">    <span class="keyword">let</span> file = <span class="title function_">blobToFile</span>(b, fileName, imgType); <span class="comment">//Blob实例转成File实例</span></span><br><span class="line">    <span class="title function_">resolve</span>(&#123;</span><br><span class="line">      <span class="attr">url</span>: compressUrl,</span><br><span class="line">      <span class="attr">file</span>: file,</span><br><span class="line">    &#125;);</span><br><span class="line">    imgCanvas = <span class="literal">null</span>; <span class="comment">//释放内存</span></span><br><span class="line">  &#125;,</span><br><span class="line">  imgType,</span><br><span class="line">  quality</span><br><span class="line">);</span><br><span class="line"><span class="comment">// toDataURL</span></span><br><span class="line">canvas.<span class="title function_">toDataURL</span>(imgType, quality);</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;h6 id=&quot;为什么压缩图片？&quot;&gt;&lt;a href=&quot;#为什么压缩图片？&quot; class=&quot;headerlink&quot; title=&quot;为什么压缩图片？&quot;&gt;&lt;/a&gt;为什么压缩图片？&lt;/h6&gt;&lt;p&gt;浏览器在加载页面的时候，图片也是影响请求前端用户体验的一环：如果图片较大，请求耗时越长，那页面会长时间处于加载中或者白屏状态，导致用户体验较差。所以压缩图片就成了一种比较常用的优化前端性能的手段。&lt;/p&gt;
-&lt;h6 id=&quot;压缩图片方法&quot;&gt;&lt;a href=&quot;#压缩图片方法&quot; class=&quot;headerlink&quot; title=&quot;压缩图片方法&quot;&gt;&lt;/a&gt;压缩图片方法&lt;/h6&gt;&lt;ul&gt;
-&lt;li&gt;第一种：将图片传给后端，后端进行压缩&lt;/li&gt;
-&lt;li&gt;第二种：使用canvas压缩图片&lt;br&gt;思路：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ul&gt;
-&lt;li&gt;通过&lt;input type=&quot;file&quot;/&gt;获取二进制图片&lt;/li&gt;
-&lt;li&gt;使用 FileReader 把二进制图片转换成base64格式，用于生成 Image 对象&lt;/li&gt;
-&lt;li&gt;把图片绘制成 Canvas（这一步可以对图片尺寸进行压缩，这一步压缩效率最高，图片尺寸是最影响图片大小的）&lt;/li&gt;
-&lt;li&gt;将Canvas 再转成 base64 图片（这一步可以对图片质量进行压缩）</summary>
     
     
     
