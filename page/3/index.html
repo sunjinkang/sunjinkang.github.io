@@ -1712,7 +1712,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1734952089823),
+    lastupdate: new Date(1747908150785),
     sidebar: {
       for_page: ["blogger","category","tagcloud","donate"],
       for_post: ["toc"],
@@ -2389,7 +2389,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/01/17/45-linux-common-command/">
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2024/05/15/63-about-fe-timer/timer/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Sun with no word">
   </span>
@@ -2407,25 +2407,161 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/01/17/45-linux-common-command/"  itemprop="url">
-        linux系统常见操作命令
+      <a href="/2024/05/15/63-about-fe-timer/timer/"  itemprop="url">
+        2024年5月15日
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      <p><strong>查看进程</strong><br>ps</p>
-<p>ps aux</p>
-<ul>
-<li>a：显示当前终端下的所有进程信息，包括其他用户的进程。</li>
-<li>u：使用以用户为主的格式输出进程信息。</li>
-<li>x：显示当前用户在所有终端下的进程。</li>
+      
+        
+
+  
+  
+  Document
+
+
+  
+    倒计时：
+  
+  停止
+
+
+  // 1
+  // function countDown (num) {
+  //   document.getElementById('timer_num').innerText = num;
+  //   const timer = setTimeout(() => {
+  //     clear...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="/images/fire_s.ico">
+            <meta itemprop="name" content="Sun Jinkang">
+            <meta itemprop="url" content="">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2024-05-15T16:39:37+08:00">2024-05-15</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2024/05/15/63-about-fe-timer/timer/' itemprop="url">
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2024/05/15/63-about-fe-timer/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Sun with no word">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="Sun with no word">
+    <meta itemprop="description" content="study blog from sun jinkang">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/2024/05/15/63-about-fe-timer/"  itemprop="url">
+        前端定时器
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>之前做了一个需求，大致内容是：登录系统时，登录接口多次错误后，依据错误次数禁止登录的时间越来越长，即多次登录错误需要等待一定时间才能再次登录，在禁止时间内，即使登录信息填写正确，登录接口也会提示需要等待一定时间才能再次登录。要求在登录页面显示等待的时间，同时等待时间内，禁止使用登录按钮。相信大家看到这个需求之后，首先想到的就是使用定时器，接下来通过这个需求的具体实现来看一下关于定时器的使用及其他方案的探索。</p>
+<h4 id="现有方案及实现过程中遇到的问题"><a href="#现有方案及实现过程中遇到的问题" class="headerlink" title="现有方案及实现过程中遇到的问题"></a>现有方案及实现过程中遇到的问题</h4><p>上面这个需求中，涉及到前端部分其实就是在页面根据接口返回的等待时间，显示一个倒计时，同时倒计时内，禁止使用登录功能。这个需求中其实主要的就是一个定时器，我们先抛开其他，单看定时器的实现。看到倒计时，大家一般都会使用setTimeout、setInterval，这里我选择了使用setTimeout。</p>
+<p>一般来说，如果我们已经拿到了需要倒计时的时间，我们常见的做法可能是使用setTimeout，每秒减去一，把结果展示在页面上，就能实现一个简单的倒计时功能：</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="/images/fire_s.ico">
+            <meta itemprop="name" content="Sun Jinkang">
+            <meta itemprop="url" content="">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2024-05-15T15:57:42+08:00">2024-05-15</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2024/05/15/63-about-fe-timer/' itemprop="url">
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2024/03/28/62-about-giscus/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Sun with no word">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="Sun with no word">
+    <meta itemprop="description" content="study blog from sun jinkang">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/2024/03/28/62-about-giscus/"  itemprop="url">
+        关于github个人博客使用giscus作为评论系统的操作说明
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      <h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>本人使用github搭建个人博客，博客框架为Hexo(5.4.2)，博客主题为Volantis(5.8.0)。为了便于使用，接入了Giscus作为评论系统。本篇文章主要说明接入Giscus的具体操作。</p>
+<h4 id="步骤一"><a href="#步骤一" class="headerlink" title="步骤一"></a>步骤一</h4><ul>
+<li>建一个公共库<br>由于Giscus使用github的discussion作为评论数据存放地，所以使用Giscus需要先建一个github的<em>公共仓库</em>，仓库名称可根据自己的需要进行设置。本文中评论的仓库名为comments。<br><img src="create-repo.png" class="lazyload" data-srcset="create-repo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="create-repo"></li>
 </ul>
-<p>ps -elf</p>
-<ul>
-<li>-e：显示系统内的所有进程信息。</li>
-<li>-l：使用长（long）格式显示进程信息。</li>
-<li>-f：使用完整的（full）格式显示进程信息。
+<p><em>除了要求是个公共库之外，是否需要README、gitignore无具体要求</em></p>
     
   </div>
   
@@ -2440,12 +2576,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-01-17T10:17:43+08:00">2023-01-17</time>
+        <time itemprop="dateCreated datePublished" datetime="2024-03-28T14:05:44+08:00">2024-03-28</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2023/01/17/45-linux-common-command/' itemprop="url">
+          <a class='readmore' href='/2024/03/28/62-about-giscus/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2461,7 +2597,80 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/01/03/44-about-grid/">
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2024/01/29/61-about-docker-command/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Sun with no word">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="Sun with no word">
+    <meta itemprop="description" content="study blog from sun jinkang">
+  </span>
+  
+  
+  
+    <div class='headimg-div'>
+      <a class='headimg-a' href="/2024/01/29/61-about-docker-command/">
+        <img itemprop="image" class='headimg' alt="关于docker的使用问题" src='/images/docker-headimg.png'/>
+      </a>
+    </div>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/2024/01/29/61-about-docker-command/"  itemprop="url">
+        关于docker的使用问题
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      <p><strong>问题：删除docker网络，报错存在active endpoints</strong><br>例如： while removing network: network docker_dms_net id ec0611ba3525 has active endpoints</p>
+<p>解决方法：<br>第一种：<br>重启docker</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service docker restart</span><br></pre></td></tr></table></figure>
+
+<p>第二种：</p>
+<ol>
+<li><p>查看docker的网络</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network ls</span><br></pre></td></tr></table></figure></li>
+<li><p>查看网络的endpoint, 停止使用网络的container</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">docker network inspect &lt;network-id&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// container-id 是Containers下对应的数据</span></span><br><span class="line"><span class="comment">// 例如：</span></span><br><span class="line"><span class="comment">// &quot;Containers&quot;: &#123;</span></span><br><span class="line"><span class="comment">//   &quot;6bcc2418b08f9e1446053ab2e95bda066ec79bcbb0bd200c5e5110dc9bc637a3&quot;: &#123;</span></span><br><span class="line"><span class="comment">//       &quot;Name&quot;: &quot;dms-mysql-2&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;EndpointID&quot;: &quot;75b980a5ad52734eccf237b9bcef0b5c1b2b1426274326eb317d006aceac3eff&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;MacAddress&quot;: &quot;02:42:ac:1f:86:03&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;IPv4Address&quot;: &quot;172.31.134.3/24&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;IPv6Address&quot;: &quot;&quot;</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">// container-id为：6bcc2418b08f9e1446053ab2e95bda066ec79bcbb0bd200c5e5110dc9bc637a3</span></span><br><span class="line">docker container stop &lt;container-id&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="/images/fire_s.ico">
+            <meta itemprop="name" content="Sun Jinkang">
+            <meta itemprop="url" content="">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2024-01-29T16:10:54+08:00">2024-01-29</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2024/01/29/61-about-docker-command/' itemprop="url">
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2024/01/06/60-about-shadow-dom/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Sun with no word">
   </span>
@@ -2479,20 +2688,153 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2023/01/03/44-about-grid/"  itemprop="url">
-        关于grid布局的相关内容
+      <a href="/2024/01/06/60-about-shadow-dom/"  itemprop="url">
+        关于shadow dom及如何创建一个shadow dom
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      <h6 id="什么是grid布局？"><a href="#什么是grid布局？" class="headerlink" title="什么是grid布局？"></a>什么是grid布局？</h6><h6 id="怎么实现grid布局？"><a href="#怎么实现grid布局？" class="headerlink" title="怎么实现grid布局？"></a>怎么实现grid布局？</h6><h6 id="grid布局的好处"><a href="#grid布局的好处" class="headerlink" title="grid布局的好处"></a>grid布局的好处</h6><h6 id="grid布局中一些常用设置说明"><a href="#grid布局中一些常用设置说明" class="headerlink" title="grid布局中一些常用设置说明"></a>grid布局中一些常用设置说明</h6><ul>
-<li>grid-row: grid-row-start / grid-row-end;<ul>
-<li>grid-row-start    指定在哪一行开始显示网格元素。</li>
-<li>grid-row-end    指定停止显示网格元素的行，或要跨越多少行。</li>
+      <h4 id="什么是Shadow-Dom？"><a href="#什么是Shadow-Dom？" class="headerlink" title="什么是Shadow Dom？"></a>什么是Shadow Dom？</h4><blockquote>
+<p>一种连接节点的树状结构，代表标记文档（通常是在 web 文档中的 HTML 文档）中出现的不同元素和文本字符串。</p>
+</blockquote>
+<p>浏览器渲染文档的时候会给指定的DOM结构插入编写好的DOM元素，但是插入的Shadow DOM 会与主文档的DOM保持分离，也就是说Shadow DOM不存在于主DOM树上。并且Shadow DOM封装出来的DOM元素是独立的，外部的配置不会影响到内部，内部的配置也不会影响外部。</p>
+<p><strong>Chrome中查看Shadow Dom</strong><br>1.打开浏览器控制台的设置选项<br>2.找到Preference -&gt; Elements，把show user anent shadow dom勾上<br><img src="chrome-setting.png" class="lazyload" data-srcset="chrome-setting.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="chrome-setting"><br><img src="shadow-dom.png" class="lazyload" data-srcset="shadow-dom.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="shadow-dom"></p>
+<h4 id="Shadow-Dom的结构"><a href="#Shadow-Dom的结构" class="headerlink" title="Shadow Dom的结构"></a>Shadow Dom的结构</h4>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="/images/fire_s.ico">
+            <meta itemprop="name" content="Sun Jinkang">
+            <meta itemprop="url" content="">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2024-01-06T11:20:34+08:00">2024-01-06</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2024/01/06/60-about-shadow-dom/' itemprop="url">
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2024/01/06/59-about-unocss/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Sun with no word">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="Sun with no word">
+    <meta itemprop="description" content="study blog from sun jinkang">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/2024/01/06/59-about-unocss/"  itemprop="url">
+        关于原子CSS引擎 -- unocss
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>unocss是一个即时的原子CSS引擎，它可以让你用简短的类名来控制元素的样式，而不需要写复杂的CSS代码。<br>之前有分享提到过Tailwind，不知道大家是否还记得，Tailwind就是一种原子化的CSS框架。</p>
+<blockquote>
+<p>原子化CSS是一种CSS架构方式，其支持小型、单一用途的类，其名称基于视觉功能。更加通俗的来讲，原子化CSS是一种新的CSS编程思路，它倾向于创建小巧且单一用途的class，并且以视觉效果进行命名。</p>
+</blockquote>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>它可以让你快速地开发和原型设计，而不需要考虑CSS的细节。<br>它可以让你的CSS文件更小，因为它只生成你用到的工具类。<br>它可以让你的CSS更一致，因为它遵循一套预设的规则和变量。<br>它可以让你的CSS更灵活，因为它支持自定义工具类，变体，指令和图标。<br>它可以让你的CSS更易于维护，因为它避免了样式冲突和重复代码。</p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="/images/fire_s.ico">
+            <meta itemprop="name" content="Sun Jinkang">
+            <meta itemprop="url" content="">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2024-01-06T10:23:11+08:00">2024-01-06</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2024/01/06/59-about-unocss/' itemprop="url">
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/11/14/58-quick-contrast/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Sun with no word">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="Sun with no word">
+    <meta itemprop="description" content="study blog from sun jinkang">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/2023/11/14/58-quick-contrast/"  itemprop="url">
+        diff算法 -- 快速对比
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>  前面我们说了diff算法里面的双端对比，主要是在vue2中使用。但在vue3中，使用了另一种比双端diff更快的算法 – 快速diff，今天我们来看一下快速diff的使用方式。</p>
+<h4 id="快速diff的使用场景"><a href="#快速diff的使用场景" class="headerlink" title="快速diff的使用场景"></a>快速diff的使用场景</h4><ul>
+<li>预处理前置节点</li>
+<li>预处理后置节点</li>
+<li>仅有新增节点</li>
+<li>仅有卸载节点</li>
+<li>新增、卸载、移动节点</li>
 </ul>
-</li>
-</ul>
+<p>仅从上面这五种场景的字面意思上面我们大概能看出它们对应的处理情况，下面我们来看一下，每种场景具体的处理逻辑是怎么样的。（PS：为了便于理解，本文中的节点仅用数字表示）</p>
     
   </div>
   
@@ -2507,12 +2849,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-01-03T15:28:21+08:00">2023-01-03</time>
+        <time itemprop="dateCreated datePublished" datetime="2023-11-14T19:51:24+08:00">2023-11-14</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2023/01/03/44-about-grid/' itemprop="url">
+          <a class='readmore' href='/2023/11/14/58-quick-contrast/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2528,7 +2870,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/12/08/43-compress-picture/">
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/11/09/57-double-end-contrast/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Sun with no word">
   </span>
@@ -2546,23 +2888,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/12/08/43-compress-picture/"  itemprop="url">
-        前端压缩图片方法-canvas.toDataURL & canvas.toBlob
+      <a href="/2023/11/09/57-double-end-contrast/"  itemprop="url">
+        diff算法 -- 双端对比
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      <h6 id="为什么压缩图片？"><a href="#为什么压缩图片？" class="headerlink" title="为什么压缩图片？"></a>为什么压缩图片？</h6><p>浏览器在加载页面的时候，图片也是影响请求前端用户体验的一环：如果图片较大，请求耗时越长，那页面会长时间处于加载中或者白屏状态，导致用户体验较差。所以压缩图片就成了一种比较常用的优化前端性能的手段。</p>
-<h6 id="压缩图片方法"><a href="#压缩图片方法" class="headerlink" title="压缩图片方法"></a>压缩图片方法</h6><ul>
-<li>第一种：将图片传给后端，后端进行压缩</li>
-<li>第二种：使用canvas压缩图片<br>思路：</li>
-</ul>
-<ul>
-<li>通过<input type="file"/>获取二进制图片</li>
-<li>使用 FileReader 把二进制图片转换成base64格式，用于生成 Image 对象</li>
-<li>把图片绘制成 Canvas（这一步可以对图片尺寸进行压缩，这一步压缩效率最高，图片尺寸是最影响图片大小的）</li>
-<li>将Canvas 再转成 base64 图片（这一步可以对图片质量进行压缩）
+      <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>  diff算法，全称为difference算法，是一种用于比较和查找文本、源代码或任何字符串之间差异的算法。前端中在react、vue等中使用diff算法对比虚拟DOM树，进行虚拟DOM树的更新，进而完成真实DOM的更新，达到更新页面的效果。在vue2中使用的就是双端diff算法。</p>
+<h4 id="什么是双端对比？"><a href="#什么是双端对比？" class="headerlink" title="什么是双端对比？"></a>什么是双端对比？</h4><blockquote>
+<p>双端对比，即双端diff算法，一种同时对新旧两组子节点的两个端点进行比较的算法。<br>但就从上面这句话来看，可能有点抽象，可参考下面这张图片<br><img src="double-end-contrast.png" class="lazyload" data-srcset="double-end-contrast.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="double-end-contrast"></p>
+</blockquote>
+<h4 id="双端对比的简单实现"><a href="#双端对比的简单实现" class="headerlink" title="双端对比的简单实现"></a>双端对比的简单实现</h4>
     
   </div>
   
@@ -2577,12 +2914,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2022-12-08T16:48:13+08:00">2022-12-08</time>
+        <time itemprop="dateCreated datePublished" datetime="2023-11-09T13:27:17+08:00">2023-11-09</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2022/12/08/43-compress-picture/' itemprop="url">
+          <a class='readmore' href='/2023/11/09/57-double-end-contrast/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2598,7 +2935,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/11/10/42-scrollInToView-params/">
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/09/04/56-weixin-mini-game/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Sun with no word">
   </span>
@@ -2616,15 +2953,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/11/10/42-scrollInToView-params/"  itemprop="url">
-        scrollIntoView参数项说明
+      <a href="/2023/09/04/56-weixin-mini-game/"  itemprop="url">
+        微信小游戏制作
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      <h6 id="scrollIntoView作用"><a href="#scrollIntoView作用" class="headerlink" title="scrollIntoView作用"></a>scrollIntoView作用</h6><p><em>element.scrollIntoView</em><br>滚动元素的父容器，使被调用scrollIntoView的元素对用户可见2，即滚动到可视区域</p>
-<h6 id="scrollIntoView用法"><a href="#scrollIntoView用法" class="headerlink" title="scrollIntoView用法"></a>scrollIntoView用法</h6><p><em>element.scrollIntoView()</em><br>等同于element.scrollIntoView(true)</p>
+      <h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><h6 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h6><p>微信小游戏使用《小游戏可视化制作工具》进行制作开发。<a target="_blank" rel="noopener" href="https://gamemaker.weixin.qq.com/#/">《小游戏可视化制作工具》</a>是一款web应用，可用于开发微信小游戏。以可视化的操作方式编辑游戏场景，使用积木作为脚本设计精灵的行为逻辑。</p>
+<blockquote>
+<p>《小游戏可视化制作工具》推荐使用Chrome浏览器或者最新的QQ浏览器打开。</p>
+</blockquote>
+<p>《小游戏可视化制作工具》支持微信扫码登录，创建的小游戏项目为开发者私人所有，无法跟他人共享或共同编辑。<br>《小游戏可视化制作工具》的账号密码登录为团队开发登录使用，暂未开放注册。</p>
     
   </div>
   
@@ -2639,12 +2979,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2022-11-10T10:39:52+08:00">2022-11-10</time>
+        <time itemprop="dateCreated datePublished" datetime="2023-09-04T14:21:41+08:00">2023-09-04</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2022/11/10/42-scrollInToView-params/' itemprop="url">
+          <a class='readmore' href='/2023/09/04/56-weixin-mini-game/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2660,7 +3000,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/10/26/41-js-equal-type/">
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2023/08/09/55-burying-point/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Sun with no word">
   </span>
@@ -2678,16 +3018,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/10/26/41-js-equal-type/"  itemprop="url">
-        42-js-equal-type
+      <a href="/2023/08/09/55-burying-point/"  itemprop="url">
+        关于埋点
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      
-        javascript中的相等比较算法
-      
+      <h6 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h6><p>假设你所在的公司有一个购物网站，想要分析不同用户的喜好偏向，预测商品销售情况等一些情况，这时就需要收集线上活动的用户行为的数据，并结合具体的指标进行分析。那么这些数据怎么收集？通常就可以通过埋点的方式解决类似的问题。</p>
+<h6 id="什么是埋点？"><a href="#什么是埋点？" class="headerlink" title="什么是埋点？"></a>什么是埋点？</h6><p>埋点是一种常用的数据采集方法，是收集并记录用户行为数据的过程。</p>
+<p>通过埋点收集用户行为的有效信息，用作统计页面加载和事件行为的数据支撑，比如访问量、点击率、跳出率等，同时埋点为数据运营提供基础，为未来的业务发展提供有力支持。</p>
     
   </div>
   
@@ -2702,320 +3042,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2022-10-26T14:24:02+08:00">2022-10-26</time>
+        <time itemprop="dateCreated datePublished" datetime="2023-08-09T16:39:45+08:00">2023-08-09</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2022/10/26/41-js-equal-type/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/10/17/40-tail-call/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Sun with no word">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="Sun with no word">
-    <meta itemprop="description" content="study blog from sun jinkang">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/10/17/40-tail-call/"  itemprop="url">
-        尾调用与尾递归
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      <h6 id="什么是尾调用？"><a href="#什么是尾调用？" class="headerlink" title="什么是尾调用？"></a>什么是尾调用？</h6><p><strong>某个函数的最后一步调用另一个函数</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">call1</span>(<span class="params">a</span>) &#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="title function_">call2</span>(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下三种情况不属于尾调用！！！</span></span><br><span class="line"><span class="comment">// 函数调用后还有其他操作</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">call1</span>(<span class="params">a</span>) &#123;</span><br><span class="line"> <span class="keyword">const</span> x = <span class="title function_">call2</span>(a);</span><br><span class="line"> <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">call1</span>(<span class="params">a</span>) &#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="title function_">call2</span>(a) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">call1</span>(<span class="params">a</span>) &#123;</span><br><span class="line"> <span class="title function_">call2</span>(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下属于尾调用</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">call1</span>(<span class="params">a</span>) &#123;</span><br><span class="line"> <span class="keyword">if</span> (!!a) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">call2</span>(a);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="title function_">call3</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="/images/fire_s.ico">
-            <meta itemprop="name" content="Sun Jinkang">
-            <meta itemprop="url" content="">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-17T10:26:13+08:00">2022-10-17</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2022/10/17/40-tail-call/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/10/13/39-data-structure7/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Sun with no word">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="Sun with no word">
-    <meta itemprop="description" content="study blog from sun jinkang">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/10/13/39-data-structure7/"  itemprop="url">
-        数据结构与算法阅读笔记(7)
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      <h4 id="算法设计与技巧"><a href="#算法设计与技巧" class="headerlink" title="算法设计与技巧"></a>算法设计与技巧</h4><h6 id="分而治之"><a href="#分而治之" class="headerlink" title="分而治之"></a>分而治之</h6><p>将一个问题分成多个和原问题相似的小问题，递归解决小问题，再将解决方式合并以解决原来的问题</p>
-<p>分而治之算法可以分成三个部分。<br>(1) 分解原问题为多个子问题（原问题的多个小实例）。<br>(2) 解决子问题，用返回解决子问题的方式的递归算法。递归算法的基本情形可以用来解决子问题。<br>(3) 组合这些子问题的解决方式，得到原问题的解。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="/images/fire_s.ico">
-            <meta itemprop="name" content="Sun Jinkang">
-            <meta itemprop="url" content="">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-13T16:13:40+08:00">2022-10-13</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2022/10/13/39-data-structure7/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/10/13/38-data-structure6/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Sun with no word">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="Sun with no word">
-    <meta itemprop="description" content="study blog from sun jinkang">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/10/13/38-data-structure6/"  itemprop="url">
-        数据结构与算法阅读笔记(6)
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      <h4 id="排序和搜索算法"><a href="#排序和搜索算法" class="headerlink" title="排序和搜索算法"></a>排序和搜索算法</h4><h6 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h6><p><strong>冒泡排序</strong><br>冒泡排序(<em>复杂度是 O(n2)</em>)比较所有相邻的两个项，如果第一个比第二个大，则交换它们。元素项向上移动至正确的顺序，就好像气泡升至表面一样，冒泡排序因此得名。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="/images/fire_s.ico">
-            <meta itemprop="name" content="Sun Jinkang">
-            <meta itemprop="url" content="">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-13T14:15:28+08:00">2022-10-13</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2022/10/13/38-data-structure6/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/10/08/37-data-structure5/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Sun with no word">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="Sun with no word">
-    <meta itemprop="description" content="study blog from sun jinkang">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/10/08/37-data-structure5/"  itemprop="url">
-        数据结构与算法阅读笔记(5)
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      <h4 id="二叉堆和堆排序"><a href="#二叉堆和堆排序" class="headerlink" title="二叉堆和堆排序"></a>二叉堆和堆排序</h4><h6 id="二叉堆数据结构"><a href="#二叉堆数据结构" class="headerlink" title="二叉堆数据结构"></a>二叉堆数据结构</h6><p>(1)它是一棵完全二叉树，表示树的每一层都有左侧和右侧子节点（除了最后一层的叶节点），并且最后一层的叶节点尽可能都是左侧子节点，这叫作结构特性。<br>(2)二叉堆不是最小堆就是最大堆。最小堆允许你快速导出树的最小值，最大堆允许你快速导出树的最大值。所有的节点都大于等于（最大堆）或小于等于（最小堆）每个它的子节点。这叫作堆特性<br><img src="heat.png" class="lazyload" data-srcset="heat.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="heat"></p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="/images/fire_s.ico">
-            <meta itemprop="name" content="Sun Jinkang">
-            <meta itemprop="url" content="">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-08T16:33:37+08:00">2022-10-08</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2022/10/08/37-data-structure5/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/10/08/36-data-structure4/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Sun with no word">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="Sun with no word">
-    <meta itemprop="description" content="study blog from sun jinkang">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/10/08/36-data-structure4/"  itemprop="url">
-        数据结构与算法阅读笔记(4)
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      <h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p>递归是一种解决问题的方法，它从解决问题的各个小部分开始，直到解决最初的大问题。递归通常涉及函数调用自身。</p>
-<p>每个递归函数都必须有基线条件，即一个不再递归调用的条件（停止点），以防止无限递归。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href=''><img src='/images/fire_s.ico'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="/images/fire_s.ico">
-            <meta itemprop="name" content="Sun Jinkang">
-            <meta itemprop="url" content="">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-08T13:25:18+08:00">2022-10-08</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2022/10/08/36-data-structure4/' itemprop="url">
+          <a class='readmore' href='/2023/08/09/55-burying-point/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -3042,7 +3074,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           </a>
         
         <p class="current">
-          3 / 7
+          3 / 9
         </p>
         
           <a class="next" rel="next" href="/page/4/">
@@ -3549,7 +3581,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
   <script>
-  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp"];
+  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp"];
   let index = 0;
   let IntervalParallax = null;
 

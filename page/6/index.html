@@ -1712,7 +1712,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1734952089823),
+    lastupdate: new Date(1747908150785),
     sidebar: {
       for_page: ["blogger","category","tagcloud","donate"],
       for_post: ["toc"],
@@ -2389,7 +2389,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/19/15-js-transform/">
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/29/35-data-structure3/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Sun with no word">
   </span>
@@ -2407,16 +2407,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/07/19/15-js-transform/"  itemprop="url">
-        js-类型转换
+      <a href="/2022/09/29/35-data-structure3/"  itemprop="url">
+        数据结构与算法阅读笔记(3)
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      <p>在开始之前，先说一下为什么会说这个，之前在看一篇文章的时候，提到 == 和 === 的区别。<br>== ：比较两个数据是否相等，允许进行类型转化<br>比如：1==true、’1’==true，结果都是true<br>===：严格比较两个数据是否是否相等，包括比较类型是否相同，类型不匹配返回false<br>比如：1===true、’1’===true，结果为false</p>
-<h4 id="数学运算符中的类型转换"><a href="#数学运算符中的类型转换" class="headerlink" title="数学运算符中的类型转换"></a>数学运算符中的类型转换</h4><p>1、减、乘、除运算<br><strong>非Number类型的使用减、乘、除(-、*、/)运算符时，会先将非Number类型转换为Number类型</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> - <span class="literal">true</span> <span class="comment">// 0, true先转换乘1，然后执行 1 - 1</span></span><br><span class="line"><span class="number">1</span> - <span class="literal">false</span> <span class="comment">// 1, true先转换乘0，然后执行 1 - 0</span></span><br><span class="line"><span class="number">1</span> - <span class="literal">null</span> <span class="comment">// 1, true先转换乘0，然后执行 1 - 0</span></span><br><span class="line"><span class="number">1</span> - <span class="literal">undefined</span> <span class="comment">// NaN, undefined转换为数字为 NaN</span></span><br><span class="line"><span class="number">2</span> * [<span class="string">&#x27;5&#x27;</span>] <span class="comment">// 10, [&#x27;5&#x27;]先变成&#x27;5&#x27;（这一步涉及拆箱操作）,然后变成数字5</span></span><br></pre></td></tr></table></figure>
+      <h4 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h4><p>集合是由一组无序且唯一（即不能重复）的项组成的</p>
+<h6 id="创建集合类"><a href="#创建集合类" class="headerlink" title="创建集合类"></a>创建集合类</h6>
     
   </div>
   
@@ -2431,12 +2430,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2022-07-19T15:59:15+08:00">2022-07-19</time>
+        <time itemprop="dateCreated datePublished" datetime="2022-09-29T10:49:51+08:00">2022-09-29</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2022/07/19/15-js-transform/' itemprop="url">
+          <a class='readmore' href='/2022/09/29/35-data-structure3/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2452,7 +2451,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/12/14-about-fe-theory/">
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/23/34-data-structure2/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Sun with no word">
   </span>
@@ -2470,16 +2469,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/07/12/14-about-fe-theory/"  itemprop="url">
-        前端概念相关-渐进增强与优雅降级
+      <a href="/2022/09/23/34-data-structure2/"  itemprop="url">
+        数据结构与算法阅读笔记(2)
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      <h4 id="渐进增强-Progressive-Enhancement-相当于向上兼容"><a href="#渐进增强-Progressive-Enhancement-相当于向上兼容" class="headerlink" title="渐进增强(Progressive Enhancement)(相当于向上兼容)"></a>渐进增强(Progressive Enhancement)(相当于向上兼容)</h4><p>一开始就针对低版本浏览器进行构建页面，完成基本的功能，然后再针对高级浏览器进行效果、交互、追加功能达到更好的体验</p>
-<h4 id="优雅降级-Graceful-Degradation-相当于向下兼容"><a href="#优雅降级-Graceful-Degradation-相当于向下兼容" class="headerlink" title="优雅降级(Graceful Degradation)(相当于向下兼容)"></a>优雅降级(Graceful Degradation)(相当于向下兼容)</h4><p>一开始就构建站点的完整功能，然后针对浏览器测试和修复。比如一开始使用 CSS3 的特性构建了一个应用，然后逐步针对各大浏览器进行 hack 使其可以在低版本浏览器上正常浏览</p>
-<p>向下兼容指的是高版本支持低版本的或者说后期开发的版本支持和兼容早期开发的版本，向上兼容的很少<br>大多数软件都是向下兼容的</p>
+      <h4 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h4><p>队列是遵循先进先出（FIFO，也称为先来先服务）原则的一组有序的项。队列在尾部添加新元素，并从顶部移除元素。最新添加的元素必须排在队列的末尾</p>
     
   </div>
   
@@ -2494,12 +2491,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2022-07-12T10:37:56+08:00">2022-07-12</time>
+        <time itemprop="dateCreated datePublished" datetime="2022-09-23T15:52:54+08:00">2022-09-23</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2022/07/12/14-about-fe-theory/' itemprop="url">
+          <a class='readmore' href='/2022/09/23/34-data-structure2/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2515,7 +2512,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/07/05/13-document-location/">
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/21/32-apply-array-to-params/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Sun with no word">
   </span>
@@ -2533,16 +2530,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/07/05/13-document-location/"  itemprop="url">
-        各类文档地址
+      <a href="/2022/09/21/32-apply-array-to-params/"  itemprop="url">
+        js中apply怎么把数组转化为参数？
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      <h4 id="code-spell-checker配置项说明"><a href="#code-spell-checker配置项说明" class="headerlink" title="code spell checker配置项说明"></a>code spell checker配置项说明</h4><p><a target="_blank" rel="noopener" href="https://streetsidesoftware.com/vscode-spell-checker/docs/configuration/#code-spell-checker">文档地址</a></p>
-<h4 id="查看chrome各个版本功能变更"><a href="#查看chrome各个版本功能变更" class="headerlink" title="查看chrome各个版本功能变更"></a>查看chrome各个版本功能变更</h4><p><a target="_blank" rel="noopener" href="https://chromestatus.com/features">chrome status</a></p>
-<h4 id="查看-、-、if-在不同情况下的执行结果"><a href="#查看-、-、if-在不同情况下的执行结果" class="headerlink" title="查看== 、=== 、if()在不同情况下的执行结果"></a>查看== 、=== 、if()在不同情况下的执行结果</h4><p><a target="_blank" rel="noopener" href="https://dorey.github.io/JavaScript-Equality-Table/">地址</a></p>
+      <h6 id="apply可以改变函数的this指向（类似的还有call和bind），且函数的输入参数需要是一个数组"><a href="#apply可以改变函数的this指向（类似的还有call和bind），且函数的输入参数需要是一个数组" class="headerlink" title="apply可以改变函数的this指向（类似的还有call和bind），且函数的输入参数需要是一个数组"></a>apply可以改变函数的this指向（类似的还有call和bind），且函数的输入参数需要是一个数组</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line"> <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"> <span class="variable language_">console</span>.<span class="title function_">log</span>(b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">10</span>];</span><br><span class="line"><span class="title function_">test</span>(array);</span><br><span class="line"><span class="comment">// [1, 10]</span></span><br><span class="line"><span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line">test.<span class="title function_">apply</span>(<span class="literal">null</span>, array);</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> test = &#123;</span><br><span class="line"> <span class="attr">func</span>: <span class="keyword">function</span> (<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(b);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">10</span>];</span><br><span class="line">test.<span class="title function_">func</span>(array);</span><br><span class="line"><span class="comment">// [1, 10]</span></span><br><span class="line"><span class="comment">// undefined</span></span><br><span class="line">test.<span class="property">func</span>.<span class="title function_">apply</span>(test.<span class="property">func</span>, array);</span><br><span class="line">test.<span class="property">func</span>.<span class="title function_">apply</span>(<span class="literal">null</span>, array);</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">8</span>];</span><br><span class="line"><span class="title class_">Math</span>.<span class="title function_">max</span>(array);</span><br><span class="line"><span class="comment">// NaN</span></span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">8</span>];</span><br><span class="line"><span class="title class_">Math</span>.<span class="property">max</span>.<span class="title function_">apply</span>(<span class="literal">null</span>, array);</span><br><span class="line"><span class="comment">// 8</span></span><br></pre></td></tr></table></figure>
     
   </div>
   
@@ -2557,12 +2552,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2022-07-05T16:17:32+08:00">2022-07-05</time>
+        <time itemprop="dateCreated datePublished" datetime="2022-09-21T17:07:53+08:00">2022-09-21</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2022/07/05/13-document-location/' itemprop="url">
+          <a class='readmore' href='/2022/09/21/32-apply-array-to-params/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2578,7 +2573,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/06/30/12-create-github-tokens/">
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/20/33-data-structure1/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Sun with no word">
   </span>
@@ -2596,14 +2591,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/06/30/12-create-github-tokens/"  itemprop="url">
-        github生成令牌(Personal_access_tokens)操作步骤
+      <a href="/2022/09/20/33-data-structure1/"  itemprop="url">
+        数据结构与算法阅读笔记(1)
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      <h4 id="github生成令牌"><a href="#github生成令牌" class="headerlink" title="github生成令牌"></a>github生成令牌</h4><p>(1)登录<a target="_blank" rel="noopener" href="https://github.com/">GitHub网站</a><br>(2)找到setting页面 -&gt; Developer setting<br>(3)选择 Personal access tokens ，点击 Generate new token 按钮<br>(4)需要填写token的权限范围<br>(5)<strong><font color="Red">注意：生成的token只在生成后可以看一次，一定要记得保存！！！</font></strong></p>
+      <p>ECMAScript 和 javascript 的关系<br>ECMAScript 是一个语言标准，JavaScript 是该标准(最流行)的一个实现。</p>
+<p>ES5、ES6、ES2015、ES7、ES2016、ES8、ES2017 和 ES.Next 的区别</p>
+<p>(1)2009 年 12 月发布的 ECMAScript5(即 ES5，其中的 ES 是 ECMAScript 的简称)</p>
+<p>(2)ECMAScript2015(ES2015)在 2015 年 6 月标准化。负责起草 ECMAScript 规范的委员会决定把定义新标准的模式改为每年更新一次，新的特性<br>一旦通过就加入标准。因此，ECMAScript 第六版更名为 ECMAScript2015(ES6)</p>
     
   </div>
   
@@ -2618,12 +2616,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2022-06-30T11:23:56+08:00">2022-06-30</time>
+        <time itemprop="dateCreated datePublished" datetime="2022-09-20T17:41:00+08:00">2022-09-20</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2022/06/30/12-create-github-tokens/' itemprop="url">
+          <a class='readmore' href='/2022/09/20/33-data-structure1/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2639,7 +2637,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/06/30/11-github-push-insert-password/">
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/20/28-about-design-model5/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Sun with no word">
   </span>
@@ -2657,15 +2655,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/06/30/11-github-push-insert-password/"  itemprop="url">
-        github推送代码弹窗应该怎么输入？
+      <a href="/2022/09/20/28-about-design-model5/"  itemprop="url">
+        JavaScript设计模式读书笔记(6)
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      <h4 id="github推送代码弹窗应该怎么输入"><a href="#github推送代码弹窗应该怎么输入" class="headerlink" title="github推送代码弹窗应该怎么输入?"></a>github推送代码弹窗应该怎么输入?</h4><p>当本地修改代码后，需要推送到github仓库时，由于本地未记录用户名与密码，导致push时，先后出现GitHub登录弹窗，以及一个小弹窗，<br>鉴于在输入实际操作中，两次输入username和password不知道应该怎么输入，做个记录，避免遗忘。</p>
-<p>(1)本地修改代码，提交。本文仅从git push开始记录，之前的命令和操作如果不知道怎么办，请自行百度或Google。</p>
+      <h4 id="架构型设计模式"><a href="#架构型设计模式" class="headerlink" title="架构型设计模式"></a>架构型设计模式</h4><p>架构型设计模式是一类框架结构,通过提供一些子系统，指定他们的职责,并将它们条理清晰地组织在一起。</p>
+<h6 id="同步模块模式"><a href="#同步模块模式" class="headerlink" title="同步模块模式"></a>同步模块模式</h6><p>模块化:将复杂的系统分解成高内聚、低耦合的模块，使系统开发变得可控、可维护、可拓展，提高模块的复用率。<br>同步模块模式——SMD (Synchronous Module Definition):请求发出后，无论模块是否存在，立即执行后续的逻辑，实现模块开发中对模块的立即引用。</p>
     
   </div>
   
@@ -2680,12 +2678,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2022-06-30T10:45:15+08:00">2022-06-30</time>
+        <time itemprop="dateCreated datePublished" datetime="2022-09-20T15:22:12+08:00">2022-09-20</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2022/06/30/11-github-push-insert-password/' itemprop="url">
+          <a class='readmore' href='/2022/09/20/28-about-design-model5/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2701,7 +2699,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/06/28/10-about-meta/">
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/19/27-about-design-model4/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Sun with no word">
   </span>
@@ -2719,17 +2717,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/06/28/10-about-meta/"  itemprop="url">
-        meta标签的使用
+      <a href="/2022/09/19/27-about-design-model4/"  itemprop="url">
+        JavaScript设计模式读书笔记(5)
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      <h4 id="meta标签的使用"><a href="#meta标签的使用" class="headerlink" title="meta标签的使用"></a>meta标签的使用</h4><h6 id="文档级元数据元素"><a href="#文档级元数据元素" class="headerlink" title="文档级元数据元素"></a><meta>文档级元数据元素</h6><p>meta标签一般放在HTML页面的head里面，<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta">MDN</a>定义：</p>
-<blockquote>
-<p>HTML <meta> 元素表示那些不能由其它 HTML 元相关（meta-related）元素（(&lt;base&gt;,&lt;link&gt;,&lt;script&gt;,&lt;style&gt; 或 &lt;title&gt;）之一表示的任何元数据信息。</p>
-</blockquote>
+      <h4 id="技巧型设计模式"><a href="#技巧型设计模式" class="headerlink" title="技巧型设计模式"></a>技巧型设计模式</h4><p>技巧型设计模式是通过一些特定技巧来解决组件的某些方面的问题，这类技巧一般通过实践经验总结得到。</p>
+<h6 id="链模式"><a href="#链模式" class="headerlink" title="链模式"></a>链模式</h6><p>链模式(Operate of Responsibility):通过在对象方法中将当前对象返回，实现对同一个对象多个方法的链式调用。从而简化对该对象的多个方法的多次调用时，对该对象的多次引用。</p>
     
   </div>
   
@@ -2744,12 +2740,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2022-06-28T22:16:30+08:00">2022-06-28</time>
+        <time itemprop="dateCreated datePublished" datetime="2022-09-19T17:51:10+08:00">2022-09-19</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2022/06/28/10-about-meta/' itemprop="url">
+          <a class='readmore' href='/2022/09/19/27-about-design-model4/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2765,7 +2761,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/06/27/9-text-type-about-markdown/">
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/07/26-about-design-model3/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Sun with no word">
   </span>
@@ -2783,16 +2779,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/06/27/9-text-type-about-markdown/"  itemprop="url">
-        MarkDown语法及示例
+      <a href="/2022/09/07/26-about-design-model3/"  itemprop="url">
+        JavaScript设计模式读书笔记(4)
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      <h4 id="MarkDown语法及示例"><a href="#MarkDown语法及示例" class="headerlink" title="MarkDown语法及示例"></a>MarkDown语法及示例</h4><h6 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h6><p>```javascript<br>const name = ‘eric’;<br>….<br>``` </p>
-<h6 id="加粗字体"><a href="#加粗字体" class="headerlink" title="加粗字体"></a>加粗字体</h6><p>**文字**<br>__文字__</p>
-<h6 id="倾斜字体"><a href="#倾斜字体" class="headerlink" title="倾斜字体"></a>倾斜字体</h6><p>*文字*<br>_文字_</p>
+      <h4 id="行为型设计模式"><a href="#行为型设计模式" class="headerlink" title="行为型设计模式"></a>行为型设计模式</h4><p>行为型设计模式用于不同对象之间职责划分或算法抽象，行为型设计模式不仅仅涉及类和对象,还涉及类或对象之间的交流模式并加以实现</p>
+<h6 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h6><p>模板方法模式(Template Method):父类中定义一组操作算法骨架，而将一些实现步骤延迟到子类中，使得子类可以不改变父类的算法结构的同时可重新定义算法中某些实现步骤。</p>
+<p>多用于归一化组件</p>
     
   </div>
   
@@ -2807,12 +2803,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2022-06-27T10:43:07+08:00">2022-06-27</time>
+        <time itemprop="dateCreated datePublished" datetime="2022-09-07T17:40:43+08:00">2022-09-07</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2022/06/27/9-text-type-about-markdown/' itemprop="url">
+          <a class='readmore' href='/2022/09/07/26-about-design-model3/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2828,7 +2824,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/06/27/8-create-fixed-length-array/">
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/06/25-about-design-model2/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Sun with no word">
   </span>
@@ -2846,15 +2842,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/06/27/8-create-fixed-length-array/"  itemprop="url">
-        js-新建固定长度数据
+      <a href="/2022/09/06/25-about-design-model2/"  itemprop="url">
+        JavaScript设计模式读书笔记(3)
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      <h4 id="新建固定长度数组"><a href="#新建固定长度数组" class="headerlink" title="新建固定长度数组"></a>新建固定长度数组</h4><h6 id="使用primitives填充数组"><a href="#使用primitives填充数组" class="headerlink" title="使用primitives填充数组"></a>使用primitives填充数组</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> newArray = <span class="title class_">Array</span>(<span class="number">3</span>).<span class="title function_">fill</span>(<span class="number">3</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newArray);  <span class="comment">// [3, 3, 3]</span></span><br></pre></td></tr></table></figure>
-<p>Array(length).fill(initialValue) 是一种创建具有所需长度并使用原始值（数字、字符串、布尔值）初始化的数组的便捷方法</p>
+      <h4 id="结构型设计模式"><a href="#结构型设计模式" class="headerlink" title="结构型设计模式"></a>结构型设计模式</h4><p>结构型设计模式关注于如何将类或对象组合成更大、更复杂的结构，以简化设计</p>
+<h6 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h6><p>外观模式(Facade):为一组复杂的子系统接口提供一个更高级的统一接口，通过这个接口使得对子系统接口的访问更容易。在JavaScript中有时也会用于对底层结构兼容性做统一封装来简化用户使用</p>
     
   </div>
   
@@ -2869,12 +2865,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2022-06-27T10:20:46+08:00">2022-06-27</time>
+        <time itemprop="dateCreated datePublished" datetime="2022-09-06T15:11:48+08:00">2022-09-06</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2022/06/27/8-create-fixed-length-array/' itemprop="url">
+          <a class='readmore' href='/2022/09/06/25-about-design-model2/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2890,7 +2886,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/06/23/7-question-about-render/">
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/05/31-get-and-set-prototypeof/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Sun with no word">
   </span>
@@ -2908,14 +2904,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/06/23/7-question-about-render/"  itemprop="url">
-        react & vue渲染问题
+      <a href="/2022/09/05/31-get-and-set-prototypeof/"  itemprop="url">
+        Object获取及设置原型对象
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      <h4 id="疑问点"><a href="#疑问点" class="headerlink" title="疑问点"></a>疑问点</h4><p>(1)react中的快照的具体作用是什么？vue3中是否有类似的操作？<br>类似渲染的子节点？？？<br>(2)react中将调试打印的信息放在块级作用域中？为什么不直接放在代码里面？<br>没什么特别意义，团队规范规定<br>(3)vue3中在patch的时候，为什么在有了patchElement（感觉能满足大部分情况了）的情况下，分了其他几种类型？<br>性能、更新</p>
+      <h6 id="Object获取原型对象：Object-getPrototypeOf"><a href="#Object获取原型对象：Object-getPrototypeOf" class="headerlink" title="Object获取原型对象：Object.getPrototypeOf"></a>Object获取原型对象：Object.getPrototypeOf</h6><p>Object.getPrototypeOf用于获取指定对象的原型对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Object</span>.<span class="title function_">getPrototypeOf</span>(obj);</span><br></pre></td></tr></table></figure>
+<p><strong>参数</strong><br>obj: 参数为要获取原型对象的对象<br><strong>返回值</strong><br>返回指定对象的原型对象或null<br>注意：<br>es5中，如果参数不是对象，会抛出TypeError错误<br>es6中，如果参数不是对象，会强制类型转换为对象</p>
     
   </div>
   
@@ -2930,12 +2928,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2022-06-23T13:21:12+08:00">2022-06-23</time>
+        <time itemprop="dateCreated datePublished" datetime="2022-09-05T13:54:58+08:00">2022-09-05</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2022/06/23/7-question-about-render/' itemprop="url">
+          <a class='readmore' href='/2022/09/05/31-get-and-set-prototypeof/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -2951,7 +2949,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/06/22/6-vue3-render/">
+  <link itemprop="mainEntityOfPage" href="https://sunjinkang.github.io/2022/09/05/30-some-convenient-code/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Sun with no word">
   </span>
@@ -2969,14 +2967,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2022/06/22/6-vue3-render/"  itemprop="url">
-        vue3渲染
+      <a href="/2022/09/05/30-some-convenient-code/"  itemprop="url">
+        开发中使用的便捷代码
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      <h2 id="渲染流程"><a href="#渲染流程" class="headerlink" title="渲染流程"></a>渲染流程</h2><p><img src="vue3_render.png" class="lazyload" data-srcset="vue3_render.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="vue3_render"><br>(1)创建一个vue实例 -&gt; 初始化实例（包括需要相关事件与生命周期函数等）<br>(2)调用beforeCreate<br>(3)初始化注入，包括data、method等添加到实例对象<br>(4)实例创建完成，调用created<br>(5)有el挂载，使用template替换；无挂载，使用mount自动挂载<br>(6)有template，进行编译，使其成为render函数<br>(7)（1）有template，使用模板构建抽象语法树；（2）通过数据获取元素的outerHTML属性值即元素结构的字符串形式构建HTML模板<br>(8)调用beforeMount（vue实例挂载在虚拟DOM上）<br>(9)生成HTML元素节点，替换页面原有的挂载节点（页面渲染）<br>(10)调用mounted<br>– （1）数据变更，即将重新渲染<br>– （2）调用beforeUpdate<br>– （3）进行虚拟DOM和真实DOM对比，进行patch<br>– （4）渲染完成，调用updated<br>(11)实例销毁之前调用beforeUnmount<br>(12)实例销毁，vm.$destroy<br>(13)销毁后调用unmounted</p>
+      <h6 id="基于条件设置对象属性"><a href="#基于条件设置对象属性" class="headerlink" title="基于条件设置对象属性"></a>基于条件设置对象属性</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 空值</span></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> obj = &#123; ...name &amp;&amp; &#123;name&#125;&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj); <span class="comment">// &#123;&#125;</span></span><br><span class="line"><span class="comment">// 非空值</span></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;test_name&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> obj = &#123; ...name &amp;&amp; &#123;name&#125;&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj); <span class="comment">// &#123; name: &#x27;test_name&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
     
   </div>
   
@@ -2991,12 +2989,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2022-06-22T22:12:51+08:00">2022-06-22</time>
+        <time itemprop="dateCreated datePublished" datetime="2022-09-05T13:24:10+08:00">2022-09-05</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2022/06/22/6-vue3-render/' itemprop="url">
+          <a class='readmore' href='/2022/09/05/30-some-convenient-code/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -3023,7 +3021,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           </a>
         
         <p class="current">
-          6 / 7
+          6 / 9
         </p>
         
           <a class="next" rel="next" href="/page/7/">
@@ -3530,7 +3528,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
   <script>
-  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp"];
+  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp"];
   let index = 0;
   let IntervalParallax = null;
 
